@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "610077945130",
+    "project_id": "easynewsvideomaker",
+    "storage_bucket": "easynewsvideomaker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610077945130:android:dfd468aa915777b5a20253",
+        "android_client_info": {
+          "package_name": "com.easynewsvideomaker.easynewsvideomaker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtSmYYZV8nfn8RoNl70j9lTYknn_iHOwE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

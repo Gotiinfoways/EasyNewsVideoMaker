@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.EasyNewsVideoMaker" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/Red</item>
+    </style>
+
+    <style name="Theme.EasyNewsVideoMaker" parent="Base.Theme.EasyNewsVideoMaker" />
+
+    <!--    radio button selected color change-->
+    <style name="MyRadioButton" parent="Theme.AppCompat.Light">
+    <item name="colorControlNormal">@color/grey</item>
+    <item name="colorControlActivated">@color/Red</item>
+    </style>
+</resources>
