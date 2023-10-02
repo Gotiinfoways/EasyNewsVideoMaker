@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.view.WindowManager
@@ -15,7 +14,6 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.easynewsvideomaker.easynewsvideomaker.R
-import com.easynewsvideomaker.easynewsvideomaker.SignUpActivity
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityLoginScreenBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -24,7 +22,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
@@ -37,7 +34,7 @@ class LoginScreenActivity : AppCompatActivity() {
     var isPasswordVisible = false
 //    private var android_id: String? = null
 
-    lateinit var dialog: Dialog
+    lateinit var progressDialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginScreenBinding = ActivityLoginScreenBinding.inflate(layoutInflater)
@@ -50,12 +47,12 @@ class LoginScreenActivity : AppCompatActivity() {
     }
 
     private fun progressDialog() {
-        dialog = Dialog(this)
+        progressDialog = Dialog(this)
         var progressBarBinding = ProgressBarBinding.inflate(layoutInflater)
-        dialog.setContentView(progressBarBinding.root)
+        progressDialog.setContentView(progressBarBinding.root)
 
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setLayout(
+        progressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        progressDialog.window?.setLayout(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
@@ -126,14 +123,12 @@ class LoginScreenActivity : AppCompatActivity() {
                 )
                     .show()
             } else {
-                dialog.show()
+                progressDialog.show()
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
                         // Storing the device token when a user logs in
                         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
                         val currentDeviceToken = "This Email is login"
-
-
 
 
 // Checking if the device token matches the stored token
@@ -143,43 +138,63 @@ class LoginScreenActivity : AppCompatActivity() {
 
 
 //                                    var storedDeviceToken = dataSnapshot.child("device_token").value.toString()
-                                    val storedDeviceToken = dataSnapshot.getValue(String::class.java)
+                                    val storedDeviceToken =
+                                        dataSnapshot.getValue(String::class.java)
                                     if (currentDeviceToken == storedDeviceToken) {
                                         // Device token matches, allow login
-                                        dialog.dismiss()
-                                        Toast.makeText(this@LoginScreenActivity, "this email is login other device", Toast.LENGTH_SHORT).show()
+                                        progressDialog.dismiss()
+                                        Toast.makeText(
+                                            this@LoginScreenActivity,
+                                            "this email is login other device",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
 
                                     } else {
 
                                         // Device token does not match, handle accordingly
 
-                                        mDbRef.child("user").child(currentUserId!!).child("device_token")
+                                        mDbRef.child("user").child(currentUserId!!)
+                                            .child("device_token")
                                             .setValue(currentDeviceToken)
 
-                                        val intent = Intent(this@LoginScreenActivity, HomeActivity::class.java)
+                                        val intent = Intent(
+                                            this@LoginScreenActivity,
+                                            HomeActivity::class.java
+                                        )
                                         startActivity(intent)
                                         finish()
 
-                                        var myEdit: SharedPreferences.Editor = sharedPreferences.edit()
+                                        var myEdit: SharedPreferences.Editor =
+                                            sharedPreferences.edit()
                                         myEdit.putBoolean("isLogin", true)
                                         myEdit.putString("email", email)
 
                                         myEdit.commit()
-                                        Toast.makeText(this@LoginScreenActivity, "Login Success", Toast.LENGTH_SHORT).show()
-                                        dialog.dismiss()
+                                        Toast.makeText(
+                                            this@LoginScreenActivity,
+                                            "Login Success",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        progressDialog.dismiss()
 
                                     }
                                 }
 
                                 override fun onCancelled(databaseError: DatabaseError) {
                                     // Handle database errors
+                                    Toast.makeText(
+                                        this@LoginScreenActivity,
+                                        "Login Fail",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    progressDialog.dismiss()
                                 }
                             })
 
 //                        oneDeviceLogin(currentUserId)
                     }
                 }.addOnFailureListener {
-                    dialog.dismiss()
+                    progressDialog.dismiss()
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
             }

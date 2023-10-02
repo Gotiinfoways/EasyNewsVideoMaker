@@ -70,8 +70,15 @@ class HomeActivity : AppCompatActivity() {
         homeBinding.imgMenu.setOnClickListener {
             homeBinding.drawer.openDrawer(GravityCompat.START)
 
-
         }
+
+
+        //  Subscription / Package
+        homeBinding.imgSubscription.setOnClickListener {
+            var i = Intent(this, SubscriptionActivity::class.java)
+            startActivity(i)
+        }
+
 
         //           user information
         var query: Query =
@@ -94,9 +101,24 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
+//        Subscription
         homeBinding.laySubscriptionNav.setOnClickListener {
             var i = Intent(this, SubscriptionActivity::class.java)
             startActivity(i)
+        }
+
+
+//        Share App
+        homeBinding.layShareNav.setOnClickListener {
+            val appPackageName: String = getPackageName()
+            val sendIntent = Intent()
+            sendIntent.action = Intent.ACTION_SEND
+            sendIntent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Check out the App at: https://play.google.com/store/apps/details?id=$appPackageName"
+            )
+            sendIntent.type = "text/plain"
+            startActivity(sendIntent)
         }
 //Logout
         homeBinding.layLogoutNav.setOnClickListener {
@@ -152,7 +174,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {

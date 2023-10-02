@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
-    tools:context=".SignUpActivity">
+    tools:context=".activity.SignUpActivity">
 
     <ImageView
         android:id="@+id/icon"
@@ -89,38 +89,6 @@
 
         </LinearLayout>
 
-        <!--Channel Name-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginHorizontal="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:backgroundTint="@color/lightblack"
-            android:foreground="@drawable/card_gray_corner"
-            android:orientation="horizontal"
-            android:padding="@dimen/_13sdp">
-
-            <ImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/channel_name" />
-
-            <EditText
-                android:id="@+id/edtChannelName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/poppins"
-                android:hint="Your Channel Name"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLines="1"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
-
-        </LinearLayout>
         <!--Mobil Number-->
         <LinearLayout
             android:layout_width="match_parent"

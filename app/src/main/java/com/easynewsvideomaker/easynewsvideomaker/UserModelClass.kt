@@ -35,4 +35,5 @@ class UserModelClass {
         this.packageType = packageType
         this.uid = uid
     }
+    data class SignupUserModel(var userName: String,var mobilNumber: String,var email: String,var password: String,var uid: String)
 }

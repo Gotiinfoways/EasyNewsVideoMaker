@@ -1221,8 +1221,8 @@ var isVideoSelected=false
         if (isPlaying) {
             pausePlaying()
         }
-        mRecorder!!.release()
-        mPlayer!!.release()
+//        mRecorder!!.release()
+//        mPlayer!!.release()
     }
 }
 

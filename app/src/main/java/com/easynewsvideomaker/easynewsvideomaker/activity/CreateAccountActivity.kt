@@ -1,12 +1,16 @@
 package com.easynewsvideomaker.easynewsvideomaker.activity
 
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
@@ -14,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.UserModelClass
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityCreateAccountBinding
+import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -33,6 +38,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
     var userId: String? = null   //  id variable  define
     var flag = 0    //  flag variable  define
+    lateinit var progressDialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         createAccountBinding = ActivityCreateAccountBinding.inflate(layoutInflater)
@@ -73,11 +79,23 @@ class CreateAccountActivity : AppCompatActivity() {
         }
 
 
-
+        progressDialog()
         dateAndPackage()
         passwordToggleVisible()
         initView()
 
+    }
+
+    private fun progressDialog() {
+        progressDialog = Dialog(this)
+        var progressBarBinding = ProgressBarBinding.inflate(layoutInflater)
+        progressDialog.setContentView(progressBarBinding.root)
+
+        progressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        progressDialog.window?.setLayout(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
     }
 
     private fun passwordToggleVisible() {
@@ -225,30 +243,38 @@ class CreateAccountActivity : AppCompatActivity() {
                 Toast.makeText(this, "Password do not match", Toast.LENGTH_SHORT).show()
 
             } else {
-
+                progressDialog.show()
                 if (flag == 1) {
-                    mDbRef.child("user").child(userId!!).setValue(UserModelClass(
-                        userName,
-                        channelName,
-                        mobilNumber,
-                        email,
-                        password,
-                        startDate,
-                        endDate,
-                        packageType!!,
-                        userId!!
-                    ))
+                    mDbRef.child("user").child(userId!!).setValue(
+                        UserModelClass(
+                            userName,
+                            channelName,
+                            mobilNumber,
+                            email,
+                            password,
+                            startDate,
+                            endDate,
+                            packageType!!,
+                            userId!!
+                        )
+                    )
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
-                                Toast.makeText(this, "Record Updated Successfully", Toast.LENGTH_SHORT)
+                                Toast.makeText(
+                                    this,
+                                    "Record Updated Successfully",
+                                    Toast.LENGTH_SHORT
+                                )
                                     .show()
+
+                                progressDialog.dismiss()
                                 var i = Intent(this, AdminHomeActivity::class.java)
                                 startActivity(i)
                             }
                         }.addOnFailureListener {
                             Log.e("TAG", "initView: " + it.message)
+                            progressDialog.dismiss()
                         }
-
 
 
                 } else {
@@ -270,6 +296,9 @@ class CreateAccountActivity : AppCompatActivity() {
                                 )
                                 Toast.makeText(this, "Account Create Success", Toast.LENGTH_SHORT)
                                     .show()
+
+                                progressDialog.dismiss()
+
                                 var i = Intent(this, AdminHomeActivity::class.java)
                                 startActivity(i)
                                 finish()
@@ -277,6 +306,7 @@ class CreateAccountActivity : AppCompatActivity() {
                         }.addOnFailureListener {
                             Log.e("TAG", "createUserWithEmail:Fail  " + it.message)
                             Toast.makeText(this, "Account Create Fail", Toast.LENGTH_SHORT).show()
+                            progressDialog.dismiss()
                         }
                 }
             }
@@ -295,7 +325,7 @@ class CreateAccountActivity : AppCompatActivity() {
         startDate: String,
         endDate: String,
         packageType: String?,
-        uid: String
+        uid: String,
     ) {
 
 
