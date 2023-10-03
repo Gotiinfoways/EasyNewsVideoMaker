@@ -30,6 +30,7 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogFileSaveBinding
@@ -79,7 +80,9 @@ class DisplayFragment : Fragment() {
     // string variable is created for storing a file name
     private var mFileName: String? = null
 
-var isVideoSelected=false
+    var isVideoSelected = false
+    lateinit var transparentBitmap: Bitmap
+    var convertImagePath: String? = null
     var videoPath: String? = null
     private var imagePath: String? = null
     lateinit var recodingBinding: DialogRecordingBinding
@@ -722,37 +725,26 @@ var isVideoSelected=false
         //Video Export
         displayBinding.cdExploreBtn.setOnClickListener {
 
-//            addTextProcess()
+
             saveFrameLayoutAsImage()
-            val dialog = Dialog(requireContext())
-            val dialogBinding = DialogFileSaveBinding.inflate(layoutInflater)
-            dialog.setContentView(dialogBinding.root)
+            if (videoPath == null) {
 
-            dialogBinding.btnSubmit.setOnClickListener {
-                var fileName = dialogBinding.edtText.text.toString()
+                Toast.makeText(context, "Please Select Video", Toast.LENGTH_SHORT).show()
 
-                Log.e("TAG", "file Name: $fileName")
+            } else {
 
-                progressDialog.show()
+                val fragment = VideoExportFragment()
+                val bundle = Bundle()
+                bundle.putString("videoPath", videoPath)
+                bundle.putString("convertImagePath", convertImagePath)
+                fragment.arguments = bundle
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.container, fragment)
+                transaction.addToBackStack(null)
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                transaction.commit()
 
-                addImageOnVideo(fileName)
-//                mixVideo(fileName)
-                dialog.dismiss()
             }
-
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))   //dialog box TRANSPARENT
-            dialog.window?.setLayout(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            dialog.show()
-//            val fragment = VideoExportFragment()
-//            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-//            transaction.replace(R.id.container, fragment)
-//            transaction.addToBackStack(null)
-//            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-//            transaction.commit()
-
 
         }
 
@@ -985,10 +977,10 @@ var isVideoSelected=false
             }
         }
 
-    var imagePathTxtBraking1 = ""
+
     fun saveFrameLayoutAsImage() {
         // Create a transparent Bitmap
-        val transparentBitmap = Bitmap.createBitmap(
+        transparentBitmap = Bitmap.createBitmap(
             displayBinding.frameView.getWidth(),
             displayBinding.frameView.getHeight(),
             Bitmap.Config.ARGB_8888
@@ -1008,7 +1000,7 @@ var isVideoSelected=false
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        imagePathTxtBraking1 = file.absolutePath
+        convertImagePath = file.absolutePath
 //        // Display the captured image in an ImageView
 //        imageView.setImageBitmap(transparentBitmap)
     }
@@ -1023,7 +1015,7 @@ var isVideoSelected=false
         var tvInputPathVideo = videoPath!!
 
 
-        var tvInputPathImage = imagePathTxtBraking1!!
+        var tvInputPathImage = convertImagePath!!
 
 
         val query = ffmpegQueryExtension.addImageOnVideo(
@@ -1194,7 +1186,6 @@ var isVideoSelected=false
 //            }
 //        })
 //    }
-
 
 
     private val UpdateSongTime: Runnable = object : Runnable {

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linClick"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -12,10 +13,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/fram_round"
-        android:gravity="center"
         android:padding="@dimen/_15sdp">
 
         <LinearLayout
+            android:id="@+id/display"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -40,61 +41,33 @@
                 tools:text="User Name" />
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
+            android:layout_toRightOf="@+id/display"
+            android:layout_marginLeft="@dimen/_20sdp"
             android:layout_width="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_height="wrap_content">
 
-            <LinearLayout
-                android:id="@+id/linEditData"
+            <TextView
+                android:id="@+id/txtUserEmailDisplay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_5sdp">
+                android:textColor="@color/l_grey"
+                tools:text="xyz@gmail.com" />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
-                    android:text="Edit"
-                    android:textColor="@color/Red" />
 
-                <ImageView
-                    android:layout_width="@dimen/_15sdp"
-                    android:layout_height="@dimen/_15sdp"
-                    android:src="@drawable/edit" />
+        <LinearLayout
+            android:id="@+id/linDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="center">
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/switchh"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_5sdp"
-                android:layout_toRightOf="@id/linEditData"
-                android:gravity="end">
+                android:src="@drawable/ic_delete" />
 
-                <Switch
-                    android:id="@+id/switchButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:thumb="@drawable/thumb2"
-                    android:track="@drawable/track" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linDelete"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/switchh"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_delete" />
-
-            </LinearLayout>
-        </RelativeLayout>
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

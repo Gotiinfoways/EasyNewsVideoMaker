@@ -9,14 +9,12 @@ import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.util.Patterns
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.easynewsvideomaker.easynewsvideomaker.R
-import com.easynewsvideomaker.easynewsvideomaker.UserModelClass
+import com.easynewsvideomaker.easynewsvideomaker.modelClass.UserModelClass
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityCreateAccountBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -78,11 +76,94 @@ class CreateAccountActivity : AppCompatActivity() {
             createAccountBinding.txtPageTitle.text = "update Data"  //change page title
         }
 
+        if (intent != null && intent.hasExtra("signupDataInsert")) {  // data update key access this class
 
+            flag = 2
+            var newUserName: String? = intent.getStringExtra("userName")   // key set in variable
+            var newChannelName: String? =
+                intent.getStringExtra("channelName")   // key set  variable
+            var newMobilNumber: String? =
+                intent.getStringExtra("mobilNumber")   // key set  variable
+            var newEmail: String? = intent.getStringExtra("email")   // key set  variable
+            var newPassword: String? = intent.getStringExtra("password")   // key set  variable
+            var newButtonName: String? = intent.getStringExtra("buttonName")   // key set  variable
+            userId = intent.getStringExtra("id")   // key set  variable
+
+            Log.e("TAG", "RS_ID: " + userId)
+            Log.e("TAG", "RS_Amount: " + newUserName)
+
+            createAccountBinding.edtUserName.setText(newUserName)  //variable set in text view
+            createAccountBinding.edtChannelName.setText(newChannelName)  //variable set in text view
+            createAccountBinding.edtMobilNumber.setText(newMobilNumber)  //variable set in text view
+            createAccountBinding.edtEmail.setText(newEmail)  //variable set in text view
+            createAccountBinding.edtPassword.setText(newPassword)  //variable set in text view
+            createAccountBinding.btnSubmitText.text = newButtonName  //variable set in text view
+
+        }
+
+
+//        layoutBackgroundChange()
         progressDialog()
         dateAndPackage()
         passwordToggleVisible()
         initView()
+
+    }
+
+    private fun layoutBackgroundChange() {
+
+        createAccountBinding.linUserName.setOnClickListener {
+            createAccountBinding.linUserName.setBackgroundResource(R.drawable.card_corner)
+            createAccountBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+        createAccountBinding.linChannel.setOnClickListener {
+            createAccountBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linChannel.setBackgroundResource(R.drawable.card_corner)
+            createAccountBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+
+        createAccountBinding.linMobileNumber.setOnClickListener {
+            createAccountBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linMobileNumber.setBackgroundResource(R.drawable.card_corner)
+            createAccountBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+        createAccountBinding.linEmail.setOnClickListener {
+            createAccountBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linEmail.setBackgroundResource(R.drawable.card_corner)
+            createAccountBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+
+        createAccountBinding.linPassword.setOnClickListener {
+            createAccountBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linPassword.setBackgroundResource(R.drawable.card_corner)
+            createAccountBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+
+        createAccountBinding.linConPassword.setOnClickListener {
+            createAccountBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            createAccountBinding.linConPassword.setBackgroundResource(R.drawable.card_corner)
+        }
+
 
     }
 
@@ -172,7 +253,6 @@ class CreateAccountActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-
 
         createAccountBinding.cdSubmitBtn.setOnClickListener {
             var userName = createAccountBinding.edtUserName.text.toString()
@@ -277,7 +357,42 @@ class CreateAccountActivity : AppCompatActivity() {
                         }
 
 
-                } else {
+                }
+                else if (flag == 2) {
+                    mDbRef.child("user").child(userId!!).setValue(
+                        UserModelClass(
+                            userName,
+                            channelName,
+                            mobilNumber,
+                            email,
+                            password,
+                            startDate,
+                            endDate,
+                            packageType!!,
+                            userId!!
+                        )
+                    )
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Toast.makeText(
+                                    this,
+                                    "Record Updated Successfully",
+                                    Toast.LENGTH_SHORT
+
+                                )
+                                    .show()
+
+                                deleteSignUpUserData(userId!!)
+                                progressDialog.dismiss()
+                                var i = Intent(this, AdminHomeActivity::class.java)
+                                startActivity(i)
+                            }
+                        }.addOnFailureListener {
+                            Log.e("TAG", "initView: " + it.message)
+                            progressDialog.dismiss()
+                        }
+                }
+                else {
                     auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
@@ -313,6 +428,19 @@ class CreateAccountActivity : AppCompatActivity() {
 
         }
 
+
+    }
+
+    private fun deleteSignUpUserData(userId: String) {
+
+        mDbRef.child("signup_user").child(userId).removeValue()
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+
+                }
+            }.addOnFailureListener {
+                Log.e("TAG", "initView: " + it.message)
+            }
 
     }
 

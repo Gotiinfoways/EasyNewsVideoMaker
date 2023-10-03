@@ -162,7 +162,7 @@
                         android:marqueeRepeatLimit="marquee_forever"
                         android:scrollHorizontally="true"
                         android:singleLine="true"
-                        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
+                        android:text="TabLayout વર્ગની newTab() પદ્ધતિનો ઉપયોગ કરીને ટેબ્સ બનાવવામાં આવે છે. ટૅબ્સનું શીર્ષક અને ચિહ્ન અનુક્રમે TabListener ઇન્ટરફેસની setText(int) અને setIcon(int) પદ્ધતિઓ દ્વારા સેટ કરવામાં આવે છે. એડટૅબ(ટૅબ) પદ્ધતિનો ઉપયોગ કરીને લેઆઉટની ટૅબ્સ TabLayout પર જોડાયેલ છે"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
@@ -183,7 +183,11 @@
                         android:marqueeRepeatLimit="marquee_forever"
                         android:scrollHorizontally="true"
                         android:singleLine="true"
-                        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
+                        android:text="પ્રોજેક્ટ લેવલ બિલ્ડ.ગ્રેડલ ખોલો અને એન્ડ્રોઇડ ડિઝાઇન સપોર્ટ લાઇબ્રેરી ઉમેરો.com.android.support:design:23.0.1. ...
+લેઆઉટ ફાઈલ activity_main માં. ...
+custom_tab નામનું XML લેઆઉટ બનાવો. ...
+ટેબ સમાવિષ્ટો માટે Fragment1.java નામનો ટુકડો બનાવો. ...
+MainActivity માં."
                         android:textStyle="bold" />
 
                 </LinearLayout>

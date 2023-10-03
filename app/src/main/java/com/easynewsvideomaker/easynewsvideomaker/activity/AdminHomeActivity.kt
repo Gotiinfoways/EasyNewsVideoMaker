@@ -11,8 +11,8 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.easynewsvideomaker.easynewsvideomaker.UserAdapterClass
-import com.easynewsvideomaker.easynewsvideomaker.UserModelClass
+import com.easynewsvideomaker.easynewsvideomaker.adapterClass.UserAdapterClass
+import com.easynewsvideomaker.easynewsvideomaker.modelClass.UserModelClass
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityAdminHomeBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DeleteDialogBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
@@ -30,7 +30,7 @@ class AdminHomeActivity : AppCompatActivity() {
     lateinit var adapter: UserAdapterClass
     lateinit var mDbRef: DatabaseReference
     lateinit var mAuth: FirebaseAuth
-    lateinit var dialog: Dialog
+    lateinit var progressDialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adminHomeBinding = ActivityAdminHomeBinding.inflate(layoutInflater)
@@ -43,16 +43,16 @@ class AdminHomeActivity : AppCompatActivity() {
     }
 
     private fun progressDialog() {
-        dialog = Dialog(this)
+        progressDialog = Dialog(this)
         var progressBarBinding = ProgressBarBinding.inflate(layoutInflater)
-        dialog.setContentView(progressBarBinding.root)
+        progressDialog.setContentView(progressBarBinding.root)
 
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setLayout(
+        progressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        progressDialog.window?.setLayout(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
-        dialog.show()
+        progressDialog.show()
     }
 
     private fun initView() {
@@ -96,7 +96,7 @@ class AdminHomeActivity : AppCompatActivity() {
                         data?.let { it1 -> userList.add(it1) }
                     }
                     adapter.updateList(userList)
-                    dialog.dismiss()
+                    progressDialog.dismiss()
                 }
 
                 override fun onCancelled(error: DatabaseError) {

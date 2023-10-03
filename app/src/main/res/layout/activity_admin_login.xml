@@ -42,13 +42,14 @@
         android:id="@+id/linLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_below="@+id/tv"
-        android:layout_marginTop="@dimen/_15sdp">
+        android:layout_marginTop="@dimen/_15sdp"
+        android:orientation="vertical">
         <!--Email-->
 
 
         <LinearLayout
+            android:id="@+id/linEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -71,6 +72,8 @@
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/poppins"
                 android:hint="EMAIL"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
@@ -81,6 +84,7 @@
 
 
         <LinearLayout
+            android:id="@+id/linPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -99,19 +103,22 @@
             <EditText
                 android:id="@+id/edtPassword"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
+                android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:hint="PASSWORD"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
+
             <ImageView
                 android:id="@+id/imgPasswordToggle"
                 android:layout_width="@dimen/_20sdp"
-                android:src="@drawable/eye_hidde"
-                android:layout_height="@dimen/_20sdp" />
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/eye_hidde" />
         </LinearLayout>
 
 

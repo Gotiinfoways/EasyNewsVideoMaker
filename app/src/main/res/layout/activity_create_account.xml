@@ -47,6 +47,7 @@
 
             <!--User Name-->
             <LinearLayout
+                android:id="@+id/linUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -80,6 +81,7 @@
 
             <!--Channel Name-->
             <LinearLayout
+                android:id="@+id/linChannel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -113,6 +115,7 @@
 
             <!--Mobil Number-->
             <LinearLayout
+                android:id="@+id/linMobileNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -145,6 +148,7 @@
             </LinearLayout>
             <!--Email-->
             <LinearLayout
+                android:id="@+id/linEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -179,6 +183,7 @@
 
             <!--        Password-->
             <LinearLayout
+                android:id="@+id/linPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -217,6 +222,7 @@
 
             <!--     Confirm   Password-->
             <LinearLayout
+                android:id="@+id/linConPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -379,6 +385,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cdSubmitBtn"
                 android:layout_width="@dimen/_280sdp"
+                android:layout_gravity="center"
                 android:layout_height="@dimen/_45sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:backgroundTint="@color/Red"

@@ -1,4 +1,4 @@
-package com.easynewsvideomaker.easynewsvideomaker
+package com.easynewsvideomaker.easynewsvideomaker.adapterClass
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.easynewsvideomaker.easynewsvideomaker.R
+import com.easynewsvideomaker.easynewsvideomaker.modelClass.UserModelClass
 
 class UserAdapterClass(var edit: (UserModelClass) -> Unit, var delete: (String) -> Unit) :
     RecyclerView.Adapter<UserAdapterClass.MyViewHolder>() {

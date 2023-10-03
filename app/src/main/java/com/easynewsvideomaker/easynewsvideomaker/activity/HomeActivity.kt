@@ -121,20 +121,57 @@ class HomeActivity : AppCompatActivity() {
             startActivity(sendIntent)
         }
 //Logout
-        homeBinding.layLogoutNav.setOnClickListener {
-            var sharedPreferences = getSharedPreferences(
-                "MySharePref",
-                AppCompatActivity.MODE_PRIVATE
-            )
-            var myEdit: SharedPreferences.Editor = sharedPreferences.edit()
-            myEdit.remove("isLogin")
-            myEdit.commit()
-            mDbRef.child("user").child(auth.currentUser?.uid!!).child("device_token").removeValue()
-            auth.signOut()
+//        homeBinding.layLogoutNav.setOnClickListener {
+//            var sharedPreferences = getSharedPreferences(
+//                "MySharePref",
+//                AppCompatActivity.MODE_PRIVATE
+//            )
+//            var myEdit: SharedPreferences.Editor = sharedPreferences.edit()
+//            myEdit.remove("isLogin")
+//            myEdit.commit()
+//            mDbRef.child("user").child(auth.currentUser?.uid!!).child("device_token").removeValue()
+//            auth.signOut()
+//
+//            Toast.makeText(this, "User Logout", Toast.LENGTH_SHORT).show()
+//            var i = Intent(this, LoginScreenActivity::class.java)
+//            startActivity(i)
+//        }
 
-            Toast.makeText(this, "User Logout", Toast.LENGTH_SHORT).show()
-            var i = Intent(this, LoginScreenActivity::class.java)
-            startActivity(i)
+        homeBinding.layLogoutNav.setOnClickListener {
+
+            val user = FirebaseAuth.getInstance().currentUser
+            val userId = user?.uid // Get the user's unique ID
+
+            val userRef = FirebaseDatabase.getInstance().getReference("user").child(userId!!)
+            userRef.child("deviceCount").addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val deviceCount = dataSnapshot.getValue(Int::class.java) ?: 0
+
+                    if (deviceCount > 0) {
+                        // Decrement the device count
+                        userRef.child("deviceCount").setValue(deviceCount - 1)
+                        var sharedPreferences = getSharedPreferences(
+                            "MySharePref",
+                            AppCompatActivity.MODE_PRIVATE
+                        )
+                        var myEdit: SharedPreferences.Editor = sharedPreferences.edit()
+                        myEdit.remove("isLogin")
+                        myEdit.commit()
+                        auth.signOut()
+                        Toast.makeText(this@HomeActivity, "User Logout", Toast.LENGTH_SHORT).show()
+                        var i = Intent(this@HomeActivity, LoginScreenActivity::class.java)
+                        startActivity(i)
+                        // Proceed with the logout
+                        Toast.makeText(this@HomeActivity, "User Logout Fail", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    // Handle database errors
+                }
+            })
+
+
         }
         homeBinding.gotiinfoways.setOnClickListener(View.OnClickListener {
             val url = "https://www.gotiinfoways.com/"

@@ -1,36 +1,20 @@
 package com.easynewsvideomaker.easynewsvideomaker.activity
 
 import android.app.Dialog
-import android.app.Notification
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.location.GnssAntennaInfo
-import android.os.Build
 import android.os.Bundle
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.util.Patterns
 import android.view.WindowManager
 import android.widget.LinearLayout
-import android.widget.RemoteViews
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.AuthFailureError
-import com.android.volley.Request
-import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.VolleyError
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
 import com.easynewsvideomaker.easynewsvideomaker.R
-import com.easynewsvideomaker.easynewsvideomaker.UserModelClass
+import com.easynewsvideomaker.easynewsvideomaker.modelClass.SignupUserModel
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivitySignUpBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -38,10 +22,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
-import org.json.JSONException
-import org.json.JSONObject
-import javax.xml.transform.ErrorListener
-import javax.xml.transform.TransformerException
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -71,11 +51,69 @@ class SignUpActivity : AppCompatActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = Color.BLACK
 
+//        layoutBackgroundChange()
         progressDialog()
         passwordToggleVisible()
         initView()
     }
 
+
+    private fun layoutBackgroundChange() {
+
+        signUpBinding.linUserName.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_corner)
+            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+        signUpBinding.linChannel.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+
+        signUpBinding.linMobileNumber.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+        signUpBinding.linEmail.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+
+        signUpBinding.linPassword.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+
+        signUpBinding.linConPassword.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_corner)
+        }
+
+
+    }
     private fun progressDialog() {
         progressDialog = Dialog(this)
         var progressBarBinding = ProgressBarBinding.inflate(layoutInflater)
@@ -146,6 +184,7 @@ class SignUpActivity : AppCompatActivity() {
 
         signUpBinding.cdSignUpBtn.setOnClickListener {
             var userName = signUpBinding.edtUserName.text.toString()
+            var channelName = signUpBinding.edtChannelName.text.toString()
             var mobilNumber = signUpBinding.edtMobilNumber.text.toString()
             var email = signUpBinding.edtEmail.text.toString()
             var password = signUpBinding.edtPassword.text.toString()
@@ -154,6 +193,8 @@ class SignUpActivity : AppCompatActivity() {
 
             if (userName.isEmpty()) {
                 Toast.makeText(this, "Please Enter User Name", Toast.LENGTH_SHORT).show()
+            } else if (channelName.isEmpty()) {
+                Toast.makeText(this, "Please Enter Channel Name", Toast.LENGTH_SHORT).show()
             } else if (mobilNumber.isEmpty()) {
                 Toast.makeText(this, "Please Enter Mobil Number", Toast.LENGTH_SHORT).show()
             } else if (email.isEmpty()) {
@@ -202,6 +243,7 @@ class SignUpActivity : AppCompatActivity() {
 
                             addUserToDatabase(
                                 userName,
+                                channelName,
                                 mobilNumber,
                                 email,
                                 password,
@@ -243,6 +285,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun addUserToDatabase(
         userName: String,
+        channelName: String,
         mobilNumber: String,
         email: String,
         password: String,
@@ -251,8 +294,9 @@ class SignUpActivity : AppCompatActivity() {
 
 
         mDbRef.child("signup_user").child(uid).setValue(
-            UserModelClass.SignupUserModel(
+          SignupUserModel(
                 userName,
+              channelName,
                 mobilNumber,
                 email,
                 password,

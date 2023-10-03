@@ -7,18 +7,32 @@
     android:background="@color/lightblack"
     tools:context=".fragment.VideoExportFragment">
 
-    <VideoView
-        android:id="@+id/vidExport"
+    <LinearLayout
+        android:id="@+id/linVideo"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_170sdp" />
+        android:gravity="center"
+        android:layout_height="wrap_content">
 
+        <VideoView
+            android:id="@+id/vidExport"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_170sdp"
+            android:scaleType="fitXY" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgExport"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_170sdp"
+        android:scaleType="fitXY"
+        android:src="@drawable/image1" />
     <!--    Done-->
     <androidx.cardview.widget.CardView
+        android:id="@+id/cdShare"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
-        android:id="@+id/cdShare"
+        android:layout_below="@+id/linVideo"
         android:layout_marginTop="@dimen/_90sdp"
-        android:layout_below="@+id/vidExport"
         android:backgroundTint="@color/Red"
         app:cardElevation="@dimen/_2sdp">
 

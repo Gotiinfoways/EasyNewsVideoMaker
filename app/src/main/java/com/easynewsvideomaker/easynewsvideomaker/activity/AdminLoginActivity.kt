@@ -24,23 +24,38 @@ class AdminLoginActivity : AppCompatActivity() {
     lateinit var auth: FirebaseAuth
     private var isPasswordVisible = false
 
-    lateinit var dialog: Dialog
+    lateinit var progressDialog: Dialog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adminLoginBinding = ActivityAdminLoginBinding.inflate(layoutInflater)
         setContentView(adminLoginBinding.root)
         auth = Firebase.auth
+
+//        layoutBackgroundChange()
         progressDialog()
         initView()
     }
 
-    private fun progressDialog() {
-        dialog = Dialog(this)
-        var progressBarBinding = ProgressBarBinding.inflate(layoutInflater)
-        dialog.setContentView(progressBarBinding.root)
+    private fun layoutBackgroundChange() {
+        adminLoginBinding.linEmail.setOnClickListener {
+            adminLoginBinding.linEmail.setBackgroundResource(R.drawable.card_corner)
+            adminLoginBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
 
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setLayout(
+        adminLoginBinding.linPassword.setOnClickListener {
+            adminLoginBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            adminLoginBinding.linPassword.setBackgroundResource(R.drawable.card_corner)
+        }
+
+    }
+
+    private fun progressDialog() {
+        progressDialog = Dialog(this)
+        var progressBarBinding = ProgressBarBinding.inflate(layoutInflater)
+        progressDialog.setContentView(progressBarBinding.root)
+
+        progressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        progressDialog.window?.setLayout(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
@@ -94,22 +109,23 @@ class AdminLoginActivity : AppCompatActivity() {
                 )
                     .show()
             } else {
-                dialog.show()
+                progressDialog.show()
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
                         if (email == "admin@gmail.com") {
-                            dialog.dismiss()
+                            progressDialog.dismiss()
                             Toast.makeText(this, "Admin Login Success", Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, AdminHomeActivity::class.java)
                             startActivity(intent)
                             finish()
                         } else {
-                            dialog.dismiss()
+                            progressDialog.dismiss()
                             Toast.makeText(this, "You are not Admin", Toast.LENGTH_SHORT).show()
                         }
                     }
                 }.addOnFailureListener {
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                    progressDialog.dismiss()
                 }
             }
         }

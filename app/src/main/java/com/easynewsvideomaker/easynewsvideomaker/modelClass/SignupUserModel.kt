@@ -1,15 +1,12 @@
-package com.easynewsvideomaker.easynewsvideomaker
+package com.easynewsvideomaker.easynewsvideomaker.modelClass
 
-class UserModelClass {
+class SignupUserModel {
 
     var userName: String? = null
     var channelName: String? = null
     var mobilNumber: String? = null
     var email: String? = null
     var password: String? = null
-    var startDate: String? = null
-    var endDate: String? = null
-    var packageType: String? = null
     var uid: String? = null
 
     constructor() {}
@@ -20,9 +17,6 @@ class UserModelClass {
         mobilNumber: String,
         email: String,
         password: String,
-        startDate: String,
-        endDate: String,
-        packageType: String,
         uid: String
     ) {
         this.userName = userName
@@ -30,10 +24,7 @@ class UserModelClass {
         this.mobilNumber = mobilNumber
         this.email = email
         this.password = password
-        this.startDate = startDate
-        this.endDate = endDate
-        this.packageType = packageType
         this.uid = uid
     }
-    data class SignupUserModel(var userName: String,var mobilNumber: String,var email: String,var password: String,var uid: String)
+
 }
