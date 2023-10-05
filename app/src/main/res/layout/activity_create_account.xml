@@ -381,6 +381,35 @@
 
             </RadioGroup>
 
+            <!--Email-->
+            <LinearLayout
+                android:id="@+id/linLogin_device_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:backgroundTint="@color/lightblack"
+                android:foreground="@drawable/card_gray_corner"
+                android:orientation="horizontal"
+                android:padding="@dimen/_13sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_device" />
+
+                <TextView
+                    android:id="@+id/txtLogin_device_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/poppins"
+                    android:maxLines="1"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
             <!--    Submit button-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cdSubmitBtn"

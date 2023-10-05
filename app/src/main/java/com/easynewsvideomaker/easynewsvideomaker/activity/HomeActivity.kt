@@ -139,17 +139,17 @@ class HomeActivity : AppCompatActivity() {
 
         homeBinding.layLogoutNav.setOnClickListener {
 
-            val user = FirebaseAuth.getInstance().currentUser
-            val userId = user?.uid // Get the user's unique ID
+//            val user = FirebaseAuth.getInstance().currentUser
+//            val userId = user?.uid // Get the user's unique ID
 
-            val userRef = FirebaseDatabase.getInstance().getReference("user").child(userId!!)
-            userRef.child("deviceCount").addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val deviceCount = dataSnapshot.getValue(Int::class.java) ?: 0
-
-                    if (deviceCount > 0) {
-                        // Decrement the device count
-                        userRef.child("deviceCount").setValue(deviceCount - 1)
+//            val userRef = FirebaseDatabase.getInstance().getReference("user").child(userId!!)
+//            userRef.child("deviceCount").addListenerForSingleValueEvent(object : ValueEventListener {
+//                override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                    val deviceCount = dataSnapshot.getValue(Int::class.java) ?: 0
+//
+//                    if (deviceCount > 0) {
+//                        // Decrement the device count
+//                        userRef.child("deviceCount").setValue(deviceCount - 1)
                         var sharedPreferences = getSharedPreferences(
                             "MySharePref",
                             AppCompatActivity.MODE_PRIVATE
@@ -162,14 +162,15 @@ class HomeActivity : AppCompatActivity() {
                         var i = Intent(this@HomeActivity, LoginScreenActivity::class.java)
                         startActivity(i)
                         // Proceed with the logout
-                        Toast.makeText(this@HomeActivity, "User Logout Fail", Toast.LENGTH_SHORT).show()
-                    }
-                }
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Handle database errors
-                }
-            })
+//                    }
+//                }
+//
+//                override fun onCancelled(databaseError: DatabaseError) {
+//                    // Handle database errors
+//            Toast.makeText(this@HomeActivity, "User Logout Fail", Toast.LENGTH_SHORT).show()
+//                }
+//            })
 
 
         }

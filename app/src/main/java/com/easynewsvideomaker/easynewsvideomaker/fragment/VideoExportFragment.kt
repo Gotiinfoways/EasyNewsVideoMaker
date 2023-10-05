@@ -1,7 +1,6 @@
 package com.easynewsvideomaker.easynewsvideomaker.fragment
 
 import android.app.Dialog
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -44,6 +43,8 @@ class VideoExportFragment : Fragment() {
     var convertImagePath: String? = null
 
     lateinit var progressDialog: Dialog
+
+    var buttonClick = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -83,13 +84,14 @@ class VideoExportFragment : Fragment() {
         exportBinding.vidExport.requestFocus()
 
         var mediaController = MediaController(context)
-        mediaController.setAnchorView( exportBinding.vidExport)
-        mediaController.setMediaPlayer( exportBinding.vidExport)
+        mediaController.setAnchorView(exportBinding.vidExport)
+        mediaController.setMediaPlayer(exportBinding.vidExport)
         exportBinding.vidExport.setMediaController(mediaController);
         exportBinding.vidExport.start()
 
         exportBinding.linDownload.setOnClickListener {
 //            downloadVideo()
+            buttonClick = 1
             val dialog = Dialog(requireContext())
             val dialogBinding = DialogFileSaveBinding.inflate(layoutInflater)
             dialog.setContentView(dialogBinding.root)
@@ -116,13 +118,16 @@ class VideoExportFragment : Fragment() {
 
         exportBinding.cdDoneBtn.setOnClickListener {
 
-
-            val fragment = HomeFragment()
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.container, fragment)
-            transaction.addToBackStack(null)
-            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-            transaction.commit()
+            if (buttonClick == 1) {
+                val fragment = HomeFragment()
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.container, fragment)
+                transaction.addToBackStack(null)
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                transaction.commit()
+            } else {
+                Toast.makeText(context, "Please First Save Videos", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

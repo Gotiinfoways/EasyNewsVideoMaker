@@ -57,6 +57,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 intent.getStringExtra("mobilNumber")   // key set  variable
             var newEmail: String? = intent.getStringExtra("email")   // key set  variable
             var newPassword: String? = intent.getStringExtra("password")   // key set  variable
+
             var newPackageType: String? =
                 intent.getStringExtra("packageType")   // key set  variable
             var newButtonName: String? = intent.getStringExtra("buttonName")   // key set  variable
@@ -70,6 +71,8 @@ class CreateAccountActivity : AppCompatActivity() {
             createAccountBinding.edtMobilNumber.setText(newMobilNumber)  //variable set in text view
             createAccountBinding.edtEmail.setText(newEmail)  //variable set in text view
             createAccountBinding.edtPassword.setText(newPassword)  //variable set in text view
+            createAccountBinding.edtConfirmPassword.setText(newPassword)  //variable set in text view
+
 //            createAccountBinding.rgPackage.s(newAmt)  //variable set in text view
             createAccountBinding.btnSubmitText.text = newButtonName  //variable set in text view
 
@@ -86,6 +89,9 @@ class CreateAccountActivity : AppCompatActivity() {
                 intent.getStringExtra("mobilNumber")   // key set  variable
             var newEmail: String? = intent.getStringExtra("email")   // key set  variable
             var newPassword: String? = intent.getStringExtra("password")   // key set  variable
+            var login_device_name: String? =
+                intent.getStringExtra("login_device_name")   // key set  variable
+
             var newButtonName: String? = intent.getStringExtra("buttonName")   // key set  variable
             userId = intent.getStringExtra("id")   // key set  variable
 
@@ -97,6 +103,8 @@ class CreateAccountActivity : AppCompatActivity() {
             createAccountBinding.edtMobilNumber.setText(newMobilNumber)  //variable set in text view
             createAccountBinding.edtEmail.setText(newEmail)  //variable set in text view
             createAccountBinding.edtPassword.setText(newPassword)  //variable set in text view
+            createAccountBinding.edtConfirmPassword.setText(newPassword)  //variable set in text view
+            createAccountBinding.txtLoginDeviceName.setText(login_device_name)  //variable set in text view
             createAccountBinding.btnSubmitText.text = newButtonName  //variable set in text view
 
         }
@@ -263,6 +271,7 @@ class CreateAccountActivity : AppCompatActivity() {
             var confPassword = createAccountBinding.edtConfirmPassword.text.toString()
             var startDate = createAccountBinding.txtStartDate.text.toString()
             var endDate = createAccountBinding.txtEndDate.text.toString()
+            var login_device_name = ""
 
             if (createAccountBinding.rgPackage.checkedRadioButtonId == -1) {
 
@@ -335,6 +344,7 @@ class CreateAccountActivity : AppCompatActivity() {
                             startDate,
                             endDate,
                             packageType!!,
+                            login_device_name!!,
                             userId!!
                         )
                     )
@@ -357,8 +367,8 @@ class CreateAccountActivity : AppCompatActivity() {
                         }
 
 
-                }
-                else if (flag == 2) {
+                } else if (flag == 2) {
+                     login_device_name = createAccountBinding.txtLoginDeviceName.text.toString()
                     mDbRef.child("user").child(userId!!).setValue(
                         UserModelClass(
                             userName,
@@ -369,6 +379,7 @@ class CreateAccountActivity : AppCompatActivity() {
                             startDate,
                             endDate,
                             packageType!!,
+                            login_device_name,
                             userId!!
                         )
                     )
@@ -376,7 +387,7 @@ class CreateAccountActivity : AppCompatActivity() {
                             if (it.isSuccessful) {
                                 Toast.makeText(
                                     this,
-                                    "Record Updated Successfully",
+                                    "Record Insert Successfully",
                                     Toast.LENGTH_SHORT
 
                                 )
@@ -391,8 +402,7 @@ class CreateAccountActivity : AppCompatActivity() {
                             Log.e("TAG", "initView: " + it.message)
                             progressDialog.dismiss()
                         }
-                }
-                else {
+                } else {
                     auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
@@ -407,6 +417,7 @@ class CreateAccountActivity : AppCompatActivity() {
                                     startDate,
                                     endDate,
                                     packageType,
+                                    login_device_name,
                                     auth.currentUser?.uid!!
                                 )
                                 Toast.makeText(this, "Account Create Success", Toast.LENGTH_SHORT)
@@ -453,6 +464,7 @@ class CreateAccountActivity : AppCompatActivity() {
         startDate: String,
         endDate: String,
         packageType: String?,
+        login_device_name: String?,
         uid: String,
     ) {
 
@@ -467,6 +479,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 startDate,
                 endDate,
                 packageType!!,
+                login_device_name!!,
                 uid
             )
         )

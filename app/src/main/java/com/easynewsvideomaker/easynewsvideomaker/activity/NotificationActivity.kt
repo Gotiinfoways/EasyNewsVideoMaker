@@ -118,6 +118,7 @@ class NotificationActivity : AppCompatActivity() {
             i.putExtra("mobilNumber", signupUserModel.mobilNumber)
             i.putExtra("email", signupUserModel.email)
             i.putExtra("password", signupUserModel.password)
+            i.putExtra("login_device_name", signupUserModel.login_device_name)
             i.putExtra("buttonName", "New Data Insert")
             i.putExtra("signupDataInsert", true)
             startActivity(i)

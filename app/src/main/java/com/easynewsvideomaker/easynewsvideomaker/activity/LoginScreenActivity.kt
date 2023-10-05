@@ -6,9 +6,11 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.LinearLayout
@@ -23,6 +25,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
@@ -40,7 +43,7 @@ class LoginScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         loginScreenBinding = ActivityLoginScreenBinding.inflate(layoutInflater)
         setContentView(loginScreenBinding.root)
-        mDbRef = FirebaseDatabase.getInstance().getReference()
+        mDbRef = FirebaseDatabase.getInstance().reference
         auth = Firebase.auth
         android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
 
@@ -116,107 +119,6 @@ class LoginScreenActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
-//        val currentUser = FirebaseAuth.getInstance().currentUser
-//        val currentUserId = currentUser?.uid
-//
-//        loginScreenBinding.cdLoginBtn.setOnClickListener {
-//
-//
-//            var email = loginScreenBinding.edtEmail.text.toString()
-//            var password = loginScreenBinding.edtPassword.text.toString()
-//
-//            if (email.isEmpty()) {
-//                Toast.makeText(
-//                    this,
-//                    "email value is empty. please fill email ",
-//                    Toast.LENGTH_SHORT
-//                )
-//                    .show()
-//            } else if (password.isEmpty()) {
-//                Toast.makeText(
-//                    this,
-//                    "password value is empty. please fill password ",
-//                    Toast.LENGTH_SHORT
-//                )
-//                    .show()
-//            } else {
-//                progressDialog.show()
-//                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-//                    if (it.isSuccessful) {
-//                        // Storing the device token when a user logs in
-//                        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
-//                        val currentDeviceToken = "This Email is login"
-//
-//
-//// Checking if the device token matches the stored token
-//                        mDbRef.child("user").child(currentUserId!!).child("device_token")
-//                            .addListenerForSingleValueEvent(object : ValueEventListener {
-//                                override fun onDataChange(dataSnapshot: DataSnapshot) {
-//
-//
-////                                    var storedDeviceToken = dataSnapshot.child("device_token").value.toString()
-//                                    val storedDeviceToken =
-//                                        dataSnapshot.getValue(String::class.java)
-//                                    if (currentDeviceToken == storedDeviceToken) {
-//                                        // Device token matches, allow login
-//                                        progressDialog.dismiss()
-//                                        Toast.makeText(
-//                                            this@LoginScreenActivity,
-//                                            "this email is login other device",
-//                                            Toast.LENGTH_SHORT
-//                                        ).show()
-//
-//                                    } else {
-//
-//                                        // Device token does not match, handle accordingly
-//
-//                                        mDbRef.child("user").child(currentUserId!!)
-//                                            .child("device_token")
-//                                            .setValue(currentDeviceToken)
-//
-//                                        val intent = Intent(
-//                                            this@LoginScreenActivity,
-//                                            HomeActivity::class.java
-//                                        )
-//                                        startActivity(intent)
-//                                        finish()
-//
-//                                        var myEdit: SharedPreferences.Editor =
-//                                            sharedPreferences.edit()
-//                                        myEdit.putBoolean("isLogin", true)
-//                                        myEdit.putString("email", email)
-//
-//                                        myEdit.commit()
-//                                        Toast.makeText(
-//                                            this@LoginScreenActivity,
-//                                            "Login Success",
-//                                            Toast.LENGTH_SHORT
-//                                        ).show()
-//                                        progressDialog.dismiss()
-//
-//                                    }
-//                                }
-//
-//                                override fun onCancelled(databaseError: DatabaseError) {
-//                                    // Handle database errors
-//                                    Toast.makeText(
-//                                        this@LoginScreenActivity,
-//                                        "Login Fail",
-//                                        Toast.LENGTH_SHORT
-//                                    ).show()
-//                                    progressDialog.dismiss()
-//                                }
-//                            })
-//
-////                        oneDeviceLogin(currentUserId)
-//                    }
-//                }.addOnFailureListener {
-//                    progressDialog.dismiss()
-//                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//
-//        }
 
 
         loginScreenBinding.cdLoginBtn.setOnClickListener {
@@ -243,18 +145,29 @@ class LoginScreenActivity : AppCompatActivity() {
                 progressDialog.show()
                 auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
                     if (it.isSuccessful) {
+                        // Storing the device token when a user logs in
                         val user = FirebaseAuth.getInstance().currentUser
                         val userId = user?.uid // Get the user's unique ID
+//                        val currentDeviceToken = "This Email is login"
+//                        val currentDeviceToken = Build.MODEL
+                        val currentDeviceToken = android_id
 
-                        val userRef = FirebaseDatabase.getInstance().getReference("user").child(userId!!)
-                        userRef.child("deviceCount").addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                val deviceCount = dataSnapshot.getValue(Int::class.java) ?: 0
+                        var query: Query =
+                            mDbRef.child("user").orderByChild("email").equalTo(auth.currentUser?.email)
+                        query.addValueEventListener(object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                for (postSnapshot in snapshot.children) {
 
-                                if (deviceCount < 2) {
-                                    // User can log in because they have fewer than two devices logged in
-                                    userRef.child("deviceCount").setValue(deviceCount + 1)
-                                    val intent = Intent(
+
+                                    var storedDeviceToken = postSnapshot.child("login_device_name").value
+                                    Log.e("TAG", "onDataChange: $storedDeviceToken")
+
+                                    if (currentDeviceToken == storedDeviceToken) {
+                                            // Device token matches, allow login
+
+
+
+                                        val intent = Intent(
                                             this@LoginScreenActivity,
                                             HomeActivity::class.java
                                         )
@@ -273,24 +186,27 @@ class LoginScreenActivity : AppCompatActivity() {
                                             Toast.LENGTH_SHORT
                                         ).show()
                                         progressDialog.dismiss()
-                                    // Proceed with the login
-                                } else {
-                                    // User cannot log in because they have reached the device limit
-                                    // You can show an error message to the user
-                                    // Device token matches, allow login
+
+                                        } else {
+
+                                            // Device token does not match, handle accordingly
+
                                         progressDialog.dismiss()
                                         Toast.makeText(
                                             this@LoginScreenActivity,
                                             "this email is login other device",
                                             Toast.LENGTH_SHORT
                                         ).show()
+
+                                        }
                                 }
                             }
 
-                            override fun onCancelled(databaseError: DatabaseError) {
-                                // Handle database errors
+                            override fun onCancelled(error: DatabaseError) {
+
                             }
                         })
+
                     }
                 }.addOnFailureListener {
                     progressDialog.dismiss()
@@ -299,6 +215,88 @@ class LoginScreenActivity : AppCompatActivity() {
             }
 
         }
+
+
+//        loginScreenBinding.cdLoginBtn.setOnClickListener {
+//
+//
+//            var email = loginScreenBinding.edtEmail.text.toString()
+//            var password = loginScreenBinding.edtPassword.text.toString()
+//
+//            if (email.isEmpty()) {
+//                Toast.makeText(
+//                    this,
+//                    "email value is empty. please fill email ",
+//                    Toast.LENGTH_SHORT
+//                )
+//                    .show()
+//            } else if (password.isEmpty()) {
+//                Toast.makeText(
+//                    this,
+//                    "password value is empty. please fill password ",
+//                    Toast.LENGTH_SHORT
+//                )
+//                    .show()
+//            } else {
+//                progressDialog.show()
+//                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+//                    if (it.isSuccessful) {
+//                        val user = FirebaseAuth.getInstance().currentUser
+//                        val userId = user?.uid // Get the user's unique ID
+//
+//                        val userRef = FirebaseDatabase.getInstance().getReference("user").child(userId!!)
+//                        userRef.child("deviceCount").addListenerForSingleValueEvent(object : ValueEventListener {
+//                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                                val deviceCount = dataSnapshot.getValue(Int::class.java) ?: 0
+//
+//                                if (deviceCount < 2) {
+//                                    // User can log in because they have fewer than two devices logged in
+//                                    userRef.child("deviceCount").setValue(deviceCount + 1)
+//                                    val intent = Intent(
+//                                            this@LoginScreenActivity,
+//                                            HomeActivity::class.java
+//                                        )
+//                                        startActivity(intent)
+//                                        finish()
+//
+//                                        var myEdit: SharedPreferences.Editor =
+//                                            sharedPreferences.edit()
+//                                        myEdit.putBoolean("isLogin", true)
+//                                        myEdit.putString("email", email)
+//
+//                                        myEdit.commit()
+//                                        Toast.makeText(
+//                                            this@LoginScreenActivity,
+//                                            "Login Success",
+//                                            Toast.LENGTH_SHORT
+//                                        ).show()
+//                                        progressDialog.dismiss()
+//                                    // Proceed with the login
+//                                } else {
+//                                    // User cannot log in because they have reached the device limit
+//                                    // You can show an error message to the user
+//                                    // Device token matches, allow login
+//                                        progressDialog.dismiss()
+//                                        Toast.makeText(
+//                                            this@LoginScreenActivity,
+//                                            "this email is login other device",
+//                                            Toast.LENGTH_SHORT
+//                                        ).show()
+//                                }
+//                            }
+//
+//                            override fun onCancelled(databaseError: DatabaseError) {
+//                                // Handle database errors
+//                            }
+//                        })
+//                    }
+//                }.addOnFailureListener {
+//                    progressDialog.dismiss()
+//                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//
+//        }
         loginScreenBinding.linSignUp.setOnClickListener(View.OnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)

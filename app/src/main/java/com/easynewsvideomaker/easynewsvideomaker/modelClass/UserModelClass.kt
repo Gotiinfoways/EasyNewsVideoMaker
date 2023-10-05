@@ -10,6 +10,7 @@ class UserModelClass {
     var startDate: String? = null
     var endDate: String? = null
     var packageType: String? = null
+    var login_device_name: String? = null
     var uid: String? = null
 
     constructor() {}
@@ -23,6 +24,7 @@ class UserModelClass {
         startDate: String,
         endDate: String,
         packageType: String,
+        login_device_name: String,
         uid: String
     ) {
         this.userName = userName
@@ -33,6 +35,7 @@ class UserModelClass {
         this.startDate = startDate
         this.endDate = endDate
         this.packageType = packageType
+        this.login_device_name = login_device_name
         this.uid = uid
     }
 

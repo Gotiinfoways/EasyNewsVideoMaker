@@ -5,7 +5,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.util.Patterns
@@ -37,6 +39,7 @@ class SignUpActivity : AppCompatActivity() {
 
     lateinit var progressDialog: Dialog
 
+    lateinit var android_id:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         signUpBinding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -46,6 +49,7 @@ class SignUpActivity : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = Firebase.auth
 
+        android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
         //status bar color change
         val window = window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -114,6 +118,7 @@ class SignUpActivity : AppCompatActivity() {
 
 
     }
+
     private fun progressDialog() {
         progressDialog = Dialog(this)
         var progressBarBinding = ProgressBarBinding.inflate(layoutInflater)
@@ -189,7 +194,8 @@ class SignUpActivity : AppCompatActivity() {
             var email = signUpBinding.edtEmail.text.toString()
             var password = signUpBinding.edtPassword.text.toString()
             var confPassword = signUpBinding.edtConfirmPassword.text.toString()
-
+//            var login_device_name = Build.MODEL
+            var login_device_name =  android_id
 
             if (userName.isEmpty()) {
                 Toast.makeText(this, "Please Enter User Name", Toast.LENGTH_SHORT).show()
@@ -240,13 +246,13 @@ class SignUpActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             // Sign in success, update UI with the signed-in user's information
-
                             addUserToDatabase(
                                 userName,
                                 channelName,
                                 mobilNumber,
                                 email,
                                 password,
+                                login_device_name,
                                 auth.currentUser?.uid!!
                             )
 
@@ -289,17 +295,19 @@ class SignUpActivity : AppCompatActivity() {
         mobilNumber: String,
         email: String,
         password: String,
+        login_device_name: String,
         uid: String,
     ) {
 
 
         mDbRef.child("signup_user").child(uid).setValue(
-          SignupUserModel(
+            SignupUserModel(
                 userName,
-              channelName,
+                channelName,
                 mobilNumber,
                 email,
                 password,
+                login_device_name,
                 uid
             )
         )
