@@ -39,7 +39,12 @@ class AdminHomeActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         mDbRef = FirebaseDatabase.getInstance().getReference()
         progressDialog()
+        notificationItem()
         initView()
+    }
+
+    private fun notificationItem() {
+
     }
 
     private fun progressDialog() {

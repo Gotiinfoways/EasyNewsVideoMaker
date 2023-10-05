@@ -2,7 +2,50 @@ package com.easynewsvideomaker.easynewsvideomaker.merge_file
 
 class FFmpegQueryExtension {
 
+     //frame image set in full screen
+//    fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {
+//        val inputs: ArrayList<String> = ArrayList()
+//        inputs.apply {
+//            add("-i")
+//            add(inputVideo)
+//            add("-i")
+//            add(imageInput)
+//            add("-filter_complex")
+//            add("[1][0]scale2ref[i][m];[m][i]overlay[v]")
+//            add("-map")
+//            add("[v]")
+//            add("-map")
+//            add("0:a?")
+//            add("-ac")
+//            add("2")
+//            add(output)
+//        }
+//
+//        return inputs.toArray(arrayOfNulls<String>(inputs.size))
+//    }
 
+    //video size set for  youtube Video size
+//    fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {
+//        val inputs: ArrayList<String> = ArrayList()
+//        inputs.apply {
+//            add("-i")
+//            add(inputVideo)
+//            add("-i")
+//            add(imageInput)
+//            add("-filter_complex")
+//            add("[0:v][1:v]overlay=(W-w)/2:(H-h)/2")
+//            add("-s")
+//            add("1920x1080")
+//            add( "-c:a")
+//            add( "copy")
+//            add(output)
+//        }
+//
+//        return inputs.toArray(arrayOfNulls<String>(inputs.size))
+//    }
+
+
+    //video size set  for youtube video size and image set in full screen
     fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {
         val inputs: ArrayList<String> = ArrayList()
         inputs.apply {
@@ -18,12 +61,33 @@ class FFmpegQueryExtension {
             add("0:a?")
             add("-ac")
             add("2")
+            add("-s")
+            add("1920x1080")
+            add( "-c:a")
+            add( "copy")
             add(output)
         }
 
         return inputs.toArray(arrayOfNulls<String>(inputs.size))
     }
-
+//    fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {
+//        val inputs: ArrayList<String> = ArrayList()
+//        inputs.apply {
+//            add("-i")
+//            add(inputVideo)
+//            add("-i")
+//            add(imageInput)
+//            add("-filter_complex")
+//            add("[0:v][1:v]overlay=(W-w)/2:0")
+//            add("-s")
+//            add("1920x1080")
+//            add( "-c:a")
+//            add( "copy")
+//            add(output)
+//        }
+//
+//        return inputs.toArray(arrayOfNulls<String>(inputs.size))
+//    }
     fun addImageOnVideoBottom(inputVideo: String, imageInput: String, posX: Float?, posY: Float?, output: String): Array<String> {
         val inputs: ArrayList<String> = ArrayList()
         inputs.apply {

@@ -8,30 +8,49 @@
     android:orientation="vertical"
     tools:context=".activity.AdminHomeActivity">
 
-    <androidx.appcompat.widget.Toolbar
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/Red">
+        android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Red">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Easy News Maker"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sdp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgNotification"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="end"
+                android:layout_margin="@dimen/_10sdp"
+                android:src="@drawable/bell" />
+
+        </androidx.appcompat.widget.Toolbar>
 
         <TextView
+            android:id="@+id/txtNotificationItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Easy News Maker"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/imgNotification"
-            android:layout_width="@dimen/_20sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_gravity="end"
-            android:layout_margin="@dimen/_10sdp"
-            android:src="@drawable/bell" />
-
-    </androidx.appcompat.widget.Toolbar>
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/notification_round"
+            android:paddingHorizontal="@dimen/_5sdp"
+            android:paddingVertical="@dimen/_2sdp"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            tools:text="1" />
+    </RelativeLayout>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cdCreateAccountBtn"

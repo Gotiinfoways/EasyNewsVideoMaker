@@ -2,13 +2,20 @@ package com.easynewsvideomaker.easynewsvideomaker.activity
 
 import android.Manifest.permission.CAMERA
 import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.Manifest.permission.READ_MEDIA_AUDIO
+import android.Manifest.permission.READ_MEDIA_IMAGES
+import android.Manifest.permission.READ_MEDIA_VIDEO
 import android.Manifest.permission.RECORD_AUDIO
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
+import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -30,12 +37,13 @@ import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 
+
 class HomeActivity : AppCompatActivity() {
 
     lateinit var homeBinding: ActivityHomeBinding
     lateinit var mDbRef: DatabaseReference
     lateinit var auth: FirebaseAuth
-
+    var PERMISSION_REQUEST_CODE = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeBinding = ActivityHomeBinding.inflate(layoutInflater)
@@ -55,13 +63,25 @@ class HomeActivity : AppCompatActivity() {
         transaction.replace(R.id.container, HomeFragment())
         transaction.commit()
 
-        if (checkPermission()) {
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+            if (checkPermissionVersion()) {
+                Toast.makeText(this, "Permission already granted .", Toast.LENGTH_LONG).show()
 
-            Toast.makeText(this, "Permission already granted.", Toast.LENGTH_LONG).show()
+            } else {
 
-        } else {
+                requestPermission()
 
-            requestPermission()
+            }
+        } else if (SDK_INT <= Build.VERSION_CODES.R) {
+            if (checkPermission()) {
+
+                Toast.makeText(this, "Permission already granted .", Toast.LENGTH_LONG).show()
+
+            } else {
+
+                requestPermission()
+
+            }
         }
     }
 
@@ -150,18 +170,18 @@ class HomeActivity : AppCompatActivity() {
 //                    if (deviceCount > 0) {
 //                        // Decrement the device count
 //                        userRef.child("deviceCount").setValue(deviceCount - 1)
-                        var sharedPreferences = getSharedPreferences(
-                            "MySharePref",
-                            AppCompatActivity.MODE_PRIVATE
-                        )
-                        var myEdit: SharedPreferences.Editor = sharedPreferences.edit()
-                        myEdit.remove("isLogin")
-                        myEdit.commit()
-                        auth.signOut()
-                        Toast.makeText(this@HomeActivity, "User Logout", Toast.LENGTH_SHORT).show()
-                        var i = Intent(this@HomeActivity, LoginScreenActivity::class.java)
-                        startActivity(i)
-                        // Proceed with the logout
+            var sharedPreferences = getSharedPreferences(
+                "MySharePref",
+                AppCompatActivity.MODE_PRIVATE
+            )
+            var myEdit: SharedPreferences.Editor = sharedPreferences.edit()
+            myEdit.remove("isLogin")
+            myEdit.commit()
+            auth.signOut()
+            Toast.makeText(this@HomeActivity, "User Logout", Toast.LENGTH_SHORT).show()
+            var i = Intent(this@HomeActivity, LoginScreenActivity::class.java)
+            startActivity(i)
+            // Proceed with the logout
 
 //                    }
 //                }
@@ -184,6 +204,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun checkPermission(): Boolean {
+
         val result = ContextCompat.checkSelfPermission(
             applicationContext,
             WRITE_EXTERNAL_STORAGE
@@ -191,22 +212,52 @@ class HomeActivity : AppCompatActivity() {
         val result1 =
             ContextCompat.checkSelfPermission(applicationContext, READ_EXTERNAL_STORAGE)
         val result2 = ContextCompat.checkSelfPermission(applicationContext, CAMERA)
-        val result3 =
-            ContextCompat.checkSelfPermission(applicationContext, RECORD_AUDIO)
+        val result3 = ContextCompat.checkSelfPermission(applicationContext, RECORD_AUDIO)
         return result == PackageManager.PERMISSION_GRANTED && result1 == PackageManager.PERMISSION_GRANTED && result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED
     }
 
+    private fun checkPermissionVersion(): Boolean {
+
+        val result2 = ContextCompat.checkSelfPermission(applicationContext, CAMERA)
+        val result3 = ContextCompat.checkSelfPermission(applicationContext, RECORD_AUDIO)
+        return result2 == PackageManager.PERMISSION_GRANTED && result3 == PackageManager.PERMISSION_GRANTED
+    }
+
     private fun requestPermission() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(
-                WRITE_EXTERNAL_STORAGE,
-                READ_EXTERNAL_STORAGE,
-                CAMERA,
-                RECORD_AUDIO
-            ),
-            100
-        )
+
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+
+            if (Environment.isExternalStorageManager()) {
+                startActivity(Intent(this, MainActivity::class.java))
+            } else { //request for the permission
+                val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                val uri = Uri.fromParts("package", packageName, null)
+                intent.data = uri
+                startActivity(intent)
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(
+                        CAMERA,
+                        RECORD_AUDIO,
+                        READ_MEDIA_AUDIO, READ_MEDIA_IMAGES, READ_MEDIA_VIDEO
+                    ),
+                    200
+                )
+            }
+
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    WRITE_EXTERNAL_STORAGE,
+                    READ_EXTERNAL_STORAGE,
+                    CAMERA,
+                    RECORD_AUDIO
+                ),
+                100
+            )
+        }
+
     }
 
     override fun onRequestPermissionsResult(
@@ -217,13 +268,38 @@ class HomeActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             100 -> if (grantResults.size > 0) {
+
                 val writeExternalStorage =
                     grantResults[0] == PackageManager.PERMISSION_GRANTED
                 val readExternalStorage =
                     grantResults[1] == PackageManager.PERMISSION_GRANTED
                 val camera = grantResults[2] == PackageManager.PERMISSION_GRANTED
                 val record = grantResults[3] == PackageManager.PERMISSION_GRANTED
+
                 if (writeExternalStorage && readExternalStorage && camera && record)
+                    Toast.makeText(
+                        this,
+                        "Permission Granted",
+                        Toast.LENGTH_LONG
+                    ).show()
+                else {
+                    Toast.makeText(
+                        this,
+                        "Permission Denied",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
+            }
+
+            200 -> if (grantResults.size > 0) {
+                val camera = grantResults[1] == PackageManager.PERMISSION_GRANTED
+                val record = grantResults[2] == PackageManager.PERMISSION_GRANTED
+                val audio = grantResults[3] == PackageManager.PERMISSION_GRANTED
+                val image = grantResults[4] == PackageManager.PERMISSION_GRANTED
+                val video = grantResults[5] == PackageManager.PERMISSION_GRANTED
+
+                if (camera && record && audio && image && video)
                     Toast.makeText(
                         this,
                         "Permission Granted",
@@ -240,4 +316,6 @@ class HomeActivity : AppCompatActivity() {
             }
         }
     }
+
+
 }
