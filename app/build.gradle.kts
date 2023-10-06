@@ -48,6 +48,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.android.volley:volley:1.2.1")
+    implementation("com.google.firebase:firebase-firestore-ktx:24.8.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -83,4 +84,6 @@ dependencies {
     implementation ("com.google.firebase:firebase-messaging:23.2.1")
     //merge FFmpeg
     implementation ("com.arthenica:mobile-ffmpeg-full:4.4")
+
+    implementation ("com.github.uguraltinsoy:FCMSend:1.0.5")
 }

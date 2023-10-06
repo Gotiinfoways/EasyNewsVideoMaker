@@ -126,22 +126,23 @@
                 <LinearLayout
                     android:id="@+id/linLayer1"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_15sdp"
+                    android:orientation="horizontal"
                     android:layout_above="@id/linLayer2"
                     android:background="#031DA8"
                     android:gravity="center"
                     android:paddingHorizontal="@dimen/_5sdp">
 
-                    <TextView
-                        android:id="@+id/txtLay1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
-                        android:textColor="@color/white" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/txtLay1"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:ellipsize="marquee"-->
+<!--                        android:marqueeRepeatLimit="marquee_forever"-->
+<!--                        android:scrollHorizontally="true"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"-->
+<!--                        android:textColor="@color/white" />-->
                 </LinearLayout>
 
 
@@ -149,46 +150,44 @@
                 <LinearLayout
                     android:id="@+id/linLayer2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_15sdp"
                     android:layout_above="@+id/linLayer3"
                     android:background="@color/Red"
+                    android:orientation="horizontal"
                     android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/txtLay2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:text="TabLayout વર્ગની newTab() પદ્ધતિનો ઉપયોગ કરીને ટેબ્સ બનાવવામાં આવે છે. ટૅબ્સનું શીર્ષક અને ચિહ્ન અનુક્રમે TabListener ઇન્ટરફેસની setText(int) અને setIcon(int) પદ્ધતિઓ દ્વારા સેટ કરવામાં આવે છે. એડટૅબ(ટૅબ) પદ્ધતિનો ઉપયોગ કરીને લેઆઉટની ટૅબ્સ TabLayout પર જોડાયેલ છે"
-                        android:textColor="@color/white" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/txtLay2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:ellipsize="marquee"-->
+<!--                        android:marqueeRepeatLimit="marquee_forever"-->
+<!--                        android:scrollHorizontally="true"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"-->
+<!--                        android:textColor="@color/white" />-->
                 </LinearLayout>
 
                 <!--              Layer 3-->
                 <LinearLayout
                     android:id="@+id/linLayer3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_15sdp"
                     android:layout_alignParentBottom="true"
                     android:background="@color/white"
+                    android:orientation="horizontal"
                     android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/txtLay3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:text="પ્રોજેક્ટ લેવલ બિલ્ડ.ગ્રેડલ ખોલો અને એન્ડ્રોઇડ ડિઝાઇન સપોર્ટ લાઇબ્રેરી ઉમેરો.com.android.support:design:23.0.1. ...
-લેઆઉટ ફાઈલ activity_main માં. ...
-custom_tab નામનું XML લેઆઉટ બનાવો. ...
-ટેબ સમાવિષ્ટો માટે Fragment1.java નામનો ટુકડો બનાવો. ...
-MainActivity માં."
-                        android:textStyle="bold" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/txtLay3"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:ellipsize="marquee"-->
+<!--                        android:marqueeRepeatLimit="marquee_forever"-->
+<!--                        android:scrollHorizontally="true"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"-->
+<!--                        android:textStyle="bold" />-->
 
                 </LinearLayout>
             </LinearLayout>
@@ -294,8 +293,45 @@ MainActivity માં."
 
 
     </FrameLayout>
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_alignBottom="@id/frameView"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/txtLay1"
+        android:layout_width="@dimen/_145sdp"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:layout_marginHorizontal="@dimen/_80sdp"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
+        android:textColor="@color/white" />
+    <TextView
+        android:id="@+id/txtLay2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
+        android:textColor="@color/white" />
+    <TextView
+        android:id="@+id/txtLay3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
+        android:textStyle="bold" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/linBtn"
         android:layout_width="match_parent"

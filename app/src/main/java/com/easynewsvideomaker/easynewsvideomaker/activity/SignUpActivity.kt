@@ -15,15 +15,19 @@ import android.view.WindowManager
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.deeplabstudio.fcmsend.FCMSend
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.modelClass.SignupUserModel
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivitySignUpBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -34,8 +38,11 @@ class SignUpActivity : AppCompatActivity() {
     private var isPasswordVisible = false
     private lateinit var mDbRef: DatabaseReference
 
+
     var userId: String? = null   //  id variable  define
     var flag = 0    //  flag variable  define
+
+
 
     lateinit var progressDialog: Dialog
 
@@ -50,6 +57,8 @@ class SignUpActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         android_id = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)
+
+
         //status bar color change
         val window = window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)

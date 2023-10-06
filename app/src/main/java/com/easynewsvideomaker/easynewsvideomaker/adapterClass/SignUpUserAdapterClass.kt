@@ -11,6 +11,7 @@ import com.easynewsvideomaker.easynewsvideomaker.modelClass.SignupUserModel
 
 class SignUpUserAdapterClass(var click: (SignupUserModel) -> Unit, var delete: (String) -> Unit) :
     RecyclerView.Adapter<SignUpUserAdapterClass.MyViewHolder>() {
+
     var signupUserList = ArrayList<SignupUserModel>()
     var i = 1
 

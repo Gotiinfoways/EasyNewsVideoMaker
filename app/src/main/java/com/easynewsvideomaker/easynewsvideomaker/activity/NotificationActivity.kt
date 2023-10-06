@@ -32,6 +32,9 @@ class NotificationActivity : AppCompatActivity() {
     lateinit var mDbRef: DatabaseReference
     lateinit var mAuth: FirebaseAuth
     lateinit var progressDialog: Dialog
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         notificationBinding = ActivityNotificationBinding.inflate(layoutInflater)
@@ -72,6 +75,7 @@ class NotificationActivity : AppCompatActivity() {
         notificationBinding.rcvNotificationView.layoutManager = manger
         notificationBinding.rcvNotificationView.adapter = adapter
 
+
         mDbRef.child("signup_user")
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
@@ -80,7 +84,10 @@ class NotificationActivity : AppCompatActivity() {
                         var data = i.getValue(SignupUserModel::class.java)
                         Log.e("TAG", "onDataChange: " + data?.userName + data?.email)
                         data?.let { it1 -> signupUserList.add(it1) }
+
+
                     }
+
                     adapter.updateList(signupUserList)
                     progressDialog.dismiss()
                 }
@@ -89,6 +96,9 @@ class NotificationActivity : AppCompatActivity() {
                 }
 
             })
+
+//        itemCount = adapter.itemCount
+//        Log.e("TAG", "itemCount: $itemCount", )
     }
 
     private fun approveDialog(signupUserModel: SignupUserModel) {
