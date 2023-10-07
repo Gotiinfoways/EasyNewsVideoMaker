@@ -9,10 +9,6 @@ import com.arthenica.mobileffmpeg.Config
 import com.arthenica.mobileffmpeg.FFmpeg
 import java.util.concurrent.CyclicBarrier
 
-/**
- * Created by Ashvin Vavaliya on 22,January,2021
- * Simform Solutions Pvt Ltd.
- */
 class CallBackOfQuery {
     fun callQuery(query: Array<String>, fFmpegCallBack: FFmpegCallBack) {
         val gate = CyclicBarrier(2)

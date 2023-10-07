@@ -77,13 +77,15 @@ dependencies {
     //firebase in store
     implementation ("com.google.firebase:firebase-storage:20.2.1")
     //firebase notification
-
-    //add these libraries
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.google.firebase:firebase-messaging:23.2.1")
+//
+//    //add these libraries
+//    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+//    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+//    implementation ("com.google.firebase:firebase-messaging:23.2.1")
     //merge FFmpeg
     implementation ("com.arthenica:mobile-ffmpeg-full:4.4")
+//
+//    implementation ("com.github.uguraltinsoy:FCMSend:1.0.5")
+//
 
-    implementation ("com.github.uguraltinsoy:FCMSend:1.0.5")
 }

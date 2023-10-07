@@ -103,6 +103,8 @@ class FFmpegQueryExtension {
         }
         return inputs.toArray(arrayOfNulls<String>(inputs.size))
     }
+
+    //only text show on video
     fun addTextOnVideo(inputVideo: String, textInput: String, posX: Float?, posY: Float?, fontPath: String, isTextBackgroundDisplay: String, fontSize: Int, fontcolor: String, output: String): Array<String> {
         val inputs: ArrayList<String> = ArrayList()
         var borderQuery = ""
