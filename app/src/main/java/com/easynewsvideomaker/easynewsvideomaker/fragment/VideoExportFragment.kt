@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -41,7 +42,15 @@ class VideoExportFragment : Fragment() {
 
     var videoPath: String? = null
     var convertImagePath: String? = null
+    var centerTextScroll: String? = null
+    var centerTextSize = 0
+    var centerTextColor: String? = null
+    var centerTextPostionX = 0f
+    var centerTextPostionY = 0f
 
+    var bottomTextScroll: String? = null
+    var bottomTextSize = 0
+    var bottomTextColor: String? = null
     lateinit var progressDialog: Dialog
 
     var buttonClick = 0
@@ -74,7 +83,18 @@ class VideoExportFragment : Fragment() {
 
         videoPath = arguments?.getString("videoPath")
         convertImagePath = arguments?.getString("convertImagePath")
+        centerTextScroll = arguments?.getString("centerTextScrollPath")
+        centerTextSize = arguments?.getInt("centerTextSize", 0)!!
+        centerTextColor = arguments?.getString("centerTextColor")
+        centerTextPostionX = arguments?.getFloat("centerTextOnScreenX", 0f)!!
+        centerTextPostionY = arguments?.getFloat("centerTextOnScreenY", 0f)!!
 
+        Log.e("TAG", "X position Video: $centerTextPostionX", )
+        Log.e("TAG", "Y position Video: $centerTextPostionY", )
+
+        bottomTextScroll = arguments?.getString("bottomTextScrollPath")
+        bottomTextSize = arguments?.getInt("bottomTextSize", 0)!!
+        bottomTextColor = arguments?.getString("bottomTextColor")
 
         val myBitmap = BitmapFactory.decodeFile(convertImagePath)
         exportBinding.imgExport.setImageBitmap(myBitmap)
@@ -103,7 +123,8 @@ class VideoExportFragment : Fragment() {
 
                 progressDialog.show()
 //
-                addImageOnVideo(fileName)
+//                addImageOnVideo(fileName)
+                addTextOnVideoFun(fileName)
 //                mixVideo(fileName)
                 dialog.dismiss()
             }
@@ -129,6 +150,109 @@ class VideoExportFragment : Fragment() {
                 Toast.makeText(context, "Please First Save Videos", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun addTextOnVideoFun(fileName: String) {
+
+
+        var outputPath =
+            Environment.getExternalStorageDirectory().path + "/Download/$fileName.mp4"
+
+        var tvInputPathVideo = videoPath!!
+
+
+        var tvInputPathImage = convertImagePath!!
+
+//        var textInputeRepoter = mainBinding.txtLayRepoterName.text.toString()
+
+//
+//        val location = IntArray(2)
+//        mainBinding.txtLayRepoterName.getLocationOnScreen(location)
+//        val RepoterOnScreenX = location[0].toFloat()
+//        val RepoterOnScreenY = location[1].toFloat()
+
+//        var RepoterOnScreenX = mainBinding.txtLayRepoterName.left.toFloat()
+//        var RepoterOnScreenY = mainBinding.txtLayRepoterName.top.toFloat()
+
+        var centerTextOnScreenX = centerTextPostionX
+        var centerTextOnScreenY = centerTextPostionY
+
+        var textInputeCenter = centerTextScroll
+        var textInputeCenterSize = centerTextSize
+        var textInputeCenterColor = centerTextColor
+
+
+        var textInputeBottom = bottomTextScroll
+        var textInputeBottomSize = bottomTextSize
+        var textInputeBottomColor = bottomTextColor
+
+
+        // Get the location of the TextView on the screen
+//        val locationOnScreen = IntArray(2)
+//        mainBinding.linBreakingNews.getLocationOnScreen(locationOnScreen)
+        //Get the x and y coordinates
+
+// Get the video's width and height
+        // Get the video's width and height
+        val videoWidth = getVideoWidth(tvInputPathVideo)
+        val videoHeight = getVideoHeight(tvInputPathVideo)
+
+        val query = ffmpegQueryExtension.addTextOnVideo(
+            tvInputPathVideo,
+            tvInputPathImage,
+            textInputeCenter!!,
+            textInputeCenterSize,
+            textInputeCenterColor!!,
+            centerTextOnScreenX,
+            centerTextOnScreenY,
+            textInputeBottom!!,
+            textInputeBottomSize,
+            textInputeBottomColor!!,
+            videoWidth,
+            videoHeight,
+            outputPath
+        )
+        CallBackOfQuery().callQuery(query, object : FFmpegCallBack {
+            override fun process(logMessage: LogMessage) {
+
+            }
+
+            override fun success() {
+
+                progressDialog.dismiss()
+                Toast.makeText(context, "Video Download Success", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            override fun cancel() {
+
+                progressDialog.dismiss()
+                Toast.makeText(context, "Video Download Cancel", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            override fun failed() {
+
+                progressDialog.dismiss()
+                Toast.makeText(context, "Video Download Fail", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    // Function to get the video's width
+    private fun getVideoWidth(videoPath: String): Int {
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(videoPath)
+        val width = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_WIDTH)
+        return width?.toInt() ?: 0 // Error handling
+    }
+
+    // Function to get the video's height
+    private fun getVideoHeight(videoPath: String): Int {
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(videoPath)
+        val height = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT)
+        return height?.toInt() ?: 0 // Error handling
     }
 
 
@@ -176,6 +300,7 @@ class VideoExportFragment : Fragment() {
             }
         })
     }
+
 
     private fun downloadVideo() {
         if (exportBinding.vidExport != null) {

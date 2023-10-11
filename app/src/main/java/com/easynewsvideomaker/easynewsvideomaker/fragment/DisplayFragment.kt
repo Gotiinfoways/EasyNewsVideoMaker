@@ -9,6 +9,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.net.Uri
@@ -138,7 +139,6 @@ class DisplayFragment : Fragment() {
 
     private fun frameEdit() {
         //text scroll Horizontally
-        displayBinding.txtLay1.isSelected = true
         displayBinding.txtLay2.isSelected = true
         displayBinding.txtLay3.isSelected = true
 
@@ -428,14 +428,14 @@ class DisplayFragment : Fragment() {
 
         //        first layer text change
         displayBinding.linLayer1.setOnClickListener {
-            var text = displayBinding.txtLay1.text.toString()
+            var text = displayBinding.txtLayRepoterName.text.toString()
 
 
             var backgroundColor = Color.TRANSPARENT
             val background = displayBinding.linLayer1.background
             if (background is ColorDrawable) backgroundColor = background.color
 
-            var textColor = displayBinding.txtLay1.currentTextColor
+            var textColor = displayBinding.txtLayRepoterName.currentTextColor
             editeDialog(text, backgroundColor, textColor)
 
 
@@ -449,8 +449,8 @@ class DisplayFragment : Fragment() {
                 val background = dialogEditBinding.viewColor2.background
                 if (background is ColorDrawable) color = background.color
 
-                displayBinding.txtLay1.text = dialogEditBinding.edtText.text.toString()
-                displayBinding.txtLay1.setTextColor(colorText)
+                displayBinding.txtLayRepoterName.text = dialogEditBinding.edtText.text.toString()
+                displayBinding.txtLayRepoterName.setTextColor(colorText)
                 displayBinding.linLayer1.setBackgroundColor(color)
                 Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
                 editeDialog.dismiss()
@@ -733,10 +733,48 @@ class DisplayFragment : Fragment() {
 
             } else {
 
+                var centerTextScroll = displayBinding.txtLay2.text.toString()
+                var bottomTextScroll = displayBinding.txtLay3.text.toString()
+                // Get the text size of the TextView
+                val centerTextSize = displayBinding.txtLay2.textSize.toInt()
+                val bottomTextSize = displayBinding.txtLay3.textSize.toInt()
+
+                var centerColorText = displayBinding.txtLay2.currentTextColor
+                val centerTextColor = String.format("#%06X", 0xFFFFFF and centerColorText)
+
+//                val location = IntArray(2)
+//                displayBinding.linLayer2.getLocationOnScreen(location)
+//                val centerTextOnScreenX = location[0]
+//                val centerTextOnScreenY = location[1]
+
+
+                val centerTextOnScreenX = width?.let {
+                    (displayBinding.txtLay2.text.toString().toFloat().times(it)).div(100)
+                }
+                val centerTextOnScreenY = height?.let {
+                    (displayBinding.txtLay2.text.toString().toFloat().times(it)).div(100)
+                }
+//        var centerTextOnScreenX = displayBinding.txtLay2.left.toFloat()
+//        var centerTextOnScreenY = displayBinding.txtLay2.top.toFloat()
+
+                Log.e("TAG", "X position: $centerTextOnScreenX")
+                Log.e("TAG", "Y position: $centerTextOnScreenY")
+
+                var bottomColorText = displayBinding.txtLay2.currentTextColor
+                val bottomTextColor = String.format("#%06X", 0xFFFFFF and bottomColorText)
+
                 val fragment = VideoExportFragment()
                 val bundle = Bundle()
                 bundle.putString("videoPath", videoPath)
                 bundle.putString("convertImagePath", convertImagePath)
+                bundle.putString("centerTextScrollPath", centerTextScroll)
+                bundle.putInt("centerTextSize", centerTextSize)
+                bundle.putString("centerTextColor", centerTextColor)
+                bundle.putFloat("centerTextOnScreenX", centerTextOnScreenX!!)
+                bundle.putFloat("centerTextOnScreenY", centerTextOnScreenY!!)
+                bundle.putString("bottomTextScrollPath", bottomTextScroll)
+                bundle.putInt("bottomTextSize", bottomTextSize)
+                bundle.putString("bottomTextColor", bottomTextColor)
                 fragment.arguments = bundle
                 val transaction = requireActivity().supportFragmentManager.beginTransaction()
                 transaction.replace(R.id.container, fragment)

@@ -2,7 +2,54 @@ package com.easynewsvideomaker.easynewsvideomaker.merge_file
 
 class FFmpegQueryExtension {
 
-     //frame image set in full screen
+    //two text scroll,text scroll speed,image  size set on video and video size  youtube size
+    fun addTextOnVideo(
+        tvInputPathVideo: String,
+        tvInputPathImage: String,
+        textInputeCenter: String,
+        textInputeCenterSize: Int,
+        textInputeCenterColor: String,
+        centerTextOnScreenX: Float,
+        centerTextOnScreenY: Float,
+        textInputeBottom: String,
+        textInputeBottomSize: Int,
+        textInputeBottomColor: String,
+        videoWidth: Int,
+        videoHeight: Int,
+        outputPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+        val fontPath = "/system/fonts/DroidSans.ttf"
+
+
+//        var textRepoterName = "drawtext=fontfile='$fontPath':text='$textInputeRepoter':fontsize=20:fontcolor=white:x=210:y=h-th-120"
+//        var textRepoterName = "drawtext=fontfile='$fontPath':text='$textInputeRepoter':fontsize=20:fontcolor=black:x=$RepoterOnScreenX:y=$RepoterOnScreenY"
+//        var textCenter = "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeCenterSize:fontcolor=$textInputeCenterColor:x=w-(t-4.5)*100/2:y=h-th-60"
+        var textCenter = "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeCenterSize:fontcolor=$textInputeCenterColor:x=$centerTextOnScreenX:y=$centerTextOnScreenY"
+//        val textBottom = "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeBottomSize:fontcolor=$textInputeBottomColor:x=w-(t-4.5)*100/2:y=h-th-25"
+        val textBottom = "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeBottomSize:fontcolor=$textInputeBottomColor:x=$centerTextOnScreenX:y=$centerTextOnScreenY"
+
+
+
+        inputs.apply {
+            add("-i")
+            add(tvInputPathVideo)
+            add("-i")
+            add(tvInputPathImage)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0, $textCenter, $textBottom")
+            add("-c:a")
+            add("copy")
+            add("-s")
+            add("1920x1080")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+
+        return inputs.toArray(arrayOfNulls(inputs.size))
+    }
+    //frame image set in full screen
 //    fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {
 //        val inputs: ArrayList<String> = ArrayList()
 //        inputs.apply {
@@ -46,7 +93,7 @@ class FFmpegQueryExtension {
 
 
     //video size set  for youtube video size and image set in full screen
-    fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {
+    fun addImageOnVideo(inputVideo: String, imageInput: String, output: String): Array<String> {
         val inputs: ArrayList<String> = ArrayList()
         inputs.apply {
             add("-i")
@@ -63,14 +110,15 @@ class FFmpegQueryExtension {
             add("2")
             add("-s")
             add("1920x1080")
-            add( "-c:a")
-            add( "copy")
+            add("-c:a")
+            add("copy")
             add(output)
         }
 
         return inputs.toArray(arrayOfNulls<String>(inputs.size))
     }
-//    fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {
+
+    //    fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {
 //        val inputs: ArrayList<String> = ArrayList()
 //        inputs.apply {
 //            add("-i")
@@ -88,7 +136,13 @@ class FFmpegQueryExtension {
 //
 //        return inputs.toArray(arrayOfNulls<String>(inputs.size))
 //    }
-    fun addImageOnVideoBottom(inputVideo: String, imageInput: String, posX: Float?, posY: Float?, output: String): Array<String> {
+    fun addImageOnVideoBottom(
+        inputVideo: String,
+        imageInput: String,
+        posX: Float?,
+        posY: Float?,
+        output: String
+    ): Array<String> {
         val inputs: ArrayList<String> = ArrayList()
         inputs.apply {
             add("-i")
@@ -105,27 +159,33 @@ class FFmpegQueryExtension {
     }
 
     //only text show on video
-    fun addTextOnVideo(inputVideo: String, textInput: String, posX: Float?, posY: Float?, fontPath: String, isTextBackgroundDisplay: String, fontSize: Int, fontcolor: String, output: String): Array<String> {
-        val inputs: ArrayList<String> = ArrayList()
-        var borderQuery = ""
-//        if (isTextBackgroundDisplay) {
-        borderQuery = ":box=1:boxcolor=$isTextBackgroundDisplay:boxborderw=0"
+//    fun addTextOnVideo(inputVideo: String, textInput: String, posX: Float?, posY: Float?, fontPath: String, isTextBackgroundDisplay: String, fontSize: Int, fontcolor: String, output: String): Array<String> {
+//        val inputs: ArrayList<String> = ArrayList()
+//        var borderQuery = ""
+////        if (isTextBackgroundDisplay) {
+//        borderQuery = ":box=1:boxcolor=$isTextBackgroundDisplay:boxborderw=0"
+////        }
+//        inputs.apply {
+//            add("-i")
+//            add(inputVideo)
+//            add("-vf")
+//            add("drawtext=text='$textInput':fontfile=$fontPath:x=$posX:y=$posY:fontsize=$fontSize:fontcolor=$fontcolor${borderQuery.trim()}")
+//            add("-c:a")
+//            add("copy")
+//            add("-preset")
+//            add("ultrafast")
+//            add(output)
 //        }
-        inputs.apply {
-            add("-i")
-            add(inputVideo)
-            add("-vf")
-            add("drawtext=text='$textInput':fontfile=$fontPath:x=$posX:y=$posY:fontsize=$fontSize:fontcolor=$fontcolor${borderQuery.trim()}")
-            add("-c:a")
-            add("copy")
-            add("-preset")
-            add("ultrafast")
-            add(output)
-        }
-        return inputs.toArray(arrayOfNulls<String>(inputs.size))
-    }
+//        return inputs.toArray(arrayOfNulls<String>(inputs.size))
+//    }
 
-    fun addVideoWaterMark(inputVideo: String, imageInput: String, posX: Float?, posY: Float?, output: String): Array<String> {
+    fun addVideoWaterMark(
+        inputVideo: String,
+        imageInput: String,
+        posX: Float?,
+        posY: Float?,
+        output: String
+    ): Array<String> {
         val inputs: ArrayList<String> = ArrayList()
         inputs.apply {
             add("-i")
