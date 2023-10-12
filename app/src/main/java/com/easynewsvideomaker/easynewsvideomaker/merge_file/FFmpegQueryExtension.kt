@@ -7,13 +7,12 @@ class FFmpegQueryExtension {
         tvInputPathVideo: String,
         tvInputPathImage: String,
         textInputeCenter: String,
-        textInputeCenterSize: Int,
+        yCenterPosition: Int,
         textInputeCenterColor: String,
-        centerTextOnScreenX: Float,
-        centerTextOnScreenY: Float,
         textInputeBottom: String,
-        textInputeBottomSize: Int,
+        yBottomPosition: Int,
         textInputeBottomColor: String,
+        textInputeSize: Int,
         videoWidth: Int,
         videoHeight: Int,
         outputPath: String
@@ -22,12 +21,10 @@ class FFmpegQueryExtension {
         val fontPath = "/system/fonts/DroidSans.ttf"
 
 
-//        var textRepoterName = "drawtext=fontfile='$fontPath':text='$textInputeRepoter':fontsize=20:fontcolor=white:x=210:y=h-th-120"
-//        var textRepoterName = "drawtext=fontfile='$fontPath':text='$textInputeRepoter':fontsize=20:fontcolor=black:x=$RepoterOnScreenX:y=$RepoterOnScreenY"
-//        var textCenter = "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeCenterSize:fontcolor=$textInputeCenterColor:x=w-(t-4.5)*100/2:y=h-th-60"
-        var textCenter = "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeCenterSize:fontcolor=$textInputeCenterColor:x=$centerTextOnScreenX:y=$centerTextOnScreenY"
-//        val textBottom = "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeBottomSize:fontcolor=$textInputeBottomColor:x=w-(t-4.5)*100/2:y=h-th-25"
-        val textBottom = "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeBottomSize:fontcolor=$textInputeBottomColor:x=$centerTextOnScreenX:y=$centerTextOnScreenY"
+//        var textCenter = "drawtext=fontfile='$fontPath':text='textInputeCenter':fontsize=20:fontcolor=white:x=w-(t-4.5)*100/2:y=h-th-60"
+//        var textBottom = "drawtext=fontfile='$fontPath':text='textInputeBottom':fontsize=20:fontcolor=black:x=w-(t-4.5)*100/2:y=h-th-60"
+        var textCenter = "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize:fontcolor=$textInputeCenterColor:x=w-(t-4.5)*100/2:y=$yCenterPosition"
+        val textBottom = "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize:fontcolor=$textInputeBottomColor:x=w-(t-4.5)*100/2:y=$yBottomPosition"
 
 
 

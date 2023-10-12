@@ -9,7 +9,6 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.net.Uri
@@ -21,6 +20,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnGlobalLayoutListener
 import android.widget.LinearLayout
 import android.widget.MediaController
 import android.widget.SeekBar
@@ -34,7 +35,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
-import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogFileSaveBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogRecordingBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentDisplayBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
@@ -49,9 +49,6 @@ import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 
@@ -743,24 +740,32 @@ class DisplayFragment : Fragment() {
                 val centerTextColor = String.format("#%06X", 0xFFFFFF and centerColorText)
 
 //                val location = IntArray(2)
-//                displayBinding.linLayer2.getLocationOnScreen(location)
-//                val centerTextOnScreenX = location[0]
-//                val centerTextOnScreenY = location[1]
+//                displayBinding.linLayer2.getLocationInWindow(location)
+//                val centerTextOnScreenX = location[0].toFloat()
+//                val centerTextOnScreenY = location[1].toFloat()
+
+// Get the left and top coordinates of the view within its parent
+
+// Get the left and top coordinates of the view within its parent
 
 
-                val centerTextOnScreenX = width?.let {
-                    (displayBinding.txtLay2.text.toString().toFloat().times(it)).div(100)
-                }
-                val centerTextOnScreenY = height?.let {
-                    (displayBinding.txtLay2.text.toString().toFloat().times(it)).div(100)
-                }
+// Calculate the right and bottom coordinates
+
+// Calculate the right and bottom coordinates
+
+//                val centerTextOnScreenX = width?.let {
+//                    (displayBinding.txtLay2.text.toString().toFloat().times(it)).div(100)
+//                }
+//                val centerTextOnScreenY = height?.let {
+//                    (displayBinding.txtLay2.text.toString().toFloat().times(it)).div(100)
+//                }
 //        var centerTextOnScreenX = displayBinding.txtLay2.left.toFloat()
 //        var centerTextOnScreenY = displayBinding.txtLay2.top.toFloat()
 
-                Log.e("TAG", "X position: $centerTextOnScreenX")
-                Log.e("TAG", "Y position: $centerTextOnScreenY")
+//                Log.e("TAG", "X position: $centerTextOnScreenX")
+//                Log.e("TAG", "Y position: $centerTextOnScreenY")
 
-                var bottomColorText = displayBinding.txtLay2.currentTextColor
+                var bottomColorText = displayBinding.txtLay3.currentTextColor
                 val bottomTextColor = String.format("#%06X", 0xFFFFFF and bottomColorText)
 
                 val fragment = VideoExportFragment()
@@ -770,8 +775,8 @@ class DisplayFragment : Fragment() {
                 bundle.putString("centerTextScrollPath", centerTextScroll)
                 bundle.putInt("centerTextSize", centerTextSize)
                 bundle.putString("centerTextColor", centerTextColor)
-                bundle.putFloat("centerTextOnScreenX", centerTextOnScreenX!!)
-                bundle.putFloat("centerTextOnScreenY", centerTextOnScreenY!!)
+//                bundle.putFloat("centerTextOnScreenX", centerTextOnScreenX!!)
+//                bundle.putFloat("centerTextOnScreenY", centerTextOnScreenY!!)
                 bundle.putString("bottomTextScrollPath", bottomTextScroll)
                 bundle.putInt("bottomTextSize", bottomTextSize)
                 bundle.putString("bottomTextColor", bottomTextColor)
@@ -834,8 +839,8 @@ class DisplayFragment : Fragment() {
 
                     // Start playing the video
                     displayBinding.vidView.visibility = View.VISIBLE
-                    displayBinding.linVideoZoom.visibility = View.VISIBLE
-                    displayBinding.linBtn.visibility = View.VISIBLE
+//                    displayBinding.linVideoZoom.visibility = View.VISIBLE
+//                    displayBinding.linBtn.visibility = View.VISIBLE
                     displayBinding.imgView.visibility = View.INVISIBLE
                     displayBinding.vidView.start()
 
