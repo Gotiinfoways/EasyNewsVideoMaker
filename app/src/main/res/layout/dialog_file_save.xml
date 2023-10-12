@@ -33,6 +33,7 @@
                     android:layout_height="wrap_content"
                     android:text="File Name:-"
                     android:textSize="@dimen/_15ssp"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
 
                 <EditText
@@ -40,7 +41,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:text="download"
+                    android:hint="Enter File Name"
+                    android:textColorHint="#686565"
+                    android:textColor="@color/black"
                     android:layout_weight="1" />
             </LinearLayout>
 

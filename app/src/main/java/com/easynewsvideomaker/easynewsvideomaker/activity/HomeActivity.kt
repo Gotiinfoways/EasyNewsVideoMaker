@@ -36,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import java.io.File
 
 
 class HomeActivity : AppCompatActivity() {
@@ -44,6 +45,8 @@ class HomeActivity : AppCompatActivity() {
     lateinit var mDbRef: DatabaseReference
     lateinit var auth: FirebaseAuth
     var PERMISSION_REQUEST_CODE = 1
+    //initialize root directory
+    var rootDir = Environment.getExternalStorageDirectory().path
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         homeBinding = ActivityHomeBinding.inflate(layoutInflater)
@@ -51,10 +54,18 @@ class HomeActivity : AppCompatActivity() {
         mDbRef = FirebaseDatabase.getInstance().getReference()
         auth = Firebase.auth
 
+        //making sure the download directory exists
+        checkAndCreateDirectory("/Easy News Maker")
         initView()
         navView()
     }
-
+    //function to verify if directory exists
+    fun checkAndCreateDirectory(dirName: String) {
+        val new_dir: File = File(rootDir + dirName)
+        if (!new_dir.exists()) {
+            new_dir.mkdirs()
+        }
+    }
     private fun initView() {
 
 

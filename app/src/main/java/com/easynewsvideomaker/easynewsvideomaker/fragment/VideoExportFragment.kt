@@ -10,6 +10,7 @@ import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,14 +22,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogFileSaveBinding
+import com.easynewsvideomaker.easynewsvideomaker.databinding.DownloadProgressBarBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoExportBinding
-import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.CallBackOfQuery
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegCallBack
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegQueryExtension
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.LogMessage
-import java.io.File
-import java.io.IOException
+import com.google.android.play.integrity.internal.c
+import java.io.InputStream
+import java.net.HttpURLConnection
 
 
 class VideoExportFragment : Fragment() {
@@ -52,8 +54,15 @@ class VideoExportFragment : Fragment() {
     var bottomTextScroll: String? = null
     var bottomTextSize = 0
     var bottomTextColor: String? = null
-    lateinit var progressDialog: Dialog
+    lateinit var downloadProgressDialog: Dialog
+    lateinit var progressBarBinding:DownloadProgressBarBinding
+    private var primaryProgressStatus = 0
+    private val handler = Handler()
 
+    val DIALOG_DOWNLOAD_PROGRESS = 0
+
+    //initialize root directory
+    var rootDir = Environment.getExternalStorageDirectory().path
     var buttonClick = 0
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -63,18 +72,46 @@ class VideoExportFragment : Fragment() {
         // Inflate the layout for this fragment
 
         ffmpegQueryExtension = FFmpegQueryExtension()
+
+
         progressDialog()
         initView()
         return exportBinding.root
     }
 
-    private fun progressDialog() {
-        progressDialog = Dialog(requireContext())
-        var progressBarBinding = ProgressBarBinding.inflate(layoutInflater)
-        progressDialog.setContentView(progressBarBinding.root)
 
-        progressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        progressDialog.window?.setLayout(
+    private fun progressDialog() {
+        downloadProgressDialog = Dialog(requireContext())
+         progressBarBinding = DownloadProgressBarBinding.inflate(layoutInflater)
+        downloadProgressDialog.setContentView(progressBarBinding.root)
+        primaryProgressStatus = progressBarBinding.progressBar.progress
+
+
+
+        //here’s the download code
+//
+//        Thread(Runnable {
+//            // this loop will run until the value of i becomes 99
+//            while (primaryProgressStatus < 100) {
+//                primaryProgressStatus += 1
+//                // Update the progress bar and display the current value
+//                handler.post(Runnable {
+//                    progressBarBinding.progressBar.progress = primaryProgressStatus
+//                    // setting current progress to the textview
+////                    progressBarBinding.txtProgress.text = i.toString() + "/" + progressBarBinding.progressBar.max
+//                    progressBarBinding.txtProgress.text = "$primaryProgressStatus %"
+//                })
+//                try {
+//                    Thread.sleep(100)
+//                } catch (e: InterruptedException) {
+//                    e.printStackTrace()
+//                }
+//            }
+//
+//
+//        }).start()
+        downloadProgressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        downloadProgressDialog.window?.setLayout(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
@@ -122,8 +159,8 @@ class VideoExportFragment : Fragment() {
 
                 Log.e("TAG", "file Name: $fileName")
 
-                progressDialog.show()
-//
+                downloadProgressDialog.show()
+
 //                addImageOnVideo(fileName)
                 addTextOnVideoFun(fileName)
 //                mixVideo(fileName)
@@ -157,7 +194,7 @@ class VideoExportFragment : Fragment() {
 
 
         var outputPath =
-            Environment.getExternalStorageDirectory().path + "/Download/$fileName.mp4"
+            Environment.getExternalStorageDirectory().path + "/Easy News Maker/$fileName.mp4"
 
         var tvInputPathVideo = videoPath!!
 
@@ -211,26 +248,29 @@ class VideoExportFragment : Fragment() {
         )
         CallBackOfQuery().callQuery(query, object : FFmpegCallBack {
             override fun process(logMessage: LogMessage) {
-
+//                exportBinding.txtOutputPath.visibility = View.VISIBLE
+//                exportBinding.txtOutputPath.text = logMessage.text
             }
 
             override fun success() {
-
-                progressDialog.dismiss()
+                exportBinding.txtOutputPath.visibility = View.VISIBLE
+                exportBinding.txtOutputPath.text =
+                    String.format(getString(R.string.output_path), outputPath)
+                downloadProgressDialog.dismiss()
                 Toast.makeText(context, "Video Download Success", Toast.LENGTH_SHORT)
                     .show()
             }
 
             override fun cancel() {
 
-                progressDialog.dismiss()
+                downloadProgressDialog.dismiss()
                 Toast.makeText(context, "Video Download Cancel", Toast.LENGTH_SHORT)
                     .show()
             }
 
             override fun failed() {
 
-                progressDialog.dismiss()
+                downloadProgressDialog.dismiss()
                 Toast.makeText(context, "Video Download Fail", Toast.LENGTH_SHORT).show()
             }
         })
@@ -269,6 +309,7 @@ class VideoExportFragment : Fragment() {
         // For example, you might want the Y position to be a percentage of the video height.
         return (0.92 * videoHeight).toInt()
     }
+
     // Function to get the video's width
     private fun getVideoWidth(videoPath: String): Int {
         val retriever = MediaMetadataRetriever()
@@ -311,58 +352,29 @@ class VideoExportFragment : Fragment() {
 
             override fun success() {
 
-                progressDialog.dismiss()
+                downloadProgressDialog.dismiss()
                 Toast.makeText(context, "Video Download Success", Toast.LENGTH_SHORT)
                     .show()
             }
 
             override fun cancel() {
 
-                progressDialog.dismiss()
+                downloadProgressDialog.dismiss()
                 Toast.makeText(context, "Video Download Cancel", Toast.LENGTH_SHORT)
                     .show()
             }
 
             override fun failed() {
 
-                progressDialog.dismiss()
+                downloadProgressDialog.dismiss()
                 Toast.makeText(context, "Video Download Fail", Toast.LENGTH_SHORT).show()
             }
+
         })
     }
 
 
-    private fun downloadVideo() {
-        if (exportBinding.vidExport != null) {
-            val videoUri = Uri.parse(selectedVideoUri.toString())
-            val fileName = "downloaded_video_sr.mp4"  //save video name
-            val downloadPath =
-                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-            val outputFile = File(downloadPath, fileName)
 
-            exportBinding.vidExport.stopPlayback()
-            exportBinding.vidExport.setVideoURI(videoUri)
-            exportBinding.vidExport.setOnPreparedListener { mediaPlayer ->
-                mediaPlayer.setOnSeekCompleteListener {
-                    mediaPlayer.start()
-                    startDownload(videoUri, outputFile)
-                }
-                mediaPlayer.seekTo(0)
-            }
-        }
-    }
-
-    private fun startDownload(videoUri: Uri, outputFile: File) {
-        try {
-            val inputStream = requireActivity().contentResolver.openInputStream(videoUri)
-            val outputStream = outputFile.outputStream()
-            inputStream?.copyTo(outputStream)
-            inputStream?.close()
-            outputStream.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -373,11 +385,14 @@ class VideoExportFragment : Fragment() {
         if (requestCode == VIDEO_PERMISSION_REQUEST) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, initiate download
-                downloadVideo()
+
             } else {
                 // Permission denied
                 // Handle the case where the user denied permission
             }
         }
     }
+
+
+
 }

@@ -7,25 +7,25 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/progress_round"
         android:gravity="center"
-        android:padding="27dp"
         android:orientation="vertical"
-        android:background="@drawable/progress_round">
+        android:padding="27dp">
 
         <ProgressBar
             android:layout_width="wrap_content"
-            android:indeterminateTint="@color/Red"
-            android:layout_height="wrap_content">
-        </ProgressBar>
+            android:layout_height="wrap_content"
+            android:indeterminateTint="@color/Red"></ProgressBar>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Please Wait..."
             android:fontFamily="cursive"
-            android:textSize="19sp"
-            android:textStyle="bold"
             android:padding="10dp"
-            android:textColor="@color/Red"/>
+            android:text="Please Wait..."
+            android:textColor="@color/Red"
+            android:textSize="19sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -3,10 +3,12 @@
     <style name="Base.Theme.EasyNewsVideoMaker" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="android:statusBarColor">@color/Red</item>
+
     </style>
 
-    <style name="Theme.EasyNewsVideoMaker" parent="Base.Theme.EasyNewsVideoMaker" />
+    <style name="Theme.EasyNewsVideoMaker" parent="Base.Theme.EasyNewsVideoMaker" >
+        <item name="android:statusBarColor">@color/Red</item>
+    </style>
 
     <!--    radio button selected color change-->
     <style name="MyRadioButton" parent="Theme.AppCompat.Light">

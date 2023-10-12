@@ -26,7 +26,21 @@
         android:layout_height="@dimen/_170sdp"
         android:scaleType="fitXY"
         android:src="@drawable/image1" />
-    <!--    Done-->
+
+    <TextView
+        android:id="@+id/txtOutputPath"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/linVideo"
+        android:layout_marginTop="@dimen/_40ssp"
+        android:visibility="gone"
+        tools:text="@string/output_path"/>
+
+    <!--    Share Now-->
     <androidx.cardview.widget.CardView
         android:id="@+id/cdShare"
         android:layout_width="match_parent"
@@ -188,4 +202,11 @@
             android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:indeterminateTint="@color/Red" />
 </RelativeLayout>
