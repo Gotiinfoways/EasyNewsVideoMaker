@@ -146,7 +146,7 @@
 
             <!--Save Video-->
             <LinearLayout
-                android:id="@+id/laySaveVideoNav"
+                android:id="@+id/layNewsPosterNav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/laySubscriptionNav"
@@ -158,13 +158,13 @@
                     android:layout_height="@dimen/_25sdp"
                     android:background="@drawable/menu_round"
                     android:padding="@dimen/_5sdp"
-                    android:src="@drawable/play" />
+                    android:src="@drawable/ic_news_post" />
 
                 <TextView
                     android:layout_width="@dimen/_140sdp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
-                    android:text="Save Video"
+                    android:text="News Poster"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_15ssp"
                     android:textStyle="bold" />
@@ -176,7 +176,7 @@
                 android:id="@+id/layShareNav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/laySaveVideoNav"
+                android:layout_below="@id/layNewsPosterNav"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"

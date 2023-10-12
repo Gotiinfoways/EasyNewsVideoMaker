@@ -12,4 +12,11 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="l_grey">#B5B5B5</color>
+
+
+    <color name="Blue">#00082C</color>
+    <color name="lightblue">#1A1D25</color>
+    <color name="lightbred">#E60000</color>
+    <color name="newyblue">#2B3186</color>
+    <color name="brown">#8E0000</color>
 </resources>

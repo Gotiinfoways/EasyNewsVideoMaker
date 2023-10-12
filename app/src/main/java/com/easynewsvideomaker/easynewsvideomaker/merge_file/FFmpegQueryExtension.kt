@@ -23,8 +23,8 @@ class FFmpegQueryExtension {
 
 //        var textCenter = "drawtext=fontfile='$fontPath':text='textInputeCenter':fontsize=20:fontcolor=white:x=w-(t-4.5)*100/2:y=h-th-60"
 //        var textBottom = "drawtext=fontfile='$fontPath':text='textInputeBottom':fontsize=20:fontcolor=black:x=w-(t-4.5)*100/2:y=h-th-60"
-        var textCenter = "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize:fontcolor=$textInputeCenterColor:x=w-(t-4.5)*100/2:y=$yCenterPosition"
-        val textBottom = "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize:fontcolor=$textInputeBottomColor:x=w-(t-4.5)*100/2:y=$yBottomPosition"
+        var textCenter = "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize:fontcolor=$textInputeCenterColor:x=w-(mod(5*n\\,w+tw)):y=$yCenterPosition"
+        val textBottom = "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
 
 
 

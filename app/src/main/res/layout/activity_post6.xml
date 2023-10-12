@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Post_6_Activity"
+    android:background="@color/lightblack"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/frameView"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_300sdp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/imgpost6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:foreground="@drawable/gradient"
+            android:src="@drawable/p6" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:background="@color/white" />
+
+        <TextView
+            android:id="@+id/txtBreakingNews6"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_27sdp"
+            android:background="@drawable/p_6"
+            android:gravity="center"
+            android:text="BREAKING NEWS"
+            android:textColor="@color/Red"
+            android:textSize="@dimen/_13sdp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtheadingText6"
+            android:layout_width="@dimen/_180sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_180sdp"
+            android:background="@drawable/p_6"
+            android:gravity="center"
+            android:text="Heading Text Here"
+            android:textColor="@color/Red"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtAdditionalText6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_210sdp"
+            android:text="Additional Text Here"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_gravity="center|bottom"
+            android:background="@color/white"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txtNewsChannel6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="News channel Name"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/frameView"
+        android:layout_margin="@dimen/_30sdp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/linCaptureImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgcapture6"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/capture" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Capture Image"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linImport_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgpick6"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/import_video" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Import Image"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cdExploreBtn6"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_110sdp"
+        android:layout_marginBottom="17dp"
+        android:backgroundTint="@color/Red"
+        app:cardCornerRadius="@dimen/_35sdp"
+        app:cardElevation="@dimen/_2sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Explore"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -56,6 +56,71 @@
         android:theme="@style/Theme.EasyNewsVideoMaker"
         tools:targetApi="31">
 
+        <activity
+            android:name=".News_Poster_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_1_Activity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Post_2_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_3_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_4_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_5_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_6_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_7_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_8_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_9_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_10_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_11_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_12_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_13_Activity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Post_14_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_15_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_16_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_17_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_18_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_19_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Post_20_Activity"
+            android:exported="false" />
 
         <activity
             android:name=".activity.SignUpActivity"

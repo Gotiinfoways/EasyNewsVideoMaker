@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.easynewsvideomaker.easynewsvideomaker.News_Poster_Activity
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityHomeBinding
 import com.easynewsvideomaker.easynewsvideomaker.fragment.HomeFragment
@@ -45,6 +46,7 @@ class HomeActivity : AppCompatActivity() {
     lateinit var mDbRef: DatabaseReference
     lateinit var auth: FirebaseAuth
     var PERMISSION_REQUEST_CODE = 1
+
     //initialize root directory
     var rootDir = Environment.getExternalStorageDirectory().path
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +61,7 @@ class HomeActivity : AppCompatActivity() {
         initView()
         navView()
     }
+
     //function to verify if directory exists
     fun checkAndCreateDirectory(dirName: String) {
         val new_dir: File = File(rootDir + dirName)
@@ -66,6 +69,7 @@ class HomeActivity : AppCompatActivity() {
             new_dir.mkdirs()
         }
     }
+
     private fun initView() {
 
 
@@ -103,6 +107,10 @@ class HomeActivity : AppCompatActivity() {
 
         }
 
+        homeBinding.layNewsPosterNav.setOnClickListener {
+            var i = Intent(this, News_Poster_Activity::class.java)
+            startActivity(i)
+        }
 
         //  Subscription / Package
         homeBinding.imgSubscription.setOnClickListener {

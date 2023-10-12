@@ -63,6 +63,9 @@ dependencies {
     //color picker
     implementation ("com.github.yukuku:ambilwarna:2.0.1")
 
+    //Glide
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
 
