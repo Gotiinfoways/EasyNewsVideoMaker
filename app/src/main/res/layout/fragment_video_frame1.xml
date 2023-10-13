@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightblack"
+    android:orientation="vertical"
+    tools:context=".fragment.VideoFrame1Fragment">
+
+
+    <FrameLayout
+        android:id="@+id/frameView"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_220sdp"
+        android:layout_centerHorizontal="true">
+
+        <!--        static image-->
+        <ImageView
+            android:id="@+id/imgView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/image1" />
+
+        <!--news Video-->
+        <VideoView
+            android:id="@+id/vidView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginVertical="@dimen/_25sdp"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_215sdp">
+
+            <!--            Breaking News 1-->
+            <LinearLayout
+                android:id="@+id/linBreakingNews"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                android:background="#AF0303"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/_3sdp">
+
+                <LinearLayout
+                    android:id="@+id/linBreaking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#FAFF00">
+
+                    <TextView
+                        android:id="@+id/txtBreaking"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_3sdp"
+                        android:text="BREAKING"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linNews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="#D52A2A">
+
+                    <TextView
+                        android:id="@+id/txtNews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_3sdp"
+                        android:text="NEWS"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--            news logo-->
+            <ImageView
+                android:id="@+id/imgNewsLoge"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_below="@id/linBreakingNews"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/news_logo" />
+
+            <!--            News city name-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdCityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linBreakingNews"
+                android:layout_margin="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/Red"
+                app:cardCornerRadius="@dimen/_20sdp">
+
+                <TextView
+                    android:id="@+id/txtCityName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:text="City Name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/linBrakingBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+                <!--              Layer1-->
+                <LinearLayout
+                    android:id="@+id/linLayer1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_above="@id/linLayer2"
+                    android:background="#031DA8"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_5sdp">
+
+                    <TextView
+                        android:id="@+id/txtLayRepoterTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_85sdp"
+                        android:text="Repoter Name :-"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/txtLayRepoterName"
+                        android:layout_width="@dimen/_145sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:text="Sanjay Dangar"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+
+
+                <!--              Layer2-->
+                <LinearLayout
+                    android:id="@+id/linLayer2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_above="@+id/linLayer3"
+                    android:background="@color/Red"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/txtLay2"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:ellipsize="marquee"-->
+                    <!--                        android:marqueeRepeatLimit="marquee_forever"-->
+                    <!--                        android:scrollHorizontally="true"-->
+                    <!--                        android:singleLine="true"-->
+                    <!--                        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"-->
+                    <!--                        android:textColor="@color/white" />-->
+                </LinearLayout>
+
+                <!--              Layer 3-->
+                <LinearLayout
+                    android:id="@+id/linLayer3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/txtLay3"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:ellipsize="marquee"-->
+                    <!--                        android:marqueeRepeatLimit="marquee_forever"-->
+                    <!--                        android:scrollHorizontally="true"-->
+                    <!--                        android:singleLine="true"-->
+                    <!--                        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"-->
+                    <!--                        android:textStyle="bold" />-->
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--Braking News 2 & 3-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/_30sdp">
+
+
+                <!--                BrakingNewsText_2-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_27sdp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linBreaking2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="#FAFF00">
+
+                        <TextView
+                            android:id="@+id/txtBreaking2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BREAKING"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linNews2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="#D52A2A">
+
+                        <TextView
+                            android:id="@+id/txtNews2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NEWS"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--                BrakingNewsText_3-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/linBreaking3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#D52A2A"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/txtBreaking3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_3sdp"
+                            android:text="BREAKING"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linNews3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/txtNews3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_3sdp"
+                            android:text="NEWS"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtHd"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#D52A2A"
+                            android:text="HD"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_10sdp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txtLay2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_185sdp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/txtLay3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLay2"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
+        android:textStyle="bold" />
+    <!--    </LinearLayout>-->
+
+    <LinearLayout
+        android:id="@+id/linBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/frameView"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+        <!--    video ply and pause button-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play" />
+        <!--    Video Volume -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Video Volume:"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imgVolume"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_volume_off" />
+        </LinearLayout>
+    </LinearLayout>
+    <!--    Video Zoom -->
+    <LinearLayout
+        android:id="@+id/linVideoZoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linBtn"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Video Size:"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15ssp"
+            android:textStyle="bold" />
+
+        <SeekBar
+            android:id="@+id/zoomSeekBar"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:max="200"
+            android:progress="30" />
+    </LinearLayout>
+
+    <!--        Capture Video & Import_video & Recoding voice -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/_30sdp"
+        android:gravity="center">
+
+        <!--        Capture Video-->
+        <LinearLayout
+            android:id="@+id/linCaptureVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/capture" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Capture Video"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!--        Import_video-->
+        <LinearLayout
+            android:id="@+id/linImport_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/import_video" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Import Video"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!--        Recoding voice-->
+        <LinearLayout
+            android:id="@+id/linRecoding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/recoding" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recording"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <!--    video explore-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cdExploreBtn"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_110sdp"
+        android:layout_marginBottom="17dp"
+        android:backgroundTint="@color/Red"
+        app:cardCornerRadius="@dimen/_35sdp"
+        app:cardElevation="@dimen/_2sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Explore"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

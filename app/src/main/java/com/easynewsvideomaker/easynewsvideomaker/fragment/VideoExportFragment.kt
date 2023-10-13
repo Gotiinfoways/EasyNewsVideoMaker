@@ -2,6 +2,7 @@ package com.easynewsvideomaker.easynewsvideomaker.fragment
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -21,16 +22,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
+import com.easynewsvideomaker.easynewsvideomaker.activity.HomeActivity
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogFileSaveBinding
+import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogWarningBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DownloadProgressBarBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoExportBinding
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.CallBackOfQuery
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegCallBack
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegQueryExtension
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.LogMessage
-import com.google.android.play.integrity.internal.c
-import java.io.InputStream
-import java.net.HttpURLConnection
 
 
 class VideoExportFragment : Fragment() {
@@ -55,7 +55,7 @@ class VideoExportFragment : Fragment() {
     var bottomTextSize = 0
     var bottomTextColor: String? = null
     lateinit var downloadProgressDialog: Dialog
-    lateinit var progressBarBinding:DownloadProgressBarBinding
+    lateinit var progressBarBinding: DownloadProgressBarBinding
     private var primaryProgressStatus = 0
     private val handler = Handler()
 
@@ -64,6 +64,8 @@ class VideoExportFragment : Fragment() {
     //initialize root directory
     var rootDir = Environment.getExternalStorageDirectory().path
     var buttonClick = 0
+
+    var fontPath = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,10 +84,9 @@ class VideoExportFragment : Fragment() {
 
     private fun progressDialog() {
         downloadProgressDialog = Dialog(requireContext())
-         progressBarBinding = DownloadProgressBarBinding.inflate(layoutInflater)
+        progressBarBinding = DownloadProgressBarBinding.inflate(layoutInflater)
         downloadProgressDialog.setContentView(progressBarBinding.root)
         primaryProgressStatus = progressBarBinding.progressBar.progress
-
 
 
         //here’s the download code
@@ -115,24 +116,26 @@ class VideoExportFragment : Fragment() {
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
+        downloadProgressDialog.setCancelable(false)
     }
 
     private fun initView() {
+
+
+        //text scroll Horizontally
+        exportBinding.txtLay2.isSelected = true
+        exportBinding.txtLay3.isSelected = true
 
         videoPath = arguments?.getString("videoPath")
         convertImagePath = arguments?.getString("convertImagePath")
         centerTextScroll = arguments?.getString("centerTextScrollPath")
         centerTextSize = arguments?.getInt("centerTextSize", 0)!!
         centerTextColor = arguments?.getString("centerTextColor")
-//        centerTextPostionX = arguments?.getFloat("centerTextOnScreenX", 0f)!!
-//        centerTextPostionY = arguments?.getFloat("centerTextOnScreenY", 0f)!!
-
-//        Log.e("TAG", "X position Video: $centerTextPostionX", )
-//        Log.e("TAG", "Y position Video: $centerTextPostionY", )
 
         bottomTextScroll = arguments?.getString("bottomTextScrollPath")
         bottomTextSize = arguments?.getInt("bottomTextSize", 0)!!
         bottomTextColor = arguments?.getString("bottomTextColor")
+        fontPath = arguments?.getString("fontPath")!!
 
         val myBitmap = BitmapFactory.decodeFile(convertImagePath)
         exportBinding.imgExport.setImageBitmap(myBitmap)
@@ -147,6 +150,9 @@ class VideoExportFragment : Fragment() {
         exportBinding.vidExport.setMediaController(mediaController);
         exportBinding.vidExport.start()
 
+
+        exportBinding.txtLay2.setText(centerTextScroll)
+        exportBinding.txtLay3.setText(bottomTextScroll)
         exportBinding.linDownload.setOnClickListener {
 //            downloadVideo()
             buttonClick = 1
@@ -162,7 +168,7 @@ class VideoExportFragment : Fragment() {
                 downloadProgressDialog.show()
 
 //                addImageOnVideo(fileName)
-                addTextOnVideoFun(fileName)
+                addVideoEditFun(fileName)
 //                mixVideo(fileName)
                 dialog.dismiss()
             }
@@ -190,7 +196,7 @@ class VideoExportFragment : Fragment() {
         }
     }
 
-    private fun addTextOnVideoFun(fileName: String) {
+    private fun addVideoEditFun(fileName: String) {
 
 
         var outputPath =
@@ -223,6 +229,7 @@ class VideoExportFragment : Fragment() {
         var textInputeBottom = bottomTextScroll
         var textInputeBottomColor = bottomTextColor
 
+
         //text size auto change by video wigth and hight
         val textInputeSize = calculateFontSize(requireContext(), tvInputPathVideo)
 
@@ -232,7 +239,7 @@ class VideoExportFragment : Fragment() {
         val videoWidth = getVideoWidth(tvInputPathVideo)
         val videoHeight = getVideoHeight(tvInputPathVideo)
 
-        val query = ffmpegQueryExtension.addTextOnVideo(
+        val query = ffmpegQueryExtension.addVideoEditFun(
             tvInputPathVideo,
             tvInputPathImage,
             textInputeCenter!!,
@@ -244,7 +251,7 @@ class VideoExportFragment : Fragment() {
             textInputeSize,
             videoWidth,
             videoHeight,
-            outputPath
+            outputPath, fontPath!!
         )
         CallBackOfQuery().callQuery(query, object : FFmpegCallBack {
             override fun process(logMessage: LogMessage) {
@@ -374,8 +381,6 @@ class VideoExportFragment : Fragment() {
     }
 
 
-
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -394,5 +399,49 @@ class VideoExportFragment : Fragment() {
     }
 
 
+//    fun onBackPressed(): Boolean {
+//        // Add your custom back press handling logic here.
+//        // Return true if you consume the back press, false otherwise.
+//        // For example:
+//
+//        if (buttonClick == 0) {
+//            // Handle the back press and return true
+////            warningDialog()
+//
+//            var dialog = Dialog(requireContext())
+//            var warningBinding = DialogWarningBinding.inflate(layoutInflater)
+//            dialog.setContentView(warningBinding.root)
+//
+//            warningBinding.btnOk.setOnClickListener {
+//                var i = Intent(requireContext(), HomeActivity::class.java)
+//                requireContext().startActivity(i)
+//                fragmentManager?.beginTransaction()?.remove(this)?.commit()
+//
+//
+//
+//                dialog.dismiss()
+//
+//
+//            }
+//            warningBinding.btnCansel.setOnClickListener {
+//                dialog.dismiss()
+//            }
+//
+//            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+//            dialog.window?.setLayout(
+//                LinearLayout.LayoutParams.MATCH_PARENT,
+//                LinearLayout.LayoutParams.WRAP_CONTENT
+//            )
+//            dialog.show()
+//            return true
+//
+//        }
+//        // If you don't want to consume the back press, return false
+//        return false
+//    }
+//
+//    private fun warningDialog() {
+//
+//    }
 
 }

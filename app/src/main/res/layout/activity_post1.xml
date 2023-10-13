@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightblack"
     android:orientation="vertical"
-    tools:context=".Post_1_Activity">
+    tools:context=".news_poster.Post_1_Activity">
 
     <FrameLayout
         android:id="@+id/frameView"

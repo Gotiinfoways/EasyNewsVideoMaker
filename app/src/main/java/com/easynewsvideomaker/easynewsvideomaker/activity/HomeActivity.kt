@@ -15,6 +15,7 @@ import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
@@ -24,10 +25,11 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.easynewsvideomaker.easynewsvideomaker.News_Poster_Activity
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityHomeBinding
 import com.easynewsvideomaker.easynewsvideomaker.fragment.HomeFragment
+import com.easynewsvideomaker.easynewsvideomaker.fragment.VideoExportFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.News_Poster_Activity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -337,4 +339,22 @@ class HomeActivity : AppCompatActivity() {
     }
 
 
+//    private var doubleBackToExitPressedOnce = false
+//    override fun onBackPressed() {
+//        val fragment = supportFragmentManager.findFragmentById(R.id.container)
+//        if (fragment is VideoExportFragment) {
+//            if (!fragment.onBackPressed()) {
+//                super.onBackPressed()
+//            }
+//        } else if (fragment is HomeFragment){
+//            if (doubleBackToExitPressedOnce) {
+//                super.onBackPressed()
+//                return
+//            }
+//            doubleBackToExitPressedOnce = true
+//            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+//
+//            Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+//        }
+//    }
 }

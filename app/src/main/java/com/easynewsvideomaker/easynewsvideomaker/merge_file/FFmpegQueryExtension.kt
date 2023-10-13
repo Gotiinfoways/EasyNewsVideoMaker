@@ -3,7 +3,7 @@ package com.easynewsvideomaker.easynewsvideomaker.merge_file
 class FFmpegQueryExtension {
 
     //two text scroll,text scroll speed,image  size set on video and video size  youtube size
-    fun addTextOnVideo(
+    fun addVideoEditFun(
         tvInputPathVideo: String,
         tvInputPathImage: String,
         textInputeCenter: String,
@@ -15,10 +15,12 @@ class FFmpegQueryExtension {
         textInputeSize: Int,
         videoWidth: Int,
         videoHeight: Int,
-        outputPath: String
+        outputPath: String,
+        fontPath: String
     ): Array<String> {
         val inputs: ArrayList<String> = ArrayList()
-        val fontPath = "/system/fonts/DroidSans.ttf"
+//        val fontPath = "/system/fonts/\t\n" +
+//                "HindVadodara-Bold.ttf"
 
 
 //        var textCenter = "drawtext=fontfile='$fontPath':text='textInputeCenter':fontsize=20:fontcolor=white:x=w-(t-4.5)*100/2:y=h-th-60"

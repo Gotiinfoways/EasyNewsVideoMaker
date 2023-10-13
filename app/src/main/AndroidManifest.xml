@@ -8,27 +8,23 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-
-    <!-- Required only if your app needs to access images or photos
-     that other apps created. -->
+    <!--
+ Required only if your app needs to access images or photos
+     that other apps created.
+    -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-
-    <!-- Required only if your app needs to access videos
-         that other apps created. -->
+    <!--
+ Required only if your app needs to access videos
+         that other apps created.
+    -->
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
-
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
-
     <uses-permission
         android:name="android.permission.CAPTURE_VIDEO_OUTPUT"
         tools:ignore="ProtectedPermissions" />
-
-
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission
@@ -41,7 +37,6 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.STORAGE" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
-
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -55,73 +50,72 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyNewsVideoMaker"
         tools:targetApi="31">
-
         <activity
-            android:name=".News_Poster_Activity"
+            android:name=".ComparePackageActivity"
             android:exported="false" />
         <activity
-            android:name=".Post_1_Activity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Post_2_Activity"
+            android:name=".news_poster.News_Poster_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_3_Activity"
+            android:name=".news_poster.Post_1_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_4_Activity"
+            android:name=".news_poster.Post_2_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_5_Activity"
+            android:name=".news_poster.Post_3_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_6_Activity"
+            android:name=".news_poster.Post_4_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_7_Activity"
+            android:name=".news_poster.Post_5_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_8_Activity"
+            android:name=".news_poster.Post_6_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_9_Activity"
+            android:name=".news_poster.Post_7_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_10_Activity"
+            android:name=".news_poster.Post_8_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_11_Activity"
+            android:name=".news_poster.Post_9_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_12_Activity"
+            android:name=".news_poster.Post_10_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_13_Activity"
-            android:exported="false" />
-
-        <activity
-            android:name=".Post_14_Activity"
+            android:name=".news_poster.Post_11_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_15_Activity"
+            android:name=".news_poster.Post_12_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_16_Activity"
+            android:name=".news_poster.Post_13_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_17_Activity"
+            android:name=".news_poster.Post_14_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_18_Activity"
+            android:name=".news_poster.Post_15_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_19_Activity"
+            android:name=".news_poster.Post_16_Activity"
             android:exported="false" />
         <activity
-            android:name=".Post_20_Activity"
+            android:name=".news_poster.Post_17_Activity"
             android:exported="false" />
-
+        <activity
+            android:name=".news_poster.Post_18_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".news_poster.Post_19_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".news_poster.Post_20_Activity"
+            android:exported="false" />
         <activity
             android:name=".activity.SignUpActivity"
             android:exported="false" />

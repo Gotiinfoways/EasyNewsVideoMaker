@@ -32,13 +32,24 @@
 
     <ImageView
         android:id="@+id/imgGoldenPackage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
         android:src="@drawable/golden_package" />
 
     <ImageView
         android:id="@+id/imgSilverPackage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
         android:src="@drawable/silver_package" />
+
+    <ImageView
+        android:id="@+id/imgComparePackage"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_2sdp"
+        android:src="@drawable/compare_package" />
+
 </LinearLayout>

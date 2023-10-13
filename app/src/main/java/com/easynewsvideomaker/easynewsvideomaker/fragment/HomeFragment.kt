@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
+import com.easynewsvideomaker.easynewsvideomaker.activity.GoldenPackageActivity
 import com.easynewsvideomaker.easynewsvideomaker.activity.SubscriptionActivity
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentHomeBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -63,12 +64,126 @@ class HomeFragment : Fragment() {
 
         binding.frame1.setOnClickListener {
             if (packageType == "Golden") {
-                val fragment = DisplayFragment()
-                val transaction = requireActivity().supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container, fragment)
-                transaction.addToBackStack(null)
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                transaction.commit()
+             var   fragment = VideoFrame1Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, GoldenPackageActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame2.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+              var  fragment = VideoFrame2Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame3.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var fragment = VideoFrame3Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame4.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var  fragment = VideoFrame4Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame5.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var  fragment = VideoFrame5Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame6.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var    fragment = VideoFrame6Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame7.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var   fragment = VideoFrame7Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame8.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var  fragment = VideoFrame8Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame9.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var  fragment = VideoFrame9Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame10.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var  fragment = VideoFrame10Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+
+        binding.frame11.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var  fragment = VideoFrame11Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame12.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var   fragment = VideoFrame12Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame13.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var  fragment = VideoFrame13Fragment()
+                setFragment(fragment)
+            } else {
+                var i = Intent(context, SubscriptionActivity::class.java)
+                startActivity(i)
+            }
+        }
+        binding.frame14.setOnClickListener {
+            if (packageType == "Golden" || packageType == "Silver") {
+                var fragment = VideoFrame14Fragment()
+                setFragment(fragment)
             } else {
                 var i = Intent(context, SubscriptionActivity::class.java)
                 startActivity(i)
@@ -76,5 +191,15 @@ class HomeFragment : Fragment() {
         }
     }
 
+     fun setFragment(fragment: Fragment) {
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+        transaction.commit()
+
+    }
 
 }
+
+

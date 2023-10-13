@@ -14,9 +14,14 @@
     <color name="l_grey">#B5B5B5</color>
 
 
+    <color name="blue">#031DA8</color>
     <color name="Blue">#00082C</color>
     <color name="lightblue">#1A1D25</color>
     <color name="lightbred">#E60000</color>
     <color name="newyblue">#2B3186</color>
+    <color name="darkbrown">#960202</color>
     <color name="brown">#8E0000</color>
+
+    <color name="yellow">#F7C900</color>
+    <color name="bg">#760000</color>
 </resources>

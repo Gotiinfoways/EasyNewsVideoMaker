@@ -26,7 +26,27 @@
         android:layout_height="@dimen/_170sdp"
         android:scaleType="fitXY"
         android:src="@drawable/image1" />
+    <TextView
+        android:id="@+id/txtLay2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_140sdp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textColor="@color/white" />
 
+    <TextView
+        android:id="@+id/txtLay3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtLay2"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/txtOutputPath"
         android:layout_width="match_parent"

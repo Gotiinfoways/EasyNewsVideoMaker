@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".News_Poster_Activity"
+    tools:context=".news_poster.News_Poster_Activity"
     android:background="@color/lightblack"
     android:orientation="vertical">
 
