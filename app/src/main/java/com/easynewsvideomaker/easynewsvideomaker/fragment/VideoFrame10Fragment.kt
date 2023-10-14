@@ -65,6 +65,7 @@ class VideoFrame10Fragment : Fragment() {
         //text scroll Horizontally
         videoFrame10Binding.txtLay1.isSelected = true
         videoFrame10Binding.txtLay2.isSelected = true
+        videoFrame10Binding.txtLay3.isSelected = true
 
 
         //set image
@@ -141,6 +142,22 @@ class VideoFrame10Fragment : Fragment() {
                 editeDialog.dismiss()
             }
         }
+        //      txt Layer 3 text change
+        videoFrame10Binding.txtLay3.setOnClickListener {
+            var text = videoFrame10Binding.txtLay3.text.toString()
+
+
+            editeDialog(text)
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame10Binding.txtLay3.text = dialogEditBinding.edtText.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
     }
 
     private fun editeDialog(text: String) {
@@ -202,33 +219,36 @@ class VideoFrame10Fragment : Fragment() {
 
             } else {
 
-                var centerTextScroll = videoFrame10Binding.txtLay1.text.toString()
-                var bottomTextScroll = videoFrame10Binding.txtLay2.text.toString()
+                var topTextScroll = videoFrame10Binding.txtLay1.text.toString()
+                var centerTextScroll = videoFrame10Binding.txtLay2.text.toString()
+                var bottomTextScroll = videoFrame10Binding.txtLay3.text.toString()
                 // Get the text size of the TextView
-                val centerTextSize = videoFrame10Binding.txtLay1.textSize.toInt()
-                val bottomTextSize = videoFrame10Binding.txtLay2.textSize.toInt()
+//                val centerTextSize = videoFrame8Binding.txtLay1.textSize.toInt()
+//                val bottomTextSize = videoFrame8Binding.txtLay2.textSize.toInt()
 
-                var centerColorText = videoFrame10Binding.txtLay1.currentTextColor
+                var topColorText = videoFrame10Binding.txtLay1.currentTextColor
+                val topTextColor = String.format("#%06X", 0xFFFFFF and topColorText)
+
+                var centerColorText = videoFrame10Binding.txtLay2.currentTextColor
                 val centerTextColor = String.format("#%06X", 0xFFFFFF and centerColorText)
 
-
-                var bottomColorText = videoFrame10Binding.txtLay2.currentTextColor
+                var bottomColorText = videoFrame10Binding.txtLay3.currentTextColor
                 val bottomTextColor = String.format("#%06X", 0xFFFFFF and bottomColorText)
 
 
                 val fontPath =
                     getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 
-                val fragment = VideoExportFragment()
+                val fragment = VideoExport10Fragment()
                 val bundle = Bundle()
 
                 bundle.putString("videoPath", videoPath)
                 bundle.putString("convertImagePath", convertImagePath)
+                bundle.putString("topTextScrollPath", topTextScroll)
+                bundle.putString("topTextColor", topTextColor)
                 bundle.putString("centerTextScrollPath", centerTextScroll)
-                bundle.putInt("centerTextSize", centerTextSize)
                 bundle.putString("centerTextColor", centerTextColor)
                 bundle.putString("bottomTextScrollPath", bottomTextScroll)
-                bundle.putInt("bottomTextSize", bottomTextSize)
                 bundle.putString("bottomTextColor", bottomTextColor)
                 bundle.putString("fontPath", fontPath)
 

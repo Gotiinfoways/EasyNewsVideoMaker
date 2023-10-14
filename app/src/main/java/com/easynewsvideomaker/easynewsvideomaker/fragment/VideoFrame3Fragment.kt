@@ -217,7 +217,7 @@ lateinit var  videoFrame3Binding: FragmentVideoFrame3Binding
 
                 val fontPath = getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 
-                val fragment = VideoExportFragment()
+                val fragment = VideoExport3Fragment()
                 val bundle = Bundle()
 
                 bundle.putString("videoPath", videoPath)

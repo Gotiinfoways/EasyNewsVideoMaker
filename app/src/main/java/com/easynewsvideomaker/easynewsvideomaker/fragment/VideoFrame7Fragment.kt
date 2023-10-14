@@ -88,6 +88,24 @@ class VideoFrame7Fragment : Fragment() {
                 Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
                 editeDialog.dismiss()
             }
+
+        }
+        //       city name text change
+        videoFrame7Binding.txtLive.setOnClickListener {
+            var text = videoFrame7Binding.txtLive.text.toString()
+
+
+            editeDialog(text)
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame7Binding.txtLive.text = dialogEditBinding.edtText.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+
         }
 //
 //        //      Latest Update text change
@@ -218,7 +236,7 @@ class VideoFrame7Fragment : Fragment() {
                 val fontPath =
                     getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 
-                val fragment = VideoExportFragment()
+                val fragment = VideoExport7Fragment()
                 val bundle = Bundle()
 
                 bundle.putString("videoPath", videoPath)

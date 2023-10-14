@@ -65,6 +65,8 @@ class VideoFrame9Fragment : Fragment() {
         //text scroll Horizontally
         videoFrame9Binding.txtLay1.isSelected = true
         videoFrame9Binding.txtLay2.isSelected = true
+        videoFrame9Binding.txtLay3.isSelected = true
+        videoFrame9Binding.txtLay4.isSelected = true
 
 
         //set image
@@ -90,23 +92,23 @@ class VideoFrame9Fragment : Fragment() {
                 editeDialog.dismiss()
             }
         }
-//
-//        //      Latest Update text change
-//        videoFrame4Binding.txtLatestUpdate.setOnClickListener {
-//            var text = videoFrame4Binding.txtLatestUpdate.text.toString()
-//
-//
-//            editeDialog(text)
-//
-//            dialogEditBinding.btnSubmit.setOnClickListener {
-//
-//
-//                videoFrame4Binding.txtLatestUpdate.text = dialogEditBinding.edtText.text.toString()
-//
-//                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
-//                editeDialog.dismiss()
-//            }
-//        }
+
+        //      Latest Update text change
+        videoFrame9Binding.txtLatestUpdate.setOnClickListener {
+            var text = videoFrame9Binding.txtLatestUpdate.text.toString()
+
+
+            editeDialog(text)
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame9Binding.txtLatestUpdate.text = dialogEditBinding.edtText.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
 
         //      txt Layer 1 text change
         videoFrame9Binding.txtLay1.setOnClickListener {
@@ -136,6 +138,38 @@ class VideoFrame9Fragment : Fragment() {
 
 
                 videoFrame9Binding.txtLay2.text = dialogEditBinding.edtText.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+        //      txt Layer 3 text change
+        videoFrame9Binding.txtLay3.setOnClickListener {
+            var text = videoFrame9Binding.txtLay3.text.toString()
+
+
+            editeDialog(text)
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame9Binding.txtLay3.text = dialogEditBinding.edtText.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+        //      txt Layer 4 text change
+        videoFrame9Binding.txtLay4.setOnClickListener {
+            var text = videoFrame9Binding.txtLay4.text.toString()
+
+
+            editeDialog(text)
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame9Binding.txtLay4.text = dialogEditBinding.edtText.text.toString()
 
                 Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
                 editeDialog.dismiss()
@@ -202,33 +236,42 @@ class VideoFrame9Fragment : Fragment() {
 
             } else {
 
-                var centerTextScroll = videoFrame9Binding.txtLay1.text.toString()
-                var bottomTextScroll = videoFrame9Binding.txtLay2.text.toString()
+                var topTextScroll = videoFrame9Binding.txtLay1.text.toString()
+                var top2TextScroll = videoFrame9Binding.txtLay2.text.toString()
+                var centerTextScroll = videoFrame9Binding.txtLay3.text.toString()
+                var bottomTextScroll = videoFrame9Binding.txtLay4.text.toString()
                 // Get the text size of the TextView
-                val centerTextSize = videoFrame9Binding.txtLay1.textSize.toInt()
-                val bottomTextSize = videoFrame9Binding.txtLay2.textSize.toInt()
+//                val centerTextSize = videoFrame9Binding.txtLay1.textSize.toInt()
+//                val bottomTextSize = videoFrame9Binding.txtLay2.textSize.toInt()
+                var topColorText = videoFrame9Binding.txtLay1.currentTextColor
+                val topTextColor = String.format("#%06X", 0xFFFFFF and topColorText)
 
-                var centerColorText = videoFrame9Binding.txtLay1.currentTextColor
+                var top2ColorText = videoFrame9Binding.txtLay2.currentTextColor
+                val top2TextColor = String.format("#%06X", 0xFFFFFF and top2ColorText)
+
+                var centerColorText = videoFrame9Binding.txtLay3.currentTextColor
                 val centerTextColor = String.format("#%06X", 0xFFFFFF and centerColorText)
 
 
-                var bottomColorText = videoFrame9Binding.txtLay2.currentTextColor
+                var bottomColorText = videoFrame9Binding.txtLay4.currentTextColor
                 val bottomTextColor = String.format("#%06X", 0xFFFFFF and bottomColorText)
 
 
                 val fontPath =
                     getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 
-                val fragment = VideoExportFragment()
+                val fragment = VideoExport9Fragment()
                 val bundle = Bundle()
 
                 bundle.putString("videoPath", videoPath)
                 bundle.putString("convertImagePath", convertImagePath)
+                bundle.putString("topTextScrollPath", topTextScroll)
+                bundle.putString("topTextColor", topTextColor)
+                bundle.putString("top2TextScrollPath", top2TextScroll)
+                bundle.putString("top2TextColor", top2TextColor)
                 bundle.putString("centerTextScrollPath", centerTextScroll)
-                bundle.putInt("centerTextSize", centerTextSize)
                 bundle.putString("centerTextColor", centerTextColor)
                 bundle.putString("bottomTextScrollPath", bottomTextScroll)
-                bundle.putInt("bottomTextSize", bottomTextSize)
                 bundle.putString("bottomTextColor", bottomTextColor)
                 bundle.putString("fontPath", fontPath)
 

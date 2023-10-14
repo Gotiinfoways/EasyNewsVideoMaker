@@ -15,7 +15,6 @@ import android.os.Build
 import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Environment
-import android.os.Handler
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
@@ -28,7 +27,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityHomeBinding
 import com.easynewsvideomaker.easynewsvideomaker.fragment.HomeFragment
-import com.easynewsvideomaker.easynewsvideomaker.fragment.VideoExportFragment
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.News_Poster_Activity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth

@@ -27,9 +27,9 @@
         <VideoView
             android:id="@+id/vidView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_140sdp"
+            android:layout_height="@dimen/_150sdp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="@dimen/_30sdp"
+            android:layout_marginVertical="@dimen/_20sdp"
             android:scaleType="fitXY"
             android:visibility="gone" />
 
@@ -43,7 +43,7 @@
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 android:scaleType="fitXY"
                 android:src="@drawable/news_logo_2" />
 
@@ -52,7 +52,8 @@
                 android:id="@+id/cdCityName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 app:cardBackgroundColor="@color/Red"
                 app:cardCornerRadius="@dimen/_20sdp">
 
@@ -67,60 +68,60 @@
                     android:textStyle="bold" />
             </androidx.cardview.widget.CardView>
 
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/linBrakingBottom"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginBottom="@dimen/_25sdp"-->
+            <!--                android:orientation="vertical">-->
+            <!--              Layer1-->
             <LinearLayout
-                android:id="@+id/linBrakingBottom"
+                android:id="@+id/linLayer1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/_15sdp"
-                android:orientation="vertical">
-                <!--              Layer1-->
-                <LinearLayout
-                    android:id="@+id/linLayer1"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:background="@drawable/v2"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_5sdp">
+                android:layout_height="@dimen/_20sdp"
+                android:layout_above="@id/linLayer3"
+                android:background="@drawable/v2"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/_5sdp">
 
-                    <!--                    <TextView-->
-                    <!--                        android:id="@+id/txtLay1"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:ellipsize="marquee"-->
-                    <!--                        android:marqueeRepeatLimit="marquee_forever"-->
-                    <!--                        android:scrollHorizontally="true"-->
-                    <!--                        android:singleLine="true"-->
-                    <!--                        android:text="YOUR TITLE GOES HERE"-->
-                    <!--                        android:textColor="@color/white"-->
-                    <!--                        android:textSize="@dimen/_15sdp"-->
-                    <!--                        android:textStyle="bold" />-->
-                </LinearLayout>
-
-                <!--              Layer 3-->
-                <LinearLayout
-                    android:id="@+id/linLayer3"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_alignParentBottom="true"
-                    android:background="@color/white"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <!--                    <TextView-->
-                    <!--                        android:id="@+id/txtLay3"-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:ellipsize="marquee"-->
-                    <!--                        android:marqueeRepeatLimit="marquee_forever"-->
-                    <!--                        android:scrollHorizontally="true"-->
-                    <!--                        android:singleLine="true"-->
-                    <!--                        android:text="ADDITIONAL TEXT HERE"-->
-                    <!--                        android:textStyle="bold" />-->
-
-                </LinearLayout>
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/txtLay1"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:ellipsize="marquee"-->
+                <!--                        android:marqueeRepeatLimit="marquee_forever"-->
+                <!--                        android:scrollHorizontally="true"-->
+                <!--                        android:singleLine="true"-->
+                <!--                        android:text="YOUR TITLE GOES HERE"-->
+                <!--                        android:textColor="@color/white"-->
+                <!--                        android:textSize="@dimen/_15sdp"-->
+                <!--                        android:textStyle="bold" />-->
             </LinearLayout>
+
+            <!--              Layer 3-->
+            <LinearLayout
+                android:id="@+id/linLayer3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/txtLay3"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:ellipsize="marquee"-->
+                <!--                        android:marqueeRepeatLimit="marquee_forever"-->
+                <!--                        android:scrollHorizontally="true"-->
+                <!--                        android:singleLine="true"-->
+                <!--                        android:text="ADDITIONAL TEXT HERE"-->
+                <!--                        android:textStyle="bold" />-->
+
+            </LinearLayout>
+            <!--            </LinearLayout>-->
 
             <!--Braking News 2 & 3-->
             <RelativeLayout
@@ -134,14 +135,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginBottom="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_35sdp"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:id="@+id/linLatestUpdate"
                         android:layout_width="@dimen/_120sdp"
-                        android:layout_height="match_parent"
+                        android:layout_height="@dimen/_20sdp"
                         android:background="@drawable/video_2_gradient"
                         android:gravity="center">
 
@@ -149,7 +150,6 @@
                             android:id="@+id/txtLatestUpdate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_3sdp"
                             android:text="LATEST UPDATES"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
@@ -165,15 +165,15 @@
         android:id="@+id/txtLay1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_155sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_165sdp"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
         android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
         android:textColor="@color/white"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_13sdp"
         android:textStyle="bold" />
 
     <TextView
@@ -181,8 +181,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtLay1"
-        android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_2sdp"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"

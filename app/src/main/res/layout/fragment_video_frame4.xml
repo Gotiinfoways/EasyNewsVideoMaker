@@ -11,14 +11,14 @@
     <FrameLayout
         android:id="@+id/frameView"
         android:layout_width="@dimen/_300sdp"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_195sdp"
         android:layout_centerHorizontal="true">
 
         <!--        static image-->
         <ImageView
             android:id="@+id/imgView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/_170sdp"
             android:layout_gravity="center_horizontal"
             android:scaleType="fitXY"
             android:src="@drawable/image1" />
@@ -43,7 +43,7 @@
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 android:scaleType="fitXY"
                 android:src="@drawable/news_logo_2" />
 
@@ -52,7 +52,8 @@
                 android:id="@+id/cdCityName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 app:cardBackgroundColor="@color/Red"
                 app:cardCornerRadius="@dimen/_20sdp">
 
@@ -77,21 +78,16 @@
                 <LinearLayout
                     android:id="@+id/linLayer1"
                     android:layout_width="@dimen/_270sdp"
-                    android:layout_height="@dimen/_18sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:background="@drawable/v2"
                     android:backgroundTint="@color/Red"
                     android:gravity="center"
-                    android:layout_gravity="end"
-                    android:paddingHorizontal="@dimen/_5sdp">
+                    android:layout_gravity="end">
 
                     <TextView
                         android:id="@+id/txtLay1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
                         android:text="ADDITIONAL TEXT HERE"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
@@ -101,24 +97,24 @@
                 <LinearLayout
                     android:id="@+id/linLayer3"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_alignParentBottom="true"
+                    android:layout_height="@dimen/_20sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:background="@drawable/v4"
+                    android:orientation="horizontal"
                     android:gravity="center">
 
-                    <TextView
-                        android:id="@+id/txtLay2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="marquee"
-                        android:marqueeRepeatLimit="marquee_forever"
-                        android:scrollHorizontally="true"
-                        android:singleLine="true"
-                        android:textColor="@color/white"
-                        android:text="YOUR TITLE GOES HERE"
-                        android:textSize="@dimen/_15sdp"
-                        android:textStyle="bold" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/txtLay2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:ellipsize="marquee"-->
+<!--                        android:marqueeRepeatLimit="marquee_forever"-->
+<!--                        android:scrollHorizontally="true"-->
+<!--                        android:singleLine="true"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:text="YOUR TITLE GOES HERE"-->
+<!--                        android:textSize="@dimen/_15sdp"-->
+<!--                        android:textStyle="bold" />-->
 
                 </LinearLayout>
             </LinearLayout>
@@ -126,7 +122,20 @@
         </RelativeLayout>
 
     </FrameLayout>
-
+    <TextView
+        android:id="@+id/txtLay2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_170sdp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp"
+        android:singleLine="true"
+        android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
+        android:textStyle="bold" />
     <LinearLayout
         android:id="@+id/linBtn"
         android:layout_width="match_parent"

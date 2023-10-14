@@ -216,7 +216,7 @@ class VideoFrame6Fragment : Fragment() {
 
                 val fontPath = getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 
-                val fragment = VideoExportFragment()
+                val fragment = VideoExport6Fragment()
                 val bundle = Bundle()
 
                 bundle.putString("videoPath", videoPath)

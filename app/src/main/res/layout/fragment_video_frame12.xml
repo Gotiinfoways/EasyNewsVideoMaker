@@ -19,6 +19,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/linBox1"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/background_stroke_white"
@@ -26,6 +27,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtBoxTitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="कर्नाटक"
@@ -34,9 +36,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxSub1"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="224"
+                    android:textAlignment="center"
                     android:textColor="@color/darkbrown"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -44,6 +48,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linBox2"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/background_stroke_white"
@@ -51,6 +56,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtBoxTitle2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="BJP"
@@ -59,9 +65,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxSub2"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="69"
+                    android:textAlignment="center"
                     android:textColor="@color/darkbrown"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -69,6 +77,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linBox3"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/background_stroke_white"
@@ -76,6 +85,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtBoxTitle3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CONG"
@@ -84,9 +94,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxSub3"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="124"
+                    android:textAlignment="center"
                     android:textColor="@color/darkbrown"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -94,6 +106,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linBox4"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/background_stroke_white"
@@ -101,6 +114,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtBoxTitle4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="JDS"
@@ -109,9 +123,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxSub4"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="24"
+                    android:textAlignment="center"
                     android:textColor="@color/darkbrown"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -119,6 +135,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linBox5"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_45sdp"
                 android:background="@drawable/background_stroke_white"
@@ -126,6 +143,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtBoxTitle5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="OTH"
@@ -134,9 +152,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxSub5"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="7"
+                    android:textAlignment="center"
                     android:textColor="@color/darkbrown"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -151,6 +171,7 @@
             android:layout_marginTop="@dimen/_45sdp">
 
             <LinearLayout
+                android:id="@+id/linBox6"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_100sdp"
                 android:background="@drawable/background_stroke_white"
@@ -158,6 +179,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/txtBoxTitle6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_3sdp"
@@ -169,6 +191,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtBoxSubTitle1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1sdp"
@@ -178,9 +201,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxSub6"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="6"
+                    android:textAlignment="center"
                     android:textColor="@color/Red"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -191,6 +216,7 @@
                     android:background="@color/darkbrown" />
 
                 <TextView
+                    android:id="@+id/txtBoxSubTitle2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_1sdp"
@@ -200,9 +226,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxSub7"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="6"
+                    android:textAlignment="center"
                     android:textColor="@color/Red"
                     android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
@@ -222,14 +250,16 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/linBox7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/darkbrown"
                     android:gravity="center_vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtBoxTitle8"
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_23sdp"
                         android:layout_marginLeft="@dimen/_1sdp"
                         android:text="उत्तर प्रदेश\nनगर पंचायत"
                         android:textColor="@color/white"
@@ -237,9 +267,11 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtBoxSub8"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:text="544"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
@@ -247,15 +279,18 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linBox8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:id="@+id/txtBoxSubTitle3"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_marginStart="@dimen/_2sdp"
                         android:text="BJP"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
@@ -263,14 +298,15 @@
                     <View
                         android:layout_width="@dimen/_1sdp"
                         android:layout_height="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:layout_marginRight="@dimen/_8sdp"
+                        android:layout_marginHorizontal="@dimen/_2sdp"
                         android:background="@color/black" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtBoxSub9"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:text="128"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_11sdp"
                         android:textStyle="bold" />
@@ -296,15 +332,18 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linBox9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:id="@+id/txtBoxSubTitle4"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_marginStart="@dimen/_2sdp"
                         android:text="Sp"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
@@ -312,14 +351,15 @@
                     <View
                         android:layout_width="@dimen/_1sdp"
                         android:layout_height="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_15sdp"
-                        android:layout_marginRight="@dimen/_12sdp"
+                        android:layout_marginHorizontal="@dimen/_2sdp"
                         android:background="@color/black" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtBoxSub10"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:text="74"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_11sdp"
                         android:textStyle="bold" />
@@ -345,15 +385,18 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linBox10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:id="@+id/txtBoxSubTitle5"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_marginStart="@dimen/_2sdp"
                         android:text="BSP"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
@@ -361,14 +404,16 @@
                     <View
                         android:layout_width="@dimen/_1sdp"
                         android:layout_height="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:layout_marginRight="@dimen/_11sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
                         android:background="@color/black" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtBoxSub11"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:text="31"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_11sdp"
                         android:textStyle="bold" />
@@ -394,15 +439,18 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/txtBoxSub12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtBoxSubTitle6"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:layout_marginLeft="@dimen/_2sdp"
                         android:text="CONG"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
@@ -410,13 +458,15 @@
                     <View
                         android:layout_width="@dimen/_1sdp"
                         android:layout_height="@dimen/_10sdp"
-                        android:layout_marginRight="@dimen/_14sdp"
+                        android:layout_marginHorizontal="@dimen/_2sdp"
                         android:background="@color/black" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtBoxSub13"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:text="6"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_11sdp"
                         android:textStyle="bold" />
@@ -447,10 +497,11 @@
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:layout_marginLeft="@dimen/_2sdp"
                         android:text="OTH"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
@@ -458,14 +509,15 @@
                     <View
                         android:layout_width="@dimen/_1sdp"
                         android:layout_height="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_8sdp"
-                        android:layout_marginRight="@dimen/_8sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
                         android:background="@color/black" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:text="122"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_11sdp"
                         android:textStyle="bold" />
@@ -503,10 +555,11 @@
                     android:background="@color/Red" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_3sdp"
-                    android:text="17"
+                    android:text="171"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_18sdp"
                     android:textStyle="bold" />
@@ -531,10 +584,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_7sdp"
                     android:text="16"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_18sdp"
                     android:textStyle="bold" />
@@ -559,10 +613,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_6sdp"
                     android:text="124"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_18sdp"
                     android:textStyle="bold" />
@@ -587,10 +642,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_7sdp"
                     android:text="24"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_18sdp"
                     android:textStyle="bold" />
@@ -615,10 +671,11 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_7sdp"
                     android:text="7"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_18sdp"
                     android:textStyle="bold" />

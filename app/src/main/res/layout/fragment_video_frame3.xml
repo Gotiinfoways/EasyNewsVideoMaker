@@ -43,7 +43,7 @@
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 android:scaleType="fitXY"
                 android:src="@drawable/news_logo_2" />
 
@@ -52,7 +52,8 @@
                 android:id="@+id/cdCityName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25sdp"
                 app:cardBackgroundColor="@color/Red"
                 app:cardCornerRadius="@dimen/_20sdp">
 
@@ -77,7 +78,7 @@
                 <LinearLayout
                     android:id="@+id/linLayer1"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:background="@drawable/v3"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -99,14 +100,13 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_6sdp"
+                    android:layout_height="@dimen/_5sdp"
                     android:background="@color/Red" />
                 <!--              Layer 3-->
                 <LinearLayout
                     android:id="@+id/linLayer3"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_15sdp"
-                    android:layout_alignParentBottom="true"
                     android:orientation="horizontal"
                     android:background="@color/white"
                     android:gravity="center">
@@ -130,20 +130,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/_65sdp">
+                android:layout_marginBottom="@dimen/_45sdp">
 
                 <!--                BrakingNewsText_3-->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_50sdp"
-                    android:gravity="center"
-                    android:orientation="vertical">
+
 
                     <LinearLayout
                         android:id="@+id/linLatestUpdate"
                         android:layout_width="@dimen/_120sdp"
-                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/_40sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:background="@drawable/video_3_gradient"
                         android:gravity="center">
 
@@ -151,12 +147,11 @@
                             android:id="@+id/txtLatestUpdate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/_3sdp"
                             android:text="LATEST UPDATES"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
                     </LinearLayout>
-                </LinearLayout>
+
             </RelativeLayout>
 
         </RelativeLayout>
@@ -166,8 +161,8 @@
         android:id="@+id/txtLay1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_155sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_160sdp"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
@@ -182,8 +177,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtLay1"
-        android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"

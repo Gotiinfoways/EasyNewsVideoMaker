@@ -29,7 +29,6 @@ import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoFrame2Binding
-import yuku.ambilwarna.AmbilWarnaDialog
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -218,7 +217,7 @@ class VideoFrame2Fragment : Fragment() {
 
                 val fontPath = getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 
-                val fragment = VideoExportFragment()
+                val fragment = VideoExport2Fragment()
                 val bundle = Bundle()
 
                 bundle.putString("videoPath", videoPath)

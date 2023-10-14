@@ -3,7 +3,7 @@ package com.easynewsvideomaker.easynewsvideomaker.merge_file
 class FFmpegQueryExtension {
 
     //two text scroll,text scroll speed,image  size set on video and video size  youtube size
-    fun addVideoEditFun(
+    fun addFrame1VideoEditFun(
         tvInputPathVideo: String,
         tvInputPathImage: String,
         textInputeCenter: String,
@@ -19,14 +19,10 @@ class FFmpegQueryExtension {
         fontPath: String
     ): Array<String> {
         val inputs: ArrayList<String> = ArrayList()
-//        val fontPath = "/system/fonts/\t\n" +
-//                "HindVadodara-Bold.ttf"
-
-
-//        var textCenter = "drawtext=fontfile='$fontPath':text='textInputeCenter':fontsize=20:fontcolor=white:x=w-(t-4.5)*100/2:y=h-th-60"
-//        var textBottom = "drawtext=fontfile='$fontPath':text='textInputeBottom':fontsize=20:fontcolor=black:x=w-(t-4.5)*100/2:y=h-th-60"
-        var textCenter = "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize:fontcolor=$textInputeCenterColor:x=w-(mod(5*n\\,w+tw)):y=$yCenterPosition"
-        val textBottom = "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
+        var textCenter =
+            "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize:fontcolor=$textInputeCenterColor:x=w-(mod(5*n\\,w+tw)):y=$yCenterPosition"
+        val textBottom =
+            "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
 
 
 
@@ -37,6 +33,289 @@ class FFmpegQueryExtension {
             add(tvInputPathImage)
             add("-filter_complex")
             add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0, $textCenter, $textBottom")
+            add("-c:a")
+            add("copy")
+            add("-s")
+            add("1920x1080")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+
+        return inputs.toArray(arrayOfNulls(inputs.size))
+    }
+
+    //frame 2 & 3
+    fun addFrame2VideoEditFun(
+        tvInputPathVideo: String,
+        tvInputPathImage: String,
+        textInputeCenter: String,
+        yCenterPosition: Int,
+        textInputeCenterColor: String,
+        textInputeBottom: String,
+        yBottomPosition: Int,
+        textInputeBottomColor: String,
+        textInputeSize1: Int,
+        textInputeSize: Int,
+        videoWidth: Int,
+        videoHeight: Int,
+        outputPath: String,
+        fontPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+        var textCenter =
+            "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize1:fontcolor=$textInputeCenterColor:x=w-(mod(5*n\\,w+tw)):y=$yCenterPosition"
+        val textBottom =
+            "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
+
+
+
+        inputs.apply {
+            add("-i")
+            add(tvInputPathVideo)
+            add("-i")
+            add(tvInputPathImage)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0, $textCenter, $textBottom")
+            add("-c:a")
+            add("copy")
+            add("-s")
+            add("1920x1080")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+
+        return inputs.toArray(arrayOfNulls(inputs.size))
+    }
+
+    //frame 4 & 5
+    fun addFrame4_and_5VideoEditFun(
+        tvInputPathVideo: String,
+        tvInputPathImage: String,
+        textInputeBottom: String,
+        yBottomPosition: Int,
+        textInputeBottomColor: String,
+        textInputeSize: Int,
+        videoWidth: Int,
+        videoHeight: Int,
+        outputPath: String,
+        fontPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+        val textBottom =
+            "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
+
+
+
+        inputs.apply {
+            add("-i")
+            add(tvInputPathVideo)
+            add("-i")
+            add(tvInputPathImage)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0, $textBottom")
+            add("-c:a")
+            add("copy")
+            add("-s")
+            add("1920x1080")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+
+        return inputs.toArray(arrayOfNulls(inputs.size))
+    }
+
+    //frame 6 & 7
+    fun addFrame6_and_7VideoEditFun(
+        tvInputPathVideo: String,
+        tvInputPathImage: String,
+        textInputeCenter: String,
+        yCenterPosition: Int,
+        textInputeCenterColor: String,
+        textInputeBottom: String,
+        yBottomPosition: Int,
+        textInputeBottomColor: String,
+        textInputeSize: Int,
+        textInputeSize2: Int,
+        videoWidth: Int,
+        videoHeight: Int,
+        outputPath: String,
+        fontPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+        var textCenter =
+            "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize:fontcolor=$textInputeCenterColor:x=w-(mod(5*n\\,w+tw)):y=$yCenterPosition"
+        val textBottom =
+            "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize2:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
+
+
+
+        inputs.apply {
+            add("-i")
+            add(tvInputPathVideo)
+            add("-i")
+            add(tvInputPathImage)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0, $textCenter, $textBottom")
+            add("-c:a")
+            add("copy")
+            add("-s")
+            add("1920x1080")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+
+        return inputs.toArray(arrayOfNulls(inputs.size))
+    }
+
+    //frame 8 & 10
+    fun addFrame8_and_10VideoEditFun(
+        tvInputPathVideo: String,
+        tvInputPathImage: String,
+        textInputeTop: String,
+        yTopPosition: Int,
+        textInputeSize1: Int,
+        textInputeTopColor: String,
+        textInputeCenter: String,
+        yCenterPosition: Int,
+        textInputeSize2: Int,
+        textInputeCenterColor: String,
+        textInputeBottom: String,
+        yBottomPosition: Int,
+        textInputeSize3: Int,
+        textInputeBottomColor: String,
+        videoWidth: Int,
+        videoHeight: Int,
+        outputPath: String,
+        fontPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+        var textTop =
+            "drawtext=fontfile='$fontPath':text='$textInputeTop':fontsize=$textInputeSize1:fontcolor=$textInputeTopColor:x=w-(mod(5*n\\,w+tw)):y=$yTopPosition"
+        var textCenter =
+            "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize2:fontcolor=$textInputeCenterColor:x=w-(mod(5*n\\,w+tw)):y=$yCenterPosition"
+        val textBottom =
+            "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize3:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
+
+
+
+        inputs.apply {
+            add("-i")
+            add(tvInputPathVideo)
+            add("-i")
+            add(tvInputPathImage)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0,$textTop, $textCenter, $textBottom")
+            add("-c:a")
+            add("copy")
+            add("-s")
+            add("1920x1080")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+
+        return inputs.toArray(arrayOfNulls(inputs.size))
+    }
+
+    //frame 9
+    fun addFrame9VideoEditFun(
+        tvInputPathVideo: String,
+        tvInputPathImage: String,
+        textInputeTop: String,
+        yTopPosition: Int,
+        textInputeSize1: Int,
+        textInputeTopColor: String,
+        textInputeTop2: String,
+        yTop2Position: Int,
+        textInputeSize2: Int,
+        textInputeTop2Color: String,
+        textInputeCenter: String,
+        yCenterPosition: Int,
+        textInputeSize3: Int,
+        textInputeCenterColor: String,
+        textInputeBottom: String,
+        yBottomPosition: Int,
+        textInputeSize4: Int,
+        textInputeBottomColor: String,
+        videoWidth: Int,
+        videoHeight: Int,
+        outputPath: String,
+        fontPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+        var textTop =
+            "drawtext=fontfile='$fontPath':text='$textInputeTop':fontsize=$textInputeSize1:fontcolor=$textInputeTopColor:x=w-(mod(5*n\\,w+tw)):y=$yTopPosition"
+        var textTop2 =
+            "drawtext=fontfile='$fontPath':text='$textInputeTop2':fontsize=$textInputeSize2:fontcolor=$textInputeTop2Color:x=w-(mod(5*n\\,w+tw)):y=$yTop2Position"
+        var textCenter =
+            "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize3:fontcolor=$textInputeCenterColor:x=w-(mod(5*n\\,w+tw)):y=$yCenterPosition"
+        val textBottom =
+            "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize4:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
+
+
+
+        inputs.apply {
+            add("-i")
+            add(tvInputPathVideo)
+            add("-i")
+            add(tvInputPathImage)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0,$textTop,$textTop2, $textCenter, $textBottom")
+            add("-c:a")
+            add("copy")
+            add("-s")
+            add("1920x1080")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+
+        return inputs.toArray(arrayOfNulls(inputs.size))
+    }
+
+    //frame 11
+    fun addFrame11VideoEditFun(
+        tvInputPathVideo: String,
+        tvInputPathImage: String,
+        textInputeTop: String,
+        yTopPosition: Int,
+        textInputeSize1: Int,
+        textInputeTopColor: String,
+        textInputeCenter: String,
+        yCenterPosition: Int,
+        textInputeSize2: Int,
+        textInputeCenterColor: String,
+        textInputeBottom: String,
+        yBottomPosition: Int,
+        textInputeSize3: Int,
+        textInputeBottomColor: String,
+        videoWidth: Int,
+        videoHeight: Int,
+        outputPath: String,
+        fontPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+        var textTop =
+            "drawtext=fontfile='$fontPath':text='$textInputeTop':fontsize=$textInputeSize1:fontcolor=$textInputeTopColor:x=w-(mod(5*n\\,w+tw)):y=$yTopPosition"
+
+        var textCenter =
+            "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize2:fontcolor=$textInputeCenterColor:x=w-(mod(5*n\\,w+tw)):y=$yCenterPosition"
+        val textBottom =
+            "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize3:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
+
+
+
+        inputs.apply {
+            add("-i")
+            add(tvInputPathVideo)
+            add("-i")
+            add(tvInputPathImage)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0,$textTop, $textCenter, $textBottom")
             add("-c:a")
             add("copy")
             add("-s")

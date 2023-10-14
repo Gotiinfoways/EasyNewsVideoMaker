@@ -35,13 +35,6 @@ import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogRecordingBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoFrame1Binding
-import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
-import com.easynewsvideomaker.easynewsvideomaker.merge_file.CallBackOfQuery
-import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegCallBack
-import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegQueryExtension
-import com.easynewsvideomaker.easynewsvideomaker.merge_file.LogMessage
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import yuku.ambilwarna.AmbilWarnaDialog
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener
 import java.io.File
@@ -635,7 +628,7 @@ class VideoFrame1Fragment : Fragment() {
 
                 val fontPath = getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 
-                val fragment = VideoExportFragment()
+                val fragment = VideoExport1Fragment()
                 val bundle = Bundle()
 
                 bundle.putString("videoPath", videoPath)

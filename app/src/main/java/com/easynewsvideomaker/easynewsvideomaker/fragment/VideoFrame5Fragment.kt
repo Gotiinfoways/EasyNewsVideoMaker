@@ -62,7 +62,6 @@ lateinit var videoFrame5Binding: FragmentVideoFrame5Binding
 
     private fun frameEdit() {
         //text scroll Horizontally
-        videoFrame5Binding.txtLay1.isSelected = true
         videoFrame5Binding.txtLay2.isSelected = true
 
 
@@ -200,14 +199,10 @@ lateinit var videoFrame5Binding: FragmentVideoFrame5Binding
 
             } else {
 
-                var centerTextScroll = videoFrame5Binding.txtLay1.text.toString()
                 var bottomTextScroll = videoFrame5Binding.txtLay2.text.toString()
                 // Get the text size of the TextView
-                val centerTextSize = videoFrame5Binding.txtLay1.textSize.toInt()
                 val bottomTextSize = videoFrame5Binding.txtLay2.textSize.toInt()
 
-                var centerColorText = videoFrame5Binding.txtLay1.currentTextColor
-                val centerTextColor = String.format("#%06X", 0xFFFFFF and centerColorText)
 
 
                 var bottomColorText = videoFrame5Binding.txtLay2.currentTextColor
@@ -216,14 +211,11 @@ lateinit var videoFrame5Binding: FragmentVideoFrame5Binding
 
                 val fontPath = getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 
-                val fragment = VideoExportFragment()
+                val fragment = VideoExport4_and_5Fragment()
                 val bundle = Bundle()
 
                 bundle.putString("videoPath", videoPath)
                 bundle.putString("convertImagePath", convertImagePath)
-                bundle.putString("centerTextScrollPath", centerTextScroll)
-                bundle.putInt("centerTextSize", centerTextSize)
-                bundle.putString("centerTextColor", centerTextColor)
                 bundle.putString("bottomTextScrollPath", bottomTextScroll)
                 bundle.putInt("bottomTextSize", bottomTextSize)
                 bundle.putString("bottomTextColor", bottomTextColor)

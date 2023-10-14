@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightblack"
-    tools:context=".fragment.VideoExportFragment">
+    tools:context=".fragment.VideoExport1Fragment">
 
     <LinearLayout
         android:id="@+id/linVideo"
         android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <VideoView
             android:id="@+id/vidExport"
@@ -26,6 +26,7 @@
         android:layout_height="@dimen/_170sdp"
         android:scaleType="fitXY"
         android:src="@drawable/image1" />
+
     <TextView
         android:id="@+id/txtLay2"
         android:layout_width="wrap_content"
@@ -35,7 +36,8 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        tools:text="Hello guys !! Welcome to Easy News  Maker App Create Your News" />
 
     <TextView
         android:id="@+id/txtLay3"
@@ -46,19 +48,21 @@
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:text="Hello guys !! Welcome to Easy News  Maker App Create Your News" />
+
     <TextView
         android:id="@+id/txtOutputPath"
         android:layout_width="match_parent"
-        android:layout_marginHorizontal="@dimen/_20sdp"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/linVideo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_40ssp"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/linVideo"
-        android:layout_marginTop="@dimen/_40ssp"
         android:visibility="gone"
-        tools:text="@string/output_path"/>
+        tools:text="@string/output_path" />
 
     <!--    Share Now-->
     <androidx.cardview.widget.CardView
@@ -222,11 +226,12 @@
             android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="@dimen/_65sdp"
         android:layout_height="@dimen/_65sdp"
         android:layout_centerHorizontal="true"
-        android:visibility="gone"
-        android:indeterminateTint="@color/Red" />
+        android:indeterminateTint="@color/Red"
+        android:visibility="gone" />
 </RelativeLayout>

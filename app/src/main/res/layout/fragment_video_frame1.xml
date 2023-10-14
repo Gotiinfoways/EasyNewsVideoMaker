@@ -322,7 +322,6 @@
         android:singleLine="true"
         android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
         android:textStyle="bold" />
-    <!--    </LinearLayout>-->
 
     <LinearLayout
         android:id="@+id/linBtn"

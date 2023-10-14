@@ -2,7 +2,6 @@ package com.easynewsvideomaker.easynewsvideomaker.fragment
 
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -22,20 +21,18 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
-import com.easynewsvideomaker.easynewsvideomaker.activity.HomeActivity
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogFileSaveBinding
-import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogWarningBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DownloadProgressBarBinding
-import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoExportBinding
+import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoExport1Binding
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.CallBackOfQuery
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegCallBack
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegQueryExtension
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.LogMessage
 
 
-class VideoExportFragment : Fragment() {
+class VideoExport1Fragment : Fragment() {
 
-    lateinit var exportBinding: FragmentVideoExportBinding
+    lateinit var exportBinding: FragmentVideoExport1Binding
 
     lateinit var selectedVideoUri: Uri
 
@@ -70,7 +67,7 @@ class VideoExportFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        exportBinding = FragmentVideoExportBinding.inflate(layoutInflater, container, false)
+        exportBinding = FragmentVideoExport1Binding.inflate(layoutInflater, container, false)
         // Inflate the layout for this fragment
 
         ffmpegQueryExtension = FFmpegQueryExtension()
@@ -239,7 +236,7 @@ class VideoExportFragment : Fragment() {
         val videoWidth = getVideoWidth(tvInputPathVideo)
         val videoHeight = getVideoHeight(tvInputPathVideo)
 
-        val query = ffmpegQueryExtension.addVideoEditFun(
+        val query = ffmpegQueryExtension.addFrame1VideoEditFun(
             tvInputPathVideo,
             tvInputPathImage,
             textInputeCenter!!,
