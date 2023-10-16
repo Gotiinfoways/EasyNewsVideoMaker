@@ -40,6 +40,36 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:layout_weight="1"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    tools:text="Hello" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="#E8D9D9"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Text:-"
+                    android:textSize="@dimen/_15ssp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/edtText2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
                     tools:text="Hello" />
             </LinearLayout>
 

@@ -28,9 +28,10 @@
 
                 <TextView
                     android:id="@+id/txtBoxTitle1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="कर्नाटक"
+                    android:textAlignment="center"
                     android:textColor="@color/Red"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold" />
@@ -57,9 +58,10 @@
 
                 <TextView
                     android:id="@+id/txtBoxTitle2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="BJP"
+                    android:textAlignment="center"
                     android:textColor="@color/Red"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold" />
@@ -86,9 +88,10 @@
 
                 <TextView
                     android:id="@+id/txtBoxTitle3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="CONG"
+                    android:textAlignment="center"
                     android:textColor="@color/Red"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold" />
@@ -115,9 +118,10 @@
 
                 <TextView
                     android:id="@+id/txtBoxTitle4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="JDS"
+                    android:textAlignment="center"
                     android:textColor="@color/Red"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold" />
@@ -144,9 +148,10 @@
 
                 <TextView
                     android:id="@+id/txtBoxTitle5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="OTH"
+                    android:textAlignment="center"
                     android:textColor="@color/Red"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold" />
@@ -180,22 +185,24 @@
 
                 <TextView
                     android:id="@+id/txtBoxTitle6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_3sdp"
                     android:background="@color/darkbrown"
                     android:paddingHorizontal="@dimen/_5sdp"
                     android:text="कर्नाटक"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtBoxSubTitle1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_1sdp"
                     android:text="रीजन"
+                    android:textAlignment="center"
                     android:textColor="@color/Red"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
@@ -217,10 +224,11 @@
 
                 <TextView
                     android:id="@+id/txtBoxSubTitle2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:layout_marginTop="@dimen/_1sdp"
                     android:text="बड़े शहर"
+                    android:textAlignment="center"
                     android:textColor="@color/Red"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold" />
@@ -237,11 +245,24 @@
 
             </LinearLayout>
 
-            <VideoView
-                android:id="@+id/vidView"
+            <LinearLayout
                 android:layout_width="@dimen/_180sdp"
                 android:layout_height="@dimen/_100sdp"
-                android:foreground="@drawable/bg_video" />
+                android:gravity="center">
+
+                <LinearLayout
+                    android:id="@+id/linVideoBackground"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:foreground="@drawable/bg_video"
+                    android:orientation="horizontal" />
+
+                <VideoView
+                    android:id="@+id/vidView"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:visibility="gone" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="@dimen/_60sdp"
@@ -251,8 +272,8 @@
 
                 <LinearLayout
                     android:id="@+id/linBox7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_59sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:background="@color/darkbrown"
                     android:gravity="center_vertical">
 
@@ -262,6 +283,7 @@
                         android:layout_height="@dimen/_23sdp"
                         android:layout_marginLeft="@dimen/_1sdp"
                         android:text="उत्तर प्रदेश\nनगर पंचायत"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_8sdp"
                         android:textStyle="bold" />
@@ -273,15 +295,15 @@
                         android:text="544"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp"
+                        android:textSize="@dimen/_10sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/linBox8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_59sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:gravity="center">
 
                     <TextView
@@ -333,8 +355,8 @@
 
                 <LinearLayout
                     android:id="@+id/linBox9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_59sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:gravity="center">
 
                     <TextView
@@ -386,8 +408,8 @@
 
                 <LinearLayout
                     android:id="@+id/linBox10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_59sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:gravity="center">
 
                     <TextView
@@ -439,9 +461,9 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/txtBoxSub12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/linBox11"
+                    android:layout_width="@dimen/_59sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:gravity="center">
 
                     <TextView
@@ -492,14 +514,16 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/linBox12"
+                    android:layout_width="@dimen/_59sdp"
+                    android:layout_height="@dimen/_15sdp"
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/txtBoxSubTitle7"
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_15sdp"
-                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:layout_marginStart="@dimen/_2sdp"
                         android:text="OTH"
                         android:textAlignment="center"
                         android:textColor="@color/white"
@@ -509,11 +533,11 @@
                     <View
                         android:layout_width="@dimen/_1sdp"
                         android:layout_height="@dimen/_10sdp"
-                        android:layout_marginLeft="@dimen/_2sdp"
-                        android:layout_marginRight="@dimen/_2sdp"
+                        android:layout_marginHorizontal="@dimen/_2sdp"
                         android:background="@color/black" />
 
                     <TextView
+                        android:id="@+id/txtBoxSub14"
                         android:layout_width="@dimen/_24sdp"
                         android:layout_height="@dimen/_15sdp"
                         android:text="122"
@@ -534,6 +558,7 @@
             android:layout_marginTop="@dimen/_144sdp">
 
             <LinearLayout
+                android:id="@+id/linBox13"
                 android:layout_width="@dimen/_52sdp"
                 android:layout_height="@dimen/_55sdp"
                 android:background="@color/darkbrown"
@@ -541,9 +566,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxTitle10"
+                    android:layout_width="@dimen/_52sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:text="युपी मेयर"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold" />
@@ -555,6 +582,7 @@
                     android:background="@color/Red" />
 
                 <TextView
+                    android:id="@+id/txtBoxSub15"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_3sdp"
@@ -567,6 +595,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linBox14"
                 android:layout_width="@dimen/_52sdp"
                 android:layout_height="@dimen/_55sdp"
                 android:background="@drawable/background_stroke_red"
@@ -574,16 +603,18 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxTitle11"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:background="@color/darkbrown"
-                    android:paddingHorizontal="@dimen/_10sdp"
                     android:text="BJP"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtBoxSub16"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_7sdp"
@@ -596,6 +627,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linBox15"
                 android:layout_width="@dimen/_52sdp"
                 android:layout_height="@dimen/_55sdp"
                 android:background="@drawable/background_stroke_red"
@@ -603,16 +635,18 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxTitle12"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:background="@color/darkbrown"
-                    android:paddingHorizontal="@dimen/_4sdp"
                     android:text="CONG"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtBoxSub17"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_6sdp"
@@ -625,6 +659,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linBox16"
                 android:layout_width="@dimen/_52sdp"
                 android:layout_height="@dimen/_55sdp"
                 android:background="@drawable/background_stroke_red"
@@ -632,16 +667,18 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxTitle13"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:background="@color/darkbrown"
-                    android:paddingHorizontal="@dimen/_10sdp"
                     android:text="JDS"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtBoxSub18"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_7sdp"
@@ -654,6 +691,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linBox17"
                 android:layout_width="@dimen/_52sdp"
                 android:layout_height="@dimen/_55sdp"
                 android:background="@drawable/background_stroke_red"
@@ -661,16 +699,18 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/txtBoxTitle14"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="@dimen/_20sdp"
                     android:background="@color/darkbrown"
-                    android:paddingHorizontal="@dimen/_9sdp"
                     android:text="OTH"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/txtBoxSub19"
                     android:layout_width="@dimen/_35sdp"
                     android:layout_height="@dimen/_24sdp"
                     android:layout_marginTop="@dimen/_7sdp"

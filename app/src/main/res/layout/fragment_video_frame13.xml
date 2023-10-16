@@ -1,360 +1,418 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/lightblack"
-        android:orientation="vertical"
-        tools:context=".fragment.VideoFrame13Fragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightblack"
+    android:orientation="vertical"
+    tools:context=".fragment.VideoFrame13Fragment">
 
-        <FrameLayout
-            android:id="@+id/frameView"
-            android:layout_width="@dimen/_300sdp"
-            android:layout_height="@dimen/_200sdp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/bg13">
+    <FrameLayout
+        android:id="@+id/frameView"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg13">
 
+<!--        Braking News-->
+        <LinearLayout
+            android:id="@+id/linBrakingNews"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:background="@color/darkbrown"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtBraking"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:text="BREAKING"
+                android:textAlignment="center"
+                android:textColor="@color/yellow"/>
+
+            <TextView
+                android:id="@+id/txtNews"
+                android:layout_width="@dimen/_55sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:textAlignment="center"
+                android:text="NEWS"
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!--            news logo-->
+        <ImageView
+            android:id="@+id/imgNewsLoge"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/news_logo_2" />
+
+
+        <LinearLayout
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="@dimen/_160sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/stoke"
+            android:orientation="vertical">
+
+<!--            parti name and video-->
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:background="@color/darkbrown"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_width="@dimen/_277sdp"
+                android:layout_height="@dimen/_106sdp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_1sdp"
-                    android:text="BREAKING"
-                    android:textColor="@color/yellow"
-                    android:textSize="@dimen/_8sdp" />
+                <LinearLayout
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_105sdp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NEWS"
-                    android:textColor="@color/yellow"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold" />
+                    <LinearLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:gravity="center"
+                        android:background="@drawable/background_stroke_white">
 
-            </LinearLayout>
+                        <TextView
+                            android:id="@+id/txtBjp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textAlignment="center"
+                            android:text="BJP+NDA"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
 
-            <!--            news logo-->
-            <ImageView
-                android:id="@+id/imgNewsLoge"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_gravity="end"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:scaleType="fitXY"
-                android:src="@drawable/news_logo_2" />
+                    </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="@dimen/_280sdp"
-                android:layout_height="@dimen/_160sdp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:background="@drawable/stoke"
-                android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:gravity="center"
+                        android:background="@drawable/background_stroke_white">
+
+                        <TextView
+                            android:id="@+id/txtCongress"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textAlignment="center"
+                            android:text="CONGRESS"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:gravity="center"
+                        android:background="@drawable/background_stroke_white">
+
+                        <TextView
+                            android:id="@+id/txtRjd"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textAlignment="center"
+                            android:text="RJD"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:gravity="center"
+                        android:background="@drawable/background_stroke_white">
+
+                        <TextView
+                            android:id="@+id/txtJdu"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textAlignment="center"
+                            android:text="JDU"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:gravity="center"
+                        android:background="@drawable/background_stroke_white">
+
+                        <TextView
+                            android:id="@+id/txtAap"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textAlignment="center"
+                            android:text="AAP"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:gravity="center"
+                        android:background="@drawable/background_stroke_white">
+
+                        <TextView
+                            android:id="@+id/txtOther"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:textAlignment="center"
+                            android:text="OTHER"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/txtBrakingNews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <LinearLayout
-                            android:layout_width="@dimen/_80sdp"
-                            android:layout_height="@dimen/_18sdp"
-                            android:background="@drawable/background_stroke_white">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_10sdp"
-                                android:text="BJP+NDA"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="@dimen/_80sdp"
-                            android:layout_height="@dimen/_18sdp"
-                            android:background="@drawable/background_stroke_white">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_10sdp"
-                                android:text="CONGRESS"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="@dimen/_80sdp"
-                            android:layout_height="@dimen/_18sdp"
-                            android:background="@drawable/background_stroke_white">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_10sdp"
-                                android:text="RJD"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="@dimen/_80sdp"
-                            android:layout_height="@dimen/_18sdp"
-                            android:background="@drawable/background_stroke_white">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_10sdp"
-                                android:text="JDU"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="@dimen/_80sdp"
-                            android:layout_height="@dimen/_18sdp"
-                            android:background="@drawable/background_stroke_white">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_10sdp"
-                                android:text="AAP"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="@dimen/_80sdp"
-                            android:layout_height="@dimen/_18sdp"
-                            android:background="@drawable/background_stroke_white">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_10sdp"
-                                android:text="OTHER"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
+                        android:text="BREAKING NEWS"
+                        android:textColor="@color/yellow"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical">
+                        android:id="@+id/linVideoBackground"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:foreground="@drawable/bg_video"
+                        android:orientation="horizontal" />
+                    <VideoView
+                        android:id="@+id/vidView"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:visibility="gone"/>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="BREAKING NEWS"
-                            android:textColor="@color/yellow"
-                            android:textSize="@dimen/_15sdp"
-                            android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
 
-                        <VideoView
-                            android:id="@+id/vidView"
-                            android:layout_width="@dimen/_180sdp"
-                            android:layout_height="@dimen/_70sdp"
-                            android:layout_marginTop="@dimen/_7sdp"
-                            android:foreground="@drawable/bg_video" />
+<!--            bottom view-->
+            <LinearLayout
+                android:layout_width="@dimen/_279sdp"
+                android:layout_height="@dimen/_52sdp">
 
-                    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linBjpBox"
+                    android:layout_width="@dimen/_47sdp"
+                    android:layout_height="@dimen/_53sdp"
+                    android:background="@drawable/bg_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtBjpNdaTitle"
+                        android:layout_width="@dimen/_47sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_9sdp"
+                        android:text="BJP+NDA"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtBjpNdaSub"
+                        android:layout_width="@dimen/_38sdp"
+                        android:textAlignment="center"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:background="@color/darkbrown"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:text="00"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                    android:id="@+id/linCongressBox"
+                    android:layout_width="@dimen/_47sdp"
+                    android:layout_height="@dimen/_53sdp"
+                    android:background="@drawable/bg_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/txtCongressTitle"
                         android:layout_width="@dimen/_47sdp"
-                        android:layout_height="@dimen/_53sdp"
-                        android:background="@drawable/bg_bg"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="@dimen/_15sdp"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_9sdp"
+                        android:text="CONGRESS"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="BJP+NDA"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtCongressSub"
+                        android:layout_width="@dimen/_38sdp"
+                        android:textAlignment="center"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:background="@color/darkbrown"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:text="00"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_7sdp"
-                            android:background="@color/darkbrown"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:text="00"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_15sdp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linRjdBox"
+                    android:layout_width="@dimen/_47sdp"
+                    android:layout_height="@dimen/_53sdp"
+                    android:background="@drawable/bg_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/txtRjdTitle"
                         android:layout_width="@dimen/_47sdp"
-                        android:layout_height="@dimen/_53sdp"
-                        android:background="@drawable/bg_bg"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="@dimen/_15sdp"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_9sdp"
+                        android:text="RJD"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="CONGRESS"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_9sdp"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtRjdSub"
+                        android:layout_width="@dimen/_38sdp"
+                        android:textAlignment="center"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:background="@color/darkbrown"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:text="00"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_7sdp"
-                            android:background="@color/darkbrown"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:text="00"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_15sdp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linJduBox"
+                    android:layout_width="@dimen/_47sdp"
+                    android:layout_height="@dimen/_53sdp"
+                    android:background="@drawable/bg_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/txtJduTitle"
                         android:layout_width="@dimen/_47sdp"
-                        android:layout_height="@dimen/_53sdp"
-                        android:background="@drawable/bg_bg"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="@dimen/_15sdp"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_9sdp"
+                        android:text="JDU"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="RJD"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtJduSub"
+                        android:layout_width="@dimen/_38sdp"
+                        android:textAlignment="center"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:background="@color/darkbrown"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:text="00"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_7sdp"
-                            android:background="@color/darkbrown"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:text="00"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_15sdp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linAapBox"
+                    android:layout_width="@dimen/_47sdp"
+                    android:layout_height="@dimen/_53sdp"
+                    android:background="@drawable/bg_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/txtAapTitle"
                         android:layout_width="@dimen/_47sdp"
-                        android:layout_height="@dimen/_53sdp"
-                        android:background="@drawable/bg_bg"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="@dimen/_15sdp"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_9sdp"
+                        android:text="AAP"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="JDU"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/txtAapSub"
+                        android:layout_width="@dimen/_38sdp"
+                        android:textAlignment="center"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:background="@color/darkbrown"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:text="000"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_7sdp"
-                            android:background="@color/darkbrown"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:text="00"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_15sdp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/linOtherBox"
+                    android:layout_width="@dimen/_46sdp"
+                    android:layout_height="@dimen/_53sdp"
+                    android:background="@drawable/bg_bg"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="@dimen/_47sdp"
-                        android:layout_height="@dimen/_53sdp"
-                        android:background="@drawable/bg_bg"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="AAP"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_7sdp"
-                            android:background="@color/darkbrown"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:text="00"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_15sdp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/txtOtherTitle"
                         android:layout_width="@dimen/_46sdp"
-                        android:layout_height="@dimen/_53sdp"
-                        android:background="@drawable/bg_bg"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_height="@dimen/_15sdp"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/_9sdp"
+                        android:text="Other"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Other"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_10sdp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_7sdp"
-                            android:background="@color/darkbrown"
-                            android:paddingHorizontal="@dimen/_10sdp"
-                            android:text="00"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/_15sdp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
+                    <TextView
+                        android:id="@+id/txtOtherSub"
+                        android:layout_width="@dimen/_38sdp"
+                        android:textAlignment="center"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:background="@color/darkbrown"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:text="00"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
             </LinearLayout>
 
-        </FrameLayout>
+        </LinearLayout>
+
+    </FrameLayout>
 
     <!--        Capture Video & Import_video & Recoding voice -->
     <LinearLayout
@@ -437,4 +495,4 @@
             android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>
-    </RelativeLayout>
+</RelativeLayout>

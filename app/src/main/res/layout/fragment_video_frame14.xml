@@ -19,6 +19,7 @@
                 android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/linMeghalayBox"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_45sdp"
                     android:background="@drawable/background_stroke_white"
@@ -26,16 +27,20 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtMeghalayTitle"
+                        android:layout_width="@dimen/_58sdp"
+                        android:textAlignment="center"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="मेघालय"
                         android:textColor="@color/Red"
                         android:textSize="@dimen/_14sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtMeghalaySub"
+                        android:textAlignment="center"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_16sdp"
                         android:text="224"
                         android:textColor="@color/darkbrown"
                         android:textSize="@dimen/_15sdp"
@@ -44,6 +49,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linTripuraBox"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_45sdp"
                     android:background="@drawable/background_stroke_white"
@@ -51,16 +57,20 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtTripuraTitle"
+                        android:layout_width="@dimen/_58sdp"
+                        android:textAlignment="center"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="त्रिपुरा"
                         android:textColor="@color/Red"
                         android:textSize="@dimen/_14sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtTripuraSub"
+                        android:textAlignment="center"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_16sdp"
                         android:text="69"
                         android:textColor="@color/darkbrown"
                         android:textSize="@dimen/_15sdp"
@@ -69,6 +79,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linNagalandBox"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_45sdp"
                     android:background="@drawable/background_stroke_white"
@@ -76,16 +87,20 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtNagalandTitle"
+                        android:layout_width="@dimen/_58sdp"
+                        android:textAlignment="center"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="नगालैंड"
                         android:textColor="@color/Red"
                         android:textSize="@dimen/_14sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtNagalandSub"
+                        android:textAlignment="center"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_16sdp"
                         android:text="124"
                         android:textColor="@color/darkbrown"
                         android:textSize="@dimen/_15sdp"
@@ -94,6 +109,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linNatijeBox"
                     android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_45sdp"
                     android:background="@drawable/background_stroke_white"
@@ -101,16 +117,20 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtNatijeTitle"
+                        android:layout_width="@dimen/_58sdp"
+                        android:textAlignment="center"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="नतिजे"
                         android:textColor="@color/Red"
                         android:textSize="@dimen/_14sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtNatijeSub"
+                        android:textAlignment="center"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_16sdp"
                         android:text="24"
                         android:textColor="@color/darkbrown"
                         android:textSize="@dimen/_15sdp"
@@ -147,134 +167,145 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linTripuraBox2"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:background="@color/darkbrown"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtTripuraTitle2"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:textAlignment="center"
                         android:text="त्रिपुरा"
                         android:textColor="@color/yellow"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:id="@+id/txtTripuraSub2"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:textAlignment="center"
                         android:text="60"
                         android:textColor="@color/yellow"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linBjpBox"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:background="@drawable/bg2"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtBjpTitle"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="BJP"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:id="@+id/txtBjpSub"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/white"
-                        android:paddingHorizontal="@dimen/_3sdp"
+                        android:textAlignment="center"
                         android:text="36"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linIpftBox"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:background="@drawable/bg2"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtIpftTitle"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="IPFT"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:id="@+id/txtIpftSub"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/white"
-                        android:paddingHorizontal="@dimen/_3sdp"
+                        android:textAlignment="center"
                         android:text="08"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linLeftBox"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:background="@drawable/bg2"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtLeftTitle"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="LEFT"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:id="@+id/txtLeftSub"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/white"
-                        android:paddingHorizontal="@dimen/_3sdp"
+                        android:textAlignment="center"
                         android:text="16"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linOthBox"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:background="@drawable/bg2"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtOthTitle"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="OTH"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_7sdp"
+                        android:id="@+id/txtOthSub"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/white"
-                        android:paddingHorizontal="@dimen/_6sdp"
+                        android:textAlignment="center"
                         android:text="0"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -287,11 +318,18 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/_46sdp"
                 android:background="@drawable/bg2" >
+
+                <LinearLayout
+                    android:id="@+id/linVideoBackground"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:foreground="@drawable/bg_video"
+                    android:orientation="horizontal" />
                 <VideoView
                     android:id="@+id/vidView"
                     android:layout_width="@dimen/_180sdp"
                     android:layout_height="@dimen/_100sdp"
-                    android:foreground="@drawable/bg_video" />
+                    android:visibility="gone"/>
             </LinearLayout>
 
             <LinearLayout
@@ -319,134 +357,145 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/linMeghalayBox2"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_25sdp"
                     android:background="@color/darkbrown"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtMeghalayTitle2"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:textAlignment="center"
                         android:text="मेघालय"
                         android:textColor="@color/yellow"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:id="@+id/txtMeghalaySub2"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:textAlignment="center"
                         android:text="60"
                         android:textColor="@color/yellow"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linBjpBox2"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:background="@drawable/bg2"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtBjpTitle2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="BJP"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:id="@+id/txtBjpSub2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/white"
-                        android:paddingHorizontal="@dimen/_3sdp"
+                        android:textAlignment="center"
                         android:text="44"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linIpftBox2"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:background="@drawable/bg2"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtIpftTitle2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="IPFT"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:id="@+id/txtIpftSub2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/white"
-                        android:paddingHorizontal="@dimen/_3sdp"
+                        android:textAlignment="center"
                         android:text="07"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linLeftBox2"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:background="@drawable/bg2"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtLeftTitle2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="LEFT"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_4sdp"
+                        android:id="@+id/txtLeftSub2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/white"
-                        android:paddingHorizontal="@dimen/_3sdp"
+                        android:textAlignment="center"
                         android:text="44"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/linOthBox2"
+                    android:layout_width="@dimen/_60sdp"
                     android:layout_height="@dimen/_25sdp"
                     android:background="@drawable/bg2"
                     android:gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/txtOthTitle2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:text="OTH"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:id="@+id/txtOthSub2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/white"
-                        android:paddingHorizontal="@dimen/_3sdp"
+                        android:textAlignment="center"
                         android:text="05"
+                        android:textSize="@dimen/_10ssp"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp"
                         android:textStyle="bold" />
 
                 </LinearLayout>

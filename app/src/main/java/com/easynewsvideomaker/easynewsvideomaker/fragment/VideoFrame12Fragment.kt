@@ -25,8 +25,6 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.fragment.app.FragmentTransaction
-import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoFrame12Binding
 import java.io.File
@@ -61,94 +59,431 @@ class VideoFrame12Fragment : Fragment() {
 
 
     private fun frameEdit() {
-//        //text scroll Horizontally
-//        videoFrame12Binding.txtLay1.isSelected = true
-//        videoFrame12Binding.txtLay2.isSelected = true
-//
-//
-//        //set image
-//        videoFrame12Binding.imgNewsLoge.setOnClickListener {
-//
-//            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-//            gallery_Launcher.launch(intent)
-//        }
-//
-//        //       city name text change
-//        videoFrame12Binding.txtCityName.setOnClickListener {
-//            var text = videoFrame12Binding.txtCityName.text.toString()
-//
-//
-//            editeDialog(text)
-//
-//            dialogEditBinding.btnSubmit.setOnClickListener {
-//
-//
-//                videoFrame12Binding.txtCityName.text = dialogEditBinding.edtText.text.toString()
-//
-//                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
-//                editeDialog.dismiss()
-//            }
-//        }
-//
-//        //      Latest Update text change
-//        videoFrame4Binding.txtLatestUpdate.setOnClickListener {
-//            var text = videoFrame4Binding.txtLatestUpdate.text.toString()
-//
-//
-//            editeDialog(text)
-//
-//            dialogEditBinding.btnSubmit.setOnClickListener {
-//
-//
-//                videoFrame4Binding.txtLatestUpdate.text = dialogEditBinding.edtText.text.toString()
-//
-//                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
-//                editeDialog.dismiss()
-//            }
-//        }
 
-//        //      txt Layer 1 text change
-//        videoFrame12Binding.txtLay1.setOnClickListener {
-//            var text = videoFrame12Binding.txtLay1.text.toString()
-//
-//
-//            editeDialog(text)
-//
-//            dialogEditBinding.btnSubmit.setOnClickListener {
-//
-//
-//                videoFrame12Binding.txtLay1.text = dialogEditBinding.edtText.text.toString()
-//
-//                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
-//                editeDialog.dismiss()
-//            }
-//        }
-//
-//        //      txt Layer 2 text change
-//        videoFrame12Binding.txtLay2.setOnClickListener {
-//            var text = videoFrame12Binding.txtLay2.text.toString()
-//
-//
-//            editeDialog(text)
-//
-//            dialogEditBinding.btnSubmit.setOnClickListener {
-//
-//
-//                videoFrame12Binding.txtLay2.text = dialogEditBinding.edtText.text.toString()
-//
-//                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
-//                editeDialog.dismiss()
-//            }
-//        }
+        //set image
+        videoFrame12Binding.imgNewsLoge.setOnClickListener {
+
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            gallery_Launcher.launch(intent)
+        }
+
+        //       कर्नाटक name text change
+        videoFrame12Binding.linBox1.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle1.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub1.text.toString()
+
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle1.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub1.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //       BJP name text change
+        videoFrame12Binding.linBox2.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle2.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub2.text.toString()
+
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle2.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub2.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+        //       CONG name text change
+        videoFrame12Binding.linBox3.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle3.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub3.text.toString()
+
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle3.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub3.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //       JDS name text change
+        videoFrame12Binding.linBox4.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle4.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub4.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle4.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub4.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //       OTH name text change
+        videoFrame12Binding.linBox5.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle5.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub5.text.toString()
+
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle5.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub5.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //       कर्नाटक name text change
+        videoFrame12Binding.txtBoxTitle6.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle6.text.toString()
+
+            var textSub = ""
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.GONE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle6.text = dialogEditBinding.edtText.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //       रीजन name text change
+        videoFrame12Binding.txtBoxSubTitle1.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxSubTitle1.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub6.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxSubTitle1.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub6.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+
+        //       बड़े शहर name text change
+        videoFrame12Binding.txtBoxSubTitle2.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxSubTitle2.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub7.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxSubTitle2.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub7.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //       उत्तर प्रदेश name text change
+        videoFrame12Binding.linBox7.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle8.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub8.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle8.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub8.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //      BJP name text change
+        videoFrame12Binding.linBox8.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxSubTitle3.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub9.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxSubTitle3.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub9.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+
+        //      Sp name text change
+        videoFrame12Binding.linBox9.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxSubTitle4.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub10.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxSubTitle4.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub10.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //      BSP name text change
+        videoFrame12Binding.linBox10.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxSubTitle5.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub11.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxSubTitle5.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub11.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //      CONG name text change
+        videoFrame12Binding.linBox11.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxSubTitle6.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub13.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxSubTitle6.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub13.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //      OTH name text change
+        videoFrame12Binding.linBox12.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxSubTitle7.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub14.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxSubTitle7.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub14.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+
+
+        //      युपी मेयर name text change
+        videoFrame12Binding.linBox13.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle10.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub15.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle10.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub15.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+
+        //     BJP name text change
+        videoFrame12Binding.linBox14.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle11.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub16.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle11.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub16.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //     CONG name text change
+        videoFrame12Binding.linBox15.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle12.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub17.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle12.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub17.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //     JDS name text change
+        videoFrame12Binding.linBox16.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle13.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub18.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle13.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub18.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
+
+        //     OTH name text change
+        videoFrame12Binding.linBox17.setOnClickListener {
+            var textTitle = videoFrame12Binding.txtBoxTitle14.text.toString()
+            var textSub = videoFrame12Binding.txtBoxSub19.text.toString()
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.VISIBLE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame12Binding.txtBoxTitle14.text = dialogEditBinding.edtText.text.toString()
+                videoFrame12Binding.txtBoxSub19.text = dialogEditBinding.edtText2.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
     }
 
-    private fun editeDialog(text: String) {
+    private fun editeDialog(textTitle: String, textSub: String) {
 
         editeDialog = Dialog(requireContext())
         dialogEditBinding = DialogEditBinding.inflate(layoutInflater)
         editeDialog.setContentView(dialogEditBinding.root)
 
-        dialogEditBinding.edtText.setText(text)
+        dialogEditBinding.edtText.setText(textTitle)
+        dialogEditBinding.edtText2.setText(textSub)
+
+
 
         dialogEditBinding.linTextColor.visibility = View.GONE
         dialogEditBinding.linBackgroundColor.visibility = View.GONE
@@ -259,6 +594,7 @@ class VideoFrame12Fragment : Fragment() {
 
                     // Start playing the video
                     videoFrame12Binding.vidView.visibility = View.VISIBLE
+                    videoFrame12Binding.linVideoBackground.visibility = View.GONE
 //                    videoFrame3Binding.linVideoZoom.visibility = View.VISIBLE
 //                    videoFrame3Binding.linBtn.visibility = View.VISIBLE
 //                    videoFrame12Binding.imgView.visibility = View.INVISIBLE
