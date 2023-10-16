@@ -163,7 +163,7 @@ class HomeFragment : Fragment() {
             }
         }
         binding.frame12.setOnClickListener {
-            if (packageType == "Golden" || packageType == "Silver") {
+            if (packageType == "Golden") {
                 var   fragment = VideoFrame12Fragment()
                 setFragment(fragment)
             } else {
@@ -172,7 +172,7 @@ class HomeFragment : Fragment() {
             }
         }
         binding.frame13.setOnClickListener {
-            if (packageType == "Golden" || packageType == "Silver") {
+            if (packageType == "Golden") {
                 var  fragment = VideoFrame13Fragment()
                 setFragment(fragment)
             } else {
@@ -181,7 +181,7 @@ class HomeFragment : Fragment() {
             }
         }
         binding.frame14.setOnClickListener {
-            if (packageType == "Golden" || packageType == "Silver") {
+            if (packageType == "Golden") {
                 var fragment = VideoFrame14Fragment()
                 setFragment(fragment)
             } else {

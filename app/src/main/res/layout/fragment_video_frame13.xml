@@ -15,7 +15,7 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg13">
 
-<!--        Braking News-->
+        <!--        Braking News-->
         <LinearLayout
             android:id="@+id/linBrakingNews"
             android:layout_width="@dimen/_55sdp"
@@ -32,16 +32,16 @@
                 android:layout_marginTop="@dimen/_1sdp"
                 android:text="BREAKING"
                 android:textAlignment="center"
-                android:textColor="@color/yellow"/>
+                android:textColor="@color/yellow"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtNews"
                 android:layout_width="@dimen/_55sdp"
                 android:layout_height="@dimen/_15sdp"
-                android:textAlignment="center"
                 android:text="NEWS"
+                android:textAlignment="center"
                 android:textColor="@color/yellow"
-                android:textSize="@dimen/_12sdp"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -65,113 +65,113 @@
             android:background="@drawable/stoke"
             android:orientation="vertical">
 
-<!--            parti name and video-->
+            <!--            parti name and video-->
             <LinearLayout
                 android:layout_width="@dimen/_277sdp"
-                android:layout_height="@dimen/_106sdp">
+                android:layout_height="@dimen/_124sdp">
 
                 <LinearLayout
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_105sdp"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_123sdp"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:gravity="center"
-                        android:background="@drawable/background_stroke_white">
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/background_stroke_white"
+                        android:gravity="center">
 
                         <TextView
                             android:id="@+id/txtBjp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textAlignment="center"
                             android:text="BJP+NDA"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:gravity="center"
-                        android:background="@drawable/background_stroke_white">
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/background_stroke_white"
+                        android:gravity="center">
 
                         <TextView
                             android:id="@+id/txtCongress"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textAlignment="center"
                             android:text="CONGRESS"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:gravity="center"
-                        android:background="@drawable/background_stroke_white">
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/background_stroke_white"
+                        android:gravity="center">
 
                         <TextView
                             android:id="@+id/txtRjd"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textAlignment="center"
                             android:text="RJD"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:gravity="center"
-                        android:background="@drawable/background_stroke_white">
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/background_stroke_white"
+                        android:gravity="center">
 
                         <TextView
                             android:id="@+id/txtJdu"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textAlignment="center"
                             android:text="JDU"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:gravity="center"
-                        android:background="@drawable/background_stroke_white">
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/background_stroke_white"
+                        android:gravity="center">
 
                         <TextView
                             android:id="@+id/txtAap"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textAlignment="center"
                             android:text="AAP"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_18sdp"
-                        android:gravity="center"
-                        android:background="@drawable/background_stroke_white">
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/background_stroke_white"
+                        android:gravity="center">
 
                         <TextView
                             android:id="@+id/txtOther"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:textAlignment="center"
                             android:text="OTHER"
+                            android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textStyle="bold" />
 
@@ -196,30 +196,30 @@
 
                     <LinearLayout
                         android:id="@+id/linVideoBackground"
-                        android:layout_width="@dimen/_180sdp"
-                        android:layout_height="@dimen/_70sdp"
-                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_width="@dimen/_190sdp"
+                        android:layout_height="@dimen/_100sdp"
                         android:foreground="@drawable/bg_video"
                         android:orientation="horizontal" />
+
                     <VideoView
                         android:id="@+id/vidView"
-                        android:layout_width="@dimen/_180sdp"
-                        android:layout_height="@dimen/_70sdp"
+                        android:layout_width="@dimen/_190sdp"
+                        android:layout_height="@dimen/_100sdp"
                         android:layout_marginTop="@dimen/_7sdp"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                 </LinearLayout>
             </LinearLayout>
 
-<!--            bottom view-->
+            <!--            bottom view-->
             <LinearLayout
                 android:layout_width="@dimen/_279sdp"
-                android:layout_height="@dimen/_52sdp">
+                android:layout_height="@dimen/_35sdp">
 
                 <LinearLayout
                     android:id="@+id/linBjpBox"
                     android:layout_width="@dimen/_47sdp"
-                    android:layout_height="@dimen/_53sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:background="@drawable/bg_bg"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -228,30 +228,28 @@
                         android:id="@+id/txtBjpNdaTitle"
                         android:layout_width="@dimen/_47sdp"
                         android:layout_height="@dimen/_15sdp"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/_9sdp"
                         android:text="BJP+NDA"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txtBjpNdaSub"
                         android:layout_width="@dimen/_38sdp"
-                        android:textAlignment="center"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/darkbrown"
-                        android:paddingHorizontal="@dimen/_5sdp"
                         android:text="00"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/linCongressBox"
                     android:layout_width="@dimen/_47sdp"
-                    android:layout_height="@dimen/_53sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:background="@drawable/bg_bg"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -260,30 +258,28 @@
                         android:id="@+id/txtCongressTitle"
                         android:layout_width="@dimen/_47sdp"
                         android:layout_height="@dimen/_15sdp"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/_9sdp"
                         android:text="CONGRESS"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txtCongressSub"
                         android:layout_width="@dimen/_38sdp"
-                        android:textAlignment="center"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/darkbrown"
-                        android:paddingHorizontal="@dimen/_5sdp"
                         android:text="00"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/linRjdBox"
                     android:layout_width="@dimen/_47sdp"
-                    android:layout_height="@dimen/_53sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:background="@drawable/bg_bg"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -292,30 +288,27 @@
                         android:id="@+id/txtRjdTitle"
                         android:layout_width="@dimen/_47sdp"
                         android:layout_height="@dimen/_15sdp"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/_9sdp"
                         android:text="RJD"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txtRjdSub"
                         android:layout_width="@dimen/_38sdp"
-                        android:textAlignment="center"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/darkbrown"
-                        android:paddingHorizontal="@dimen/_5sdp"
                         android:text="00"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/linJduBox"
                     android:layout_width="@dimen/_47sdp"
-                    android:layout_height="@dimen/_53sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:background="@drawable/bg_bg"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -324,30 +317,27 @@
                         android:id="@+id/txtJduTitle"
                         android:layout_width="@dimen/_47sdp"
                         android:layout_height="@dimen/_15sdp"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/_9sdp"
                         android:text="JDU"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txtJduSub"
                         android:layout_width="@dimen/_38sdp"
-                        android:textAlignment="center"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/darkbrown"
-                        android:paddingHorizontal="@dimen/_5sdp"
                         android:text="00"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/linAapBox"
                     android:layout_width="@dimen/_47sdp"
-                    android:layout_height="@dimen/_53sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:background="@drawable/bg_bg"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -356,30 +346,27 @@
                         android:id="@+id/txtAapTitle"
                         android:layout_width="@dimen/_47sdp"
                         android:layout_height="@dimen/_15sdp"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/_9sdp"
                         android:text="AAP"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txtAapSub"
                         android:layout_width="@dimen/_38sdp"
-                        android:textAlignment="center"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/darkbrown"
-                        android:paddingHorizontal="@dimen/_5sdp"
                         android:text="000"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/linOtherBox"
                     android:layout_width="@dimen/_46sdp"
-                    android:layout_height="@dimen/_53sdp"
+                    android:layout_height="@dimen/_35sdp"
                     android:background="@drawable/bg_bg"
                     android:gravity="center"
                     android:orientation="vertical">
@@ -388,23 +375,20 @@
                         android:id="@+id/txtOtherTitle"
                         android:layout_width="@dimen/_46sdp"
                         android:layout_height="@dimen/_15sdp"
-                        android:textAlignment="center"
-                        android:textSize="@dimen/_9sdp"
                         android:text="Other"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/txtOtherSub"
                         android:layout_width="@dimen/_38sdp"
-                        android:textAlignment="center"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:background="@color/darkbrown"
-                        android:paddingHorizontal="@dimen/_5sdp"
                         android:text="00"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_13sdp"
+                        android:textSize="@dimen/_10ssp"
                         android:textStyle="bold" />
                 </LinearLayout>
 

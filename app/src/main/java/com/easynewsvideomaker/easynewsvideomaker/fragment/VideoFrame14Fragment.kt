@@ -25,6 +25,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoFrame14Binding
@@ -61,7 +62,7 @@ class VideoFrame14Fragment : Fragment() {
 
     private fun frameEdit() {
 //        //text scroll Horizontally
-//        videoFrame14Binding.txtLay1.isSelected = true
+        videoFrame14Binding.txtLay1.isSelected = true
 //        videoFrame14Binding.txtLay2.isSelected = true
 
 
@@ -367,6 +368,26 @@ class VideoFrame14Fragment : Fragment() {
                 editeDialog.dismiss()
             }
         }
+
+        //     lay1    name text change
+        videoFrame14Binding.txtLay1.setOnClickListener {
+            var textTitle = videoFrame14Binding.txtLay1.text.toString()
+            var textSub = ""
+
+
+            editeDialog(textTitle, textSub)
+
+            dialogEditBinding.linText2.visibility = View.GONE
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+
+                videoFrame14Binding.txtLay1.text = dialogEditBinding.edtText.text.toString()
+
+                Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
+            }
+        }
     }
 
     private fun editeDialog(textTitle: String, textSub: String) {
@@ -431,7 +452,7 @@ class VideoFrame14Fragment : Fragment() {
 
             } else {
 //
-//                var centerTextScroll = videoFrame14Binding.txtLay1.text.toString()
+                var bottomColorText = videoFrame14Binding.txtLay1.text.toString()
 //                var bottomTextScroll = videoFrame14Binding.txtLay2.text.toString()
 //                // Get the text size of the TextView
 //                val centerTextSize = videoFrame14Binding.txtLay1.textSize.toInt()
@@ -445,28 +466,24 @@ class VideoFrame14Fragment : Fragment() {
 //                val bottomTextColor = String.format("#%06X", 0xFFFFFF and bottomColorText)
 //
 //
-//                val fontPath =
-//                    getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
+                val fontPath =
+                    getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 //
-//                val fragment = VideoExportFragment()
-//                val bundle = Bundle()
-//
-//                bundle.putString("videoPath", videoPath)
-//                bundle.putString("convertImagePath", convertImagePath)
-//                bundle.putString("centerTextScrollPath", centerTextScroll)
-//                bundle.putInt("centerTextSize", centerTextSize)
-//                bundle.putString("centerTextColor", centerTextColor)
-//                bundle.putString("bottomTextScrollPath", bottomTextScroll)
-//                bundle.putInt("bottomTextSize", bottomTextSize)
-//                bundle.putString("bottomTextColor", bottomTextColor)
-//                bundle.putString("fontPath", fontPath)
-//
-//                fragment.arguments = bundle
-//                val transaction = requireActivity().supportFragmentManager.beginTransaction()
-//                transaction.replace(R.id.container, fragment)
-//                transaction.addToBackStack(null)
-//                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-//                transaction.commit()
+                val fragment = VideoExport14Fragment()
+                val bundle = Bundle()
+
+                bundle.putString("videoPath", videoPath)
+                bundle.putString("convertImagePath", convertImagePath)
+
+                bundle.putString("bottomTextScrollPath", bottomColorText)
+                bundle.putString("fontPath", fontPath)
+
+                fragment.arguments = bundle
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.container, fragment)
+                transaction.addToBackStack(null)
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                transaction.commit()
 
             }
 

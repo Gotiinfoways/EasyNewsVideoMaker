@@ -327,6 +327,69 @@ class FFmpegQueryExtension {
 
         return inputs.toArray(arrayOfNulls(inputs.size))
     }
+
+    //frame 12  &13
+
+    fun addFrame12VideoEditFun(
+        inputVideo: String, imageInput: String, output: String,
+        videoWidth: Int,
+        videoHeight: Int
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+        inputs.apply {
+            add("-i")
+            add(inputVideo)
+            add("-i")
+            add(imageInput)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0")
+            add("-c:a")
+            add("copy")
+            add("-s")
+            add("1920x1080")
+            add(output)
+        }
+
+        return inputs.toArray(arrayOfNulls<String>(inputs.size))
+    }
+
+
+    //frame 14
+
+    fun addFrame14VideoEditFun(
+        tvInputPathVideo: String,
+        tvInputPathImage: String,
+        outputPath: String,
+        videoWidth: Int,
+        videoHeight: Int,
+        bottomTextScroll: String?,
+        yBottomPosition: Int,
+        textInputeSize3: Int,
+        fontPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+
+        val textBottom =
+            "drawtext=fontfile='$fontPath':text='$bottomTextScroll':fontsize=$textInputeSize3:fontcolor=black:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
+
+        inputs.apply {
+            add("-i")
+            add(tvInputPathVideo)
+            add("-i")
+            add(tvInputPathImage)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0,$textBottom")
+            add("-c:a")
+            add("copy")
+            add("-s")
+            add("1920x1080")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+
+        return inputs.toArray(arrayOfNulls<String>(inputs.size))
+    }
     //frame image set in full screen
 //    fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {
 //        val inputs: ArrayList<String> = ArrayList()

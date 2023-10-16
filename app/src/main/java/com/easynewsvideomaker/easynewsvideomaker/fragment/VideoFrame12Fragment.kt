@@ -25,6 +25,8 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.FragmentTransaction
+import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoFrame12Binding
 import java.io.File
@@ -553,11 +555,11 @@ class VideoFrame12Fragment : Fragment() {
 //                val fontPath =
 //                    getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 //
-//                val fragment = VideoExportFragment()
-//                val bundle = Bundle()
-//
-//                bundle.putString("videoPath", videoPath)
-//                bundle.putString("convertImagePath", convertImagePath)
+                val fragment = VideoExport12Fragment()
+                val bundle = Bundle()
+
+                bundle.putString("videoPath", videoPath)
+                bundle.putString("convertImagePath", convertImagePath)
 //                bundle.putString("centerTextScrollPath", centerTextScroll)
 //                bundle.putInt("centerTextSize", centerTextSize)
 //                bundle.putString("centerTextColor", centerTextColor)
@@ -565,13 +567,13 @@ class VideoFrame12Fragment : Fragment() {
 //                bundle.putInt("bottomTextSize", bottomTextSize)
 //                bundle.putString("bottomTextColor", bottomTextColor)
 //                bundle.putString("fontPath", fontPath)
-//
-//                fragment.arguments = bundle
-//                val transaction = requireActivity().supportFragmentManager.beginTransaction()
-//                transaction.replace(R.id.container, fragment)
-//                transaction.addToBackStack(null)
-//                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-//                transaction.commit()
+
+                fragment.arguments = bundle
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.container, fragment)
+                transaction.addToBackStack(null)
+                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                transaction.commit()
 
             }
 
