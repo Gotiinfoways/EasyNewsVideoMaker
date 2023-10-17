@@ -16,7 +16,7 @@
         <VideoView
             android:id="@+id/vidExport"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_170sdp"
+            android:layout_height="@dimen/_165sdp"
             android:scaleType="fitXY" />
     </LinearLayout>
 

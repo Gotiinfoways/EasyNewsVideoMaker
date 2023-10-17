@@ -12,7 +12,7 @@
     <FrameLayout
         android:id="@+id/frameView"
         android:layout_width="@dimen/_300sdp"
-        android:layout_height="@dimen/_220sdp"
+        android:layout_height="@dimen/_215sdp"
         android:layout_centerHorizontal="true">
 
         <!--        static image-->

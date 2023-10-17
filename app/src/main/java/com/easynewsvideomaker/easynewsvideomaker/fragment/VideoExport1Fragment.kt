@@ -299,7 +299,7 @@ class VideoExport1Fragment : Fragment() {
 
         // You can implement your own logic to determine the Y position based on height.
         // For example, you might want the Y position to be a percentage of the video height.
-        return (0.85 * videoHeight).toInt()
+        return (0.87 * videoHeight).toInt()
     }
 
     private fun calculateYBottomPosition(
@@ -311,7 +311,7 @@ class VideoExport1Fragment : Fragment() {
 
         // You can implement your own logic to determine the Y position based on height.
         // For example, you might want the Y position to be a percentage of the video height.
-        return (0.92 * videoHeight).toInt()
+        return (0.94 * videoHeight).toInt()
     }
 
     // Function to get the video's width

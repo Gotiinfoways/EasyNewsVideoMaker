@@ -259,7 +259,7 @@ class VideoExport14Fragment : Fragment() {
 
         // You can implement your own logic to determine the font size based on height and width.
         // For example, you might want the font size to be a percentage of the video height or width.
-        return (0.07 * Math.min(videoHeight, videoWidth)).toInt()
+        return (0.05 * Math.min(videoHeight, videoWidth)).toInt()
     }
 
 
