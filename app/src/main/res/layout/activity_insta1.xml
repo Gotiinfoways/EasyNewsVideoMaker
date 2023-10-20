@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightblack"
+    android:orientation="vertical"
+    tools:context=".reels_maker.Insta_1_Activity">
+
+
+    <FrameLayout
+        android:id="@+id/frameView"
+        android:layout_width="@dimen/_290sdp"
+        android:layout_height="@dimen/_480sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/i4">
+
+        <VideoView
+            android:id="@+id/vidView"
+            android:layout_width="@dimen/_295sdp"
+            android:layout_height="@dimen/_480sdp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/loutLogo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgNewsLogo"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:src="@drawable/news_logo" />
+
+
+        </RelativeLayout>
+
+
+        <ImageView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="end"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:src="@drawable/rec" />
+
+        <LinearLayout
+            android:id="@+id/linBraking"
+            android:layout_width="@dimen/_280sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            android:layout_marginBottom="@dimen/_80sdp"
+            android:background="@drawable/p11"
+            android:backgroundTint="@color/Red"
+            android:gravity="center|end">
+
+            <TextView
+                android:id="@+id/txtBreakingNrwsReel1"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:text="BREAKING  NEWS"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18ssp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/loutbg"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="bottom"
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            android:layout_marginBottom="@dimen/_40sdp"
+            android:background="@color/lightbred"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/txtAdditionalTextReel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_413sdp"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="Additional Text Here"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20ssp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cdExport"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_110sdp"
+        android:layout_marginBottom="17dp"
+        android:backgroundTint="@color/Red"
+        app:cardCornerRadius="@dimen/_35sdp"
+        app:cardElevation="@dimen/_2sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Export"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

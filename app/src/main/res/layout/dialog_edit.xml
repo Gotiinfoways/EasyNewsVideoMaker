@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_5sdp"
-                android:background="#E8D9D9"
+                android:background="#FFB2B2"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp">
 
@@ -31,6 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Text:-"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp"
                     android:textStyle="bold" />
 
@@ -50,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_5sdp"
-                android:background="#E8D9D9"
+                android:background="#FFB2B2"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp"
                 android:visibility="gone">
@@ -59,6 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Text:-"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp"
                     android:textStyle="bold" />
 
@@ -78,7 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_5sdp"
-                android:background="#E8D9D9"
+                android:background="#FFB2B2"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp">
 
@@ -87,6 +89,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Text Color :-"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp"
                     android:textStyle="bold" />
 
@@ -109,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_5sdp"
-                android:background="#E8D9D9"
+                android:background="#FFB2B2"
                 android:gravity="center"
                 android:padding="@dimen/_5sdp">
 
@@ -118,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Background Color :-"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_15ssp"
                     android:textStyle="bold" />
 
@@ -139,7 +143,9 @@
                 android:id="@+id/btnSubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/_20sdp"
+                android:backgroundTint="@color/Red"
                 android:text="Submit" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

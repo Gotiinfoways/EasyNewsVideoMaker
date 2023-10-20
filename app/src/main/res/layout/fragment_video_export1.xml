@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightblack"
-    tools:context=".fragment.VideoExport1Fragment">
+    tools:context=".fragment.video_export.VideoExport1Fragment">
 
     <LinearLayout
         android:id="@+id/linVideo"
@@ -31,11 +31,12 @@
         android:id="@+id/txtLay2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_140sdp"
+        android:layout_marginTop="@dimen/_143sdp"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"
+        android:textSize="@dimen/_10ssp"
         android:textColor="@color/white"
         tools:text="Hello guys !! Welcome to Easy News  Maker App Create Your News" />
 
@@ -45,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txtLay2"
         android:ellipsize="marquee"
+        android:textSize="@dimen/_10ssp"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
         android:singleLine="true"

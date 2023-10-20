@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightblack"
-    tools:context=".fragment.VideoExport3Fragment">
+    tools:context=".fragment.video_export.VideoExport3Fragment">
 
     <LinearLayout
         android:id="@+id/linVideo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_15sdp"
         android:gravity="center">
 
         <VideoView
             android:id="@+id/vidExport"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_170sdp"
+            android:layout_height="@dimen/_155sdp"
             android:scaleType="fitXY" />
     </LinearLayout>
 

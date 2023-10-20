@@ -390,6 +390,74 @@ class FFmpegQueryExtension {
 
         return inputs.toArray(arrayOfNulls<String>(inputs.size))
     }
+
+
+    //this code work only orientation portrait video
+    //reels frame 1
+    fun addFrame1ReelsMakerFun(
+        inputVideo: String,
+        imageInput: String,
+        textInput: String,
+        textInputeColor: String,
+        textInputeSize: Int,
+        yPosition: Int,
+        fontPath: String,
+        videoWidth: Int,
+        videoHeight: Int,
+        outputPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+
+        var textScroll =
+            "drawtext=fontfile=$fontPath:text='$textInput':fontsize=$textInputeSize:fontcolor=$textInputeColor:x=w-(mod(5*n\\,w+tw)):y=$yPosition"
+
+        inputs.apply {
+            add("-i")
+            add(inputVideo)
+            add("-i")
+            add(imageInput)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0,$textScroll")
+            add("-c:a")
+            add("copy")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+        return inputs.toArray(arrayOfNulls<String>(inputs.size))
+    }
+
+
+    //this code work only orientation portrait video
+    //reels frame 2
+    fun addFrame2ReelsMakerFun(
+        inputVideo: String,
+        imageInput: String,
+        videoWidth: Int,
+        videoHeight: Int,
+        outputPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+
+
+
+        inputs.apply {
+            add("-i")
+            add(inputVideo)
+            add("-i")
+            add(imageInput)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0")
+            add("-c:a")
+            add("copy")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+        return inputs.toArray(arrayOfNulls<String>(inputs.size))
+    }
+
+
     //frame image set in full screen
 //    fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {
 //        val inputs: ArrayList<String> = ArrayList()

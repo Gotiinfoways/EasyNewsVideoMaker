@@ -28,6 +28,7 @@ import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityHomeBinding
 import com.easynewsvideomaker.easynewsvideomaker.fragment.HomeFragment
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.News_Poster_Activity
+import com.easynewsvideomaker.easynewsvideomaker.reels_maker.ReelsMakerActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
@@ -107,16 +108,13 @@ class HomeActivity : AppCompatActivity() {
 
         }
 
-        homeBinding.layNewsPosterNav.setOnClickListener {
-            var i = Intent(this, News_Poster_Activity::class.java)
-            startActivity(i)
-        }
 
         //  Subscription / Package
         homeBinding.imgSubscription.setOnClickListener {
             var i = Intent(this, SubscriptionActivity::class.java)
             startActivity(i)
         }
+
 
 
         //           user information
@@ -140,12 +138,24 @@ class HomeActivity : AppCompatActivity() {
             }
         })
 
+
+        //  Instagram Reels Maker
+        homeBinding.layInstagramReelsNav.setOnClickListener {
+            var i = Intent(this, ReelsMakerActivity::class.java)
+            startActivity(i)
+        }
+
 //        Subscription
         homeBinding.laySubscriptionNav.setOnClickListener {
             var i = Intent(this, SubscriptionActivity::class.java)
             startActivity(i)
         }
 
+        //  News Poster
+        homeBinding.layNewsPosterNav.setOnClickListener {
+            var i = Intent(this, News_Poster_Activity::class.java)
+            startActivity(i)
+        }
 
 //        Share App
         homeBinding.layShareNav.setOnClickListener {

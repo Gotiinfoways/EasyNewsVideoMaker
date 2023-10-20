@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightblack"
     android:orientation="vertical"
-    tools:context=".fragment.VideoFrame12Fragment">
+    tools:context=".fragment.video_frame.VideoFrame12Fragment">
 
     <FrameLayout
         android:id="@+id/frameView"
@@ -712,7 +712,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_alignParentEnd="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/news_logo_2" />
+                    android:src="@drawable/news_logo" />
 
             </LinearLayout>
 

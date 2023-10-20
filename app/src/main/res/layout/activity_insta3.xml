@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightblack"
+    android:orientation="vertical"
+    tools:context=".reels_maker.Insta_3_Activity">
+
+    <FrameLayout
+        android:id="@+id/frameView"
+        android:layout_width="@dimen/_290sdp"
+        android:layout_height="@dimen/_480sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@drawable/i4">
+
+        <VideoView
+            android:id="@+id/vidView"
+            android:layout_width="@dimen/_285sdp"
+            android:layout_height="@dimen/_310sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_170sdp"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:id="@+id/loutLogo3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end">
+
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_30sdp"
+                android:src="@drawable/news_logo" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:background="@color/white" />
+
+        <LinearLayout
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@color/Red" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:background="@drawable/i3"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtBreakingNews"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="BREAKING NEWS"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtheadingTextReels3"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Additional Text Here"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
+            <LinearLayout
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:background="@color/white"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/txtCityName"
+                    android:layout_width="@dimen/_95sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:text="CITY NAME"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:background="@color/Red"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/txtAdditionalText"
+                android:layout_width="@dimen/_110sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:text="Additional Text Here"
+                android:textAlignment="center"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </FrameLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cdExportBtn"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_110sdp"
+        android:layout_marginBottom="17dp"
+        android:backgroundTint="@color/Red"
+        app:cardCornerRadius="@dimen/_35sdp"
+        app:cardElevation="@dimen/_2sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Export"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

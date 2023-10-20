@@ -1,152 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/lightblack"
-        android:orientation="vertical"
-        tools:context=".fragment.VideoFrame7Fragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightblack"
+    android:orientation="vertical"
+    tools:context=".fragment.video_frame.VideoFrame7Fragment">
 
-        <FrameLayout
-            android:id="@+id/frameView"
-            android:layout_width="@dimen/_300sdp"
-            android:layout_height="@dimen/_195sdp"
-            android:layout_centerHorizontal="true">
+    <FrameLayout
+        android:id="@+id/frameView"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="@dimen/_195sdp"
+        android:layout_centerHorizontal="true">
 
-            <!--        static image-->
+        <!--        static image-->
+        <ImageView
+            android:id="@+id/imgView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_170sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:scaleType="fitXY"
+            android:src="@drawable/image1" />
+
+        <!--news Video-->
+        <VideoView
+            android:id="@+id/vidView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_170sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:scaleType="fitXY"
+            android:visibility="gone" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--            news logo-->
             <ImageView
-                android:id="@+id/imgView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
+                android:id="@+id/imgNewsLoge"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_35sdp"
                 android:scaleType="fitXY"
-                android:src="@drawable/image1" />
+                android:src="@drawable/news_logo" />
 
-            <!--news Video-->
-            <VideoView
-                android:id="@+id/vidView"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_140sdp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginVertical="@dimen/_30sdp"
-                android:scaleType="fitXY"
-                android:visibility="gone" />
+            <!--            News city name-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdCityName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_35sdp"
+                app:cardBackgroundColor="@color/Red"
+                app:cardCornerRadius="@dimen/_20sdp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <!--            news logo-->
-                <ImageView
-                    android:id="@+id/imgNewsLoge"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/news_logo_2" />
-
-                <!--            News city name-->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cdCityName"
+                <TextView
+                    android:id="@+id/txtCityName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    app:cardBackgroundColor="@color/Red"
-                    app:cardCornerRadius="@dimen/_20sdp">
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:text="City Name"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/txtCityName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:text="City Name"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_10sdp"
-                        android:textStyle="bold" />
-                </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdCityName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="@dimen/_135sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/Red"
+                app:cardCornerRadius="@dimen/_20sdp">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cdCityName1"
+                <TextView
+                    android:id="@+id/txtLive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="@dimen/_135sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    app:cardBackgroundColor="@color/Red"
-                    app:cardCornerRadius="@dimen/_20sdp">
+                    android:paddingHorizontal="@dimen/_5sdp"
+                    android:text="Live"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold" />
+            </androidx.cardview.widget.CardView>
 
-                    <TextView
-                        android:id="@+id/txtLive"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingHorizontal="@dimen/_5sdp"
-                        android:text="Live"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_10sdp"
-                        android:textStyle="bold" />
-                </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:id="@+id/linBrakingBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="vertical">
+                <!--              Layer1-->
+                <LinearLayout
+                    android:id="@+id/linLayer1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_gravity="end"
+                    android:background="@color/Red"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_5sdp">
+
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/txtLay1"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:ellipsize="marquee"-->
+                    <!--                        android:marqueeRepeatLimit="marquee_forever"-->
+                    <!--                        android:scrollHorizontally="true"-->
+                    <!--                        android:singleLine="true"-->
+                    <!--                        android:text="ADDITIONAL TEXT HERE"-->
+                    <!--                        android:textColor="@color/white"-->
+                    <!--                        android:textStyle="bold" />-->
+                </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linBrakingBottom"
+                    android:id="@+id/linLayer2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:orientation="vertical">
-                    <!--              Layer1-->
-                    <LinearLayout
-                        android:id="@+id/linLayer1"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_15sdp"
-                        android:layout_gravity="end"
-                        android:background="@color/Red"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingHorizontal="@dimen/_5sdp">
+                    android:layout_height="@dimen/_20sdp"
+                    android:background="@color/blue"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                        <!--                    <TextView-->
-                        <!--                        android:id="@+id/txtLay1"-->
-                        <!--                        android:layout_width="wrap_content"-->
-                        <!--                        android:layout_height="wrap_content"-->
-                        <!--                        android:ellipsize="marquee"-->
-                        <!--                        android:marqueeRepeatLimit="marquee_forever"-->
-                        <!--                        android:scrollHorizontally="true"-->
-                        <!--                        android:singleLine="true"-->
-                        <!--                        android:text="ADDITIONAL TEXT HERE"-->
-                        <!--                        android:textColor="@color/white"-->
-                        <!--                        android:textStyle="bold" />-->
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linLayer2"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_20sdp"
-                        android:background="@color/blue"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <!--                    <TextView-->
-                        <!--                        android:id="@+id/txtLay2"-->
-                        <!--                        android:layout_width="wrap_content"-->
-                        <!--                        android:layout_height="wrap_content"-->
-                        <!--                        android:ellipsize="marquee"-->
-                        <!--                        android:marqueeRepeatLimit="marquee_forever"-->
-                        <!--                        android:scrollHorizontally="true"-->
-                        <!--                        android:singleLine="true"-->
-                        <!--                        android:text="YOUR TITLE GOES HERE"-->
-                        <!--                        android:textColor="@color/white"-->
-                        <!--                        android:textSize="@dimen/_15sdp"-->
-                        <!--                        android:textStyle="bold" />-->
-
-                    </LinearLayout>
+                    <!--                    <TextView-->
+                    <!--                        android:id="@+id/txtLay2"-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:ellipsize="marquee"-->
+                    <!--                        android:marqueeRepeatLimit="marquee_forever"-->
+                    <!--                        android:scrollHorizontally="true"-->
+                    <!--                        android:singleLine="true"-->
+                    <!--                        android:text="YOUR TITLE GOES HERE"-->
+                    <!--                        android:textColor="@color/white"-->
+                    <!--                        android:textSize="@dimen/_15sdp"-->
+                    <!--                        android:textStyle="bold" />-->
 
                 </LinearLayout>
 
-            </RelativeLayout>
+            </LinearLayout>
 
-        </FrameLayout>
+        </RelativeLayout>
+
+    </FrameLayout>
 
     <TextView
         android:id="@+id/txtLay1"
@@ -175,147 +177,147 @@
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold" />
 
-        <LinearLayout
-            android:id="@+id/linBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/frameView"
-            android:gravity="center_vertical"
-            android:visibility="gone">
-            <!--    video ply and pause button-->
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnPlay"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Play" />
-            <!--    Video Volume -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:gravity="center">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Video Volume:"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_15ssp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/imgVolume"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_marginHorizontal="@dimen/_20sdp"
-                    android:padding="@dimen/_5sdp"
-                    android:src="@drawable/ic_volume_off" />
-            </LinearLayout>
-        </LinearLayout>
-        <!--    Video Zoom -->
-        <LinearLayout
-            android:id="@+id/linVideoZoom"
+    <LinearLayout
+        android:id="@+id/linBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/frameView"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+        <!--    video ply and pause button-->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnPlay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linBtn"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:gravity="center"
-            android:visibility="gone">
+            android:text="Play" />
+        <!--    Video Volume -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Video Size:"
+                android:text="Video Volume:"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15ssp"
                 android:textStyle="bold" />
 
-            <SeekBar
-                android:id="@+id/zoomSeekBar"
-                android:layout_width="@dimen/_200sdp"
-                android:layout_height="wrap_content"
-                android:max="200"
-                android:progress="30" />
+            <ImageView
+                android:id="@+id/imgVolume"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_volume_off" />
         </LinearLayout>
+    </LinearLayout>
+    <!--    Video Zoom -->
+    <LinearLayout
+        android:id="@+id/linVideoZoom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linBtn"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:gravity="center"
+        android:visibility="gone">
 
-        <!--        Capture Video & Import_video & Recoding voice -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/linBtn"
-            android:layout_margin="@dimen/_30sdp"
-            android:gravity="center">
+            android:text="Video Size:"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15ssp"
+            android:textStyle="bold" />
 
-            <!--        Capture Video-->
-            <LinearLayout
-                android:id="@+id/linCaptureVideo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+        <SeekBar
+            android:id="@+id/zoomSeekBar"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="wrap_content"
+            android:max="200"
+            android:progress="30" />
+    </LinearLayout>
 
-                <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/capture" />
+    <!--        Capture Video & Import_video & Recoding voice -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linBtn"
+        android:layout_margin="@dimen/_30sdp"
+        android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Capture Video"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-            </LinearLayout>
+        <!--        Capture Video-->
+        <LinearLayout
+            android:id="@+id/linCaptureVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
-            <!--        Import_video-->
-            <LinearLayout
-                android:id="@+id/linImport_video"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/_50sdp"
-                    android:layout_height="@dimen/_50sdp"
-                    android:src="@drawable/import_video" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Import Video"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-
-        <!--    video explore-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cdExploreBtn"
-            android:layout_width="@dimen/_280sdp"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginVertical="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_110sdp"
-            android:layout_marginBottom="17dp"
-            android:backgroundTint="@color/Red"
-            app:cardCornerRadius="@dimen/_35sdp"
-            app:cardElevation="@dimen/_2sdp">
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/capture" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Explore"
+                android:text="Capture Video"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold" />
+        </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
-    </RelativeLayout>
+        <!--        Import_video-->
+        <LinearLayout
+            android:id="@+id/linImport_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/import_video" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Import Video"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <!--    video explore-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cdExploreBtn"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_110sdp"
+        android:layout_marginBottom="17dp"
+        android:backgroundTint="@color/Red"
+        app:cardCornerRadius="@dimen/_35sdp"
+        app:cardElevation="@dimen/_2sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Explore"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

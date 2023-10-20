@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@color/lightblack"
     android:orientation="vertical"
-    tools:context=".fragment.VideoFrame2Fragment">
+    tools:context=".fragment.video_frame.VideoFrame2Fragment">
 
     <FrameLayout
         android:id="@+id/frameView"
         android:layout_width="@dimen/_300sdp"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_195sdp"
         android:layout_centerHorizontal="true">
 
         <!--        static image-->
@@ -19,6 +19,7 @@
             android:id="@+id/imgView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_170sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_gravity="center_horizontal"
             android:scaleType="fitXY"
             android:src="@drawable/image1" />
@@ -27,9 +28,9 @@
         <VideoView
             android:id="@+id/vidView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp"
+            android:layout_height="@dimen/_170sdp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginVertical="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:scaleType="fitXY"
             android:visibility="gone" />
 
@@ -43,9 +44,10 @@
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_35sdp"
                 android:scaleType="fitXY"
-                android:src="@drawable/news_logo_2" />
+                android:src="@drawable/news_logo" />
 
             <!--            News city name-->
             <androidx.cardview.widget.CardView
@@ -53,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_35sdp"
                 app:cardBackgroundColor="@color/Red"
                 app:cardCornerRadius="@dimen/_20sdp">
 
@@ -166,7 +168,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_165sdp"
+        android:layout_marginTop="@dimen/_160sdp"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:scrollHorizontally="true"
@@ -327,7 +329,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Explore"
+            android:text="Export"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />

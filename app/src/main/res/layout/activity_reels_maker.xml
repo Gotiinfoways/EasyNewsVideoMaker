@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightblack"
+    android:orientation="vertical"
+    tools:context=".reels_maker.ReelsMakerActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Red">
+
+        <ImageView
+            android:id="@+id/imgBack"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_arrow_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Insta Reels maker"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp">
+
+            <ImageView
+                android:id="@+id/frame1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_520sdp"
+                android:src="@drawable/reels1" />
+
+            <ImageView
+                android:id="@+id/frame2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_520sdp"
+                android:layout_below="@id/frame1"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/reels2" />
+
+            <ImageView
+                android:id="@+id/frame3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_520sdp"
+                android:layout_below="@id/frame2"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/reels3" />
+
+            <ImageView
+                android:id="@+id/frame4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_520sdp"
+                android:layout_below="@id/frame3"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/reels4" />
+
+            <ImageView
+                android:id="@+id/frame5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_520sdp"
+                android:layout_below="@id/frame4"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/reels5" />
+
+            <ImageView
+                android:id="@+id/frame6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_520sdp"
+                android:layout_below="@id/frame5"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:src="@drawable/reels6" />
+
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>
