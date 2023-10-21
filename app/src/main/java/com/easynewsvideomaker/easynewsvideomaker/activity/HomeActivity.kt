@@ -16,6 +16,7 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -73,11 +74,10 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initView() {
 
-
-        val manager: FragmentManager = supportFragmentManager
-        val transaction: FragmentTransaction = manager.beginTransaction()
-        transaction.replace(R.id.container, HomeFragment())
-        transaction.commit()
+            val manager: FragmentManager = supportFragmentManager
+            val transaction: FragmentTransaction = manager.beginTransaction()
+            transaction.replace(R.id.container, HomeFragment())
+            transaction.commit()
 
         if (SDK_INT >= Build.VERSION_CODES.R) {
             if (checkPermissionVersion()) {
@@ -114,7 +114,6 @@ class HomeActivity : AppCompatActivity() {
             var i = Intent(this, SubscriptionActivity::class.java)
             startActivity(i)
         }
-
 
 
         //           user information

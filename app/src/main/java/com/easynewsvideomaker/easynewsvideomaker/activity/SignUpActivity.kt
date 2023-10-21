@@ -67,62 +67,7 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-    private fun layoutBackgroundChange() {
 
-        signUpBinding.linUserName.setOnClickListener {
-            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_corner)
-            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
-        }
-        signUpBinding.linChannel.setOnClickListener {
-            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_corner)
-            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
-        }
-
-        signUpBinding.linMobileNumber.setOnClickListener {
-            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_corner)
-            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
-        }
-        signUpBinding.linEmail.setOnClickListener {
-            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_corner)
-            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
-        }
-
-        signUpBinding.linPassword.setOnClickListener {
-            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_corner)
-            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
-        }
-
-        signUpBinding.linConPassword.setOnClickListener {
-            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linChannel.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
-            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_corner)
-        }
-
-
-    }
 
     private fun progressDialog() {
         progressDialog = Dialog(this)
@@ -194,7 +139,6 @@ class SignUpActivity : AppCompatActivity() {
 
         signUpBinding.cdSignUpBtn.setOnClickListener {
             var userName = signUpBinding.edtUserName.text.toString()
-            var channelName = signUpBinding.edtChannelName.text.toString()
             var mobilNumber = signUpBinding.edtMobilNumber.text.toString()
             var email = signUpBinding.edtEmail.text.toString()
             var password = signUpBinding.edtPassword.text.toString()
@@ -204,8 +148,6 @@ class SignUpActivity : AppCompatActivity() {
 
             if (userName.isEmpty()) {
                 Toast.makeText(this, "Please Enter User Name", Toast.LENGTH_SHORT).show()
-            } else if (channelName.isEmpty()) {
-                Toast.makeText(this, "Please Enter Channel Name", Toast.LENGTH_SHORT).show()
             } else if (mobilNumber.isEmpty()) {
                 Toast.makeText(this, "Please Enter Mobil Number", Toast.LENGTH_SHORT).show()
             } else if (email.isEmpty()) {
@@ -253,7 +195,6 @@ class SignUpActivity : AppCompatActivity() {
                             // Sign in success, update UI with the signed-in user's information
                             addUserToDatabase(
                                 userName,
-                                channelName,
                                 mobilNumber,
                                 email,
                                 password,
@@ -296,7 +237,6 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun addUserToDatabase(
         userName: String,
-        channelName: String,
         mobilNumber: String,
         email: String,
         password: String,
@@ -308,7 +248,6 @@ class SignUpActivity : AppCompatActivity() {
         mDbRef.child("signup_user").child(uid).setValue(
             SignupUserModel(
                 userName,
-                channelName,
                 mobilNumber,
                 email,
                 password,
@@ -316,6 +255,50 @@ class SignUpActivity : AppCompatActivity() {
                 uid
             )
         )
+
+
+    }
+
+    private fun layoutBackgroundChange() {
+
+        signUpBinding.linUserName.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+
+        signUpBinding.linMobileNumber.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+        signUpBinding.linEmail.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+
+        signUpBinding.linPassword.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_gray_corner)
+        }
+
+        signUpBinding.linConPassword.setOnClickListener {
+            signUpBinding.linUserName.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linMobileNumber.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linEmail.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linPassword.setBackgroundResource(R.drawable.card_gray_corner)
+            signUpBinding.linConPassword.setBackgroundResource(R.drawable.card_corner)
+        }
 
 
     }

@@ -4,25 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Insta_5_Activity"
     android:background="@color/lightblack"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".reels_maker.Insta_5_Activity">
 
     <FrameLayout
         android:id="@+id/frameView"
-        android:layout_width="@dimen/_300sdp"
-        android:layout_height="@dimen/_510sdp"
+        android:layout_width="@dimen/_290sdp"
+        android:layout_height="@dimen/_480sdp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
         android:background="@drawable/i4">
 
         <VideoView
             android:id="@+id/vidView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_370sdp"
-            android:layout_marginTop="@dimen/_20sdp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
             android:scaleType="fitXY"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,12 +31,13 @@
             android:background="@drawable/i__5">
 
             <TextView
-                android:id="@+id/txtBreakingNewsReel5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_30sdp"
+                android:id="@+id/txtBreakingNews"
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_25sdp"
                 android:text="BREAKING NEWS"
+                android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_13sdp"
                 android:textStyle="bold" />
@@ -50,15 +52,22 @@
             android:layout_marginEnd="@dimen/_20sdp"
             android:src="@drawable/i___5" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="@dimen/_32sdp"
-            android:layout_marginEnd="@dimen/_35sdp"
-            android:text="LIVE"
-            android:textColor="@color/white"
-            android:textStyle="italic|bold" />
+            android:layout_marginEnd="@dimen/_30sdp">
+
+            <TextView
+                android:id="@+id/txtLive"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:text="LIVE"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textStyle="italic|bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,20 +76,20 @@
             android:background="@color/Blue" />
 
         <TextView
-            android:id="@+id/txtAdditionalTextReel5"
+            android:id="@+id/txtAdditionalText"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_365sdp"
+            android:layout_marginTop="@dimen/_360sdp"
             android:background="@drawable/i5"
             android:gravity="center"
             android:text="Additional Text Here"
             android:textColor="@color/black" />
 
         <TextView
-            android:id="@+id/txt2BreakingNewsReel5"
+            android:id="@+id/txtBreakingNews2"
             android:layout_width="@dimen/_90sdp"
             android:layout_height="@dimen/_15sdp"
-            android:layout_marginTop="@dimen/_390sdp"
+            android:layout_marginTop="@dimen/_385sdp"
             android:background="@drawable/i5"
             android:backgroundTint="@color/Red"
             android:gravity="center"
@@ -89,7 +98,7 @@
             android:textSize="@dimen/_10sdp" />
 
         <TextView
-            android:id="@+id/txtheadingTextReel5"
+            android:id="@+id/txtAdditionalText2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_30sdp"
@@ -98,7 +107,7 @@
             android:textColor="@color/white" />
 
         <TextView
-            android:id="@+id/txt2AdditionalTextReel5"
+            android:id="@+id/txtAdditionalText3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_30sdp"
@@ -115,7 +124,7 @@
     </FrameLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cdExploreBtn"
+        android:id="@+id/cdExportBtn"
         android:layout_width="@dimen/_280sdp"
         android:layout_height="@dimen/_45sdp"
         android:layout_alignParentBottom="true"
@@ -131,7 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Explore"
+            android:text="Export"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />

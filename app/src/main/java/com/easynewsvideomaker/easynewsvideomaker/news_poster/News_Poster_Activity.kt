@@ -5,9 +5,18 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
+import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityNewsPosterBinding
+import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityNotificationBinding
+import com.easynewsvideomaker.easynewsvideomaker.fragment.HomeFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.PosterFragment
 
 class News_Poster_Activity : AppCompatActivity() {
+
+    lateinit var newsPosterBinding: ActivityNewsPosterBinding
 
     lateinit var post1: ImageView
     lateinit var post2: ImageView
@@ -33,7 +42,12 @@ class News_Poster_Activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_news_poster)
+        newsPosterBinding = ActivityNewsPosterBinding.inflate(layoutInflater)
+        setContentView(newsPosterBinding.root)
+
+        HorizontalLayout()
+
+        fragmentSet(PosterFragment())
 
         post1 = findViewById(R.id.post1)
         post2 = findViewById(R.id.post2)
@@ -157,5 +171,187 @@ class News_Poster_Activity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    private fun fragmentSet(fragment: Fragment) {
+        val manager: FragmentManager = supportFragmentManager
+        val transaction: FragmentTransaction = manager.beginTransaction()
+        transaction.replace(R.id.frameNews, fragment)
+        transaction.commit()
+    }
+
+    private fun HorizontalLayout() {
+        newsPosterBinding.linPoster.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+
+        newsPosterBinding.linNewsPaper.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+
+        newsPosterBinding.linNews.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+
+        newsPosterBinding.linQuotation.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+        newsPosterBinding.linList.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+
+        newsPosterBinding.linBreaking.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+        newsPosterBinding.linTVMedia.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+        newsPosterBinding.linNewsRoom.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+        newsPosterBinding.linAdvt.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+        newsPosterBinding.linWishes.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+        newsPosterBinding.linBA.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_red_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+        }
+        newsPosterBinding.linElection.setOnClickListener {
+            newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNews.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linQuotation.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linList.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBreaking.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linTVMedia.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linNewsRoom.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linAdvt.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
+            newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_red_round)
+        }
     }
 }

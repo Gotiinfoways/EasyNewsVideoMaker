@@ -14,34 +14,29 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
-import android.os.Handler
-import android.os.Message
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.MediaController
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityInsta6Binding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
-import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogFileSaveBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.CallBackOfQuery
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegCallBack
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegQueryExtension
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.LogMessage
+import com.easynewsvideomaker.easynewsvideomaker.reels_maker.reels_export.ReelsExport6Activity
 import yuku.ambilwarna.AmbilWarnaDialog
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.Timer
-import java.util.TimerTask
 
 class Insta_6_Activity : AppCompatActivity() {
-    lateinit var binding : ActivityInsta6Binding
+    lateinit var binding: ActivityInsta6Binding
     private val STORAGE_PERMISSION_CODE = 101
     lateinit var editeDialog: Dialog
     lateinit var dialogEditBinding: DialogEditBinding
@@ -55,16 +50,17 @@ class Insta_6_Activity : AppCompatActivity() {
     lateinit var transparentBitmap: Bitmap
     private var userInputText: String = ""
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInsta6Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
         ffmpegQueryExtension = FFmpegQueryExtension()
         progressDialog()
-        initview()
-
+        frameEdit()
+        initView()
     }
+
     private fun progressDialog() {
         progressDialog = Dialog(this)
         var progressBarBinding = ProgressBarBinding.inflate(layoutInflater)
@@ -77,84 +73,12 @@ class Insta_6_Activity : AppCompatActivity() {
         )
     }
 
-    private fun initview() {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-            1
-        )
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-            1
-        )
-        binding.frameView.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "video/*"
-            startActivityForResult(intent, PICK_VIDEO_REQUEST)
-        }
-
-        // creating object of
-        // media controller class
-        var mediaController = MediaController(this)
-        // sets the anchor view
-        // anchor view for the videoView
-        mediaController.setAnchorView(binding.vidView)
-        // sets the media player to the videoView
-        mediaController.setMediaPlayer(binding.vidView)
-        //volume set
-//        binding.vidView.setOnPreparedListener { mp -> setVolumeControl(mp) }
-        // sets the media controller to the videoView
-        binding.vidView.setMediaController(mediaController);
-
-        binding.cdExploreBtn.setOnClickListener {
-
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                // Permission already granted, perform the operation
-                saveFrameLayoutAsImage()
-            } else {
-                // Permission not granted, request it
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                    STORAGE_PERMISSION_CODE
-                )
-            }
-
-//            saveFrameLayoutAsImage()
+    private fun frameEdit() {
 
 
-            val dialog = Dialog(this@Insta_6_Activity)
-            val dialogBinding = DialogFileSaveBinding.inflate(layoutInflater)
-            dialog.setContentView(dialogBinding.root)
-
-            dialogBinding.btnSubmit.setOnClickListener {
-                var fileName = dialogBinding.edtText.text.toString()
-
-                Log.e("TAG", "file Name: $fileName")
-
-                progressDialog.show()
-//
-                addImageOnVideo(fileName)
-//                mixVideo(fileName)
-                dialog.dismiss()
-            }
-
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))   //dialog box TRANSPARENT
-            dialog.window?.setLayout(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            dialog.show()
-        }
-
-        binding.txtBreakingNewsReel6.setOnClickListener {
-            var text = binding.txtBreakingNewsReel6.text.toString()
-            var textColor = binding.txtBreakingNewsReel6.currentTextColor
+        binding.txtLive.setOnClickListener {
+            var text = binding.txtLive.text.toString()
+            var textColor = binding.txtLive.currentTextColor
             editeDialog(text, textColor)
 
             dialogEditBinding.btnSubmit.setOnClickListener {
@@ -163,17 +87,18 @@ class Insta_6_Activity : AppCompatActivity() {
                 val textColor = dialogEditBinding.viewColor.background
                 if (textColor is ColorDrawable) colorText = textColor.color
 
-                binding.txtBreakingNewsReel6.text = dialogEditBinding.edtText.text.toString()
-                binding.txtBreakingNewsReel6.setTextColor(colorText)
+                binding.txtLive.text = dialogEditBinding.edtText.text.toString()
+                binding.txtLive.setTextColor(colorText)
                 Toast.makeText(this, "Your data is Change", Toast.LENGTH_SHORT).show()
                 editeDialog.dismiss()
 
             }
         }
 
-        binding.txt1BreakingNewsReel6.setOnClickListener {
-            var text = binding.txt1BreakingNewsReel6.text.toString()
-            var textColor = binding.txt1BreakingNewsReel6.currentTextColor
+
+        binding.txtBreakingNews.setOnClickListener {
+            var text = binding.txtBreakingNews.text.toString()
+            var textColor = binding.txtBreakingNews.currentTextColor
             editeDialog(text, textColor)
 
             dialogEditBinding.btnSubmit.setOnClickListener {
@@ -182,17 +107,17 @@ class Insta_6_Activity : AppCompatActivity() {
                 val textColor = dialogEditBinding.viewColor.background
                 if (textColor is ColorDrawable) colorText = textColor.color
 
-                binding.txt1BreakingNewsReel6.text = dialogEditBinding.edtText.text.toString()
-                binding.txt1BreakingNewsReel6.setTextColor(colorText)
+                binding.txtBreakingNews.text = dialogEditBinding.edtText.text.toString()
+                binding.txtBreakingNews.setTextColor(colorText)
                 Toast.makeText(this, "Your data is Change", Toast.LENGTH_SHORT).show()
                 editeDialog.dismiss()
 
             }
         }
 
-        binding.txtheadingTextReel6.setOnClickListener {
-            var text = binding.txtheadingTextReel6.text.toString()
-            var textColor = binding.txtheadingTextReel6.currentTextColor
+        binding.txtBreakingNews2.setOnClickListener {
+            var text = binding.txtBreakingNews2.text.toString()
+            var textColor = binding.txtBreakingNews2.currentTextColor
             editeDialog(text, textColor)
 
             dialogEditBinding.btnSubmit.setOnClickListener {
@@ -201,21 +126,17 @@ class Insta_6_Activity : AppCompatActivity() {
                 val textColor = dialogEditBinding.viewColor.background
                 if (textColor is ColorDrawable) colorText = textColor.color
 
-                userInputText = dialogEditBinding.edtText.text.toString()
-                setText(userInputText, binding.txtheadingTextReel6)
-
-
-//                binding.txtheadingTextReel6.text = dialogEditBinding.edtText.text.toString()
-                binding.txtheadingTextReel6.setTextColor(colorText)
+                binding.txtBreakingNews2.text = dialogEditBinding.edtText.text.toString()
+                binding.txtBreakingNews2.setTextColor(colorText)
                 Toast.makeText(this, "Your data is Change", Toast.LENGTH_SHORT).show()
                 editeDialog.dismiss()
 
             }
         }
 
-        binding.txtAdditionalTextReel6.setOnClickListener {
-            var text = binding.txtAdditionalTextReel6.text.toString()
-            var textColor = binding.txtAdditionalTextReel6.currentTextColor
+        binding.txtAdditionalText1.setOnClickListener {
+            var text = binding.txtAdditionalText1.text.toString()
+            var textColor = binding.txtAdditionalText1.currentTextColor
             editeDialog(text, textColor)
 
             dialogEditBinding.btnSubmit.setOnClickListener {
@@ -224,12 +145,33 @@ class Insta_6_Activity : AppCompatActivity() {
                 val textColor = dialogEditBinding.viewColor.background
                 if (textColor is ColorDrawable) colorText = textColor.color
 
-                userInputText = dialogEditBinding.edtText.text.toString()
-                setText(userInputText, binding.txtAdditionalTextReel6)
+//                userInputText = dialogEditBinding.edtText.text.toString()
+//                setText(userInputText, binding.txtAdditionalText)
 
+                binding.txtAdditionalText1.text = dialogEditBinding.edtText.text.toString()
+                binding.txtAdditionalText1.setTextColor(colorText)
+                Toast.makeText(this, "Your data is Change", Toast.LENGTH_SHORT).show()
+                editeDialog.dismiss()
 
-//                binding.txtAdditionalTextReel6.text = dialogEditBinding.edtText.text.toString()
-                binding.txtAdditionalTextReel6.setTextColor(colorText)
+            }
+        }
+
+        binding.txtAdditionalText2.setOnClickListener {
+            var text = binding.txtAdditionalText2.text.toString()
+            var textColor = binding.txtAdditionalText2.currentTextColor
+            editeDialog(text, textColor)
+
+            dialogEditBinding.btnSubmit.setOnClickListener {
+
+                var colorText = Color.TRANSPARENT
+                val textColor = dialogEditBinding.viewColor.background
+                if (textColor is ColorDrawable) colorText = textColor.color
+
+//                userInputText = dialogEditBinding.edtText.text.toString()
+//                setText(userInputText, binding.txtheadingTextReels3)
+
+                binding.txtAdditionalText2.text = dialogEditBinding.edtText.text.toString()
+                binding.txtAdditionalText2.setTextColor(colorText)
                 Toast.makeText(this, "Your data is Change", Toast.LENGTH_SHORT).show()
                 editeDialog.dismiss()
 
@@ -239,105 +181,6 @@ class Insta_6_Activity : AppCompatActivity() {
 
     }
 
-    private fun setText(userInputText: String, textview: TextView) {
-        val i = IntArray(1)
-        i[0] = 0
-        val length = userInputText.length  // Use the length property of the String
-
-        textview.setText("")
-        val handler = object : Handler() {
-            override fun handleMessage(msg: Message) {
-                super.handleMessage(msg)
-                if (i[0] < length) {
-                    val c = userInputText[i[0]]
-                    textview.append(c.toString())
-                    i[0]++
-                }
-            }
-        }
-
-        val timer = Timer()
-        val taskEverySplitSecond = object : TimerTask() {
-            override fun run() {
-                handler.sendEmptyMessage(0)
-                if (i[0] == length) {
-                    timer.cancel()
-                }
-            }
-        }
-        timer.schedule(taskEverySplitSecond, 1, 200)
-    }
-
-    fun saveFrameLayoutAsImage() {
-        // Create a transparent Bitmap
-        transparentBitmap = Bitmap.createBitmap(
-            binding.frameView.getWidth(),
-            binding.frameView.getHeight(),
-            Bitmap.Config.ARGB_8888
-        )
-        transparentBitmap.eraseColor(Color.TRANSPARENT)
-
-        // Capture the content of the FrameLayout
-        val canvas = Canvas(transparentBitmap)
-        binding.frameView.draw(canvas)
-
-        // Save the Bitmap as an image file
-        val file = File(Environment.getExternalStorageDirectory(), "transparent_image.png")
-        try {
-            val outputStream = FileOutputStream(file)
-            transparentBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-            outputStream.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        convertImagePath = file.absolutePath
-//        // Display the captured image in an ImageView
-//        imageView.setImageBitmap(transparentBitmap)
-    }
-
-    private fun addImageOnVideo(fileName: String) {
-
-
-        var outputPathBrakingNews1 =
-            Environment.getExternalStorageDirectory().path + "/Download/$fileName.mp4"
-
-        var tvInputPathVideo = videoPath!!
-
-        var tvInputPathImage = convertImagePath!!
-
-
-        val query = ffmpegQueryExtension.addImageOnVideo(
-            tvInputPathVideo,
-            tvInputPathImage,
-
-            outputPathBrakingNews1
-        )
-        CallBackOfQuery().callQuery(query, object : FFmpegCallBack {
-            override fun process(logMessage: LogMessage) {
-                Log.d("FFmpeg", logMessage.text)
-            }
-
-            override fun success() {
-
-                progressDialog.dismiss()
-                Toast.makeText(this@Insta_6_Activity, "Video Download Success", Toast.LENGTH_SHORT)
-                    .show()
-            }
-
-            override fun cancel() {
-
-                progressDialog.dismiss()
-                Toast.makeText(this@Insta_6_Activity, "Video Download Cancel", Toast.LENGTH_SHORT)
-                    .show()
-            }
-
-            override fun failed() {
-
-                progressDialog.dismiss()
-                Toast.makeText(this@Insta_6_Activity, "Video Download Fail", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
 
     private fun editeDialog(text: String, textColor: Int) {
         editeDialog = Dialog(this)
@@ -347,6 +190,7 @@ class Insta_6_Activity : AppCompatActivity() {
         dialogEditBinding.edtText.setText(text)
         dialogEditBinding.viewColor.setBackgroundColor(textColor)
 
+        dialogEditBinding.linBackgroundColor.visibility = View.GONE
 
         dialogEditBinding.imgChange1.setOnClickListener {
             val colorPickerDialogue = AmbilWarnaDialog(this, mDefaultColor,
@@ -373,6 +217,16 @@ class Insta_6_Activity : AppCompatActivity() {
         editeDialog.show()
     }
 
+//    var Gallery_Launcher = registerForActivityResult<Intent, ActivityResult>(
+//        ActivityResultContracts.StartActivityForResult()
+//    ) { result ->
+//        if (result.resultCode == RESULT_OK) {
+//            val data = result.data
+//            val uri = data!!.data
+//            binding.logo.setImageURI(uri)
+//        }
+//    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -396,7 +250,6 @@ class Insta_6_Activity : AppCompatActivity() {
         }
 
     }
-
 
 
     private fun getVideoPathFromURI(contentUri: Uri): String? {
@@ -441,17 +294,135 @@ class Insta_6_Activity : AppCompatActivity() {
             grantResults
         )
         if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, perform the operation
-                saveFrameLayoutAsImage()
+            if (grantResults.size > 0
+                && grantResults[0] == PackageManager.PERMISSION_GRANTED
+            ) {
+                Toast.makeText(this, "Storage Permission Granted", Toast.LENGTH_SHORT)
+                    .show()
             } else {
-                // Permission denied, inform the user
-                Toast.makeText(
-                    this,
-                    "Permission denied. You can grant the permission in the app settings.",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this, "Storage Permission Denied", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
+
+    private fun initView() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+            1
+        )
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            1
+        )
+
+        binding.frameView.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK)
+            intent.type = "video/*"
+            startActivityForResult(intent, PICK_VIDEO_REQUEST)
+        }
+
+        // creating object of
+        // media controller class
+        var mediaController = MediaController(this)
+        // sets the anchor view
+        // anchor view for the videoView
+        mediaController.setAnchorView(binding.vidView)
+        // sets the media player to the videoView
+        mediaController.setMediaPlayer(binding.vidView)
+        //volume set
+//        binding.vidView.setOnPreparedListener { mp -> setVolumeControl(mp) }
+        // sets the media controller to the videoView
+        binding.vidView.setMediaController(mediaController);
+
+        binding.vidView.scaleX = 1.05f
+        binding.vidView.scaleY = 1.05f
+
+        binding.cdExportBtn.setOnClickListener {
+
+            if (videoPath == null) {
+
+                Toast.makeText(this, "Please Select Video", Toast.LENGTH_SHORT).show()
+
+            } else {
+                saveFrameLayoutAsImage()
+
+                var i = Intent(this, ReelsExport6Activity::class.java)
+                i.putExtra("videoPath", videoPath)
+                i.putExtra("convertImagePath", convertImagePath)
+                startActivity(i)
+                finish()
+
+            }
+        }
+
+
+//        binding.loutLogo3.setOnClickListener {
+//            val Gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+//            Gallery_Launcher.launch(Gallery)
+//        }
+
+
+    }
+
+//    private fun setText(userInputText: String, textview: TextView) {
+//        val i = IntArray(1)
+//        i[0] = 0
+//        val length = userInputText.length  // Use the length property of the String
+//
+//        textview.setText("")
+//        val handler = object : Handler() {
+//            override fun handleMessage(msg: Message) {
+//                super.handleMessage(msg)
+//                if (i[0] < length) {
+//                    val c = userInputText[i[0]]
+//                    textview.append(c.toString())
+//                    i[0]++
+//                }
+//            }
+//        }
+//
+//        val timer = Timer()
+//        val taskEverySplitSecond = object : TimerTask() {
+//            override fun run() {
+//                handler.sendEmptyMessage(0)
+//                if (i[0] == length) {
+//                    timer.cancel()
+//                }
+//            }
+//        }
+//        timer.schedule(taskEverySplitSecond, 1, 200)
+//    }
+
+
+    fun saveFrameLayoutAsImage() {
+        // Create a transparent Bitmap
+        transparentBitmap = Bitmap.createBitmap(
+            binding.frameView.getWidth(),
+            binding.frameView.getHeight(),
+            Bitmap.Config.ARGB_8888
+        )
+        transparentBitmap.eraseColor(Color.TRANSPARENT)
+
+        // Capture the content of the FrameLayout
+        val canvas = Canvas(transparentBitmap)
+        binding.frameView.draw(canvas)
+
+        // Save the Bitmap as an image file
+        val file = File(Environment.getExternalStorageDirectory(), "transparent_image.png")
+        try {
+            val outputStream = FileOutputStream(file)
+            transparentBitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+            outputStream.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        convertImagePath = file.absolutePath
+//        // Display the captured image in an ImageView
+//        imageView.setImageBitmap(transparentBitmap)
+    }
+
+
 }

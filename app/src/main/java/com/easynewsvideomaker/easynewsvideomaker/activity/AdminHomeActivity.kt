@@ -103,7 +103,6 @@ class AdminHomeActivity : AppCompatActivity() {
             var i = Intent(this, CreateAccountActivity::class.java)
             i.putExtra("id", it.uid)
             i.putExtra("userName", it.userName)
-            i.putExtra("channelName", it.channelName)
             i.putExtra("mobilNumber", it.mobilNumber)
             i.putExtra("email", it.email)
             i.putExtra("password", it.password)

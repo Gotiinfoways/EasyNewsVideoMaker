@@ -51,6 +51,15 @@
         android:theme="@style/Theme.EasyNewsVideoMaker"
         tools:targetApi="31">
         <activity
+            android:name=".activity.UserChannelActivity"
+            android:exported="false" />
+        <activity
+            android:name=".reels_maker.reels_export.ReelsExport6Activity"
+            android:exported="false" />
+        <activity
+            android:name=".reels_maker.reels_export.ReelsExport5Activity"
+            android:exported="false" />
+        <activity
             android:name=".reels_maker.reels_export.ReelsExport4Activity"
             android:exported="false" />
         <activity

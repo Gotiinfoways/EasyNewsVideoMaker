@@ -234,7 +234,7 @@ class Insta_4_Activity : AppCompatActivity() {
         binding.vidView.scaleY = 1.05f
 
         binding.cdExportBtn.setOnClickListener {
-            saveFrameLayoutAsImage()
+
             if (videoPath == null) {
 
                 Toast.makeText(this, "Please Select Video", Toast.LENGTH_SHORT).show()

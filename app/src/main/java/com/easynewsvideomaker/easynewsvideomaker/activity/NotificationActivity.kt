@@ -107,7 +107,6 @@ class NotificationActivity : AppCompatActivity() {
         approveDialog.setContentView(approveDialogBinding.root)
 
         approveDialogBinding.txtUserNameDialog.text = signupUserModel.userName
-        approveDialogBinding.txtChannelNameDialog.text = signupUserModel.channelName
         approveDialogBinding.txtPhoneNumberDialog.text = signupUserModel.mobilNumber
         approveDialogBinding.txtEmailDialog.text = signupUserModel.email
 
@@ -124,7 +123,6 @@ class NotificationActivity : AppCompatActivity() {
             var i = Intent(this, CreateAccountActivity::class.java)
             i.putExtra("id", signupUserModel.uid)
             i.putExtra("userName", signupUserModel.userName)
-            i.putExtra("channelName", signupUserModel.channelName)
             i.putExtra("mobilNumber", signupUserModel.mobilNumber)
             i.putExtra("email", signupUserModel.email)
             i.putExtra("password", signupUserModel.password)

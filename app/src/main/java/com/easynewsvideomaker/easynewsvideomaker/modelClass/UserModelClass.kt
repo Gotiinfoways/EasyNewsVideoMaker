@@ -3,7 +3,6 @@ package com.easynewsvideomaker.easynewsvideomaker.modelClass
 class UserModelClass {
 
     var userName: String? = null
-    var channelName: String? = null
     var mobilNumber: String? = null
     var email: String? = null
     var password: String? = null
@@ -17,7 +16,6 @@ class UserModelClass {
 
     constructor(
         userName: String,
-        channelName: String,
         mobilNumber: String,
         email: String,
         password: String,
@@ -28,7 +26,6 @@ class UserModelClass {
         uid: String
     ) {
         this.userName = userName
-        this.channelName = channelName
         this.mobilNumber = mobilNumber
         this.email = email
         this.password = password
