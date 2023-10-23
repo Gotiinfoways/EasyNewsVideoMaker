@@ -50,6 +50,16 @@ class UserChannelActivity : AppCompatActivity() {
     var imageSelected = 0
     var flag = 0    //  flag variable  define
     lateinit var progressDialog: Dialog
+
+    var uid = ""
+    var userName = ""
+    var mobilNumber = ""
+    var email = ""
+    var password = ""
+    var statDate = ""
+    var endDate = ""
+    var packageType = ""
+    var loginDeviceName = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userChannelBinding = ActivityUserChannelBinding.inflate(layoutInflater)
@@ -63,7 +73,7 @@ class UserChannelActivity : AppCompatActivity() {
         storageReference = FirebaseStorage.getInstance().reference
 
 
-        var uid = intent.getStringExtra("uid")
+        uid = intent.getStringExtra("uid")!!
         var flag = intent.getIntExtra("flag", 0)
         if (uid != null) {
             if (flag == 2) {
@@ -72,9 +82,18 @@ class UserChannelActivity : AppCompatActivity() {
                     .addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             if (dataSnapshot.exists()) {
-                                val user = dataSnapshot.getValue(UserChannelModel::class.java)
+                                val user = dataSnapshot.getValue(UserModelClass::class.java)
                                 if (user != null) {
                                     // User data retrieved successfully
+                                    userName=user.userName
+                                    mobilNumber=user.mobilNumber
+                                    email=user.email
+                                    password=user.password
+                                    statDate=user.startDate
+                                    endDate=user.endDate
+                                    packageType=user.packageType
+                                    loginDeviceName=user.login_device_name
+
                                     channelLogo = user.channelLogo!!
                                     val channelName = user.channelName
                                     val repoterName = user.repoterName
@@ -273,14 +292,15 @@ class UserChannelActivity : AppCompatActivity() {
                         mDbRef.child("signup_user").child(auth.currentUser!!.uid)
                             .setValue(
                                 UserModelClass(
-                                    channelLogo = channelLogo,
-                                    channelName = channelName,
-                                    repoterName = repoterName,
-                                    facebookLink = facebookLink,
-                                    twitterLink = twitterLink,
-                                    instagramLink = instagramLink,
-                                    youtubeLink = youtubeLink,
-                                    websiteLink = websiteLink
+                                    userName,mobilNumber,email,password,statDate,endDate,packageType,loginDeviceName,uid,
+                                     channelLogo,
+                                    channelName,
+                                    repoterName,
+                                  facebookLink,
+                                     twitterLink,
+                                    instagramLink,
+                                     youtubeLink,
+                                     websiteLink
                                 )
                             )
                             .addOnCompleteListener {
