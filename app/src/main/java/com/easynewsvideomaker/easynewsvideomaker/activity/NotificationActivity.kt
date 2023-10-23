@@ -121,12 +121,7 @@ class NotificationActivity : AppCompatActivity() {
             approveDialogBinding.btnDisapprove.setBackgroundResource(R.drawable.button_black_round)
 
             var i = Intent(this, CreateAccountActivity::class.java)
-            i.putExtra("id", signupUserModel.uid)
-            i.putExtra("userName", signupUserModel.userName)
-            i.putExtra("mobilNumber", signupUserModel.mobilNumber)
-            i.putExtra("email", signupUserModel.email)
-            i.putExtra("password", signupUserModel.password)
-            i.putExtra("login_device_name", signupUserModel.login_device_name)
+            i.putExtra("uid", signupUserModel.uid)
             i.putExtra("buttonName", "New Data Insert")
             i.putExtra("signupDataInsert", true)
             startActivity(i)

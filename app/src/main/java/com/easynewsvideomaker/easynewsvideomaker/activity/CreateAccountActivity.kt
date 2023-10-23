@@ -19,8 +19,12 @@ import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityCreateAccou
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ProgressBarBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -84,30 +88,46 @@ class CreateAccountActivity : AppCompatActivity() {
         if (intent != null && intent.hasExtra("signupDataInsert")) {  // data update key access this class
 
             flag = 2
-            var newUserName: String? = intent.getStringExtra("userName")   // key set in variable
-//            var newChannelName: String? =
-//                intent.getStringExtra("channelName")   // key set  variable
-            var newMobilNumber: String? =
-                intent.getStringExtra("mobilNumber")   // key set  variable
-            var newEmail: String? = intent.getStringExtra("email")   // key set  variable
-            var newPassword: String? = intent.getStringExtra("password")   // key set  variable
-            var login_device_name: String? =
-                intent.getStringExtra("login_device_name")   // key set  variable
-
             var newButtonName: String? = intent.getStringExtra("buttonName")   // key set  variable
-            userId = intent.getStringExtra("id")   // key set  variable
+            userId = intent.getStringExtra("uid")   // key set  variable
 
             Log.e("TAG", "RS_ID: " + userId)
-            Log.e("TAG", "RS_Amount: " + newUserName)
 
-            createAccountBinding.edtUserName.setText(newUserName)  //variable set in text view
-//            createAccountBinding.edtChannelName.setText(newChannelName)  //variable set in text view
-            createAccountBinding.edtMobilNumber.setText(newMobilNumber)  //variable set in text view
-            createAccountBinding.edtEmail.setText(newEmail)  //variable set in text view
-            createAccountBinding.edtPassword.setText(newPassword)  //variable set in text view
-            createAccountBinding.edtConfirmPassword.setText(newPassword)  //variable set in text view
-            createAccountBinding.txtLoginDeviceName.setText(login_device_name)  //variable set in text view
-            createAccountBinding.btnSubmitText.text = newButtonName  //variable set in text view
+            // Attach a ValueEventListener to retrieve user data
+            mDbRef.child("signup_user").child(userId!!)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            val user = dataSnapshot.getValue(UserModelClass::class.java)
+                            if (user != null) {
+                                // User data retrieved successfully
+                                val uid = user.uid
+                                val username = user.userName
+                                val mobileNumber = user.mobilNumber
+                                val email = user.email
+                                val password = user.password
+                                val login_device_name = user.login_device_name
+                                // Handle the user data as needed
+
+                                createAccountBinding.edtUserName.setText(username)
+                                createAccountBinding.edtMobilNumber.setText(mobileNumber)  //variable set in text view
+                                createAccountBinding.edtEmail.setText(email)  //variable set in text view
+                                createAccountBinding.edtPassword.setText(password)  //variable set in text view
+                                createAccountBinding.edtConfirmPassword.setText(password)  //variable set in text view
+                                createAccountBinding.txtLoginDeviceName.setText(login_device_name)  //variable set in text view
+                                createAccountBinding.btnSubmitText.text =
+                                    newButtonName  //variable set in text view
+                            }
+                        } else {
+                            // User data does not exist
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        // Handle any errors, such as permission issues or network problems
+                    }
+                })
+
 
         }
 
@@ -119,7 +139,6 @@ class CreateAccountActivity : AppCompatActivity() {
         initView()
 
     }
-
 
 
     private fun progressDialog() {
@@ -210,8 +229,17 @@ class CreateAccountActivity : AppCompatActivity() {
     private fun initView() {
 
         createAccountBinding.imgUserChannel.setOnClickListener {
-            var i=Intent(this,UserChannelActivity::class.java)
+
+//            if (flag == 1) {
+            var i = Intent(this, UserChannelActivity::class.java)
+            i.putExtra("uid", userId)
+            i.putExtra("flag", flag)
             startActivity(i)
+//            }else if (flag  == 2){
+//                var i = Intent(this, UserChannelActivity::class.java)
+//                i.putExtra("uid", userId)
+//                startActivity(i)
+//            }
         }
 
         createAccountBinding.cdSubmitBtn.setOnClickListener {
@@ -317,7 +345,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
 
                 } else if (flag == 2) {
-                     login_device_name = createAccountBinding.txtLoginDeviceName.text.toString()
+                    login_device_name = createAccountBinding.txtLoginDeviceName.text.toString()
                     mDbRef.child("user").child(userId!!).setValue(
                         UserModelClass(
                             userName,
@@ -343,7 +371,7 @@ class CreateAccountActivity : AppCompatActivity() {
 
                                 deleteSignUpUserData(userId!!)
 
-                                mDbRef.child("user").child(userId!!).child("approve").setValue("Approve")
+
                                 progressDialog.dismiss()
                                 var i = Intent(this, AdminHomeActivity::class.java)
                                 startActivity(i)

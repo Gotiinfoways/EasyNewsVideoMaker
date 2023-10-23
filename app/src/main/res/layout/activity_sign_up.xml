@@ -122,7 +122,7 @@
 <!--                android:textColorHint="@color/white" />-->
 
 <!--        </LinearLayout>-->
-        <!--Mobil Number-->
+        <!--Mobile Number-->
         <LinearLayout
             android:id="@+id/linMobileNumber"
             android:layout_width="match_parent"
@@ -147,7 +147,7 @@
                 android:layout_marginStart="@dimen/_20sdp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/poppins"
-                android:hint="Mobil Number"
+                android:hint="Mobile Number"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLines="1"

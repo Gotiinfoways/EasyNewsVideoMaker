@@ -99,64 +99,64 @@
             android:name=".news_poster.News_Poster_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_1_Activity"
+            android:name=".news_poster.poster.Post_1_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_2_Activity"
+            android:name=".news_poster.poster.Post_2_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_3_Activity"
+            android:name=".news_poster.poster.Post_3_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_4_Activity"
+            android:name=".news_poster.poster.Post_4_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_5_Activity"
+            android:name=".news_poster.poster.Post_5_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_6_Activity"
+            android:name=".news_poster.poster.Post_6_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_7_Activity"
+            android:name=".news_poster.poster.Post_7_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_8_Activity"
+            android:name=".news_poster.poster.Post_8_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_9_Activity"
+            android:name=".news_poster.poster.Post_9_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_10_Activity"
+            android:name=".news_poster.poster.Post_10_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_11_Activity"
+            android:name=".news_poster.poster.Post_11_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_12_Activity"
+            android:name=".news_poster.poster.Post_12_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_13_Activity"
+            android:name=".news_poster.poster.Post_13_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_14_Activity"
+            android:name=".news_poster.poster.Post_14_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_15_Activity"
+            android:name=".news_poster.poster.Post_15_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_16_Activity"
+            android:name=".news_poster.poster.Post_16_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_17_Activity"
+            android:name=".news_poster.poster.Post_17_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_18_Activity"
+            android:name=".news_poster.poster.Post_18_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_19_Activity"
+            android:name=".news_poster.poster.Post_19_Activity"
             android:exported="false" />
         <activity
-            android:name=".news_poster.Post_20_Activity"
+            android:name=".news_poster.poster.Post_20_Activity"
             android:exported="false" />
         <activity
             android:name=".activity.SignUpActivity"

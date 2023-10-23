@@ -263,174 +263,176 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/frameNews"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/_10sdp">
 
-            <ImageView
-                android:id="@+id/post1"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:src="@drawable/post1" />
+<!--    <ScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
 
-            <ImageView
-                android:id="@+id/post2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post1"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post2" />
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="@dimen/_10sdp">-->
 
-            <ImageView
-                android:id="@+id/post3"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post2"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post3" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:src="@drawable/post1" />-->
 
-            <ImageView
-                android:id="@+id/post4"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post3"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post4" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post2"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post1"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post2" />-->
 
-            <ImageView
-                android:id="@+id/post5"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post4"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post5" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post2"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post3" />-->
 
-            <ImageView
-                android:id="@+id/post6"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post5"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post6" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post4"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post3"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post4" />-->
 
-            <ImageView
-                android:id="@+id/post7"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post6"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post7" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post5"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post4"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post5" />-->
 
-            <ImageView
-                android:id="@+id/post8"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post7"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post8" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post6"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post5"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post6" />-->
 
-            <ImageView
-                android:id="@+id/post9"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post8"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post9" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post7"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post6"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post7" />-->
 
-            <ImageView
-                android:id="@+id/post10"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post9"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post10" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post8"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post7"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post8" />-->
 
-            <ImageView
-                android:id="@+id/post11"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post10"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post11" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post9"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post8"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post9" />-->
 
-            <ImageView
-                android:id="@+id/post12"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post11"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post12" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post10"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post9"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post10" />-->
 
-            <ImageView
-                android:id="@+id/post13"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post12"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post13" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post11"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post10"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post11" />-->
 
-            <ImageView
-                android:id="@+id/post14"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post13"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post14" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post12"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post11"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post12" />-->
 
-            <ImageView
-                android:id="@+id/post15"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post14"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post15" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post13"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post12"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post13" />-->
 
-            <ImageView
-                android:id="@+id/post16"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post15"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post16" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post14"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post13"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post14" />-->
 
-            <ImageView
-                android:id="@+id/post17"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post16"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post17" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post15"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post14"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post15" />-->
 
-            <ImageView
-                android:id="@+id/post18"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post17"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post18" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post16"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post15"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post16" />-->
 
-            <ImageView
-                android:id="@+id/post19"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post18"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post19" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post17"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post16"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post17" />-->
 
-            <ImageView
-                android:id="@+id/post20"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_300sdp"
-                android:layout_below="@id/post19"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:src="@drawable/post20" />
+<!--            <ImageView-->
+<!--                android:id="@+id/post18"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post17"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post18" />-->
 
-        </RelativeLayout>
-    </ScrollView>
+<!--            <ImageView-->
+<!--                android:id="@+id/post19"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post18"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post19" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/post20"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_300sdp"-->
+<!--                android:layout_below="@id/post19"-->
+<!--                android:layout_marginTop="@dimen/_5sdp"-->
+<!--                android:src="@drawable/post20" />-->
+
+<!--        </RelativeLayout>-->
+<!--    </ScrollView>-->
 
 </LinearLayout>

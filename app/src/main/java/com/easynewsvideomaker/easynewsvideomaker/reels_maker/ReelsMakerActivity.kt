@@ -35,8 +35,7 @@ class ReelsMakerActivity : AppCompatActivity() {
     private fun initView() {
 
         reelsMakerBinding.imgBack.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+          onBackPressed()
         }
 
 

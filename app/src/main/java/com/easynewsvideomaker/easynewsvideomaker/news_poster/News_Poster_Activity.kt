@@ -12,175 +12,38 @@ import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityNewsPosterBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityNotificationBinding
 import com.easynewsvideomaker.easynewsvideomaker.fragment.HomeFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.AdvtFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.BAFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.BreakingFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.ElcationFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.ListFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.NewsFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.NewsPaperFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.NewsRoomFragment
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.PosterFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.QuotationFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.TvMediaFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.WishesFragment
 
 class News_Poster_Activity : AppCompatActivity() {
 
     lateinit var newsPosterBinding: ActivityNewsPosterBinding
-
-    lateinit var post1: ImageView
-    lateinit var post2: ImageView
-    lateinit var post3: ImageView
-    lateinit var post4: ImageView
-    lateinit var post5: ImageView
-    lateinit var post6: ImageView
-    lateinit var post7: ImageView
-    lateinit var post8: ImageView
-    lateinit var post9: ImageView
-    lateinit var post10: ImageView
-    lateinit var post11: ImageView
-    lateinit var post12: ImageView
-    lateinit var post13: ImageView
-    lateinit var post14: ImageView
-    lateinit var post15: ImageView
-    lateinit var post16: ImageView
-    lateinit var post17: ImageView
-    lateinit var post18: ImageView
-    lateinit var post19: ImageView
-    lateinit var post20: ImageView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         newsPosterBinding = ActivityNewsPosterBinding.inflate(layoutInflater)
         setContentView(newsPosterBinding.root)
 
-        HorizontalLayout()
+        horizontalLayout()
 
-        fragmentSet(PosterFragment())
-
-        post1 = findViewById(R.id.post1)
-        post2 = findViewById(R.id.post2)
-        post3 = findViewById(R.id.post3)
-        post4 = findViewById(R.id.post4)
-        post5 = findViewById(R.id.post5)
-        post6 = findViewById(R.id.post6)
-        post7 = findViewById(R.id.post7)
-        post8 = findViewById(R.id.post8)
-        post9 = findViewById(R.id.post9)
-        post10 = findViewById(R.id.post10)
-        post11 = findViewById(R.id.post11)
-        post12 = findViewById(R.id.post12)
-        post13 = findViewById(R.id.post13)
-        post14 = findViewById(R.id.post14)
-        post15 = findViewById(R.id.post15)
-        post16 = findViewById(R.id.post16)
-        post17 = findViewById(R.id.post17)
-        post18 = findViewById(R.id.post18)
-        post19 = findViewById(R.id.post19)
-        post20 = findViewById(R.id.post20)
-
-
-        post1.setOnClickListener(View.OnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_1_Activity::class.java)
-            startActivity(intent)
-        })
-
-        post2.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_2_Activity::class.java)
-            startActivity(intent)
+        newsPosterBinding.imgBack.setOnClickListener {
+            onBackPressed()
         }
-
-        post3.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_3_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post4.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_4_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post5.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_5_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post6.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_6_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post7.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_7_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post8.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_8_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post9.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_9_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post10.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_10_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post11.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_11_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post12.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_12_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post13.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_13_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post14.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_14_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post15.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_15_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post16.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_16_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post17.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_17_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post18.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_18_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post19.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_19_Activity::class.java)
-            startActivity(intent)
-        }
-
-        post20.setOnClickListener {
-            val intent = Intent(this@News_Poster_Activity, Post_20_Activity::class.java)
-            startActivity(intent)
-        }
-
+        fragmentSet(PosterFragment())  // fragment set
     }
 
-    private fun fragmentSet(fragment: Fragment) {
-        val manager: FragmentManager = supportFragmentManager
-        val transaction: FragmentTransaction = manager.beginTransaction()
-        transaction.replace(R.id.frameNews, fragment)
-        transaction.commit()
-    }
 
-    private fun HorizontalLayout() {
+    private fun horizontalLayout() {
         newsPosterBinding.linPoster.setOnClickListener {
             newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_red_round)
             newsPosterBinding.linNewsPaper.setBackgroundResource(R.drawable.news_black_round)
@@ -194,6 +57,8 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(PosterFragment())  // fragment set
         }
 
         newsPosterBinding.linNewsPaper.setOnClickListener {
@@ -209,6 +74,8 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(NewsPaperFragment())  // fragment set
         }
 
         newsPosterBinding.linNews.setOnClickListener {
@@ -224,6 +91,8 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(NewsFragment())  // fragment set
         }
 
         newsPosterBinding.linQuotation.setOnClickListener {
@@ -239,6 +108,8 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(QuotationFragment())  // fragment set
         }
         newsPosterBinding.linList.setOnClickListener {
             newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
@@ -253,6 +124,8 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(ListFragment())  // fragment set
         }
 
         newsPosterBinding.linBreaking.setOnClickListener {
@@ -268,6 +141,8 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(BreakingFragment())  // fragment set
         }
         newsPosterBinding.linTVMedia.setOnClickListener {
             newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
@@ -282,6 +157,9 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(TvMediaFragment())  // fragment set
+
         }
         newsPosterBinding.linNewsRoom.setOnClickListener {
             newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
@@ -296,6 +174,8 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(NewsRoomFragment())  // fragment set
         }
         newsPosterBinding.linAdvt.setOnClickListener {
             newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
@@ -310,6 +190,8 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(AdvtFragment())  // fragment set
         }
         newsPosterBinding.linWishes.setOnClickListener {
             newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
@@ -324,6 +206,8 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_red_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(WishesFragment())  // fragment set
         }
         newsPosterBinding.linBA.setOnClickListener {
             newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
@@ -338,6 +222,8 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_red_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_black_round)
+
+            fragmentSet(BAFragment())  // fragment set
         }
         newsPosterBinding.linElection.setOnClickListener {
             newsPosterBinding.linPoster.setBackgroundResource(R.drawable.news_black_round)
@@ -352,6 +238,16 @@ class News_Poster_Activity : AppCompatActivity() {
             newsPosterBinding.linWishes.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linBA.setBackgroundResource(R.drawable.news_black_round)
             newsPosterBinding.linElection.setBackgroundResource(R.drawable.news_red_round)
+
+            fragmentSet(ElcationFragment())  // fragment set
         }
+    }
+
+
+    private fun fragmentSet(fragment: Fragment) {
+        val manager: FragmentManager = supportFragmentManager
+        val transaction: FragmentTransaction = manager.beginTransaction()
+        transaction.replace(R.id.frameNews, fragment)
+        transaction.commit()
     }
 }

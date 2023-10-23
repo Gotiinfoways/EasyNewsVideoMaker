@@ -39,10 +39,9 @@ class SignUpActivity : AppCompatActivity() {
     var flag = 0    //  flag variable  define
 
 
-
     lateinit var progressDialog: Dialog
 
-    lateinit var android_id:String
+    lateinit var android_id: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         signUpBinding = ActivitySignUpBinding.inflate(layoutInflater)
@@ -65,8 +64,6 @@ class SignUpActivity : AppCompatActivity() {
         passwordToggleVisible()
         initView()
     }
-
-
 
 
     private fun progressDialog() {
@@ -128,15 +125,6 @@ class SignUpActivity : AppCompatActivity() {
     private fun initView() {
 
 
-        var sharedPreferences = getSharedPreferences("MySharePref", AppCompatActivity.MODE_PRIVATE)
-        if (sharedPreferences.getBoolean("isLogin", false) == true) {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            finish()
-
-        }
-
-
         signUpBinding.cdSignUpBtn.setOnClickListener {
             var userName = signUpBinding.edtUserName.text.toString()
             var mobilNumber = signUpBinding.edtMobilNumber.text.toString()
@@ -144,7 +132,7 @@ class SignUpActivity : AppCompatActivity() {
             var password = signUpBinding.edtPassword.text.toString()
             var confPassword = signUpBinding.edtConfirmPassword.text.toString()
 //            var login_device_name = Build.MODEL
-            var login_device_name =  android_id
+            var login_device_name = android_id
 
             if (userName.isEmpty()) {
                 Toast.makeText(this, "Please Enter User Name", Toast.LENGTH_SHORT).show()
@@ -188,46 +176,44 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "Password do not match", Toast.LENGTH_SHORT).show()
 
             } else {
-                progressDialog.show()
-                auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            addUserToDatabase(
-                                userName,
-                                mobilNumber,
-                                email,
-                                password,
-                                login_device_name,
-                                auth.currentUser?.uid!!
-                            )
+//                progressDialog.show()
+//                auth.createUserWithEmailAndPassword(email, password)
+//                    .addOnCompleteListener(this) { task ->
+//                        if (task.isSuccessful) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            addUserToDatabase(
+//                                userName,
+//                                mobilNumber,
+//                                email,
+//                                password,
+//                                login_device_name,
+//                                auth.currentUser?.uid!!
+//                            )
+//
+//
+//
+//                            Toast.makeText(this, "SignUp Success", Toast.LENGTH_SHORT)
+//                                .show()
+//
+//                            progressDialog.dismiss()
 
-
-                            var myEdit: SharedPreferences.Editor =
-                                sharedPreferences.edit()
-                            myEdit.putBoolean("isLogin", true)
-                            myEdit.putString("email", email)
-
-                            myEdit.commit()
-
-
-                            Toast.makeText(this, "SignUp Success", Toast.LENGTH_SHORT)
-                                .show()
-
-                            progressDialog.dismiss()
-
-                            var i = Intent(this, HomeActivity::class.java)
-                            i.putExtra("signupPage", "signup_success")
-                            startActivity(i)
-                            finish()
-                        }
-                    }.addOnFailureListener {
-                        Log.e("TAG", "SignUp:Fail  " + it.message)
-                        Toast.makeText(this, "SignUp Fail", Toast.LENGTH_SHORT).show()
-                        progressDialog.dismiss()
-                    }
-
+                var i = Intent(this, UserChannelActivity::class.java)
+                i.putExtra("signupPage", true)
+                i.putExtra("userName",userName)
+                i.putExtra("mobilNumber",mobilNumber)
+                i.putExtra("email",email)
+                i.putExtra("password",password)
+                i.putExtra("login_device_name",login_device_name)
+                startActivity(i)
+                finish()
             }
+//                    }.addOnFailureListener {
+//                        Log.e("TAG", "SignUp:Fail  " + it.message)
+//                        Toast.makeText(this, "SignUp Fail", Toast.LENGTH_SHORT).show()
+//                        progressDialog.dismiss()
+//                    }
+
+//            }
 
         }
 
@@ -235,29 +221,29 @@ class SignUpActivity : AppCompatActivity() {
     }
 
 
-    private fun addUserToDatabase(
-        userName: String,
-        mobilNumber: String,
-        email: String,
-        password: String,
-        login_device_name: String,
-        uid: String,
-    ) {
-
-
-        mDbRef.child("signup_user").child(uid).setValue(
-            SignupUserModel(
-                userName,
-                mobilNumber,
-                email,
-                password,
-                login_device_name,
-                uid
-            )
-        )
-
-
-    }
+//    private fun addUserToDatabase(
+//        userName: String,
+//        mobilNumber: String,
+//        email: String,
+//        password: String,
+//        login_device_name: String,
+//        uid: String,
+//    ) {
+//
+//
+//        mDbRef.child("signup_user").child(uid).setValue(
+//            SignupUserModel(
+//                userName,
+//                mobilNumber,
+//                email,
+//                password,
+//                login_device_name,
+//                uid
+//            )
+//        )
+//
+//
+//    }
 
     private fun layoutBackgroundChange() {
 
