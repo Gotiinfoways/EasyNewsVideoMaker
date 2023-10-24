@@ -46,20 +46,20 @@ class UserChannelActivity : AppCompatActivity() {
     lateinit var storageReference: StorageReference
 
     lateinit var filePath: Uri
-    var channelLogo: String = ""
+    var channelLogo: String? = null
     var imageSelected = 0
     var flag = 0    //  flag variable  define
     lateinit var progressDialog: Dialog
 
-    var uid = ""
-    var userName = ""
-    var mobilNumber = ""
-    var email = ""
-    var password = ""
-    var statDate = ""
-    var endDate = ""
-    var packageType = ""
-    var loginDeviceName = ""
+    var uid: String? = null
+    var userName: String? = null
+    var mobilNumber: String? = null
+    var email: String? = null
+    var password: String? = null
+    var startDate: String? = null
+    var endDate: String? = null
+    var packageType: String? = null
+    var loginDeviceName: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userChannelBinding = ActivityUserChannelBinding.inflate(layoutInflater)
@@ -73,28 +73,80 @@ class UserChannelActivity : AppCompatActivity() {
         storageReference = FirebaseStorage.getInstance().reference
 
 
-        uid = intent.getStringExtra("uid")!!
-        var flag = intent.getIntExtra("flag", 0)
+        uid = intent.getStringExtra("uid")
+        flag = intent.getIntExtra("flag", 0)
+        userName = intent.getStringExtra("userName")
+        mobilNumber = intent.getStringExtra("mobilNumber")
+        email = intent.getStringExtra("email")
+        password = intent.getStringExtra("password")
+        startDate = intent.getStringExtra("startDate")
+        endDate = intent.getStringExtra("endDate")
+        packageType = intent.getStringExtra("packageType")
+
+
+        Log.e("TAG", "GetData: $startDate  $endDate  $packageType")
         if (uid != null) {
-            if (flag == 2) {
+            if (flag == 1) {
                 // Attach a ValueEventListener to retrieve user data
-                mDbRef.child("signup_user").child(uid)
+                mDbRef.child("user").child(uid!!)
                     .addValueEventListener(object : ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             if (dataSnapshot.exists()) {
                                 val user = dataSnapshot.getValue(UserModelClass::class.java)
                                 if (user != null) {
                                     // User data retrieved successfully
-                                    userName=user.userName
-                                    mobilNumber=user.mobilNumber
-                                    email=user.email
-                                    password=user.password
-                                    statDate=user.startDate
-                                    endDate=user.endDate
-                                    packageType=user.packageType
-                                    loginDeviceName=user.login_device_name
+                                    userName = user.userName!!
+                                    mobilNumber = user.mobilNumber!!
+                                    email = user.email!!
+                                    password = user.password!!
+                                    loginDeviceName = user.login_device_name!!
 
-                                    channelLogo = user.channelLogo!!
+                                    channelLogo = user.channelLogo
+                                    val channelName = user.channelName
+                                    val repoterName = user.repoterName
+                                    val facebookLink = user.facebookLink
+                                    val twitterLink = user.twitterLink
+                                    val instagramLink = user.instagramLink
+                                    val youtubeLink = user.youtubeLink
+                                    val websiteLink = user.websiteLink
+                                    // Handle the user data as needed
+
+//                                userChannelBinding.edtUserName.setText(channelLogo)
+                                    Glide.with(this@UserChannelActivity).load(channelLogo)
+                                        .into(userChannelBinding.imgUserLogo);
+                                    userChannelBinding.edtChannelName.setText(channelName)  //variable set in text view
+                                    userChannelBinding.edtRepoterName.setText(repoterName)  //variable set in text view
+                                    userChannelBinding.edtFacebook.setText(facebookLink)  //variable set in text view
+                                    userChannelBinding.edtTwitter.setText(twitterLink)  //variable set in text view
+                                    userChannelBinding.edtInstagram.setText(instagramLink)  //variable set in text view
+                                    userChannelBinding.edtYoutube.setText(youtubeLink)  //variable set in text view
+                                    userChannelBinding.edtWebsite.setText(websiteLink)  //variable set in text view
+                                }
+                            } else {
+                                // User data does not exist
+                            }
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {
+                            // Handle any errors, such as permission issues or network problems
+                        }
+                    })
+            } else if (flag == 2) {
+                // Attach a ValueEventListener to retrieve user data
+                mDbRef.child("signup_user").child(uid!!)
+                    .addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            if (dataSnapshot.exists()) {
+                                val user = dataSnapshot.getValue(UserModelClass::class.java)
+                                if (user != null) {
+                                    // User data retrieved successfully
+                                    userName = user.userName!!
+                                    mobilNumber = user.mobilNumber!!
+                                    email = user.email!!
+                                    password = user.password!!
+                                    loginDeviceName = user.login_device_name!!
+
+                                    channelLogo = user.channelLogo
                                     val channelName = user.channelName
                                     val repoterName = user.repoterName
                                     val facebookLink = user.facebookLink
@@ -125,6 +177,13 @@ class UserChannelActivity : AppCompatActivity() {
                         }
                     })
             }
+        } else if (intent != null && intent.hasExtra("signupPage")) {
+            flag = 3
+            userName = intent.getStringExtra("userName")!!
+            mobilNumber = intent.getStringExtra("mobilNumber")!!
+            email = intent.getStringExtra("email")!!
+            password = intent.getStringExtra("password")!!
+            loginDeviceName = intent.getStringExtra("login_device_name")!!
         }
         progressDialog()
         initView()
@@ -204,6 +263,10 @@ class UserChannelActivity : AppCompatActivity() {
             finish()
 
         }
+
+        userChannelBinding.imgBack.setOnClickListener {
+            onBackPressed()
+        }
         userChannelBinding.linUserLogo.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             gallery_Launcher.launch(intent)
@@ -228,7 +291,7 @@ class UserChannelActivity : AppCompatActivity() {
             var websiteLink = userChannelBinding.edtWebsite.text.toString()
 
 
-            if (imageSelected == 1) {
+            if (channelLogo != null) {
                 if (channelName.isEmpty()) {
                     Toast.makeText(this, "Please Enter Channel Name", Toast.LENGTH_SHORT).show()
                 } else if (repoterName.isEmpty()) {
@@ -236,14 +299,138 @@ class UserChannelActivity : AppCompatActivity() {
                 } else {
 
 //                if (flag == 1) {
-                    if (intent != null && intent.hasExtra("signupPage")) {
+//                    if (intent != null && intent.hasExtra("signupPage")) {
+//
+//                        var userName = intent.getStringExtra("userName")
+//                        var mobilNumber = intent.getStringExtra("mobilNumber")
+//                        var email = intent.getStringExtra("email")
+//                        var password = intent.getStringExtra("password")
+//                        var login_device_name = intent.getStringExtra("login_device_name")
 
-                        var userName = intent.getStringExtra("userName")
-                        var mobilNumber = intent.getStringExtra("mobilNumber")
-                        var email = intent.getStringExtra("email")
-                        var password = intent.getStringExtra("password")
-                        var login_device_name = intent.getStringExtra("login_device_name")
+//                        progressDialog.show()
+//                        auth.createUserWithEmailAndPassword(email!!, password!!)
+//                            .addOnCompleteListener(this) { task ->
+//                                if (task.isSuccessful) {
+//                                    // Sign in success, update UI with the signed-in user's information
+//                                    addUserToDatabase(
+//                                        userName!!,
+//                                        mobilNumber!!,
+//                                        email,
+//                                        password,
+//                                        login_device_name!!,
+//                                        auth.currentUser?.uid!!,
+//                                        channelLogo,
+//                                        channelName,
+//                                        repoterName,
+//                                        facebookLink,
+//                                        twitterLink,
+//                                        instagramLink,
+//                                        youtubeLink,
+//                                        websiteLink
+//
+//                                    )
+//
+//
+//                                    var myEdit: SharedPreferences.Editor =
+//                                        sharedPreferences.edit()
+//                                    myEdit.putBoolean("isLogin", true)
+//                                    myEdit.commit()
+//
+//                                    Toast.makeText(this, "SignUp Success", Toast.LENGTH_SHORT)
+//                                        .show()
+//
+//                                    progressDialog.dismiss()
+//
+//                                    var i = Intent(this, HomeActivity::class.java)
+//                                    startActivity(i)
+//                                    finish()
+//                                }
+//                            }.addOnFailureListener {
+//                                Log.e("TAG", "SignUp:Fail  " + it.message)
+//                                Toast.makeText(this, "SignUp Fail", Toast.LENGTH_SHORT).show()
+//                                progressDialog.dismiss()
+//                            }
+//                    }
+                    if (flag == 1) {
+                        progressDialog.show()
+                        mDbRef.child("user").child(uid!!).setValue(
+                            UserModelClass(
+                                userName!!,
+                                mobilNumber!!,
+                                email!!,
+                                password!!,
+                                startDate!!,
+                                endDate!!,
+                                packageType!!,
+                                loginDeviceName!!,
+                                uid!!,
+                                channelLogo!!,
+                                channelName,
+                                repoterName,
+                                facebookLink,
+                                twitterLink,
+                                instagramLink,
+                                youtubeLink,
+                                websiteLink
+                            )
+                        )
+                            .addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    Toast.makeText(
+                                        this,
+                                        "Record Updated Successfully",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
 
+                                    progressDialog.dismiss()
+                                    var i = Intent(this, AdminHomeActivity::class.java)
+                                    startActivity(i)
+                                }
+                            }.addOnFailureListener {
+                                Log.e("TAG", "initView: " + it.message)
+                                progressDialog.dismiss()
+                            }
+                    } else if (flag == 2) {
+                        mDbRef.child("user").child(uid!!).setValue(
+                            UserModelClass(
+                                userName!!,
+                                mobilNumber!!,
+                                email!!,
+                                password!!,
+                                startDate!!,
+                                endDate!!,
+                                packageType!!,
+                                loginDeviceName!!,
+                                uid!!,
+                                channelLogo!!,
+                                channelName,
+                                repoterName,
+                                facebookLink,
+                                twitterLink,
+                                instagramLink,
+                                youtubeLink,
+                                websiteLink
+                            )
+                        )
+                            .addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    Toast.makeText(
+                                        this,
+                                        "Record Updated Successfully",
+                                        Toast.LENGTH_SHORT
+                                    )
+                                        .show()
+                                    deleteSignUpUserData(uid!!)
+                                    progressDialog.dismiss()
+                                    var i = Intent(this, AdminHomeActivity::class.java)
+                                    startActivity(i)
+                                }
+                            }.addOnFailureListener {
+                                Log.e("TAG", "initView: " + it.message)
+                                progressDialog.dismiss()
+                            }
+                    } else if (flag == 3) {
                         progressDialog.show()
                         auth.createUserWithEmailAndPassword(email!!, password!!)
                             .addOnCompleteListener(this) { task ->
@@ -252,11 +439,11 @@ class UserChannelActivity : AppCompatActivity() {
                                     addUserToDatabase(
                                         userName!!,
                                         mobilNumber!!,
-                                        email,
-                                        password,
-                                        login_device_name!!,
+                                        email!!,
+                                        password!!,
+                                        loginDeviceName!!,
                                         auth.currentUser?.uid!!,
-                                        channelLogo,
+                                        channelLogo!!,
                                         channelName,
                                         repoterName,
                                         facebookLink,
@@ -287,48 +474,6 @@ class UserChannelActivity : AppCompatActivity() {
                                 Toast.makeText(this, "SignUp Fail", Toast.LENGTH_SHORT).show()
                                 progressDialog.dismiss()
                             }
-                    } else {
-                        progressDialog.show()
-                        mDbRef.child("signup_user").child(auth.currentUser!!.uid)
-                            .setValue(
-                                UserModelClass(
-                                    userName,mobilNumber,email,password,statDate,endDate,packageType,loginDeviceName,uid,
-                                     channelLogo,
-                                    channelName,
-                                    repoterName,
-                                  facebookLink,
-                                     twitterLink,
-                                    instagramLink,
-                                     youtubeLink,
-                                     websiteLink
-                                )
-                            )
-                            .addOnCompleteListener {
-                                if (it.isSuccessful) {
-
-
-                                    var myEdit: SharedPreferences.Editor =
-                                        sharedPreferences.edit()
-                                    myEdit.putBoolean("isLogin", true)
-
-                                    myEdit.commit()
-
-
-                                    Toast.makeText(
-                                        this,
-                                        "Record Updated Successfully",
-                                        Toast.LENGTH_SHORT
-                                    )
-                                        .show()
-
-                                    progressDialog.dismiss()
-                                    var i = Intent(this, AdminHomeActivity::class.java)
-                                    startActivity(i)
-                                }
-                            }.addOnFailureListener {
-                                Log.e("TAG", "initView: " + it.message)
-                                progressDialog.dismiss()
-                            }
 
 
                     }
@@ -339,6 +484,19 @@ class UserChannelActivity : AppCompatActivity() {
             }
 
         }
+
+    }
+
+    private fun deleteSignUpUserData(userId: String) {
+
+        mDbRef.child("signup_user").child(userId).removeValue()
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+
+                }
+            }.addOnFailureListener {
+                Log.e("TAG", "initView: " + it.message)
+            }
 
     }
 

@@ -78,11 +78,11 @@
                 android:paddingVertical="@dimen/_10sdp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgUserDp"
+                    android:id="@+id/imgUserLogo"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:background="@drawable/user_round"
-                    android:padding="@dimen/_5sdp"
+                    android:padding="@dimen/_2sdp"
                     android:src="@drawable/user" />
 
 

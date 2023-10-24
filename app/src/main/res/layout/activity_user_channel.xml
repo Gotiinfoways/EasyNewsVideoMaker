@@ -192,7 +192,7 @@
                     android:fontFamily="@font/poppins"
                     android:hint="Facebook (Optional)"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
@@ -225,7 +225,7 @@
                     android:fontFamily="@font/poppins"
                     android:hint="Twitter (Optional)"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
@@ -258,7 +258,7 @@
                     android:fontFamily="@font/poppins"
                     android:hint="Instagram (Optional)"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
@@ -291,7 +291,7 @@
                     android:fontFamily="@font/poppins"
                     android:hint="Youtube (Optional)"
                     android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />
@@ -323,8 +323,8 @@
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/poppins"
                     android:hint="Website (Optional)"
-                    android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
                     android:maxLines="1"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white" />

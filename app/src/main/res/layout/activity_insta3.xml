@@ -32,7 +32,7 @@
             android:layout_gravity="end">
 
             <ImageView
-                android:id="@+id/logo"
+                android:id="@+id/imgNewsLoge"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_20sdp"

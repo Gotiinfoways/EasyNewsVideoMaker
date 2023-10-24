@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="serif"
-                    tools:text="xyz@gmail.com" />
+                    tools:text="myChannel" />
             </LinearLayout>
             <!--            Phone Number-->
             <LinearLayout

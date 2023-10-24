@@ -1,7 +1,9 @@
 package com.easynewsvideomaker.easynewsvideomaker.fragment.video_export
 
 import android.app.Dialog
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -41,6 +43,7 @@ class VideoExport1Fragment : Fragment() {
 
     lateinit var ffmpegQueryExtension: FFmpegQueryExtension
 
+    var outputPath: String? = null
     var videoPath: String? = null
     var convertImagePath: String? = null
     var centerTextScroll: String? = null
@@ -75,6 +78,7 @@ class VideoExport1Fragment : Fragment() {
 
         progressDialog()
         initView()
+        shareVideo()
         return exportBinding.root
     }
 
@@ -198,7 +202,7 @@ class VideoExport1Fragment : Fragment() {
     private fun addVideoEditFun(fileName: String) {
 
 
-        var outputPath =
+        outputPath =
             Environment.getExternalStorageDirectory().path + "/Easy News Maker/$fileName.mp4"
 
         var tvInputPathVideo = videoPath!!
@@ -250,7 +254,7 @@ class VideoExport1Fragment : Fragment() {
             textInputeSize,
             videoWidth,
             videoHeight,
-            outputPath, fontPath!!
+            outputPath!!, fontPath!!
         )
         CallBackOfQuery().callQuery(query, object : FFmpegCallBack {
             override fun process(logMessage: LogMessage) {
@@ -397,7 +401,79 @@ class VideoExport1Fragment : Fragment() {
         }
     }
 
+    private fun shareVideo() {
 
+        exportBinding.linInstagram.setOnClickListener {
+
+            if (buttonClick == 1) {
+                val uri = Uri.parse(outputPath)
+                val videoshare = Intent(Intent.ACTION_SEND)
+                videoshare.type = "*/*"
+                videoshare.setPackage("com.instagram.android")
+                videoshare.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                videoshare.putExtra(Intent.EXTRA_STREAM, uri)
+                try {
+                    // Start the specific social application
+                    startActivity(videoshare)
+                } catch (ex: ActivityNotFoundException) {
+                    // The application does not exist
+                    Toast.makeText(context, "app have not been installed.", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                Toast.makeText(context, "Please First Save Videos", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        exportBinding.linFacebook.setOnClickListener {
+
+            if (buttonClick == 1) {
+                val uri = Uri.parse(outputPath)
+                val videoshare = Intent(Intent.ACTION_SEND)
+                videoshare.type = "*/*"
+                videoshare.setPackage("com.facebook.katana")
+                videoshare.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                videoshare.putExtra(Intent.EXTRA_STREAM, uri)
+
+
+                try {
+                    // Start the specific social application
+                    startActivity(videoshare)
+                } catch (ex: ActivityNotFoundException) {
+                    // The application does not exist
+                    Toast.makeText(context, "app have not been installed.", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                Toast.makeText(context, "Please First Save Videos", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+        exportBinding.linWhatsapp.setOnClickListener {
+
+            if (buttonClick == 1) {
+                val uri = Uri.parse(outputPath)
+                val videoshare = Intent(Intent.ACTION_SEND)
+                videoshare.type = "*/*"
+                videoshare.setPackage("com.whatsapp")
+                videoshare.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                videoshare.putExtra(Intent.EXTRA_STREAM, uri)
+                try {
+                    // Start the specific social application
+                    startActivity(videoshare)
+                } catch (ex: ActivityNotFoundException) {
+                    // The application does not exist
+                    Toast.makeText(context, "app have not been installed.", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            } else {
+                Toast.makeText(context, "Please First Save Videos", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+
+    }
 //    fun onBackPressed(): Boolean {
 //        // Add your custom back press handling logic here.
 //        // Return true if you consume the back press, false otherwise.

@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityHomeBinding
 import com.easynewsvideomaker.easynewsvideomaker.fragment.HomeFragment
@@ -126,9 +127,14 @@ class HomeActivity : AppCompatActivity() {
 
                     var firstName = postSnapshot.child("userName").value
                     var channelName = postSnapshot.child("channelName").value
+                    var channelLogo = postSnapshot.child("channelLogo").value
+
 
                     homeBinding.txtUserName.text = firstName.toString()
                     homeBinding.txtCompanyName.text = channelName.toString()
+
+                    Glide.with(this@HomeActivity).load(channelLogo).placeholder(R.drawable.user)
+                        .into(homeBinding.imgUserLogo)
                 }
             }
 

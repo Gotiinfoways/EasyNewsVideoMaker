@@ -23,7 +23,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
@@ -37,12 +36,28 @@ class CreateAccountActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
 
-    var packageType: String? = null
+
     private var isPasswordVisible = false
 
     var userId: String? = null   //  id variable  define
     var flag = 0    //  flag variable  define
     lateinit var progressDialog: Dialog
+    var userName: String? = null
+    var mobilNumber: String? = null
+    var email: String? = null
+    var password: String? = null
+    var startDate: String? = null
+    var endDate: String? = null
+    var packageType: String? = null
+    var loginDeviceName: String? = null
+    var channelLogo: String? = null
+    var channelName: String? = null
+    var repoterName: String? = null
+    var facebookLink: String? = null
+    var twitterLink: String? = null
+    var instagramLink: String? = null
+    var youtubeLink: String? = null
+    var websiteLink: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         createAccountBinding = ActivityCreateAccountBinding.inflate(layoutInflater)
@@ -56,28 +71,70 @@ class CreateAccountActivity : AppCompatActivity() {
         if (intent != null && intent.hasExtra("updateData")) {  // data update key access this class
 
             flag = 1
-            var newUserName: String? = intent.getStringExtra("userName")   // key set in variable
-//            var newChannelName: String? =
-//                intent.getStringExtra("channelName")   // key set  variable
-            var newMobilNumber: String? =
-                intent.getStringExtra("mobilNumber")   // key set  variable
-            var newEmail: String? = intent.getStringExtra("email")   // key set  variable
-            var newPassword: String? = intent.getStringExtra("password")   // key set  variable
-
-            var newPackageType: String? =
-                intent.getStringExtra("packageType")   // key set  variable
             var newButtonName: String? = intent.getStringExtra("buttonName")   // key set  variable
             userId = intent.getStringExtra("id")   // key set  variable
 
             Log.e("TAG", "RS_ID: " + userId)
-            Log.e("TAG", "RS_Amount: " + newUserName)
 
-            createAccountBinding.edtUserName.setText(newUserName)  //variable set in text view
-//            createAccountBinding.edtChannelName.setText(newChannelName)  //variable set in text view
-            createAccountBinding.edtMobilNumber.setText(newMobilNumber)  //variable set in text view
-            createAccountBinding.edtEmail.setText(newEmail)  //variable set in text view
-            createAccountBinding.edtPassword.setText(newPassword)  //variable set in text view
-            createAccountBinding.edtConfirmPassword.setText(newPassword)  //variable set in text view
+
+            // Attach a ValueEventListener to retrieve user data
+            mDbRef.child("user").child(userId!!)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        if (dataSnapshot.exists()) {
+                            val user = dataSnapshot.getValue(UserModelClass::class.java)
+                            if (user != null) {
+                                // User data retrieved successfully
+                                val uid = user.uid
+                                val username = user.userName
+                                val mobileNumber = user.mobilNumber
+                                val email = user.email
+                                val password = user.password
+                                startDate = user.startDate
+                                endDate = user.endDate
+                                packageType = user.packageType
+                                loginDeviceName = user.login_device_name
+                                channelLogo = user.channelLogo!!
+                                channelName = user.channelName!!
+                                repoterName = user.repoterName!!
+                                facebookLink = user.facebookLink!!
+                                twitterLink = user.twitterLink!!
+                                instagramLink = user.instagramLink!!
+                                youtubeLink = user.youtubeLink!!
+                                websiteLink = user.websiteLink!!
+                                // Handle the user data as needed
+
+                                createAccountBinding.edtUserName.setText(username)
+                                createAccountBinding.edtMobilNumber.setText(mobileNumber)  //variable set in text view
+                                createAccountBinding.edtEmail.setText(email)  //variable set in text view
+                                createAccountBinding.edtPassword.setText(password)  //variable set in text view
+                                createAccountBinding.edtConfirmPassword.setText(password)  //variable set in text view
+                                createAccountBinding.txtStartDate.setText(startDate)  //variable set in text view
+                                createAccountBinding.txtEndDate.setText(endDate)  //variable set in text view
+
+
+                                if (packageType == "Golden") {
+                                    "Golden"
+                                    createAccountBinding.rbGolden.isChecked = true
+                                } else {
+                                    "Silver"
+
+                                    createAccountBinding.rbSilver.isChecked = true
+                                }
+                                createAccountBinding.txtLoginDeviceName.setText(loginDeviceName)  //variable set in text view
+                                createAccountBinding.btnSubmitText.text =
+                                    newButtonName  //variable set in text view
+                            }
+                        } else {
+                            // User data does not exist
+                        }
+                    }
+
+                    override fun onCancelled(databaseError: DatabaseError) {
+                        // Handle any errors, such as permission issues or network problems
+                    }
+                })
+
 
 //            createAccountBinding.rgPackage.s(newAmt)  //variable set in text view
             createAccountBinding.btnSubmitText.text = newButtonName  //variable set in text view
@@ -107,6 +164,14 @@ class CreateAccountActivity : AppCompatActivity() {
                                 val email = user.email
                                 val password = user.password
                                 val login_device_name = user.login_device_name
+                                channelLogo = user.channelLogo!!
+                                channelName = user.channelName!!
+                                repoterName = user.repoterName!!
+                                facebookLink = user.facebookLink!!
+                                twitterLink = user.twitterLink!!
+                                instagramLink = user.instagramLink!!
+                                youtubeLink = user.youtubeLink!!
+                                websiteLink = user.websiteLink!!
                                 // Handle the user data as needed
 
                                 createAccountBinding.edtUserName.setText(username)
@@ -218,8 +283,8 @@ class CreateAccountActivity : AppCompatActivity() {
         val formattedFutureDate = dateFormat.format(currentDate.time)
         createAccountBinding.txtEndDate.text = formattedFutureDate
 
-        packageType = "Golden"
-        if (packageType == "Golden") {  // variable set in if statement
+//        packageType = "Golden"
+        if (packageType == null) {  // variable set in if statement
             createAccountBinding.rbGolden.isChecked = true// set radio button Golden true
         }
 
@@ -228,30 +293,16 @@ class CreateAccountActivity : AppCompatActivity() {
 
     private fun initView() {
 
-        createAccountBinding.imgUserChannel.setOnClickListener {
-
-//            if (flag == 1) {
-            var i = Intent(this, UserChannelActivity::class.java)
-            i.putExtra("uid", userId)
-            i.putExtra("flag", flag)
-            startActivity(i)
-//            }else if (flag  == 2){
-//                var i = Intent(this, UserChannelActivity::class.java)
-//                i.putExtra("uid", userId)
-//                startActivity(i)
-//            }
-        }
 
         createAccountBinding.cdSubmitBtn.setOnClickListener {
-            var userName = createAccountBinding.edtUserName.text.toString()
-//            var channelName = createAccountBinding.edtChannelName.text.toString()
-            var mobilNumber = createAccountBinding.edtMobilNumber.text.toString()
-            var email = createAccountBinding.edtEmail.text.toString()
-            var password = createAccountBinding.edtPassword.text.toString()
+            userName = createAccountBinding.edtUserName.text.toString()
+            mobilNumber = createAccountBinding.edtMobilNumber.text.toString()
+            email = createAccountBinding.edtEmail.text.toString()
+            password = createAccountBinding.edtPassword.text.toString()
             var confPassword = createAccountBinding.edtConfirmPassword.text.toString()
-            var startDate = createAccountBinding.txtStartDate.text.toString()
-            var endDate = createAccountBinding.txtEndDate.text.toString()
-            var login_device_name = ""
+            startDate = createAccountBinding.txtStartDate.text.toString()
+            endDate = createAccountBinding.txtEndDate.text.toString()
+
 
             if (createAccountBinding.rgPackage.checkedRadioButtonId == -1) {
 
@@ -268,31 +319,31 @@ class CreateAccountActivity : AppCompatActivity() {
 
             }
 
-            if (userName.isEmpty()) {
+            if (userName!!.isEmpty()) {
                 Toast.makeText(this, "Please Enter User Name", Toast.LENGTH_SHORT).show()
-            } else if (mobilNumber.isEmpty()) {
+            } else if (mobilNumber!!.isEmpty()) {
                 Toast.makeText(this, "Please Enter Mobil Number", Toast.LENGTH_SHORT).show()
-            } else if (email.isEmpty()) {
+            } else if (email!!.isEmpty()) {
                 Toast.makeText(this, "Please Enter Email", Toast.LENGTH_SHORT).show()
             } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                 Toast.makeText(this, "Please Enter Valid Email", Toast.LENGTH_SHORT).show()
 
-            } else if (password.isEmpty()) {
+            } else if (password!!.isEmpty()) {
                 Toast.makeText(this, "Please Enter Password", Toast.LENGTH_SHORT).show()
 
-            } else if (password.length < 8) {
+            } else if (password!!.length < 8) {
                 Toast.makeText(this, "Minimum 8 Character Password", Toast.LENGTH_SHORT).show()
 
-            } else if (!password.matches(".*[A-Z].*".toRegex())) {
+            } else if (!password!!.matches(".*[A-Z].*".toRegex())) {
 
                 Toast.makeText(this, "Must Contain 1 Upper-case Character", Toast.LENGTH_SHORT)
                     .show()
 
-            } else if (!password.matches(".*[a-z].*".toRegex())) {
+            } else if (!password!!.matches(".*[a-z].*".toRegex())) {
                 Toast.makeText(this, "Must Contain 1 Lower-case Character", Toast.LENGTH_SHORT)
                     .show()
 
-            } else if (!password.matches(".*[@#\$%^&+=].*".toRegex())) {
+            } else if (!password!!.matches(".*[@#\$%^&+=].*".toRegex())) {
                 Toast.makeText(
                     this,
                     "Must Contain 1 Special Character (@#\$%^&+=)",
@@ -314,15 +365,23 @@ class CreateAccountActivity : AppCompatActivity() {
                 if (flag == 1) {
                     mDbRef.child("user").child(userId!!).setValue(
                         UserModelClass(
-                            userName,
-                            mobilNumber,
-                            email,
-                            password,
-                            startDate,
-                            endDate,
+                            userName!!,
+                            mobilNumber!!,
+                            email!!,
+                            password!!,
+                            startDate!!,
+                            endDate!!,
                             packageType!!,
-                            login_device_name!!,
-                            userId!!
+                            loginDeviceName!!,
+                            userId!!,
+                            channelLogo!!,
+                            channelName!!,
+                            repoterName!!,
+                            facebookLink!!,
+                            twitterLink!!,
+                            instagramLink!!,
+                            youtubeLink!!,
+                            websiteLink!!
                         )
                     )
                         .addOnCompleteListener {
@@ -345,18 +404,26 @@ class CreateAccountActivity : AppCompatActivity() {
 
 
                 } else if (flag == 2) {
-                    login_device_name = createAccountBinding.txtLoginDeviceName.text.toString()
+                    loginDeviceName = createAccountBinding.txtLoginDeviceName.text.toString()
                     mDbRef.child("user").child(userId!!).setValue(
                         UserModelClass(
-                            userName,
-                            mobilNumber,
-                            email,
-                            password,
-                            startDate,
-                            endDate,
+                            userName!!,
+                            mobilNumber!!,
+                            email!!,
+                            password!!,
+                            startDate!!,
+                            endDate!!,
                             packageType!!,
-                            login_device_name,
-                            userId!!
+                            loginDeviceName!!,
+                            userId!!,
+                            channelLogo!!,
+                            channelName!!,
+                            repoterName!!,
+                            facebookLink!!,
+                            twitterLink!!,
+                            instagramLink!!,
+                            youtubeLink!!,
+                            websiteLink!!
                         )
                     )
                         .addOnCompleteListener {
@@ -381,21 +448,29 @@ class CreateAccountActivity : AppCompatActivity() {
                             progressDialog.dismiss()
                         }
                 } else {
-                    auth.createUserWithEmailAndPassword(email, password)
+                    auth.createUserWithEmailAndPassword(email!!, password!!)
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
                                 // Sign in success, update UI with the signed-in user's information
 
                                 addUserToDatabase(
-                                    userName,
-                                    mobilNumber,
-                                    email,
-                                    password,
-                                    startDate,
-                                    endDate,
+                                    userName!!,
+                                    mobilNumber!!,
+                                    email!!,
+                                    password!!,
+                                    startDate!!,
+                                    endDate!!,
                                     packageType,
-                                    login_device_name,
-                                    auth.currentUser?.uid!!
+                                    loginDeviceName!!,
+                                    auth.currentUser?.uid!!,
+                                    channelLogo!!,
+                                    channelName!!,
+                                    repoterName!!,
+                                    facebookLink!!,
+                                    twitterLink!!,
+                                    instagramLink!!,
+                                    youtubeLink!!,
+                                    websiteLink!!
                                 )
                                 Toast.makeText(this, "Account Create Success", Toast.LENGTH_SHORT)
                                     .show()
@@ -417,6 +492,28 @@ class CreateAccountActivity : AppCompatActivity() {
         }
 
 
+        createAccountBinding.imgUserChannel.setOnClickListener {
+            val selectId: Int = createAccountBinding.rgPackage.checkedRadioButtonId
+            var selectedRadioButton: RadioButton = findViewById(selectId)
+            var packageSelected = selectedRadioButton.text.toString()
+//            if (flag == 1) {
+            var i = Intent(this, UserChannelActivity::class.java)
+            i.putExtra("uid", userId)
+            i.putExtra("flag", flag)
+            i.putExtra("userName", userName)
+            i.putExtra("mobilNumber", mobilNumber)
+            i.putExtra("email", email)
+            i.putExtra("password", password)
+            i.putExtra("startDate", createAccountBinding.txtStartDate.text.toString())
+            i.putExtra("endDate", createAccountBinding.txtEndDate.text.toString())
+            i.putExtra("packageType", packageSelected)
+            startActivity(i)
+//            }else if (flag  == 2){
+//                var i = Intent(this, UserChannelActivity::class.java)
+//                i.putExtra("uid", userId)
+//                startActivity(i)
+//            }
+        }
     }
 
     private fun deleteSignUpUserData(userId: String) {
@@ -440,8 +537,16 @@ class CreateAccountActivity : AppCompatActivity() {
         startDate: String,
         endDate: String,
         packageType: String?,
-        login_device_name: String?,
+        login_device_name: String,
         uid: String,
+        channelLogo: String,
+        channelName: String,
+        repoterName: String,
+        facebookLink: String,
+        twitterLink: String,
+        instagramLink: String,
+        youtubeLink: String,
+        websiteLink: String
     ) {
 
 
@@ -454,8 +559,16 @@ class CreateAccountActivity : AppCompatActivity() {
                 startDate,
                 endDate,
                 packageType!!,
-                login_device_name!!,
-                uid
+                login_device_name,
+                uid,
+                channelLogo,
+                channelName,
+                repoterName,
+                facebookLink,
+                twitterLink,
+                instagramLink,
+                youtubeLink,
+                websiteLink
             )
         )
 

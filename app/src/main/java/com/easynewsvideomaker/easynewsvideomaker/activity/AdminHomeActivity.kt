@@ -102,11 +102,6 @@ class AdminHomeActivity : AppCompatActivity() {
         adapter = UserAdapterClass({
             var i = Intent(this, CreateAccountActivity::class.java)
             i.putExtra("id", it.uid)
-            i.putExtra("userName", it.userName)
-            i.putExtra("mobilNumber", it.mobilNumber)
-            i.putExtra("email", it.email)
-            i.putExtra("password", it.password)
-            i.putExtra("packageType", it.packageType)
             i.putExtra("buttonName", "Update")
             i.putExtra("updateData", true)
             startActivity(i)

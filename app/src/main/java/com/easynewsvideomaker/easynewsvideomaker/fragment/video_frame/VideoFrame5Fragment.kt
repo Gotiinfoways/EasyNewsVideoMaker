@@ -26,10 +26,20 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoFrame5Binding
 import com.easynewsvideomaker.easynewsvideomaker.fragment.video_export.VideoExport4_and_5Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -37,7 +47,8 @@ import java.io.IOException
 class VideoFrame5Fragment : Fragment() {
 
 lateinit var videoFrame5Binding: FragmentVideoFrame5Binding
-
+    lateinit var mDbRef: DatabaseReference
+    lateinit var auth: FirebaseAuth
 
     lateinit var editeDialog: Dialog
     lateinit var dialogEditBinding: DialogEditBinding
@@ -54,6 +65,8 @@ lateinit var videoFrame5Binding: FragmentVideoFrame5Binding
     ): View? {
         videoFrame5Binding= FragmentVideoFrame5Binding.inflate(layoutInflater,container,false)
         // Inflate the layout for this fragment
+        mDbRef = FirebaseDatabase.getInstance().getReference()
+        auth = Firebase.auth
 
         initView()
         frameEdit()
@@ -66,12 +79,30 @@ lateinit var videoFrame5Binding: FragmentVideoFrame5Binding
         videoFrame5Binding.txtLay2.isSelected = true
 
 
-        //set image
-        videoFrame5Binding.imgNewsLoge.setOnClickListener {
+        // channel logo and repoter name set
+        //           user information
+        var query: Query =
+            mDbRef.child("user").orderByChild("email").equalTo(auth.currentUser?.email)
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (postSnapshot in snapshot.children) {
 
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            gallery_Launcher.launch(intent)
-        }
+
+                    var repoterName = postSnapshot.child("repoterName").value
+                    var channelLogo = postSnapshot.child("channelLogo").value
+
+
+
+
+                    Glide.with(requireContext()).load(channelLogo).placeholder(R.drawable.news_logo)
+                        .into(videoFrame5Binding.imgNewsLoge)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
 
         //       city name text change
         videoFrame5Binding.txtCityName.setOnClickListener {

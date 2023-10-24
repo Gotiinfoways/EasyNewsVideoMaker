@@ -36,6 +36,15 @@ import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegQueryExtension
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.LogMessage
 import com.easynewsvideomaker.easynewsvideomaker.reels_maker.reels_export.ReelsExport1Activity
 import com.easynewsvideomaker.easynewsvideomaker.reels_maker.reels_export.ReelsExport2Activity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import yuku.ambilwarna.AmbilWarnaDialog
 import java.io.File
 import java.io.FileOutputStream
@@ -45,6 +54,10 @@ import java.util.TimerTask
 
 class Insta_2_Activity : AppCompatActivity() {
     lateinit var binding: ActivityInsta2Binding
+
+    lateinit var mDbRef: DatabaseReference
+    lateinit var auth: FirebaseAuth
+
     private val STORAGE_PERMISSION_CODE = 101
     lateinit var editeDialog: Dialog
     lateinit var dialogEditBinding: DialogEditBinding
@@ -63,6 +76,9 @@ class Insta_2_Activity : AppCompatActivity() {
         binding = ActivityInsta2Binding.inflate(layoutInflater)
         setContentView(binding.root)
         ffmpegQueryExtension = FFmpegQueryExtension()
+
+        mDbRef = FirebaseDatabase.getInstance().getReference()
+        auth = Firebase.auth
         progressDialog()
         frameEdit()
         initView()
@@ -70,7 +86,31 @@ class Insta_2_Activity : AppCompatActivity() {
 
     private fun frameEdit() {
 
+// channel logo and repoter name set
+        //           user information
+        var query: Query =
+            mDbRef.child("user").orderByChild("email").equalTo(auth.currentUser?.email)
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (postSnapshot in snapshot.children) {
 
+
+                    var repoterName = postSnapshot.child("repoterName").value
+                    var channelLogo = postSnapshot.child("channelLogo").value
+                    var channelName = postSnapshot.child("channelName").value
+
+
+
+                    binding.txtChannelName.text = channelName.toString()
+//                    Glide.with(this@Insta_2_Activity).load(channelLogo).placeholder(R.drawable.news_logo)
+//                        .into(binding.imgNewsLogo)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
         binding.txtLive.setOnClickListener {
             var text = binding.txtLive.text.toString()
             var textColor = binding.txtLive.currentTextColor

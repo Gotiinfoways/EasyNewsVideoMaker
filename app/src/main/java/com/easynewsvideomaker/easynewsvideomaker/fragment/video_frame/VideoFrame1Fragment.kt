@@ -33,11 +33,21 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.Glide
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogRecordingBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoFrame1Binding
 import com.easynewsvideomaker.easynewsvideomaker.fragment.video_export.VideoExport1Fragment
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import yuku.ambilwarna.AmbilWarnaDialog
 import yuku.ambilwarna.AmbilWarnaDialog.OnAmbilWarnaListener
 import java.io.File
@@ -51,6 +61,8 @@ class VideoFrame1Fragment : Fragment() {
 
     lateinit var displayBinding: FragmentVideoFrame1Binding
 
+    lateinit var mDbRef: DatabaseReference
+    lateinit var auth: FirebaseAuth
     lateinit var editeDialog: Dialog
     lateinit var dialogEditBinding: DialogEditBinding
 
@@ -96,6 +108,8 @@ class VideoFrame1Fragment : Fragment() {
         displayBinding = FragmentVideoFrame1Binding.inflate(layoutInflater, container, false)
         // Inflate the layout for this fragment
 
+        mDbRef = FirebaseDatabase.getInstance().getReference()
+        auth = Firebase.auth
 
         initView()
         frameEdit()
@@ -109,12 +123,31 @@ class VideoFrame1Fragment : Fragment() {
         displayBinding.txtLay2.isSelected = true
         displayBinding.txtLay3.isSelected = true
 
-        //set image
-        displayBinding.imgNewsLoge.setOnClickListener {
+        // channel logo and repoter name set
+        //           user information
+        var query: Query =
+            mDbRef.child("user").orderByChild("email").equalTo(auth.currentUser?.email)
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (postSnapshot in snapshot.children) {
 
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            gallery_Launcher.launch(intent)
-        }
+
+                    var repoterName = postSnapshot.child("repoterName").value
+                    var channelLogo = postSnapshot.child("channelLogo").value
+
+
+
+                    displayBinding.txtLayRepoterName.text = repoterName.toString()
+
+                    Glide.with(requireContext()).load(channelLogo).placeholder(R.drawable.news_logo)
+                        .into(displayBinding.imgNewsLoge)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
 
         displayBinding.linBreakingNews.setOnClickListener {
             val colorPickerDialogue = AmbilWarnaDialog(context, mDefaultColor,
@@ -404,7 +437,7 @@ class VideoFrame1Fragment : Fragment() {
             var textColor = displayBinding.txtLayRepoterName.currentTextColor
             editeDialog(text, backgroundColor, textColor)
 
-
+            dialogEditBinding.linText1.visibility = View.GONE
             dialogEditBinding.btnSubmit.setOnClickListener {
 
                 var colorText = Color.TRANSPARENT
@@ -576,7 +609,6 @@ class VideoFrame1Fragment : Fragment() {
         displayBinding.vidView.scaleY = 1.4f
 
 
-
 //        displayBinding.btnPlay.setOnClickListener {
 //            if (displayBinding.vidView.isPlaying) {
 //                displayBinding.vidView.pause()
@@ -632,7 +664,8 @@ class VideoFrame1Fragment : Fragment() {
                 var bottomColorText = displayBinding.txtLay3.currentTextColor
                 val bottomTextColor = String.format("#%06X", 0xFFFFFF and bottomColorText)
 
-                val fontPath = getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
+                val fontPath =
+                    getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
 
                 val fragment = VideoExport1Fragment()
                 val bundle = Bundle()
