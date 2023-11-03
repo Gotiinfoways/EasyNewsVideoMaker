@@ -1,6 +1,7 @@
 package com.easynewsvideomaker.easynewsvideomaker.activity
 
 
+import android.app.DatePickerDialog
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -28,6 +29,7 @@ import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+import javax.xml.datatype.DatatypeConstants.MONTHS
 
 
 class CreateAccountActivity : AppCompatActivity() {
@@ -196,7 +198,9 @@ class CreateAccountActivity : AppCompatActivity() {
 
         }
 
-
+        createAccountBinding.imgBack.setOnClickListener {
+            onBackPressed()
+        }
 //        layoutBackgroundChange()
         progressDialog()
         dateAndPackage()
@@ -263,11 +267,86 @@ class CreateAccountActivity : AppCompatActivity() {
     }
 
     private fun dateAndPackage() {
-        createAccountBinding.imgBack.setOnClickListener {
-            onBackPressed()
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
+        // date piker
+        createAccountBinding.txtStartDate.setOnClickListener {
+//            // on below line we are getting
+//            // the instance of our calendar.
+//            val c = Calendar.getInstance()
+//
+//            // on below line we are getting
+//            // our day, month and year.
+//            val year = c.get(Calendar.YEAR)
+//            val month = c.get(Calendar.MONTH)
+//            val day = c.get(Calendar.DAY_OF_MONTH)
+//
+//            // on below line we are creating a
+//            // variable for date picker dialog.
+//            val datePickerDialog = DatePickerDialog(
+//                // on below line we are passing context.
+//                this,
+//                { view, year, monthOfYear, dayOfMonth ->
+//                    // on below line we are setting
+//                    // date to our edit text.
+//                    val dat = (dayOfMonth.toString() + "/" + (monthOfYear + 1) + "/" + year)
+//                    createAccountBinding.txtStartDate.text = dat
+//
+//
+//                },
+//                // on below line we are passing year, month
+//                // and day for the selected date in our date picker.
+//                year,
+//                month,
+//                day
+//            )
+//            // Add 30 days to the current date
+//            c.add(Calendar.DAY_OF_MONTH, 30)
+//
+//            // Format and set the future date in the second TextView
+//            val formattedFutureDate = dateFormat.format(c.time)
+//            createAccountBinding.txtEndDate.text = formattedFutureDate
+//            // at last we are calling show
+//            // to display our date picker dialog.
+//            datePickerDialog.show()
+
+
+
+            val calendar = Calendar.getInstance()
+            val currentYear = calendar.get(Calendar.YEAR)
+            val currentMonth = calendar.get(Calendar.MONTH)
+            val currentDay = calendar.get(Calendar.DAY_OF_MONTH)
+
+            val datePickerDialog = DatePickerDialog(
+                this,
+                { _, year, month, dayOfMonth ->
+                    // The user has selected a date
+                    val selectedCalendar = Calendar.getInstance()
+                    selectedCalendar.set(year, month, dayOfMonth)
+                    val dat = (dayOfMonth.toString() + "/" + (month + 1) + "/" + year)
+                    createAccountBinding.txtStartDate.text = dat
+
+                    // Add 30 days to the selected date
+                    selectedCalendar.add(Calendar.DAY_OF_MONTH, 30)
+
+                    // Format the new date as a string (you can use any desired format)
+                    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+                    val resultDate = dateFormat.format(selectedCalendar.time)
+
+                    // Display the result
+                    createAccountBinding.txtEndDate.text = resultDate
+                },
+                currentYear,
+                currentMonth,
+                currentDay
+            )
+
+            datePickerDialog.show()
+
+
         }
 
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+
 
         // Get the current date
         val currentDate = Calendar.getInstance()

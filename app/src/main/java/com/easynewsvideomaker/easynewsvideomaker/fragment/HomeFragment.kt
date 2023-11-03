@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
     lateinit var mDbRef: DatabaseReference
     lateinit var auth: FirebaseAuth
-    var packageType: String = ""
+    var packageType: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,

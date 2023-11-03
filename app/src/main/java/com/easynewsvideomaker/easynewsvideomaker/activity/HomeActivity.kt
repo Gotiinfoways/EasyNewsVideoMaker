@@ -41,6 +41,9 @@ import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 class HomeActivity : AppCompatActivity() {
@@ -75,10 +78,10 @@ class HomeActivity : AppCompatActivity() {
 
     private fun initView() {
 
-            val manager: FragmentManager = supportFragmentManager
-            val transaction: FragmentTransaction = manager.beginTransaction()
-            transaction.replace(R.id.container, HomeFragment())
-            transaction.commit()
+        val manager: FragmentManager = supportFragmentManager
+        val transaction: FragmentTransaction = manager.beginTransaction()
+        transaction.replace(R.id.container, HomeFragment())
+        transaction.commit()
 
         if (SDK_INT >= Build.VERSION_CODES.R) {
             if (checkPermissionVersion()) {
@@ -130,8 +133,29 @@ class HomeActivity : AppCompatActivity() {
                     var channelLogo = postSnapshot.child("channelLogo").value
 
 
+                    var endDate = postSnapshot.child("endDate").value
+
+
                     homeBinding.txtUserName.text = firstName.toString()
                     homeBinding.txtCompanyName.text = channelName.toString()
+
+                    // Get the current date
+                    val currentDate = Calendar.getInstance()
+                    val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                    // Format and set the current date in the first TextView
+                    val formattedCurrentDate = dateFormat.format(currentDate.time)
+
+                    if (formattedCurrentDate.equals(endDate)) {
+                        mDbRef.child("user").child(auth.currentUser!!.uid).child("packageType")
+                            .setValue("null")
+
+                        Toast.makeText(this@HomeActivity, "Your Package Expire", Toast.LENGTH_SHORT).show()
+
+                        val manager: FragmentManager = supportFragmentManager
+                        val transaction: FragmentTransaction = manager.beginTransaction()
+                        transaction.replace(R.id.container, HomeFragment())
+                        transaction.commit()
+                    }
 
                     Glide.with(this@HomeActivity).load(channelLogo).placeholder(R.drawable.user)
                         .into(homeBinding.imgUserLogo)
