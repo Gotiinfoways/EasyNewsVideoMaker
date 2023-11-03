@@ -28,6 +28,7 @@ import com.easynewsvideomaker.easynewsvideomaker.merge_file.CallBackOfQuery
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegCallBack
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.FFmpegQueryExtension
 import com.easynewsvideomaker.easynewsvideomaker.merge_file.LogMessage
+import java.io.File
 
 
 class VideoExport3Fragment : Fragment() {
@@ -134,11 +135,33 @@ class VideoExport3Fragment : Fragment() {
 
                 Log.e("TAG", "file Name: $fileName")
 
-                downloadProgressDialog.show()
+                if (fileName.isNotEmpty()) {
+                    val directoryPath =
+                        Environment.getExternalStorageDirectory().path + "/Easy News Maker/"
+                    val fileNameToCheck = "$fileName.mp4"
 
-                addVideoEditFun(fileName)
+                    if (isFileAlreadyExists(directoryPath, fileNameToCheck)) {
+                        // The file already exists
+                        // You can handle this case, e.g., show an error message
+                        Toast.makeText(
+                            context,
+                            "File with the same name already exists",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } else {
+                        // The file does not exist, you can proceed with your operations
+                        downloadProgressDialog.show()
 
-                dialog.dismiss()
+                        addVideoEditFun(fileName)
+                        dialog.dismiss()
+                    }
+                } else {
+                    Toast.makeText(
+                        context,
+                        "Please enter a valid file name",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
 
             dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))   //dialog box TRANSPARENT
@@ -162,6 +185,14 @@ class VideoExport3Fragment : Fragment() {
                 Toast.makeText(context, "Please First Save Videos", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    fun isFileAlreadyExists(directoryPath: String, fileName: String): Boolean {
+        val directory = File(directoryPath)
+        if (directory.exists() && directory.isDirectory) {
+            val file = File(directory, fileName)
+            return file.exists() // Check if the file exists in the specified directory
+        }
+        return false // The directory does not exist or is not a directory
     }
 
     private fun addVideoEditFun(fileName: String) {
