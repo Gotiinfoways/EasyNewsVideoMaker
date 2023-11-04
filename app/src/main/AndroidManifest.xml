@@ -39,6 +39,7 @@
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -50,6 +51,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EasyNewsVideoMaker"
         tools:targetApi="31">
+        <activity
+            android:name=".activity.VoiceRecordingActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.UserChannelActivity"
             android:exported="false" />
@@ -193,6 +197,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

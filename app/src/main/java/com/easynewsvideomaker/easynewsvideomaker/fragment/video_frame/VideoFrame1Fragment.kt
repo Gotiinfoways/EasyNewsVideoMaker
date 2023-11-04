@@ -15,29 +15,35 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.MediaController
 import android.widget.RelativeLayout
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.easynewsvideomaker.easynewsvideomaker.R
+import com.easynewsvideomaker.easynewsvideomaker.activity.VoiceRecordingActivity
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogRecordingBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentVideoFrame1Binding
+import com.easynewsvideomaker.easynewsvideomaker.databinding.SaveAudioDialogboxBinding
 import com.easynewsvideomaker.easynewsvideomaker.fragment.video_export.VideoExport1Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -85,17 +91,17 @@ class VideoFrame1Fragment : Fragment() {
     private var mFileName: String? = null
 
     lateinit var recodingBinding: DialogRecordingBinding
+    lateinit var recodingDialog: Dialog
 
+    private var fileName: String = ""
+    private var outputFile: File? = null
 
+    private var recorder: MediaRecorder? = null
+    private var mediaPlayer: MediaPlayer? = null
     private var isRecording = false
-    private var isPlaying = false
-
-    private var startTime = 0.0
-    private var finalTime = 0.0
-    var oneTimeOnly = 0
-
-
-    private val myHandler = Handler();
+    private var recordingStartTime: Long = 0
+    var record = 0
+    private val handler = Handler(Looper.getMainLooper())
 
     var height: Int? = 0
     var width: Int? = 0
@@ -638,6 +644,8 @@ class VideoFrame1Fragment : Fragment() {
         displayBinding.linRecoding.setOnClickListener {
 
             recodingDialogFun()
+//            var i = Intent(context, VoiceRecordingActivity::class.java)
+//            requireActivity().startActivity(i)
         }
 
         //Video Export
@@ -695,91 +703,47 @@ class VideoFrame1Fragment : Fragment() {
     }
 
     private fun recodingDialogFun() {
-        val dialog = Dialog(requireContext())
+
+        recodingDialog = Dialog(requireActivity())
         recodingBinding = DialogRecordingBinding.inflate(layoutInflater)
-        dialog.setContentView(recodingBinding.root)
+        recodingDialog.setContentView(recodingBinding.root)
 
-        recodingBinding.btnStop.setBackgroundColor(resources.getColor(R.color.grey));
-        recodingBinding.btnPlay.setBackgroundColor(resources.getColor(R.color.grey));
-        recodingBinding.btnStopPlay.setBackgroundColor(resources.getColor(R.color.grey))
+        recodingBinding.imgRecordPlayButton.setOnClickListener {
+            if (record == 0) {
 
-        // Set up the SeekBar listener to control zoom
-        recodingBinding.seekbar
-            .setOnSeekBarChangeListener(object :
-                OnSeekBarChangeListener {
-                override fun onProgressChanged(
-                    seekBar: SeekBar,
-                    progress: Int,
-                    fromUser: Boolean
-                ) {
+                if (!isRecording) {
+                    startRecording()
+
+                } else {
+
+                    stopRecording()
 
                 }
-
-                override fun onStartTrackingTouch(seekBar: SeekBar) {}
-
-                override fun onStopTrackingTouch(seekBar: SeekBar) {}
-            })
-
-        recodingBinding.btnRecord.setOnClickListener(View.OnClickListener { // start recording method will
-            // start the recording of audio.
-            startRecording()
-        })
-        recodingBinding.btnStop.setOnClickListener { // pause Recording method will
-            // pause the recording of audio.
-            pauseRecording()
-        }
-        recodingBinding.btnPlay.setOnClickListener { // play audio method will play
-            // the audio which we have recorded
-            playAudio()
-//                finalTime = mPlayer!!.getDuration().toDouble()
-////                startTime = mPlayer!!.getCurrentPosition().toDouble()
-//
-//                if (oneTimeOnly === 0) {
-//                    recodingBinding.seekbar.setMax(finalTime as Int)
-//                    oneTimeOnly = 1
-//                }
-//
-//                recodingBinding.durationTextView1.setText(
-//                    String.format(
-//                        "%d min, %d sec",
-//                        TimeUnit.MILLISECONDS.toMinutes(finalTime as Long),
-//                        TimeUnit.MILLISECONDS.toSeconds(finalTime as Long) -
-//                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(finalTime as Long))
-//                    )
-//                )
-//
-//                recodingBinding.durationTextView2.setText(
-//                    String.format(
-//                        "%d min, %d sec",
-//                        TimeUnit.MILLISECONDS.toMinutes(startTime as Long),
-//                        TimeUnit.MILLISECONDS.toSeconds(startTime as Long) -
-//                                TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(startTime as Long))
-//                    )
-//                )
-//
-//                recodingBinding.seekbar.setProgress(startTime as Int)
-//                myHandler.postDelayed(UpdateSongTime, 100)
-        }
-        recodingBinding.btnStopPlay.setOnClickListener { // pause play method will
-            // pause the play of audio
-            pausePlaying()
+                isRecording = !isRecording
+            } else if (record == 1) {
+                if (!isRecording) {
+                    startPlaying()
+                }
+            }
         }
 
-        seekbar()
+        recodingBinding.btnAudioDelete.setOnClickListener {
 
-        recodingBinding.btnSubmit.setOnClickListener {
+//            mediaPlayer!!.release()
+            recodingDialog.dismiss()
 
-
-            Toast.makeText(context, "Your data is Change", Toast.LENGTH_SHORT).show()
-            dialog.dismiss()
+        }
+        recodingBinding.btnAudioSave.setOnClickListener {
+            onSaveAudio()
         }
 
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))   //dialog box TRANSPARENT
-        dialog.window?.setLayout(
+        recodingDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))   //dialog box TRANSPARENT
+        recodingDialog.window?.setLayout(
             LinearLayout.LayoutParams.MATCH_PARENT,
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
-        dialog.show()
+        recodingDialog.show()
+        recodingDialog.setCancelable(false)
     }
 
 
@@ -890,109 +854,273 @@ class VideoFrame1Fragment : Fragment() {
         return contentUri.path // Fallback to using the URI's path
     }
 
+
     private fun startRecording() {
-        // check permission method is used to check
-        // that the user has granted permission
-        // to record and store the audio.
 
+        recodingBinding.txtRecordPlayTitle.text = "Stop Recording"
+        recodingBinding.imgRecordPlayButton.setImageResource(R.drawable.ic_stop_recoding)
 
-        // setbackgroundcolor method will change
-        // the background color of text view.
-        recodingBinding.btnStop.setBackgroundColor(resources.getColor(R.color.purple_200))
-        recodingBinding.btnRecord.setBackgroundColor(resources.getColor(R.color.grey))
-        recodingBinding.btnPlay.setBackgroundColor(resources.getColor(R.color.grey))
-        recodingBinding.btnStopPlay.setBackgroundColor(resources.getColor(R.color.grey))
+        recorder = MediaRecorder()
+        recorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
+        recorder?.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+        recorder?.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+        val filePath = "${Environment.getExternalStorageDirectory()}/audio_record.3gp"
+        recorder?.setOutputFile(filePath)
 
-        // we are here initializing our filename variable
-        // with the path of the recorded audio file.
-        mFileName = Environment.getExternalStorageDirectory().absolutePath
-        mFileName += "/AudioRecording.3gp"
-
-        // below method is used to initialize
-        // the media recorder class
-        mRecorder = MediaRecorder()
-
-        // below method is used to set the audio
-        // source which we are using a mic.
-        mRecorder!!.setAudioSource(MediaRecorder.AudioSource.MIC)
-
-        // below method is used to set
-        // the output format of the audio.
-        mRecorder!!.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-
-        // below method is used to set the
-        // audio encoder for our recorded audio.
-        mRecorder!!.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-
-        // below method is used to set the
-        // output file location for our recorded audio
-        mRecorder!!.setOutputFile(mFileName)
         try {
-            // below method will prepare
-            // our audio recorder class
-            mRecorder!!.prepare()
+            recorder?.prepare()
         } catch (e: IOException) {
-            Log.e("TAG", "prepare() failed")
+            e.printStackTrace()
         }
-        // start method will start
-        // the audio recording.
-        mRecorder!!.start()
-        recodingBinding.idTVstatus.text = "Recording Started"
+
+        recorder?.start()
+
+        recodingBinding.txtRecodingStatus.text = "Recording Started"
+        recordingStartTime = System.currentTimeMillis()
+
+        handler.post(updateDuration)
     }
 
-    fun playAudio() {
-        recodingBinding.btnStop.setBackgroundColor(resources.getColor(R.color.grey))
-        recodingBinding.btnRecord.setBackgroundColor(resources.getColor(R.color.purple_200))
-        recodingBinding.btnPlay.setBackgroundColor(resources.getColor(R.color.grey))
-        recodingBinding.btnStopPlay.setBackgroundColor(resources.getColor(R.color.purple_200))
+    private fun stopRecording() {
+        record = 1
 
-        // for playing our recorded audio
-        // we are using media player class.
-        mPlayer = MediaPlayer()
-        try {
-            // below method is used to set the
-            // data source which will be our file name
-            mPlayer!!.setDataSource(mFileName)
+        recodingBinding.txtRecordPlayTitle.text = "Play Audio"
+        recodingBinding.imgRecordPlayButton.setImageResource(R.drawable.ic_play_recoding)
 
-            // below method will prepare our media player
-            mPlayer!!.prepare()
+        recorder?.stop()
 
-            // below method will start our media player.
-            mPlayer!!.start()
-            recodingBinding.idTVstatus.text = "Recording Started Playing"
-        } catch (e: IOException) {
-            Log.e("TAG", "prepare() failed")
+        recodingBinding.txtRecodingStatus.text = "Recording Stopped"
+        recorder?.release()
+        recorder = null
+        handler.removeCallbacks(updateDuration)
+    }
+
+    private val updateDuration = object : Runnable {
+        override fun run() {
+
+            val currentTime = System.currentTimeMillis()
+            val elapsedMillis = currentTime - recordingStartTime
+            val seconds = TimeUnit.MILLISECONDS.toSeconds(elapsedMillis)
+            val minutes = seconds / 60
+            val remainingSeconds = seconds % 60
+
+            recodingBinding.txtDuration.text =
+                "Duration: $minutes:${String.format("%02d", remainingSeconds)}"
+
+            handler.postDelayed(this, 1000)
         }
     }
 
-    fun pauseRecording() {
-        recodingBinding.btnStop.setBackgroundColor(resources.getColor(R.color.grey))
-        recodingBinding.btnRecord.setBackgroundColor(resources.getColor(R.color.purple_200))
-        recodingBinding.btnPlay.setBackgroundColor(resources.getColor(R.color.purple_200))
-        recodingBinding.btnStopPlay.setBackgroundColor(resources.getColor(R.color.purple_200))
 
-        // below method will stop
-        // the audio recording.
-        mRecorder!!.stop()
+    private fun startPlaying() {
 
-        // below method will release
-        // the media recorder class.
-        mRecorder!!.release()
-        mRecorder = null
-        recodingBinding.idTVstatus.text = "Recording Stopped"
+        recodingBinding.txtRecordPlayTitle.text = "Stop Audio"
+        recodingBinding.imgRecordPlayButton.setImageResource(R.drawable.ic_pause_recoding)
 
+        recodingBinding.txtRecodingStatus.text = "Recording Started Playing"
+
+        recodingBinding.seekBar.visibility = View.VISIBLE
+        recodingBinding.linSaveAndCancel.visibility = View.VISIBLE
+
+        mediaPlayer = MediaPlayer()
+        fileName = "${Environment.getExternalStorageDirectory()}/audio_record.3gp"
+
+        try {
+            mediaPlayer?.setDataSource(fileName)
+            mediaPlayer?.prepare()
+            mediaPlayer?.start()
+
+            updateSeekBar()
+            recodingBinding.txtRecordPlayTitle.text = "Stop Audio"
+
+
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        mediaPlayer?.setOnCompletionListener {
+            stopPlaying()
+
+        }
+
+
+        recodingBinding.seekBar.max = mediaPlayer!!.duration
+
+//        mediaPlayer.setOnCompletionListener {
+//            playButton.text = "Play"
+//        }
+
+        recodingBinding.seekBar.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                if (fromUser) {
+                    mediaPlayer!!.seekTo(progress)
+                }
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+        })
     }
 
-    fun pausePlaying() {
-        // this method will release the media player
-        // class and pause the playing of our recorded audio.
-        mPlayer!!.release()
-        mPlayer = null
-        recodingBinding.btnStop.setBackgroundColor(resources.getColor(R.color.grey))
-        recodingBinding.btnRecord.setBackgroundColor(resources.getColor(R.color.purple_200))
-        recodingBinding.btnPlay.setBackgroundColor(resources.getColor(R.color.purple_200))
-        recodingBinding.btnStopPlay.setBackgroundColor(resources.getColor(R.color.grey))
-        recodingBinding.idTVstatus.text = "Recording Play Stopped"
+    private fun stopPlaying() {
+
+        recodingBinding.txtRecordPlayTitle.text = "Play Audio"
+        recodingBinding.imgRecordPlayButton.setImageResource(R.drawable.ic_play_recoding)
+
+        recodingBinding.txtRecodingStatus.text = "Recording Play Stopped"
+        mediaPlayer?.release()
+        mediaPlayer = null
+    }
+
+
+    private fun updateSeekBar() {
+        if (mediaPlayer != null) { // Check if mediaPlayer is not null
+            handler.postDelayed(object : Runnable {
+                override fun run() {
+                    if (mediaPlayer != null) { // Check mediaPlayer is still not null
+                        recodingBinding.seekBar.progress = mediaPlayer!!.currentPosition
+                        updateDurationText(mediaPlayer!!.currentPosition)
+                        if (mediaPlayer!!.isPlaying) {
+                            handler.postDelayed(this, 1000)
+                        }
+                    }
+                }
+            }, 0)
+        }
+    }
+
+    private fun updateDurationText(duration: Int) {
+        val minutes = duration / 60000
+        val seconds = (duration % 60000) / 1000
+        recodingBinding.txtDuration.text = String.format("%02d:%02d", minutes, seconds)
+    }
+
+    private fun onSaveAudio() {
+        val dialog = Dialog(requireActivity())
+        val dialogBinding: SaveAudioDialogboxBinding =
+            SaveAudioDialogboxBinding.inflate(layoutInflater)
+        dialog.setContentView(dialogBinding.root)
+
+        val edtfilename = dialog.findViewById<EditText>(R.id.edtfilename)
+        val btnaudiosave = dialog.findViewById<AppCompatButton>(R.id.btnaudiosave)
+        val btnaudiocancel = dialog.findViewById<AppCompatButton>(R.id.btnaudiocancel)
+
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+
+        btnaudiosave.setOnClickListener {
+            val audioName = edtfilename.text.toString().trim()
+            if (audioName.isNotEmpty()) {
+                val outputFileName = "$audioName.3gp"
+                val outputFile = File(requireActivity().externalCacheDir, outputFileName)
+
+                if (outputFile.exists()) {
+                    Toast.makeText(
+                        context,
+                        "File with the same name already exists",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    try {
+                        // Copy the recorded audio file to the new location with the desired name
+                        val inputFile = File(fileName) // Define fileName properly
+                        if (inputFile.exists()) {
+                            outputFile.createNewFile()
+                            outputFile.outputStream().use { output ->
+                                inputFile.inputStream().copyTo(output)
+                            }
+
+                            var audioFilePath = outputFile.absolutePath
+                            var audioFileName = audioName
+                            // The code related to Intents can be used here if needed.
+
+//                            val fragment = VideoFrame1Fragment()
+////                            val bundle = Bundle()
+////                            bundle.putString("audioFilePath", outputFile.absolutePath)
+////                            bundle.putString("audioFileName", audioName)
+////
+////                            fragment.arguments = bundle
+//                            val transaction = supportFragmentManager.beginTransaction()
+//                            transaction.replace(R.id.container, fragment)
+//                            transaction.addToBackStack(null)
+//                            transaction.commit()
+
+                            setAudio(audioFilePath, audioFileName)
+
+                            Toast.makeText(
+                                context,
+                                "Audio saved as: $outputFileName",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            dialog.dismiss()
+                            recodingDialog.dismiss()
+
+
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "Source audio file not found",
+                                Toast.LENGTH_SHORT
+                            )
+                                .show()
+                        }
+                    } catch (e: IOException) {
+                        Toast.makeText(context, "Error saving audio", Toast.LENGTH_SHORT).show()
+                        e.printStackTrace()
+                    }
+                }
+            } else {
+                Toast.makeText(context, "Please enter a valid file name", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnaudiocancel.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    private fun setAudio(audioFilePath: String, audioFileName: String) {
+
+        //  audio
+//        val audioFilePath = intent.getStringExtra("audioFilePath")
+//        val audioFileName = intent.getStringExtra("audioFileName")
+
+        if (audioFilePath != null) {
+            mediaPlayer = MediaPlayer().apply {
+                setDataSource(audioFilePath)
+                prepare()
+            }
+            Log.e("TAG", "audiofile: $audioFilePath")
+
+
+            displayBinding.linAudioPath.visibility = View.VISIBLE
+
+
+
+            if (audioFileName != null) {
+                displayBinding.txtAudioPath.text = "File Name: $audioFileName"
+            }
+
+
+            displayBinding.imgAudioPlayButton.setOnClickListener {
+                if (mediaPlayer!!.isPlaying) {
+                    mediaPlayer!!.pause()
+//                    displayBinding.imgAudioPlayButton.text = "Play"
+                    displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
+                } else {
+                    mediaPlayer!!.start()
+//                    displayBinding.btnPlayAudio.text = "Pause"
+                    displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_pause_recoding)
+                }
+            }
+        } else {
+//            val playButton = findViewById<AppCompatButton>(R.id.saveplayaudio)
+            displayBinding.linAudioPath.visibility = View.GONE // Hide the button
+        }
+
 
     }
 
@@ -1037,32 +1165,12 @@ class VideoFrame1Fragment : Fragment() {
     }
 
 
-    private val UpdateSongTime: Runnable = object : Runnable {
-        override fun run() {
-            startTime = mPlayer!!.getCurrentPosition().toDouble()
-            recodingBinding.durationTextView2.setText(
-                String.format(
-                    "%d min, %d sec",
-                    TimeUnit.MILLISECONDS.toMinutes(startTime.toLong()),
-                    TimeUnit.MILLISECONDS.toSeconds(startTime.toLong()) -
-                            TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(startTime.toLong()))
-                )
-            )
-            recodingBinding.seekbar.setProgress(startTime.toInt())
-            myHandler.postDelayed(this, 100)
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (isRecording) {
-            pauseRecording()
-        }
-        if (isPlaying) {
-            pausePlaying()
-        }
-//        mRecorder!!.release()
-//        mPlayer!!.release()
+    override fun onStop() {
+        super.onStop()
+        recorder?.release()
+        recorder = null
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 }
 

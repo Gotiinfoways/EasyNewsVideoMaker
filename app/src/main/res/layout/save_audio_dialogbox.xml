@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:background="@color/white"
+    android:elevation="@dimen/_70sdp"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/_10sdp">
+
+    <LinearLayout
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="#F37676"
+            android:gravity="center"
+            android:text="Save Audio File"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18sdp" />
+
+        <EditText
+            android:id="@+id/edtfilename"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@android:color/transparent"
+            android:hint="Enter file name"
+            android:paddingLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_15sdp"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            >
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnaudiocancel"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_weight="1"
+                android:background="@drawable/button_black_round"
+                android:text="CANCEL"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_14sdp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnaudiosave"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginLeft="@dimen/_32sdp"
+                android:layout_weight="1"
+                android:background="@drawable/button_red_round"
+                android:text="Done"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

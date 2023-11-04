@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightblack"
+    android:orientation="vertical"
+    tools:context=".activity.VoiceRecordingActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Red">
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imgBack"-->
+        <!--            android:layout_width="@dimen/_25sdp"-->
+        <!--            android:layout_height="@dimen/_25sdp"-->
+        <!--            android:src="@drawable/ic_arrow_back" />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Voice Recoding"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/linRecodingStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolBar"
+        android:layout_margin="@dimen/_20sdp"
+        app:cardBackgroundColor="#F8F4F4"
+        app:cardCornerRadius="@dimen/_5sdp">
+
+        <TextView
+            android:id="@+id/txtRecodingStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:text="Recording status"
+            android:textAlignment="center"
+            android:textSize="@dimen/_15ssp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linRecodingStatus"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:background="@color/white"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/txtDuration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seekBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="00:00"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_20ssp" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/linRecord_Stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtRecord_Play_Title"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_10sdp"
+        app:cardBackgroundColor="#ED6363"
+        app:cardCornerRadius="@dimen/_10sdp">
+
+        <ImageView
+            android:id="@+id/imgRecord_PlayButton"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:src="@drawable/ic_start_recoding"
+            app:tint="@color/white" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txtRecord_Play_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/linSaveAndCancel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_50sdp"
+        android:text="Record Audio"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15ssp"
+        android:textStyle="bold" />
+
+
+    <LinearLayout
+        android:id="@+id/linSaveAndCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_70sdp"
+        android:gravity="center_horizontal"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAudioDelete"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/cancel" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAudioSave"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/checked" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
