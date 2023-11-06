@@ -457,6 +457,30 @@ class FFmpegQueryExtension {
         return inputs.toArray(arrayOfNulls<String>(inputs.size))
     }
 
+    fun audioTrimFun(
+        audioFilePath: String,
+        outputFile: String,
+        startTime: String,
+        endTime: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+
+
+
+        inputs.apply {
+            add("-y")
+            add("-i")
+            add(audioFilePath)
+            add("-ss")
+            add(startTime)
+            add("-to")
+            add(endTime)
+            add("copy")
+            add(outputFile)
+        }
+        return inputs.toArray(arrayOfNulls<String>(inputs.size))
+    }
+
 
     //frame image set in full screen
 //    fun addImageOnVideo(inputVideo: String, imageInput: String,output: String): Array<String> {

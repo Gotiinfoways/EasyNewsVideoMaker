@@ -56,15 +56,18 @@ dependencies {
     //ssp
     implementation("com.intuit.ssp:ssp-android:1.1.0")
     //sdp
-    implementation ("com.intuit.sdp:sdp-android:1.1.0")
+    implementation("com.intuit.sdp:sdp-android:1.1.0")
 
     //circle Imageview
-    implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation("de.hdodenhof:circleimageview:3.1.0")
     //color picker
-    implementation ("com.github.yukuku:ambilwarna:2.0.1")
+    implementation("com.github.yukuku:ambilwarna:2.0.1")
 
     //Glide
-    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+
+    //Seekbar Ranged
+    implementation("com.github.guilhe:seekbar-ranged-view:2.0.5")
 
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
@@ -78,7 +81,7 @@ dependencies {
     //firebase database
     implementation("com.google.firebase:firebase-database-ktx")
     //firebase in store
-    implementation ("com.google.firebase:firebase-storage:20.2.1")
+    implementation("com.google.firebase:firebase-storage:20.2.1")
     //firebase notification
 //
 //    //add these libraries
@@ -86,7 +89,7 @@ dependencies {
 //    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 //    implementation ("com.google.firebase:firebase-messaging:23.2.1")
     //merge FFmpeg
-    implementation ("com.arthenica:mobile-ffmpeg-full:4.4")
+    implementation("com.arthenica:mobile-ffmpeg-full:4.4")
 //
 //    implementation ("com.github.uguraltinsoy:FCMSend:1.0.5")
 //
