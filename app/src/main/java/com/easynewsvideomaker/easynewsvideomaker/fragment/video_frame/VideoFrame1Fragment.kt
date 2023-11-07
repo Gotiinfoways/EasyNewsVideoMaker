@@ -1,5 +1,6 @@
 package com.easynewsvideomaker.easynewsvideomaker.fragment.video_frame
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
@@ -17,7 +18,9 @@ import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.provider.OpenableColumns
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,12 +34,14 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogAudioEditBinding
+import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogAudioSelectBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogEditBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DialogRecordingBinding
 import com.easynewsvideomaker.easynewsvideomaker.databinding.DownloadProgressBarBinding
@@ -82,7 +87,9 @@ class VideoFrame1Fragment : Fragment() {
 
     var convertImagePath: String? = null
     var videoPath: String? = null
+    var audioPath: String? = null
     private val PICK_VIDEO_REQUEST = 1
+    private val PICK_Audio_REQUEST = 2
 
     // this is the default color of the preview box
     private var mDefaultColor = 0
@@ -114,6 +121,8 @@ class VideoFrame1Fragment : Fragment() {
     private var maxSeekValue: Float = 0F
 
     var audioFilePath: String? = null
+
+    var AudioUri: Uri? = null
     private val handler = Handler(Looper.getMainLooper())
 
 
@@ -687,7 +696,8 @@ class VideoFrame1Fragment : Fragment() {
                 Toast.makeText(context, "Please Select Video", Toast.LENGTH_SHORT).show()
 
             } else {
-                recodingDialogFun()
+                addRecoding()
+//                recodingDialogFun()
 //            var i = Intent(context, VoiceRecordingActivity::class.java)
 //            requireActivity().startActivity(i)
             }
@@ -741,54 +751,44 @@ class VideoFrame1Fragment : Fragment() {
 
 
             saveFrameLayoutAsImage()
-            if (videoPath == null) {
 
-                Toast.makeText(context, "Please Select Video", Toast.LENGTH_SHORT).show()
-
-            } else {
-
-                var centerTextScroll = displayBinding.txtLay2.text.toString()
-                var bottomTextScroll = displayBinding.txtLay3.text.toString()
-                // Get the text size of the TextView
-                val centerTextSize = displayBinding.txtLay2.textSize.toInt()
-                val bottomTextSize = displayBinding.txtLay3.textSize.toInt()
-
-                var centerColorText = displayBinding.txtLay2.currentTextColor
-                val centerTextColor = String.format("#%06X", 0xFFFFFF and centerColorText)
-
-
-                var bottomColorText = displayBinding.txtLay3.currentTextColor
-                val bottomTextColor = String.format("#%06X", 0xFFFFFF and bottomColorText)
-
-                val fontPath =
-                    getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
-
-                val fragment = VideoExport1Fragment()
-                val bundle = Bundle()
-
-                bundle.putString("videoPath", videoPath)
-                bundle.putString("convertImagePath", convertImagePath)
-                bundle.putString("centerTextScrollPath", centerTextScroll)
-                bundle.putInt("centerTextSize", centerTextSize)
-                bundle.putString("centerTextColor", centerTextColor)
-                bundle.putString("bottomTextScrollPath", bottomTextScroll)
-                bundle.putInt("bottomTextSize", bottomTextSize)
-                bundle.putString("bottomTextColor", bottomTextColor)
-                bundle.putString("fontPath", fontPath)
-
-                fragment.arguments = bundle
-                val transaction = requireActivity().supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container, fragment)
-                transaction.addToBackStack(null)
-                transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                transaction.commit()
-
-            }
+            exportVideo()
 
         }
 
-
     }
+
+    private fun addRecoding() {
+        var dialog = Dialog(requireActivity())
+        var addAudioBinding = DialogAudioSelectBinding.inflate(layoutInflater)
+        dialog.setContentView(addAudioBinding.root)
+
+        addAudioBinding.imgRecodingButton.setOnClickListener {
+
+            recodingDialogFun()
+            dialog.dismiss()
+        }
+        addAudioBinding.imgSelectAudio.setOnClickListener {
+            val audio = Intent()
+            audio.type = "audio/*"
+            audio.action = Intent.ACTION_OPEN_DOCUMENT
+            startActivityForResult(Intent.createChooser(audio, "Select Audio"), PICK_Audio_REQUEST)
+            dialog.dismiss()
+        }
+        addAudioBinding.btnCansel.setOnClickListener {
+            dialog.dismiss()
+
+        }
+        dialog.window?.setGravity(Gravity.BOTTOM)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))   //dialog box TRANSPARENT
+        dialog.window?.setLayout(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        dialog.show()
+        dialog.setCancelable(false)
+    }
+
 
     private fun recodingDialogFun() {
 
@@ -895,8 +895,33 @@ class VideoFrame1Fragment : Fragment() {
                 }
             }
         }
+        if (requestCode == PICK_Audio_REQUEST && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
+                // Audio is Picked in format of URI
+                AudioUri = data!!.getData();
+//            mediaPlayer = MediaPlayer()
+//            mediaPlayer!!.setDataSource(requireContext(), AudioUri!!)
+
+                if (AudioUri != null) {
+                    /// THIS IS FOR GET NAME OF SELECTED AUDIO
+                    AudioUri?.let {
+                        fileName = getFileName(it)
+                        var selectedAudioPath = getAudioPathFromURI(AudioUri!!)
+
+                        setSelectedAudio(AudioUri!!, fileName)
+//                displayBinding.txtAudioPath.text = fileName
+                    }
+                    displayBinding.linAudioPath.visibility = View.VISIBLE
+
+
+
+                    Log.e("TAG", "onActivityResult: " + AudioUri)
+                }
+            }
+        }
 
     }
+
 
     var gallery_Launcher: ActivityResultLauncher<Intent> = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult(),
@@ -947,6 +972,43 @@ class VideoFrame1Fragment : Fragment() {
         return contentUri.path // Fallback to using the URI's path
     }
 
+    private fun getAudioPathFromURI(contentUri: Uri): String? {
+        val projection = arrayOf(MediaStore.Audio.Media.DATA)
+        val cursor: Cursor? =
+            requireContext().contentResolver.query(contentUri, projection, null, null, null)
+
+        cursor?.use {
+            val columnIndex = it.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)
+            it.moveToFirst()
+            audioPath = it.getString(columnIndex)
+            Log.e("TAG", "getPath:${audioPath} ")
+            return audioPath
+        }
+
+
+        // If the cursor is null, the query failed
+        return contentUri.path // Fallback to using the URI's path
+    }
+
+    @SuppressLint("Range")
+    private fun getFileName(uri: Uri): String {
+        var result: String? = null
+        if (uri.scheme == "content") {
+            requireContext().contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+                if (cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                }
+            }
+        }
+        if (result == null) {
+            result = uri.path
+            val cut = result?.lastIndexOf('/')
+            if (cut != null && cut != -1) {
+                result = result?.substring(cut + 1)
+            }
+        }
+        return result ?: "Unknown"
+    }
 
     private fun startRecording() {
 
@@ -1112,7 +1174,7 @@ class VideoFrame1Fragment : Fragment() {
         btnaudiosave.setOnClickListener {
             val audioName = edtfilename.text.toString().trim()
             if (audioName.isNotEmpty()) {
-                val outputFileName = "$audioName.3gp"
+                val outputFileName = "$audioName.mp3"
                 val outputFile = File(requireActivity().externalCacheDir, outputFileName)
 
                 if (outputFile.exists()) {
@@ -1132,7 +1194,7 @@ class VideoFrame1Fragment : Fragment() {
                             }
 
                             audioFilePath = outputFile.absolutePath
-                            var audioFileName = audioName
+                            var audioFileName = outputFileName
                             // The code related to Intents can be used here if needed.
 
 //                            val fragment = VideoFrame1Fragment()
@@ -1182,6 +1244,50 @@ class VideoFrame1Fragment : Fragment() {
         dialog.setCancelable(false)
     }
 
+    private fun setSelectedAudio(audioUri: Uri, fileName: String) {
+        if (AudioUri != null) {
+            mediaPlayer = MediaPlayer().apply {
+                setDataSource(requireContext(), audioUri!!)
+                prepare()
+            }
+            Log.e("TAG", "audiofile: $audioFilePath")
+
+
+            displayBinding.linAudioPath.visibility = View.VISIBLE
+
+            if (fileName != null) {
+                displayBinding.txtAudioPath.text = fileName
+            }
+
+            displayBinding.imgAudioPlayButton.setOnClickListener {
+                Log.e("TAG", "setAudio: play  Audio ")
+                if (mediaPlayer != null) {
+
+                    if (isPlaying) {
+                        mediaPlayer?.pause()
+                        displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
+                        isPlaying = false
+
+                    } else {
+                        mediaPlayer?.start()
+                        displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_pause_recoding)
+
+                        mediaPlayer?.setOnCompletionListener {
+                            displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
+
+                            isPlaying = false
+                        }
+                        isPlaying = true
+                    }
+                } else {
+                    Toast.makeText(context, "No Audio", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            displayBinding.linAudioPath.visibility = View.GONE // Hide the button
+        }
+    }
+
     private fun setAudio(audioFilePath: String, audioFileName: String) {
 
         //  audio
@@ -1201,7 +1307,7 @@ class VideoFrame1Fragment : Fragment() {
 
 
             if (audioFileName != null) {
-                displayBinding.txtAudioPath.text = "File Name: $audioFileName.mp3"
+                displayBinding.txtAudioPath.text = "File Name: $audioFileName"
             }
 
             // Audio Play icon Auto Change After Finis Audio
@@ -1213,20 +1319,22 @@ class VideoFrame1Fragment : Fragment() {
 
 
             displayBinding.imgAudioPlayButton.setOnClickListener {
+                Log.e("TAG", "setAudio: play  Audio ")
                 if (mediaPlayer != null) {
+                    Log.e("TAG", "setAudio: record  Audio ")
                     if (isPlaying) {
                         mediaPlayer?.pause()
                         displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
-
+                        isPlaying = false
                     } else {
                         mediaPlayer?.start()
                         displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_pause_recoding)
 
                         mediaPlayer?.setOnCompletionListener {
                             displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
-
+                            isPlaying = false
                         }
-
+                        isPlaying = true
                     }
                 } else {
                     Toast.makeText(context, "No Audio", Toast.LENGTH_SHORT).show()
@@ -1297,24 +1405,37 @@ class VideoFrame1Fragment : Fragment() {
                 mediaPlayer?.seekTo(minValue.toInt())
             }
 
-            override fun onChanging(view: SeekBarRangedView?, minValue: Float, maxValue: Float) {
+            override fun onChanging(
+                view: SeekBarRangedView?,
+                minValue: Float,
+                maxValue: Float
+            ) {
                 minSeekValue = minValue
                 maxSeekValue = maxValue
-                dialogAudioEditBinding.txtStartTime.text = audioDurationCovert(minValue.toLong())
+                dialogAudioEditBinding.txtStartTime.text =
+                    audioDurationCovert(minValue.toLong())
                 dialogAudioEditBinding.txtEndTime.text = audioDurationCovert(maxValue.toLong())
             }
         })
 
+        var audioFileTrim: String? = null
+
+        if (audioPath != null) {
+            audioFileTrim = audioPath
+        } else {
+            audioFileTrim = getAudioFilePath(requireContext(), audioFileName)
+        }
 
         dialogAudioEditBinding.btnCansel.setOnClickListener {
             dialog.dismiss()
         }
         dialogAudioEditBinding.btnSave.setOnClickListener {
 
+
             var startTime = dialogAudioEditBinding.txtStartTime.text.toString()
             var endTime = dialogAudioEditBinding.txtEndTime.text.toString()
 
-            audioTrimFun(startTime, endTime)
+            audioTrimFun(audioFileTrim, startTime, endTime)
             dialog.dismiss()
         }
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))   //dialog box TRANSPARENT
@@ -1325,12 +1446,35 @@ class VideoFrame1Fragment : Fragment() {
         dialog.show()
     }
 
-    private fun audioTrimFun(startTime: String, endTime: String) {
+    var filePath: String? = null
+    fun getAudioFilePath(context: Context, audioTitle: String): String? {
+
+        val contentResolver = context.contentResolver
+        val uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
+
+        // Define the columns to retrieve
+        val projection = arrayOf(MediaStore.Audio.Media.DATA)
+
+        // Define the selection criteria (e.g., audio title)
+        val selection = MediaStore.Audio.Media.TITLE + "=?"
+        val selectionArgs = arrayOf(audioTitle)
+
+        // Query the content resolver
+        val cursor = contentResolver.query(uri, projection, selection, selectionArgs, null)
+        if (cursor != null && cursor.moveToFirst()) {
+            val columnIndex = cursor.getColumnIndex(MediaStore.Audio.Media.DATA)
+            filePath = cursor.getString(columnIndex)
+            cursor.close()
+        }
+        return filePath
+    }
+
+    private fun audioTrimFun(audioFile: String?, startTime: String, endTime: String) {
         val trimDuration = maxSeekValue - minSeekValue
 //        Log.v("tagName", "seekToValue: $seekToValue")
-        Log.v("tagName", "maxValue: $maxSeekValue")
-        Log.v("tagName", "minValue: $minSeekValue")
-        Log.v("tagName", "trimDuration: $trimDuration")
+        Log.e("tagName", "maxValue: $maxSeekValue")
+        Log.e("tagName", "minValue: $minSeekValue")
+        Log.e("tagName", "trimDuration: $trimDuration")
 //        val convertedSeekValue = OptiCommonMethods.convertDuration(seekToValue)
 //        Log.v("tagName", "convertedSeekValue: $convertedSeekValue")
         /*val trimDurationLong = OptiCommonMethods.convertDurationInSec(trimDuration.roundToLong())
@@ -1340,8 +1484,10 @@ class VideoFrame1Fragment : Fragment() {
 //            Toast.makeText(activity, "Please trim audio under $convertedSeekValue.", Toast.LENGTH_SHORT).show()
 //        } else {
         //output file is generated and send to video processing
-        val outputFile = createAudioFile(requireContext())
-        Log.v("tagName", "outputFile: ${outputFile.absolutePath}")
+//        val outputFile = createAudioFile(requireContext())
+        val outputFile =
+            Environment.getExternalStorageDirectory().path + "/Easy News Maker/1223.mp3"
+//        Log.v("tagName", "outputFile: ${outputFile.absolutePath}")
 
 //            nextAction = 1
 
@@ -1354,9 +1500,18 @@ class VideoFrame1Fragment : Fragment() {
 //            .setCallback(this)
 //            .main()
 
+        Log.e("TAG", "audioTrimFun: $audioFilePath ")
+        Log.e("TAG", "audioTrimFun:sasdd $audioFile ")
+        Log.e("TAG", "audioTrimFun:1222 $filePath ")
+//        val query = ffmpegQueryExtension.audioTrimFun(
+//            audioFilePath!!,
+//            outputFile.absolutePath,
+//            startTime,
+//            endTime
+//        )
         val query = ffmpegQueryExtension.audioTrimFun(
-            audioFilePath!!,
-            outputFile.absolutePath,
+            filePath!!,
+            outputFile,
             startTime,
             endTime
         )
@@ -1409,6 +1564,61 @@ class VideoFrame1Fragment : Fragment() {
             TimeUnit.MILLISECONDS.toSeconds(audioDuration) -
                     TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(audioDuration))
         )
+    }
+
+    private fun exportVideo() {
+        if (videoPath == null) {
+
+            Toast.makeText(context, "Please Select Video", Toast.LENGTH_SHORT).show()
+
+        } else {
+            var selectedAudio: String? = null
+            if (audioPath != null) {
+                selectedAudio = audioPath
+            } else {
+                selectedAudio = audioFilePath
+            }
+            var centerTextScroll = displayBinding.txtLay2.text.toString()
+            var bottomTextScroll = displayBinding.txtLay3.text.toString()
+            // Get the text size of the TextView
+            val centerTextSize = displayBinding.txtLay2.textSize.toInt()
+            val bottomTextSize = displayBinding.txtLay3.textSize.toInt()
+
+            var centerColorText = displayBinding.txtLay2.currentTextColor
+            val centerTextColor = String.format("#%06X", 0xFFFFFF and centerColorText)
+
+
+            var bottomColorText = displayBinding.txtLay3.currentTextColor
+            val bottomTextColor = String.format("#%06X", 0xFFFFFF and bottomColorText)
+
+            val fontPath =
+                getFileFromAssets(requireContext(), "HindVadodara-Bold.ttf").absolutePath
+
+
+            val fragment = VideoExport1Fragment()
+            val bundle = Bundle()
+
+            bundle.putString("videoPath", videoPath)
+            bundle.putString("convertImagePath", convertImagePath)
+            bundle.putString("audioPath", selectedAudio)
+            bundle.putString("centerTextScrollPath", centerTextScroll)
+            bundle.putInt("centerTextSize", centerTextSize)
+            bundle.putString("centerTextColor", centerTextColor)
+            bundle.putString("bottomTextScrollPath", bottomTextScroll)
+            bundle.putInt("bottomTextSize", bottomTextSize)
+            bundle.putString("bottomTextColor", bottomTextColor)
+            bundle.putString("fontPath", fontPath)
+
+            fragment.arguments = bundle
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.container, fragment)
+            transaction.addToBackStack(null)
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+            transaction.commit()
+
+        }
+
+
     }
 
     override fun onStop() {

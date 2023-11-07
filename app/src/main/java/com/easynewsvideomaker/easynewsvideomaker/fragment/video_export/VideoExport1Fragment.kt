@@ -47,6 +47,7 @@ class VideoExport1Fragment : Fragment() {
     var outputPath: String? = null
     var videoPath: String? = null
     var convertImagePath: String? = null
+    var audioPath: String? = null
     var centerTextScroll: String? = null
     var centerTextSize = 0
     var centerTextColor: String? = null
@@ -130,6 +131,7 @@ class VideoExport1Fragment : Fragment() {
 
         videoPath = arguments?.getString("videoPath")
         convertImagePath = arguments?.getString("convertImagePath")
+        audioPath = arguments?.getString("audioPath")
         centerTextScroll = arguments?.getString("centerTextScrollPath")
         centerTextSize = arguments?.getInt("centerTextSize", 0)!!
         centerTextColor = arguments?.getString("centerTextColor")
@@ -139,6 +141,9 @@ class VideoExport1Fragment : Fragment() {
         bottomTextColor = arguments?.getString("bottomTextColor")
         fontPath = arguments?.getString("fontPath")!!
 
+
+        Log.e("TAG", "vidofeff: $videoPath", )
+        Log.e("TAG", "audiofeff: $audioPath", )
         val myBitmap = BitmapFactory.decodeFile(convertImagePath)
         exportBinding.imgExport.setImageBitmap(myBitmap)
 
@@ -241,6 +246,7 @@ class VideoExport1Fragment : Fragment() {
 
 
         var tvInputPathImage = convertImagePath!!
+        var tvInputPathAudio = audioPath!!
 
 //        var textInputeRepoter = mainBinding.txtLayRepoterName.text.toString()
 
@@ -277,6 +283,7 @@ class VideoExport1Fragment : Fragment() {
         val query = ffmpegQueryExtension.addFrame1VideoEditFun(
             tvInputPathVideo,
             tvInputPathImage,
+            tvInputPathAudio,
             textInputeCenter!!,
             yCenterPosition,
             textInputeCenterColor!!,
