@@ -303,49 +303,104 @@
         android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
         android:textStyle="bold" />
 
-
+<!--    Edite Video and audio-->
     <LinearLayout
-        android:id="@+id/linAudioPath"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/frameView"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/_5sdp"
-            app:cardBackgroundColor="#ED6363"
-            app:cardCornerRadius="@dimen/_10sdp">
-
-            <ImageView
-                android:id="@+id/imgAudioPlayButton"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:src="@drawable/ic_play_recoding"
-                app:tint="@color/white" />
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cdAudioPath"
+<!--        Video Edite-->
+        <LinearLayout
+            android:id="@+id/linVideoPath"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/_5sdp"
-            app:cardBackgroundColor="#EFB2B2"
-            app:cardCornerRadius="@dimen/_5sdp">
-            <TextView
-                android:id="@+id/txtAudioPath"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:hint="audio"
-                android:singleLine="true"
-                android:paddingHorizontal="@dimen/_20sdp"
-                android:textSize="@dimen/_15sdp" />
-        </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_5sdp"
+                app:cardBackgroundColor="#03A9F4"
+                app:cardCornerRadius="@dimen/_10sdp">
+
+                <ImageView
+                    android:id="@+id/imgVideoPlayButton"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@drawable/ic_play_recoding"
+                    app:tint="@color/white" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdVideoPath"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_5sdp"
+                app:cardBackgroundColor="#94D6F4"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/txtVideoPath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:hint="Video.mp4"
+                    android:paddingHorizontal="@dimen/_20sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_15sdp" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+<!--        Audio Edite-->
+        <LinearLayout
+            android:id="@+id/linAudioPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/_5sdp"
+                app:cardBackgroundColor="#ED6363"
+                app:cardCornerRadius="@dimen/_10sdp">
+
+                <ImageView
+                    android:id="@+id/imgAudioPlayButton"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:src="@drawable/ic_play_recoding"
+                    app:tint="@color/white" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdAudioPath"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_5sdp"
+                app:cardBackgroundColor="#EFB2B2"
+                app:cardCornerRadius="@dimen/_5sdp">
+
+                <TextView
+                    android:id="@+id/txtAudioPath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:hint="audio.mp3"
+                    android:paddingHorizontal="@dimen/_20sdp"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_15sdp" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

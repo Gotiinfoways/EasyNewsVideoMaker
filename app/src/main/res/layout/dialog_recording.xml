@@ -102,10 +102,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/linRecord_Stop"
                 android:layout_marginTop="@dimen/_30sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:visibility="invisible">
+                android:layout_marginBottom="@dimen/_20sdp">
 
                 <LinearLayout
+                    android:id="@+id/linCancel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -120,10 +120,12 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linSave"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:visibility="gone">
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnAudioSave"

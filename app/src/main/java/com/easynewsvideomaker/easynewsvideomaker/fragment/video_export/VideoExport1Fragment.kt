@@ -142,8 +142,8 @@ class VideoExport1Fragment : Fragment() {
         fontPath = arguments?.getString("fontPath")!!
 
 
-        Log.e("TAG", "vidofeff: $videoPath", )
-        Log.e("TAG", "audiofeff: $audioPath", )
+        Log.e("TAG", "vidofeff: $videoPath")
+        Log.e("TAG", "audiofeff: $audioPath")
         val myBitmap = BitmapFactory.decodeFile(convertImagePath)
         exportBinding.imgExport.setImageBitmap(myBitmap)
 
@@ -176,7 +176,7 @@ class VideoExport1Fragment : Fragment() {
 
                 if (fileName.isNotEmpty()) {
                     val directoryPath =
-                        Environment.getExternalStorageDirectory().path + "/Easy News Maker/"
+                        Environment.getExternalStorageDirectory().path + "/Easy News Maker/News Video Maker/"
                     val fileNameToCheck = "$fileName.mp4"
 
                     if (isFileAlreadyExists(directoryPath, fileNameToCheck)) {
@@ -240,14 +240,17 @@ class VideoExport1Fragment : Fragment() {
 
 
         outputPath =
-            Environment.getExternalStorageDirectory().path + "/Easy News Maker/$fileName.mp4"
+            Environment.getExternalStorageDirectory().path + "/Easy News Maker/News Video Maker/$fileName.mp4"
 
         var tvInputPathVideo = videoPath!!
 
 
         var tvInputPathImage = convertImagePath!!
-        var tvInputPathAudio = audioPath!!
 
+        var tvInputPathAudio: String? = null
+        if (audioPath != null) {
+             tvInputPathAudio = audioPath!!
+        }
 //        var textInputeRepoter = mainBinding.txtLayRepoterName.text.toString()
 
 //
@@ -280,49 +283,98 @@ class VideoExport1Fragment : Fragment() {
         val videoWidth = getVideoWidth(tvInputPathVideo)
         val videoHeight = getVideoHeight(tvInputPathVideo)
 
-        val query = ffmpegQueryExtension.addFrame1VideoEditFun(
-            tvInputPathVideo,
-            tvInputPathImage,
-            tvInputPathAudio,
-            textInputeCenter!!,
-            yCenterPosition,
-            textInputeCenterColor!!,
-            textInputeBottom!!,
-            yBottomPosition,
-            textInputeBottomColor!!,
-            textInputeSize,
-            videoWidth,
-            videoHeight,
-            outputPath!!, fontPath!!
-        )
-        CallBackOfQuery().callQuery(query, object : FFmpegCallBack {
-            override fun process(logMessage: LogMessage) {
+        if (tvInputPathAudio != null) {
+            Log.e("TAG", "addVideoEditFun: Audio")
+            val query = ffmpegQueryExtension.addFrame1VideoEditWithAudioFun(
+                tvInputPathVideo,
+                tvInputPathImage,
+                tvInputPathAudio!!,
+                textInputeCenter!!,
+                yCenterPosition,
+                textInputeCenterColor!!,
+                textInputeBottom!!,
+                yBottomPosition,
+                textInputeBottomColor!!,
+                textInputeSize,
+                videoWidth,
+                videoHeight,
+                outputPath!!, fontPath!!
+            )
+            CallBackOfQuery().callQuery(query, object : FFmpegCallBack {
+                override fun process(logMessage: LogMessage) {
 //                exportBinding.txtOutputPath.visibility = View.VISIBLE
 //                exportBinding.txtOutputPath.text = logMessage.text
-            }
+                }
 
-            override fun success() {
-                exportBinding.txtOutputPath.visibility = View.VISIBLE
-                exportBinding.txtOutputPath.text =
-                    String.format(getString(R.string.output_path), outputPath)
-                downloadProgressDialog.dismiss()
-                Toast.makeText(context, "Video Download Success", Toast.LENGTH_SHORT)
-                    .show()
-            }
+                override fun success() {
+                    exportBinding.txtOutputPath.visibility = View.VISIBLE
+                    exportBinding.txtOutputPath.text =
+                        String.format(getString(R.string.output_path), outputPath)
+                    downloadProgressDialog.dismiss()
+                    Toast.makeText(context, "Video Download Success", Toast.LENGTH_SHORT)
+                        .show()
+                }
 
-            override fun cancel() {
+                override fun cancel() {
 
-                downloadProgressDialog.dismiss()
-                Toast.makeText(context, "Video Download Cancel", Toast.LENGTH_SHORT)
-                    .show()
-            }
+                    downloadProgressDialog.dismiss()
+                    Toast.makeText(context, "Video Download Cancel", Toast.LENGTH_SHORT)
+                        .show()
+                }
 
-            override fun failed() {
+                override fun failed() {
 
-                downloadProgressDialog.dismiss()
-                Toast.makeText(context, "Video Download Fail", Toast.LENGTH_SHORT).show()
-            }
-        })
+                    downloadProgressDialog.dismiss()
+                    Toast.makeText(context, "Video Download Fail", Toast.LENGTH_SHORT).show()
+                }
+            })
+        } else {
+
+
+            Log.e("TAG", "addVideoEditFun:No Audio")
+            val query = ffmpegQueryExtension.addFrame1VideoEditFun(
+                tvInputPathVideo,
+                tvInputPathImage,
+                textInputeCenter!!,
+                yCenterPosition,
+                textInputeCenterColor!!,
+                textInputeBottom!!,
+                yBottomPosition,
+                textInputeBottomColor!!,
+                textInputeSize,
+                videoWidth,
+                videoHeight,
+                outputPath!!, fontPath!!
+            )
+            CallBackOfQuery().callQuery(query, object : FFmpegCallBack {
+                override fun process(logMessage: LogMessage) {
+//                exportBinding.txtOutputPath.visibility = View.VISIBLE
+//                exportBinding.txtOutputPath.text = logMessage.text
+                }
+
+                override fun success() {
+                    exportBinding.txtOutputPath.visibility = View.VISIBLE
+                    exportBinding.txtOutputPath.text =
+                        String.format(getString(R.string.output_path), outputPath)
+                    downloadProgressDialog.dismiss()
+                    Toast.makeText(context, "Video Download Success", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                override fun cancel() {
+
+                    downloadProgressDialog.dismiss()
+                    Toast.makeText(context, "Video Download Cancel", Toast.LENGTH_SHORT)
+                        .show()
+                }
+
+                override fun failed() {
+
+                    downloadProgressDialog.dismiss()
+                    Toast.makeText(context, "Video Download Fail", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
     }
 
     private fun calculateFontSize(context: Context, videoPath: String): Int {

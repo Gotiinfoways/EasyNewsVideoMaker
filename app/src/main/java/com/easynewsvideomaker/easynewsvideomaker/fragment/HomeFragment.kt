@@ -2,6 +2,7 @@ package com.easynewsvideomaker.easynewsvideomaker.fragment
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Environment
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.Query
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
+import java.io.File
 
 class HomeFragment : Fragment() {
 
@@ -41,6 +43,8 @@ class HomeFragment : Fragment() {
     lateinit var mDbRef: DatabaseReference
     lateinit var auth: FirebaseAuth
     var packageType: String? = null
+    //initialize root directory
+    var rootDir = Environment.getExternalStorageDirectory().path
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -49,11 +53,20 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         mDbRef = FirebaseDatabase.getInstance().getReference()
         auth = Firebase.auth
+//making sure the download directory exists
+        checkAndCreateDirectory("/Easy News Maker/News Video Maker")
+        checkAndCreateDirectory("/Easy News Maker/cash")
 
         intiView()
         return binding.root
     }
-
+    //function to verify if directory exists
+    fun checkAndCreateDirectory(dirName: String) {
+        val new_dir: File = File(rootDir + dirName)
+        if (!new_dir.exists()) {
+            new_dir.mkdirs()
+        }
+    }
     private fun intiView() {
 
 

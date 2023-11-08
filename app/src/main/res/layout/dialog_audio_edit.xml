@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 app:backgroundColor="#C0C0C0"
                 app:backgroundHeight="10dp"
-                app:currentMin="10"
+                app:currentMin="0"
                 app:progressColor="@color/lightblack"
                 app:progressHeight="20dp"
                 app:rounded="true"

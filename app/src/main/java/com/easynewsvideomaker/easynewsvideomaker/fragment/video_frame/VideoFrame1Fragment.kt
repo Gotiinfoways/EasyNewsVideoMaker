@@ -10,6 +10,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.MediaMetadataRetriever
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.net.Uri
@@ -34,7 +35,6 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -71,6 +71,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import kotlin.math.roundToLong
 
 
 class VideoFrame1Fragment : Fragment() {
@@ -90,24 +91,16 @@ class VideoFrame1Fragment : Fragment() {
     var audioPath: String? = null
     private val PICK_VIDEO_REQUEST = 1
     private val PICK_Audio_REQUEST = 2
+    var videoDuration: Long = 0L
 
     // this is the default color of the preview box
     private var mDefaultColor = 0
 
-    // creating a variable for media recorder object class.
-    private var mRecorder: MediaRecorder? = null
-
-    // creating a variable for mediaplayer class
-    private var mPlayer: MediaPlayer? = null
-
-    // string variable is created for storing a file name
-    private var mFileName: String? = null
 
     lateinit var recodingBinding: DialogRecordingBinding
     lateinit var recodingDialog: Dialog
 
     private var fileName: String = ""
-    private var outputFile: File? = null
 
     private var recorder: MediaRecorder? = null
     private var mediaPlayer: MediaPlayer? = null
@@ -120,7 +113,7 @@ class VideoFrame1Fragment : Fragment() {
     private var minSeekValue: Float = 0F
     private var maxSeekValue: Float = 0F
 
-    var audioFilePath: String? = null
+//    var audioFilePath: String? = null
 
     var AudioUri: Uri? = null
     private val handler = Handler(Looper.getMainLooper())
@@ -159,31 +152,7 @@ class VideoFrame1Fragment : Fragment() {
         downloadProgressDialog = Dialog(requireContext())
         progressBarBinding = DownloadProgressBarBinding.inflate(layoutInflater)
         downloadProgressDialog.setContentView(progressBarBinding.root)
-//        primaryProgressStatus = progressBarBinding.progressBar.progress
 
-
-        //here’s the download code
-//
-//        Thread(Runnable {
-//            // this loop will run until the value of i becomes 99
-//            while (primaryProgressStatus < 100) {
-//                primaryProgressStatus += 1
-//                // Update the progress bar and display the current value
-//                handler.post(Runnable {
-//                    progressBarBinding.progressBar.progress = primaryProgressStatus
-//                    // setting current progress to the textview
-////                    progressBarBinding.txtProgress.text = i.toString() + "/" + progressBarBinding.progressBar.max
-//                    progressBarBinding.txtProgress.text = "$primaryProgressStatus %"
-//                })
-//                try {
-//                    Thread.sleep(100)
-//                } catch (e: InterruptedException) {
-//                    e.printStackTrace()
-//                }
-//            }
-//
-//
-//        }).start()
         downloadProgressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         downloadProgressDialog.window?.setLayout(
             LinearLayout.LayoutParams.MATCH_PARENT,
@@ -598,7 +567,21 @@ class VideoFrame1Fragment : Fragment() {
         //        Audio Edit
         displayBinding.cdAudioPath.setOnClickListener {
             if (mediaPlayer != null) {
+
+
                 var audioFileName = displayBinding.txtAudioPath.text.toString()
+
+
+                val getAudioFile = File(requireActivity().externalCacheDir, audioFileName)
+
+                var audioFileTrim: String? = null
+//                 currentAudioPath    = getAudioFilePath(requireContext(),audioFileName)
+
+                if (audioPath != null) {
+                    audioFileTrim = audioPath
+                } else {
+                    audioFileTrim = getAudioFile.absolutePath
+                }
 
                 var audioDuration = mediaPlayer!!.duration.toLong()
 
@@ -609,7 +592,9 @@ class VideoFrame1Fragment : Fragment() {
                 minSeekValue = 0F
                 maxSeekValue = audioDuration.toFloat()
 
-                audioEditDialog(audioFileName, audioTime)
+                Log.e("TAG", "frameEdit: $audioFileTrim")
+                audioEditDialog(audioFileName, audioFileTrim!!, audioTime)
+
             } else {
                 Toast.makeText(context, "No Audio", Toast.LENGTH_SHORT).show()
             }
@@ -697,9 +682,7 @@ class VideoFrame1Fragment : Fragment() {
 
             } else {
                 addRecoding()
-//                recodingDialogFun()
-//            var i = Intent(context, VoiceRecordingActivity::class.java)
-//            requireActivity().startActivity(i)
+
             }
         }
         // creating object of
@@ -708,8 +691,11 @@ class VideoFrame1Fragment : Fragment() {
         // sets the anchor view
         // anchor view for the videoView
         mediaController.setAnchorView(displayBinding.vidView)
+
         // sets the media player to the videoView
         mediaController.setMediaPlayer(displayBinding.vidView)
+
+
         //volume set
         displayBinding.vidView.setOnPreparedListener { mp -> setVolumeControl(mp) }
         // sets the media controller to the videoView
@@ -769,10 +755,11 @@ class VideoFrame1Fragment : Fragment() {
             dialog.dismiss()
         }
         addAudioBinding.imgSelectAudio.setOnClickListener {
-            val audio = Intent()
-            audio.type = "audio/*"
-            audio.action = Intent.ACTION_OPEN_DOCUMENT
-            startActivityForResult(Intent.createChooser(audio, "Select Audio"), PICK_Audio_REQUEST)
+
+//call the gallery intent
+            val i = Intent(Intent.ACTION_PICK, MediaStore.Audio.Media.EXTERNAL_CONTENT_URI)
+            i.putExtra(Intent.EXTRA_MIME_TYPES, arrayOf("audio/*", "video/*"))
+            startActivityForResult(i, PICK_Audio_REQUEST)
             dialog.dismiss()
         }
         addAudioBinding.btnCansel.setOnClickListener {
@@ -820,8 +807,9 @@ class VideoFrame1Fragment : Fragment() {
         }
 
         recodingBinding.btnAudioDelete.setOnClickListener {
-
-            mediaPlayer!!.release()
+            if (mediaPlayer != null) {
+                mediaPlayer!!.release()
+            }
             recodingDialog.dismiss()
 
         }
@@ -839,10 +827,6 @@ class VideoFrame1Fragment : Fragment() {
         recodingDialog.setCancelable(false)
     }
 
-
-    private fun seekbar() {
-
-    }
 
     private fun setVolumeControl(mp: MediaPlayer) {
 
@@ -889,38 +873,49 @@ class VideoFrame1Fragment : Fragment() {
                     displayBinding.imgView.visibility = View.INVISIBLE
                     displayBinding.vidView.start()
 
-//                    videoPath=selectedVideoUri.path
+                    val (videoFileName, videoFilePath) = getVideoFileNameAndPath(selectedVideoUri)
+                    Log.e("TAG", "getVideoFileNameAndPath: $videoFileName    $videoFilePath")
+
+                    val timeInMillis = getVideoDuration(requireContext(), selectedVideoUri)
+                    Log.v("tagName", "timeInMillis: $timeInMillis")
+
+                    videoDuration = timeInMillis
+
                     var videoPath = getVideoPathFromURI(selectedVideoUri!!)
-                    Log.e("TAG", "onActivityResult:${videoPath} ")
+
+
+                    Log.e("TAG", "onActivityResultVideo:${videoPath} ")
                 }
             }
         }
         if (requestCode == PICK_Audio_REQUEST && resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 // Audio is Picked in format of URI
-                AudioUri = data!!.getData();
-//            mediaPlayer = MediaPlayer()
-//            mediaPlayer!!.setDataSource(requireContext(), AudioUri!!)
+                var AudioUri = data.getData();
 
                 if (AudioUri != null) {
-                    /// THIS IS FOR GET NAME OF SELECTED AUDIO
-                    AudioUri?.let {
-                        fileName = getFileName(it)
-                        var selectedAudioPath = getAudioPathFromURI(AudioUri!!)
 
-                        setSelectedAudio(AudioUri!!, fileName)
-//                displayBinding.txtAudioPath.text = fileName
-                    }
-                    displayBinding.linAudioPath.visibility = View.VISIBLE
+                    val (audioFileName, audioFilePath) = getAudioFileNameAndPath(AudioUri)
+                    Log.e("TAG", "getFileNameAndPath: $audioFileName    $audioFilePath")
 
-
-
-                    Log.e("TAG", "onActivityResult: " + AudioUri)
+                    audioPath = audioFilePath
+                    setAudio(audioFilePath, audioFileName)
+                    Log.e("TAG", "onActivityResultAudio: " + AudioUri)
                 }
             }
         }
 
     }
+
+    fun getVideoDuration(context: Context, videoUri: Uri): Long {
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(context, videoUri)
+        val time = retriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+        val timeInMillis = time!!.toLong()
+        retriever.release()
+        return timeInMillis
+    }
+
 
 
     var gallery_Launcher: ActivityResultLauncher<Intent> = registerForActivityResult(
@@ -944,8 +939,10 @@ class VideoFrame1Fragment : Fragment() {
         cursor?.use {
             val columnIndex = it.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)
             it.moveToFirst()
+
+
             videoPath = it.getString(columnIndex)
-            Log.e("TAG", "getPath:${videoPath} ")
+            Log.e("TAG", "getVideoPath:${videoPath} ")
             return videoPath
         }
 
@@ -954,6 +951,34 @@ class VideoFrame1Fragment : Fragment() {
         return contentUri.path // Fallback to using the URI's path
     }
 
+
+    @SuppressLint("Range")
+    private fun getVideoFileNameAndPath(uri: Uri): Pair<String, String> {
+        var fileName: String? = null
+        var filePath: String? = null
+
+        if (uri.scheme == "content") {
+            requireContext().contentResolver.query(uri, null, null, null, null)?.use { cursor ->
+                if (cursor.moveToFirst()) {
+                    fileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                    val pathColumnIndex = cursor.getColumnIndex(MediaStore.Video.Media.DATA)
+                    if (pathColumnIndex != -1) {
+                        filePath = cursor.getString(pathColumnIndex)
+                    }
+                }
+            }
+        }
+
+        if (fileName == null) {
+            fileName = uri.lastPathSegment
+        }
+
+        if (filePath == null) {
+            filePath = uri.path
+        }
+
+        return Pair(fileName ?: "Unknown", filePath ?: "Unknown")
+    }
     private fun getImagePathFromURI(contentUri: Uri): String? {
         val projection = arrayOf(MediaStore.Video.Media.DATA)
         val cursor: Cursor? =
@@ -964,7 +989,7 @@ class VideoFrame1Fragment : Fragment() {
             val columnIndex = it.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
             it.moveToFirst()
             imagePath = it.getString(columnIndex)
-            Log.e("TAG", "getPath:${imagePath} ")
+            Log.e("TAG", "getImagePath:${imagePath} ")
             return imagePath
         }
 
@@ -972,49 +997,41 @@ class VideoFrame1Fragment : Fragment() {
         return contentUri.path // Fallback to using the URI's path
     }
 
-    private fun getAudioPathFromURI(contentUri: Uri): String? {
-        val projection = arrayOf(MediaStore.Audio.Media.DATA)
-        val cursor: Cursor? =
-            requireContext().contentResolver.query(contentUri, projection, null, null, null)
-
-        cursor?.use {
-            val columnIndex = it.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)
-            it.moveToFirst()
-            audioPath = it.getString(columnIndex)
-            Log.e("TAG", "getPath:${audioPath} ")
-            return audioPath
-        }
-
-
-        // If the cursor is null, the query failed
-        return contentUri.path // Fallback to using the URI's path
-    }
-
     @SuppressLint("Range")
-    private fun getFileName(uri: Uri): String {
-        var result: String? = null
+    private fun getAudioFileNameAndPath(uri: Uri): Pair<String, String> {
+        var fileName: String? = null
+        var filePath: String? = null
+
         if (uri.scheme == "content") {
             requireContext().contentResolver.query(uri, null, null, null, null)?.use { cursor ->
                 if (cursor.moveToFirst()) {
-                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                    fileName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME))
+                    val pathColumnIndex = cursor.getColumnIndex(MediaStore.Audio.AudioColumns.DATA)
+                    if (pathColumnIndex != -1) {
+                        filePath = cursor.getString(pathColumnIndex)
+                    }
                 }
             }
         }
-        if (result == null) {
-            result = uri.path
-            val cut = result?.lastIndexOf('/')
-            if (cut != null && cut != -1) {
-                result = result?.substring(cut + 1)
-            }
+
+        if (fileName == null) {
+            fileName = uri.lastPathSegment
         }
-        return result ?: "Unknown"
+
+        if (filePath == null) {
+            filePath = uri.path
+        }
+
+        return Pair(fileName ?: "Unknown", filePath ?: "Unknown")
     }
+
 
     private fun startRecording() {
 
         recodingBinding.txtRecordPlayTitle.text = "Stop Recording"
         recodingBinding.imgRecordPlayButton.setImageResource(R.drawable.ic_stop_recoding)
 
+        recodingBinding.linCancel.visibility = View.GONE
         recorder = MediaRecorder()
         recorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
         recorder?.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
@@ -1132,7 +1149,8 @@ class VideoFrame1Fragment : Fragment() {
         mediaPlayer = null
 
         isPlaying = false
-        recodingBinding.linSaveAndCancel.visibility = View.VISIBLE
+        recodingBinding.linCancel.visibility = View.VISIBLE
+        recodingBinding.linSave.visibility = View.VISIBLE
     }
 
 
@@ -1193,20 +1211,10 @@ class VideoFrame1Fragment : Fragment() {
                                 inputFile.inputStream().copyTo(output)
                             }
 
-                            audioFilePath = outputFile.absolutePath
+                            var audioFilePath = outputFile.absolutePath
                             var audioFileName = outputFileName
                             // The code related to Intents can be used here if needed.
 
-//                            val fragment = VideoFrame1Fragment()
-////                            val bundle = Bundle()
-////                            bundle.putString("audioFilePath", outputFile.absolutePath)
-////                            bundle.putString("audioFileName", audioName)
-////
-////                            fragment.arguments = bundle
-//                            val transaction = supportFragmentManager.beginTransaction()
-//                            transaction.replace(R.id.container, fragment)
-//                            transaction.addToBackStack(null)
-//                            transaction.commit()
 
                             setAudio(audioFilePath!!, audioFileName)
 
@@ -1242,109 +1250,6 @@ class VideoFrame1Fragment : Fragment() {
         }
         dialog.show()
         dialog.setCancelable(false)
-    }
-
-    private fun setSelectedAudio(audioUri: Uri, fileName: String) {
-        if (AudioUri != null) {
-            mediaPlayer = MediaPlayer().apply {
-                setDataSource(requireContext(), audioUri!!)
-                prepare()
-            }
-            Log.e("TAG", "audiofile: $audioFilePath")
-
-
-            displayBinding.linAudioPath.visibility = View.VISIBLE
-
-            if (fileName != null) {
-                displayBinding.txtAudioPath.text = fileName
-            }
-
-            displayBinding.imgAudioPlayButton.setOnClickListener {
-                Log.e("TAG", "setAudio: play  Audio ")
-                if (mediaPlayer != null) {
-
-                    if (isPlaying) {
-                        mediaPlayer?.pause()
-                        displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
-                        isPlaying = false
-
-                    } else {
-                        mediaPlayer?.start()
-                        displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_pause_recoding)
-
-                        mediaPlayer?.setOnCompletionListener {
-                            displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
-
-                            isPlaying = false
-                        }
-                        isPlaying = true
-                    }
-                } else {
-                    Toast.makeText(context, "No Audio", Toast.LENGTH_SHORT).show()
-                }
-            }
-        } else {
-            displayBinding.linAudioPath.visibility = View.GONE // Hide the button
-        }
-    }
-
-    private fun setAudio(audioFilePath: String, audioFileName: String) {
-
-        //  audio
-//        val audioFilePath = intent.getStringExtra("audioFilePath")
-//        val audioFileName = intent.getStringExtra("audioFileName")
-
-        if (audioFilePath != null) {
-            mediaPlayer = MediaPlayer().apply {
-                setDataSource(audioFilePath)
-                prepare()
-            }
-            Log.e("TAG", "audiofile: $audioFilePath")
-
-
-            displayBinding.linAudioPath.visibility = View.VISIBLE
-
-
-
-            if (audioFileName != null) {
-                displayBinding.txtAudioPath.text = "File Name: $audioFileName"
-            }
-
-            // Audio Play icon Auto Change After Finis Audio
-//            if (isPlaying) {
-//                displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_pause_recoding)
-//            } else {
-//                displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
-//            }
-
-
-            displayBinding.imgAudioPlayButton.setOnClickListener {
-                Log.e("TAG", "setAudio: play  Audio ")
-                if (mediaPlayer != null) {
-                    Log.e("TAG", "setAudio: record  Audio ")
-                    if (isPlaying) {
-                        mediaPlayer?.pause()
-                        displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
-                        isPlaying = false
-                    } else {
-                        mediaPlayer?.start()
-                        displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_pause_recoding)
-
-                        mediaPlayer?.setOnCompletionListener {
-                            displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
-                            isPlaying = false
-                        }
-                        isPlaying = true
-                    }
-                } else {
-                    Toast.makeText(context, "No Audio", Toast.LENGTH_SHORT).show()
-                }
-            }
-        } else {
-            displayBinding.linAudioPath.visibility = View.GONE // Hide the button
-        }
-
-
     }
 
 
@@ -1387,8 +1292,35 @@ class VideoFrame1Fragment : Fragment() {
 //        imageView.setImageBitmap(transparentBitmap)
     }
 
+    fun getAudioFilePath(context: Context, audioTitle: String): String? {
+        var filePath: String? = null
+        val contentResolver = context.contentResolver
+        val uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
 
-    private fun audioEditDialog(audioFileName: String, audioTime: String) {
+        // Define the columns to retrieve
+        val projection = arrayOf(MediaStore.Audio.Media.DATA)
+
+        // Define the selection criteria (e.g., audio title)
+        val selection = MediaStore.Audio.Media.TITLE + "=?"
+        val selectionArgs = arrayOf(audioTitle)
+
+        // Query the content resolver
+        val cursor = contentResolver.query(uri, projection, selection, selectionArgs, null)
+        if (cursor != null && cursor.moveToFirst()) {
+            val columnIndex = cursor.getColumnIndex(MediaStore.Audio.Media.DATA)
+            filePath = cursor.getString(columnIndex)
+            cursor.close()
+        }
+        return filePath
+    }
+
+    private fun audioEditDialog(
+        audioFileName: String,
+        audioFileTrim: String,
+        audioTime: String
+    ) {
+
+
         var dialog = Dialog(requireContext())
         var dialogAudioEditBinding = DialogAudioEditBinding.inflate(layoutInflater)
         dialog.setContentView(dialogAudioEditBinding.root)
@@ -1418,25 +1350,52 @@ class VideoFrame1Fragment : Fragment() {
             }
         })
 
-        var audioFileTrim: String? = null
+//        var audioFileTrim: String? = null
 
-        if (audioPath != null) {
-            audioFileTrim = audioPath
-        } else {
-            audioFileTrim = getAudioFilePath(requireContext(), audioFileName)
-        }
+//        if (audioPath != null) {
+//            audioFileTrim = audioPath
+//            //selected Audio
+//        } else {
+////            audioFileTrim = getAudioFilePath(requireContext(), audioFileName)
+//            audioFileTrim = audioFilePath
+//            Log.e("TAG", "audioEditDialog:Recoding ")
+//            //Recoding Audio
+//        }
 
+        dialogAudioEditBinding.btnCansel.visibility = View.GONE
         dialogAudioEditBinding.btnCansel.setOnClickListener {
             dialog.dismiss()
         }
+
+
         dialogAudioEditBinding.btnSave.setOnClickListener {
 
 
             var startTime = dialogAudioEditBinding.txtStartTime.text.toString()
             var endTime = dialogAudioEditBinding.txtEndTime.text.toString()
 
-            audioTrimFun(audioFileTrim, startTime, endTime)
-            dialog.dismiss()
+            val trimDuration = maxSeekValue - minSeekValue
+            Log.e("tagName", "maxValue: $maxSeekValue")
+            Log.e("tagName", "minValue: $minSeekValue")
+            Log.e("tagName", "trimDuration: $trimDuration")
+//            val convertedSeekValue = convertDuration(videoDuration)
+            val (minutes, seconds) = convertDurationInMinAndSec(videoDuration)
+            Log.v("tagName", "convertedSeekValue: $minutes:$seconds")
+            /*val trimDurationLong = OptiCommonMethods.convertDurationInSec(trimDuration.roundToLong())
+            Log.v(tagName, "trimDurationLong: $trimDurationLong")*/
+
+            if (trimDuration.roundToLong() >= videoDuration) {
+                Toast.makeText(
+                    activity,
+                    "Please trim audio under $minutes:$seconds.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                downloadProgressDialog.show()
+
+                audioTrimFun(audioFileName, audioFileTrim, startTime, endTime)
+                dialog.dismiss()
+            }
         }
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))   //dialog box TRANSPARENT
         dialog.window?.setLayout(
@@ -1444,74 +1403,40 @@ class VideoFrame1Fragment : Fragment() {
             LinearLayout.LayoutParams.WRAP_CONTENT
         )
         dialog.show()
+        dialog.setCancelable(false)
     }
 
-    var filePath: String? = null
-    fun getAudioFilePath(context: Context, audioTitle: String): String? {
 
-        val contentResolver = context.contentResolver
-        val uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
-
-        // Define the columns to retrieve
-        val projection = arrayOf(MediaStore.Audio.Media.DATA)
-
-        // Define the selection criteria (e.g., audio title)
-        val selection = MediaStore.Audio.Media.TITLE + "=?"
-        val selectionArgs = arrayOf(audioTitle)
-
-        // Query the content resolver
-        val cursor = contentResolver.query(uri, projection, selection, selectionArgs, null)
-        if (cursor != null && cursor.moveToFirst()) {
-            val columnIndex = cursor.getColumnIndex(MediaStore.Audio.Media.DATA)
-            filePath = cursor.getString(columnIndex)
-            cursor.close()
-        }
-        return filePath
+    fun convertDurationInMinAndSec(duration: Long): Pair<Long, Long> {
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(duration)
+        val seconds =
+            TimeUnit.MILLISECONDS.toSeconds(duration) - TimeUnit.MINUTES.toSeconds(minutes)
+        return Pair(minutes, seconds)
     }
 
-    private fun audioTrimFun(audioFile: String?, startTime: String, endTime: String) {
-        val trimDuration = maxSeekValue - minSeekValue
-//        Log.v("tagName", "seekToValue: $seekToValue")
-        Log.e("tagName", "maxValue: $maxSeekValue")
-        Log.e("tagName", "minValue: $minSeekValue")
-        Log.e("tagName", "trimDuration: $trimDuration")
-//        val convertedSeekValue = OptiCommonMethods.convertDuration(seekToValue)
-//        Log.v("tagName", "convertedSeekValue: $convertedSeekValue")
-        /*val trimDurationLong = OptiCommonMethods.convertDurationInSec(trimDuration.roundToLong())
-        Log.v(tagName, "trimDurationLong: $trimDurationLong")*/
+    private fun audioTrimFun(
+        audioFileName: String,
+        audioFile: String,
+        startTime: String,
+        endTime: String
+    ) {
 
-//        if (trimDuration.roundToLong() >= seekToValue) {
-//            Toast.makeText(activity, "Please trim audio under $convertedSeekValue.", Toast.LENGTH_SHORT).show()
-//        } else {
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(
+            Date()
+        )
+        val audioName: String = "EasyNews$timeStamp.mp3"
+
         //output file is generated and send to video processing
-//        val outputFile = createAudioFile(requireContext())
-        val outputFile =
-            Environment.getExternalStorageDirectory().path + "/Easy News Maker/1223.mp3"
-//        Log.v("tagName", "outputFile: ${outputFile.absolutePath}")
 
-//            nextAction = 1
+        val outputFile = File(requireActivity().externalCacheDir, audioName)
 
-//        OptiVideoEditor.with(context!!)
-//            .setType(OptiConstant.AUDIO_TRIM)
-//            .setAudioFile(masterAudioFile!!)
-//            .setOutputPath(outputFile.absolutePath)
-//            .setStartTime(actvStartTime?.text.toString())
-//            .setEndTime(actvEndTime?.text.toString())
-//            .setCallback(this)
-//            .main()
-
-        Log.e("TAG", "audioTrimFun: $audioFilePath ")
+//        Log.e("TAG", "audioTrimFun: $audioFilePath ")
         Log.e("TAG", "audioTrimFun:sasdd $audioFile ")
-        Log.e("TAG", "audioTrimFun:1222 $filePath ")
-//        val query = ffmpegQueryExtension.audioTrimFun(
-//            audioFilePath!!,
-//            outputFile.absolutePath,
-//            startTime,
-//            endTime
-//        )
+//        Log.e("TAG", "audioTrimFun:1222 $filePath ")
+
         val query = ffmpegQueryExtension.audioTrimFun(
-            filePath!!,
-            outputFile,
+            audioFile,
+            outputFile.absolutePath,
             startTime,
             endTime
         )
@@ -1526,34 +1451,43 @@ class VideoFrame1Fragment : Fragment() {
 //                exportBinding.txtOutputPath.text =
 //                    String.format(getString(R.string.output_path), outputPath)
                 downloadProgressDialog.dismiss()
-                Toast.makeText(context, "Video Download Success", Toast.LENGTH_SHORT)
+                Toast.makeText(context, "Audio Trim Success", Toast.LENGTH_SHORT)
                     .show()
+
+                val inputFile = File(outputFile.absolutePath) // Define fileName properly
+                if (inputFile.exists()) {
+
+                    var audioFilePath = outputFile.absolutePath
+                    var audioFileName = audioFileName
+                    // The code related to Intents can be used here if needed.
+
+                    Log.e("Tag", "success:$audioFileName  = $audioFilePath ")
+                    setAudio(audioFilePath, audioFileName)
+                } else {
+                    Toast.makeText(
+                        context,
+                        "Source audio file not found",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                }
             }
 
             override fun cancel() {
 
                 downloadProgressDialog.dismiss()
-                Toast.makeText(context, "Video Download Cancel", Toast.LENGTH_SHORT)
+                Toast.makeText(context, "Audio Trim  Cancel", Toast.LENGTH_SHORT)
                     .show()
             }
 
             override fun failed() {
 
                 downloadProgressDialog.dismiss()
-                Toast.makeText(context, "Video Download Fail", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Audio Trim  Fail", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
-    fun createAudioFile(context: Context): File {
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(
-            Date()
-        )
-        val imageFileName: String = "EasyNews" + timeStamp + "_"
-        val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_MOVIES)
-        if (!storageDir!!.exists()) storageDir.mkdirs()
-        return File.createTempFile(imageFileName, "mp3", storageDir)
-    }
 
     private fun audioDurationCovert(audioDuration: Long): String {
 
@@ -1566,6 +1500,65 @@ class VideoFrame1Fragment : Fragment() {
         )
     }
 
+    var selctedAudio: String? = null
+    private fun setAudio(audioFilePath: String, audioFileName: String) {
+
+        //  audio
+//        val audioFilePath = intent.getStringExtra("audioFilePath")
+//        val audioFileName = intent.getStringExtra("audioFileName")
+
+        if (audioFilePath != null) {
+
+            selctedAudio = audioFilePath
+
+            mediaPlayer = MediaPlayer().apply {
+                setDataSource(audioFilePath)
+                prepare()
+            }
+            Log.e("TAG", "audiofile: $audioFilePath")
+
+
+            displayBinding.linAudioPath.visibility = View.VISIBLE
+
+
+
+            if (audioFileName != null) {
+                displayBinding.txtAudioPath.text = "$audioFileName"
+            }
+
+
+
+
+            displayBinding.imgAudioPlayButton.setOnClickListener {
+                Log.e("TAG", "setAudio: play  Audio ")
+                if (mediaPlayer != null) {
+                    Log.e("TAG", "setAudio: record  Audio ")
+                    if (isPlaying) {
+                        mediaPlayer?.pause()
+                        displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
+                        isPlaying = false
+                    } else {
+                        mediaPlayer?.start()
+                        displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_pause_recoding)
+
+                        // Audio Play icon Auto Change After Finis Audio
+                        mediaPlayer?.setOnCompletionListener {
+                            displayBinding.imgAudioPlayButton.setImageResource(R.drawable.ic_play_recoding)
+                            isPlaying = false
+                        }
+                        isPlaying = true
+                    }
+                } else {
+                    Toast.makeText(context, "No Audio", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } else {
+            displayBinding.linAudioPath.visibility = View.GONE // Hide the button
+        }
+
+
+    }
+
     private fun exportVideo() {
         if (videoPath == null) {
 
@@ -1573,11 +1566,12 @@ class VideoFrame1Fragment : Fragment() {
 
         } else {
             var selectedAudio: String? = null
-            if (audioPath != null) {
-                selectedAudio = audioPath
-            } else {
-                selectedAudio = audioFilePath
-            }
+            selectedAudio = selctedAudio
+//            if (audioPath != null) {
+//                selectedAudio = audioPath
+//            } else {
+////                selectedAudio = audioFilePath
+//            }
             var centerTextScroll = displayBinding.txtLay2.text.toString()
             var bottomTextScroll = displayBinding.txtLay3.text.toString()
             // Get the text size of the TextView
@@ -1621,11 +1615,11 @@ class VideoFrame1Fragment : Fragment() {
 
     }
 
-    override fun onStop() {
-        super.onStop()
-        recorder?.release()
-        recorder = null
-        mediaPlayer?.release()
-        mediaPlayer = null
-    }
+//    override fun onStop() {
+//        super.onStop()
+//        recorder?.release()
+//        recorder = null
+//        mediaPlayer?.release()
+//        mediaPlayer = null
+//    }
 }

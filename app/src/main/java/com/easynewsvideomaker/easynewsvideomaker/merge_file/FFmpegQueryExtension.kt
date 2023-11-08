@@ -3,52 +3,54 @@ package com.easynewsvideomaker.easynewsvideomaker.merge_file
 class FFmpegQueryExtension {
 
     //two text scroll,text scroll speed,image  size set on video and video size  youtube size
-//    fun addFrame1VideoEditFun(
-//        tvInputPathVideo: String,
-//        tvInputPathImage: String,
-//        textInputeCenter: String,
-//        yCenterPosition: Int,
-//        textInputeCenterColor: String,
-//        textInputeBottom: String,
-//        yBottomPosition: Int,
-//        textInputeBottomColor: String,
-//        textInputeSize: Int,
-//        videoWidth: Int,
-//        videoHeight: Int,
-//        outputPath: String,
-//        fontPath: String
-//    ): Array<String> {
-//        val inputs: ArrayList<String> = ArrayList()
-//        var textCenter =
-//            "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize:fontcolor=$textInputeCenterColor:x=w-(mod(5*n\\,w+tw)):y=$yCenterPosition"
-//        val textBottom =
-//            "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
-//
-//
-//
-//        inputs.apply {
-//            add("-i")
-//            add(tvInputPathVideo)
-//            add("-i")
-//            add(tvInputPathImage)
-//            add("-filter_complex")
-//            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0, $textCenter, $textBottom")
-//            add("-c:a")
-//            add("copy")
-//            add("-s")
-//            add("1920x1080")
-//            add("-movflags")
-//            add("+faststart")
-//            add(outputPath)
-//        }
-//
-//        return inputs.toArray(arrayOfNulls(inputs.size))
-//    }
-
     fun addFrame1VideoEditFun(
         tvInputPathVideo: String,
         tvInputPathImage: String,
-        tvInputPathAudio: String,  // Add the audio input path
+        textInputeCenter: String,
+        yCenterPosition: Int,
+        textInputeCenterColor: String,
+        textInputeBottom: String,
+        yBottomPosition: Int,
+        textInputeBottomColor: String,
+        textInputeSize: Int,
+        videoWidth: Int,
+        videoHeight: Int,
+        outputPath: String,
+        fontPath: String
+    ): Array<String> {
+        val inputs: ArrayList<String> = ArrayList()
+        var textCenter =
+            "drawtext=fontfile='$fontPath':text='$textInputeCenter':fontsize=$textInputeSize:fontcolor=$textInputeCenterColor:x=w-(mod(5*n\\,w+tw)):y=$yCenterPosition"
+        val textBottom =
+            "drawtext=fontfile='$fontPath':text='$textInputeBottom':fontsize=$textInputeSize:fontcolor=$textInputeBottomColor:x=w-(mod(5*n\\,w+tw)):y=$yBottomPosition"
+
+
+
+        inputs.apply {
+            add("-i")
+            add(tvInputPathVideo)
+            add("-i")
+            add(tvInputPathImage)
+            add("-filter_complex")
+            add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0, $textCenter, $textBottom")
+            add("-c:a")
+            add("copy")
+            add("-s")
+            add("1920x1080")
+            add("-movflags")
+            add("+faststart")
+            add(outputPath)
+        }
+
+        return inputs.toArray(arrayOfNulls(inputs.size))
+    }
+
+
+//below code in add audio file , two text scroll,text scroll speed,image  size set on video and video size  youtube size
+    fun addFrame1VideoEditWithAudioFun(
+        tvInputPathVideo: String,
+        tvInputPathImage: String,
+        audioInputPath: String , // Add the audio input path parameter,
         textInputeCenter: String,
         yCenterPosition: Int,
         textInputeCenterColor: String,
@@ -72,14 +74,14 @@ class FFmpegQueryExtension {
             add(tvInputPathVideo)
             add("-i")
             add(tvInputPathImage)
-            add("-i")
-            add(tvInputPathAudio)  // Add the audio input to the list
+            add("-i") // Add audio input
+            add(audioInputPath)
             add("-filter_complex")
             add("[1:v]scale=$videoWidth:$videoHeight[scaled_image];[0:v][scaled_image]overlay=0:0, $textCenter, $textBottom")
-            add("-map")
-            add("a:0")
-            add("-c:a")
-            add("aac")  // You can specify the desired audio codec here (e.g., aac)
+            add("-map") // Map audio from the third input
+            add("2:a")
+            add("-c:a") // Copy the audio codec
+            add("copy")
             add("-s")
             add("1920x1080")
             add("-movflags")
