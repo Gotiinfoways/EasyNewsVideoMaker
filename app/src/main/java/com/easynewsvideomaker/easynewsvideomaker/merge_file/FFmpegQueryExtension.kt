@@ -504,7 +504,7 @@ class FFmpegQueryExtension {
         return inputs.toArray(arrayOfNulls<String>(inputs.size))
     }
 
-    fun audioTrimFun(
+    fun audioAndVideoTrimFun(
         audioFilePath: String,
         outputFile: String,
         startTime: String,

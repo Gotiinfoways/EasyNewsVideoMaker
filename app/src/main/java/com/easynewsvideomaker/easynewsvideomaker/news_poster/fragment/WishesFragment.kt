@@ -37,7 +37,8 @@ var wishesList=ArrayList<Int>()
 
         insertImageInList()
 
-        var adapter = NewsAdapter(requireContext()) {
+        var selectedFragment = "wishesFragment"
+        var adapter = NewsAdapter(requireContext(),selectedFragment) {
 
             Log.e("TAG", "click: $it")
             clickPage(it)
@@ -63,19 +64,19 @@ var wishesList=ArrayList<Int>()
 
     private fun clickPage(it: Int) {
 
-        if (it == 0) {
-            val intent = Intent(requireContext(), Post_1_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 1) {
-            val intent = Intent(requireContext(), Post_2_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 2) {
-            val intent = Intent(requireContext(), Post_3_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 3) {
-            val intent = Intent(requireContext(), Post_4_Activity::class.java)
-            startActivity(intent)
-        }
+//        if (it == 0) {
+//            val intent = Intent(requireContext(), Post_1_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 1) {
+//            val intent = Intent(requireContext(), Post_2_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 2) {
+//            val intent = Intent(requireContext(), Post_3_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 3) {
+//            val intent = Intent(requireContext(), Post_4_Activity::class.java)
+//            startActivity(intent)
+//        }
 
 
     }

@@ -133,6 +133,7 @@ class SignUpActivity : AppCompatActivity() {
             var confPassword = signUpBinding.edtConfirmPassword.text.toString()
 //            var login_device_name = Build.MODEL
             var login_device_name = android_id
+            var userBlock = "unblock"
 
             if (userName.isEmpty()) {
                 Toast.makeText(this, "Please Enter User Name", Toast.LENGTH_SHORT).show()
@@ -204,6 +205,7 @@ class SignUpActivity : AppCompatActivity() {
                 i.putExtra("email",email)
                 i.putExtra("password",password)
                 i.putExtra("login_device_name",login_device_name)
+                i.putExtra("userBlock",userBlock)
                 startActivity(i)
                 finish()
             }

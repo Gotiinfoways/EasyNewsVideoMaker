@@ -33,7 +33,8 @@ class NewsRoomFragment : Fragment() {
 
         insertImageInList()
 
-        var adapter = NewsAdapter(requireContext()) {
+        var selectedFragment = "newsRoomFragment"
+        var adapter = NewsAdapter(requireContext(),selectedFragment) {
 
             Log.e("TAG", "click: $it")
             clickPage(it)
@@ -57,13 +58,13 @@ class NewsRoomFragment : Fragment() {
 
     private fun clickPage(it: Int) {
 
-        if (it == 0) {
-            val intent = Intent(requireContext(), Post_1_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 1) {
-            val intent = Intent(requireContext(), Post_2_Activity::class.java)
-            startActivity(intent)
-        }
+//        if (it == 0) {
+//            val intent = Intent(requireContext(), Post_1_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 1) {
+//            val intent = Intent(requireContext(), Post_2_Activity::class.java)
+//            startActivity(intent)
+//        }
 
 
     }

@@ -51,7 +51,8 @@ class NewsPaperFragment : Fragment() {
     private fun initView() {
         insertImageInList()
 
-        var adapter = NewsAdapter(requireContext()) {
+        var selectedFragment = "newsPaperFragment"
+        var adapter = NewsAdapter(requireContext(),selectedFragment) {
 
             Log.e("TAG", "click: $it")
             clickPage(it)
@@ -133,173 +134,173 @@ class NewsPaperFragment : Fragment() {
     }
 
     private fun clickPage(it: Int) {
-
-        if (it == 0) {
-            val intent = Intent(requireContext(), Post_1_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 1) {
-            val intent = Intent(requireContext(), Post_2_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 2) {
-            val intent = Intent(requireContext(), Post_3_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 3) {
-            val intent = Intent(requireContext(), Post_4_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 4) {
-            val intent = Intent(requireContext(), Post_5_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 5) {
-            val intent = Intent(requireContext(), Post_6_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 6) {
-            val intent = Intent(requireContext(), Post_7_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 7) {
-            val intent = Intent(requireContext(), Post_8_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 8) {
-            val intent = Intent(requireContext(), Post_9_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 9) {
-            val intent = Intent(requireContext(), Post_10_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 10) {
-            val intent = Intent(requireContext(), Post_11_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 11) {
-            val intent = Intent(requireContext(), Post_12_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 12) {
-            val intent = Intent(requireContext(), Post_13_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 13) {
-            val intent = Intent(requireContext(), Post_14_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 14) {
-            val intent = Intent(requireContext(), Post_15_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 15) {
-            val intent = Intent(requireContext(), Post_16_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 16) {
-            val intent = Intent(requireContext(), Post_17_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 17) {
-            val intent = Intent(requireContext(), Post_18_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 18) {
-            val intent = Intent(requireContext(), Post_19_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 19) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 20) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 21) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 22) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 23) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 24) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 25) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 26) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 27) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 28) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 29) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 30) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 31) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 32) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 33) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 34) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 35) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 36) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 37) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 38) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 39) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 40) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 41) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 42) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 43) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 44) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 45) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 46) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 47) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 48) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 49) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 50) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 51) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 52) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 56) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 57) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
-        }
+//
+//        if (it == 0) {
+//            val intent = Intent(requireContext(), Post_1_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 1) {
+//            val intent = Intent(requireContext(), Post_2_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 2) {
+//            val intent = Intent(requireContext(), Post_3_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 3) {
+//            val intent = Intent(requireContext(), Post_4_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 4) {
+//            val intent = Intent(requireContext(), Post_5_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 5) {
+//            val intent = Intent(requireContext(), Post_6_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 6) {
+//            val intent = Intent(requireContext(), Post_7_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 7) {
+//            val intent = Intent(requireContext(), Post_8_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 8) {
+//            val intent = Intent(requireContext(), Post_9_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 9) {
+//            val intent = Intent(requireContext(), Post_10_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 10) {
+//            val intent = Intent(requireContext(), Post_11_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 11) {
+//            val intent = Intent(requireContext(), Post_12_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 12) {
+//            val intent = Intent(requireContext(), Post_13_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 13) {
+//            val intent = Intent(requireContext(), Post_14_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 14) {
+//            val intent = Intent(requireContext(), Post_15_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 15) {
+//            val intent = Intent(requireContext(), Post_16_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 16) {
+//            val intent = Intent(requireContext(), Post_17_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 17) {
+//            val intent = Intent(requireContext(), Post_18_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 18) {
+//            val intent = Intent(requireContext(), Post_19_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 19) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 20) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 21) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 22) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 23) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 24) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 25) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 26) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 27) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 28) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 29) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 30) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 31) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 32) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 33) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 34) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 35) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 36) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 37) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 38) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 39) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 40) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 41) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 42) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 43) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 44) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 45) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 46) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 47) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 48) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 49) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 50) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 51) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 52) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 56) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 57) {
+//            val intent = Intent(requireContext(), Post_20_Activity::class.java)
+//            startActivity(intent)
+//        }
 
 
     }

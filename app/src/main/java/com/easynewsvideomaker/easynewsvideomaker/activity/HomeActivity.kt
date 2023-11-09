@@ -16,7 +16,6 @@ import android.os.Build.VERSION.SDK_INT
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,7 +27,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityHomeBinding
-import com.easynewsvideomaker.easynewsvideomaker.fragment.HomeFragment
+import com.easynewsvideomaker.easynewsvideomaker.news_video.HomeFragment
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.News_Poster_Activity
 import com.easynewsvideomaker.easynewsvideomaker.reels_maker.ReelsMakerActivity
 import com.google.firebase.auth.FirebaseAuth

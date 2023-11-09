@@ -1,17 +1,13 @@
 package com.easynewsvideomaker.easynewsvideomaker.news_poster
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.ImageView
+import android.os.Environment
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityNewsPosterBinding
-import com.easynewsvideomaker.easynewsvideomaker.databinding.ActivityNotificationBinding
-import com.easynewsvideomaker.easynewsvideomaker.fragment.HomeFragment
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.AdvtFragment
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.BAFragment
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.BreakingFragment
@@ -24,22 +20,41 @@ import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.PosterFrag
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.QuotationFragment
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.TvMediaFragment
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment.WishesFragment
+import java.io.File
 
 class News_Poster_Activity : AppCompatActivity() {
 
     lateinit var newsPosterBinding: ActivityNewsPosterBinding
-
+    //initialize root directory
+    var rootDir = Environment.getExternalStorageDirectory().path
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         newsPosterBinding = ActivityNewsPosterBinding.inflate(layoutInflater)
         setContentView(newsPosterBinding.root)
 
+        checkAndCreateDirectory("/Easy News Maker/News Poster")
         horizontalLayout()
 
         newsPosterBinding.imgBack.setOnClickListener {
             onBackPressed()
         }
-        fragmentSet(PosterFragment())  // fragment set
+        fragmentSet(BAFragment())  // fragment set
+    }
+    //function to verify if directory exists
+    fun checkAndCreateDirectory(dirName: String) {
+        val new_dir: File = File(rootDir + dirName)
+        if (!new_dir.exists()) {
+            new_dir.mkdirs()
+        }
+    }
+
+
+
+    private fun fragmentSet(fragment: Fragment) {
+        val manager: FragmentManager = supportFragmentManager
+        val transaction: FragmentTransaction = manager.beginTransaction()
+        transaction.replace(R.id.frameNews, fragment)
+        transaction.commit()
     }
 
 
@@ -241,13 +256,5 @@ class News_Poster_Activity : AppCompatActivity() {
 
             fragmentSet(ElcationFragment())  // fragment set
         }
-    }
-
-
-    private fun fragmentSet(fragment: Fragment) {
-        val manager: FragmentManager = supportFragmentManager
-        val transaction: FragmentTransaction = manager.beginTransaction()
-        transaction.replace(R.id.frameNews, fragment)
-        transaction.commit()
     }
 }

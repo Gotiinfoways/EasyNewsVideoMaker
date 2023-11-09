@@ -13,6 +13,7 @@ class UserModelClass {
     var endDate: String? = null
     var packageType: String? = null
     var login_device_name: String? = null
+    var userBlock: String? = null
     var uid: String? = null
     var channelLogo: String? = null
     var channelName: String? = null
@@ -34,6 +35,7 @@ class UserModelClass {
         endDate: String,
         packageType: String,
         login_device_name: String,
+        userBlock: String,
         uid: String,
         channelLogo: String,
         channelName: String,
@@ -52,6 +54,7 @@ class UserModelClass {
         this.endDate = endDate
         this.packageType = packageType
         this.login_device_name = login_device_name
+        this.userBlock = userBlock
         this.uid = uid
 //
         this.channelLogo=channelLogo

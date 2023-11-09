@@ -7,6 +7,7 @@ class SignupUserModel {
     var email: String? = null
     var password: String? = null
     var login_device_name: String? = null
+    var userBlock: String? = null
     var uid: String? = null
     var channelLogo: String? = null
     var channelName: String? = null
@@ -24,6 +25,7 @@ class SignupUserModel {
         email: String,
         password: String,
         login_device_name: String,
+        userBlock: String,
         uid: String,
         channelLogo: String,
         channelName: String,
@@ -39,6 +41,7 @@ class SignupUserModel {
         this.email = email
         this.password = password
         this.login_device_name = login_device_name
+        this.userBlock = userBlock
         this.uid = uid
 
         this.channelLogo=channelLogo

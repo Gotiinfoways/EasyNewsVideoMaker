@@ -50,11 +50,8 @@ class Post_1_Activity : AppCompatActivity() {
     lateinit var dialogEditBinding: DialogEditBinding
     private var mDefaultColor = 0
     private var userInputText: String = ""
-    private val PICK_VIDEO_REQUEST = 1
-    var videoPath = ""
     lateinit var transparentBitmap: Bitmap
     var convertImagePath = ""
-    private var selectedVideoUri: Uri? = null
     lateinit var progressDialog: Dialog
     lateinit var ffmpegQueryExtension: FFmpegQueryExtension
 
@@ -100,24 +97,7 @@ class Post_1_Activity : AppCompatActivity() {
             camera_Launcher.launch(intent)
         }
 
-        binding.linImportVideo.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK)
-            intent.type = "video/*"
-            startActivityForResult(intent, PICK_VIDEO_REQUEST)
-        }
 
-        // creating object of
-        // media controller class
-        var mediaController = MediaController(this)
-        // sets the anchor view
-        // anchor view for the videoView
-        mediaController.setAnchorView(binding.vidViewp1)
-        // sets the media player to the videoView
-        mediaController.setMediaPlayer(binding.vidViewp1)
-        //volume set
-//        binding.vidView.setOnPreparedListener { mp -> setVolumeControl(mp) }
-        // sets the media controller to the videoView
-        binding.vidViewp1.setMediaController(mediaController);
 
         binding.cdExploreBtn.setOnClickListener {
             val z: View = binding.frameView
@@ -246,49 +226,7 @@ class Post_1_Activity : AppCompatActivity() {
         timer.schedule(taskEverySplitSecond, 1, 200)
     }
 
-    private fun addImageOnVideo(fileName: String) {
 
-
-        var outputPathBrakingNews1 =
-            Environment.getExternalStorageDirectory().path + "/Download/$fileName.mp4"
-
-        var tvInputPathVideo = videoPath!!
-
-        var tvInputPathImage = convertImagePath!!
-
-
-        val query = ffmpegQueryExtension.addImageOnVideo(
-            tvInputPathVideo,
-            tvInputPathImage,
-
-            outputPathBrakingNews1
-        )
-        CallBackOfQuery().callQuery(query, object : FFmpegCallBack {
-            override fun process(logMessage: LogMessage) {
-
-            }
-
-            override fun success() {
-
-                progressDialog.dismiss()
-                Toast.makeText(this@Post_1_Activity, "Video Download Success", Toast.LENGTH_SHORT)
-                    .show()
-            }
-
-            override fun cancel() {
-
-                progressDialog.dismiss()
-                Toast.makeText(this@Post_1_Activity, "Video Download Cancel", Toast.LENGTH_SHORT)
-                    .show()
-            }
-
-            override fun failed() {
-
-                progressDialog.dismiss()
-                Toast.makeText(this@Post_1_Activity, "Video Download Fail", Toast.LENGTH_SHORT).show()
-            }
-        })
-    }
 
     private fun editeDialog(text: String, textColor: Int) {
         editeDialog = Dialog(this)
@@ -348,29 +286,7 @@ class Post_1_Activity : AppCompatActivity() {
             }
         })
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == PICK_VIDEO_REQUEST && resultCode == Activity.RESULT_OK) {
-            if (data != null) {
-                selectedVideoUri = data.data
-
-                if (selectedVideoUri != null) {
-                    // Set the selected video URI to the VideoView
-                    binding.vidViewp1.setVideoURI(selectedVideoUri)
-                    binding.vidViewp1.requestFocus()
-                    // Start playing the video
-                    binding.vidViewp1.visibility = View.VISIBLE
-                    binding.vidViewp1.start()
-
-//                    videoPath=selectedVideoUri.path
-                    var videoPath = getVideoPathFromURI(selectedVideoUri!!)
-                    Log.e("TAG", "onActivityResult:${videoPath} ")
-                }
-            }
-        }
-
-    }
 
     fun saveFrameLayoutAsImage() {
         // Create a transparent Bitmap
@@ -399,21 +315,7 @@ class Post_1_Activity : AppCompatActivity() {
 //        imageView.setImageBitmap(transparentBitmap)
     }
 
-    private fun getVideoPathFromURI(contentUri: Uri): String? {
-        val projection = arrayOf(MediaStore.Video.Media.DATA)
-        val cursor: Cursor? =
-            this.contentResolver.query(contentUri, projection, null, null, null)
 
-        cursor?.use {
-            val columnIndex = it.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)
-            it.moveToFirst()
-            videoPath = it.getString(columnIndex)
-            Log.e("TAG", "getPath:${videoPath} ")
-            return videoPath
-        }
-        // If the cursor is null, the query failed
-        return contentUri.path // Fallback to using the URI's path
-    }
 
     fun checkPermission(permission: String, requestCode: Int) {
         if (ContextCompat.checkSelfPermission(

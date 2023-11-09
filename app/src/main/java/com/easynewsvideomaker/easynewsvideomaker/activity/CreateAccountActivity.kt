@@ -52,6 +52,7 @@ class CreateAccountActivity : AppCompatActivity() {
     var endDate: String? = null
     var packageType: String? = null
     var loginDeviceName: String? = null
+    var userBlock: String? = null
     var channelLogo: String? = null
     var channelName: String? = null
     var repoterName: String? = null
@@ -166,6 +167,7 @@ class CreateAccountActivity : AppCompatActivity() {
                                 val email = user.email
                                 val password = user.password
                                 val login_device_name = user.login_device_name
+                                 userBlock = user.userBlock
                                 channelLogo = user.channelLogo!!
                                 channelName = user.channelName!!
                                 repoterName = user.repoterName!!
@@ -382,6 +384,7 @@ class CreateAccountActivity : AppCompatActivity() {
             startDate = createAccountBinding.txtStartDate.text.toString()
             endDate = createAccountBinding.txtEndDate.text.toString()
 
+//            userBlock="unblock"
 
             if (createAccountBinding.rgPackage.checkedRadioButtonId == -1) {
 
@@ -452,6 +455,7 @@ class CreateAccountActivity : AppCompatActivity() {
                             endDate!!,
                             packageType!!,
                             loginDeviceName!!,
+                            userBlock!!,
                             userId!!,
                             channelLogo!!,
                             channelName!!,
@@ -494,6 +498,7 @@ class CreateAccountActivity : AppCompatActivity() {
                             endDate!!,
                             packageType!!,
                             loginDeviceName!!,
+                            userBlock!!,
                             userId!!,
                             channelLogo!!,
                             channelName!!,
@@ -541,6 +546,7 @@ class CreateAccountActivity : AppCompatActivity() {
                                     endDate!!,
                                     packageType,
                                     loginDeviceName!!,
+                                    userBlock!!,
                                     auth.currentUser?.uid!!,
                                     channelLogo!!,
                                     channelName!!,
@@ -617,6 +623,7 @@ class CreateAccountActivity : AppCompatActivity() {
         endDate: String,
         packageType: String?,
         login_device_name: String,
+        userBlock: String,
         uid: String,
         channelLogo: String,
         channelName: String,
@@ -639,6 +646,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 endDate,
                 packageType!!,
                 login_device_name,
+                userBlock,
                 uid,
                 channelLogo,
                 channelName,

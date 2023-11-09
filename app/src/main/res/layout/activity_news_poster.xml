@@ -38,13 +38,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+            <!--            B/A-->
+            <LinearLayout
+                android:id="@+id/linBA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:background="@drawable/news_red_round">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="B/A"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+            </LinearLayout>
             <!--            Poster-->
             <LinearLayout
                 android:id="@+id/linPoster"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_5sdp"
-                android:background="@drawable/news_red_round">
+                android:background="@drawable/news_black_round">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -220,23 +237,6 @@
             </LinearLayout>
 
 
-            <!--            B/A-->
-            <LinearLayout
-                android:id="@+id/linBA"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_5sdp"
-                android:background="@drawable/news_black_round">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="B/A"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginVertical="@dimen/_5sdp"
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-            </LinearLayout>
 
             <!--            Election-->
             <LinearLayout

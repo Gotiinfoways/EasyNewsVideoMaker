@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightblack"
     android:orientation="vertical"
-    tools:context=".fragment.video_frame.VideoFrame5Fragment">
+    tools:context=".news_video.video_frame.VideoFrame5Fragment">
 
     <FrameLayout
         android:id="@+id/frameView"

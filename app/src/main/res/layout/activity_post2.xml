@@ -166,7 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Explore"
+            android:text="Export"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />

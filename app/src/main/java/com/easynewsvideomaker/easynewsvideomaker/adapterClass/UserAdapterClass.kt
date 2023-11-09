@@ -3,13 +3,20 @@ package com.easynewsvideomaker.easynewsvideomaker.adapterClass
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import android.widget.LinearLayout
+import android.widget.Switch
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.modelClass.UserModelClass
 
-class UserAdapterClass(var edit: (UserModelClass) -> Unit, var delete: (String) -> Unit) :
+
+class UserAdapterClass(
+    var edit: (UserModelClass) -> Unit,
+    var delete: (String) -> Unit,
+    var userBlock: (String, String) -> Unit
+) :
     RecyclerView.Adapter<UserAdapterClass.MyViewHolder>() {
     var userList = ArrayList<UserModelClass>()
     var i = 1
@@ -18,6 +25,7 @@ class UserAdapterClass(var edit: (UserModelClass) -> Unit, var delete: (String) 
         var id: TextView = itemView.findViewById(R.id.txtIdDisplay)
         var userName: TextView = itemView.findViewById(R.id.txtUserNameDisplay)
         var linEditData: LinearLayout = itemView.findViewById(R.id.linEditData)
+        var userBlock: Switch = itemView.findViewById(R.id.switchUserBlock)
         var linDelete: LinearLayout = itemView.findViewById(R.id.linDelete)
     }
 
@@ -42,6 +50,18 @@ class UserAdapterClass(var edit: (UserModelClass) -> Unit, var delete: (String) 
             delete.invoke(userList[position].uid!!)
 
         }
+
+        holder.userBlock.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            // Handle the switch state change
+            if (isChecked) {
+                // Switch is ON
+                userBlock.invoke(userList[position].uid!!,"block")
+
+            } else {
+                // Switch is OFF
+                userBlock.invoke(userList[position].uid!!,"unblock")
+            }
+        })
     }
 
     fun updateList(userList: ArrayList<UserModelClass>) {

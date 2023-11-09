@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lightblack"
-    tools:context=".fragment.video_export.VideoExport7Fragment">
+    tools:context=".news_video.video_export.VideoExport7Fragment">
 
     <LinearLayout
         android:id="@+id/linVideo"

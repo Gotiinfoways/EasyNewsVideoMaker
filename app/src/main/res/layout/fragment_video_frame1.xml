@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightblack"
     android:orientation="vertical"
-    tools:context=".fragment.video_frame.VideoFrame1Fragment">
+    tools:context=".news_video.video_frame.VideoFrame1Fragment">
 
 
     <FrameLayout
@@ -303,14 +303,14 @@
         android:text="Hello guys !! Welcome to Easy News  Maker App Create Your News"
         android:textStyle="bold" />
 
-<!--    Edite Video and audio-->
+    <!--    Edite Video and audio-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/frameView"
         android:orientation="vertical">
 
-<!--        Video Edite-->
+        <!--        Video Edite-->
         <LinearLayout
             android:id="@+id/linVideoPath"
             android:layout_width="match_parent"
@@ -356,7 +356,13 @@
 
         </LinearLayout>
 
-<!--        Audio Edite-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvAddVideo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <!--        Audio Edite-->
         <LinearLayout
             android:id="@+id/linAudioPath"
             android:layout_width="match_parent"
@@ -529,7 +535,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="@dimen/_50sdp"

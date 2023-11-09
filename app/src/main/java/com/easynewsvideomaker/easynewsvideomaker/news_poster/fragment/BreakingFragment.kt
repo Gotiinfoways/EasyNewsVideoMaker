@@ -53,7 +53,8 @@ class BreakingFragment : Fragment() {
 
         insertImageInList()
 
-        var adapter = NewsAdapter(requireContext()) {
+        var selectedFragment = "brakingFragment"
+        var adapter = NewsAdapter(requireContext(),selectedFragment) {
 
             Log.e("TAG", "click: $it")
             clickPage(it)

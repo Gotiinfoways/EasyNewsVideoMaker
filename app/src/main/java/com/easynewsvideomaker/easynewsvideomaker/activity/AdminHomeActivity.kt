@@ -108,6 +108,9 @@ class AdminHomeActivity : AppCompatActivity() {
 
         }, { uid ->
             deleteRecordFromDatabase(uid)
+        }, { uid, userBlock ->
+
+            mDbRef.child("user").child(uid).child("userBlock").setValue(userBlock)
         })
         var manger = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         adminHomeBinding.rcvView.layoutManager = manger

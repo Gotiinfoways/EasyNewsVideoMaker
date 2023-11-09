@@ -9,8 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.easynewsvideomaker.easynewsvideomaker.R
+import com.easynewsvideomaker.easynewsvideomaker.activity.GoldenPackageActivity
+import com.easynewsvideomaker.easynewsvideomaker.activity.SubscriptionActivity
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentPosterBinding
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.NewsAdapter
+import com.easynewsvideomaker.easynewsvideomaker.news_poster.ba_news.BaPoster1Activity
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.poster.Post_10_Activity
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.poster.Post_11_Activity
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.poster.Post_12_Activity
@@ -31,10 +34,24 @@ import com.easynewsvideomaker.easynewsvideomaker.news_poster.poster.Post_6_Activ
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.poster.Post_7_Activity
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.poster.Post_8_Activity
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.poster.Post_9_Activity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 
 class PosterFragment : Fragment() {
 
     lateinit var posterBinding: FragmentPosterBinding
+
+    lateinit var mDbRef: DatabaseReference
+    lateinit var auth: FirebaseAuth
+    var packageType: String? = null
+    var userBlock: String? = null
     var posterList = ArrayList<Int>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +59,8 @@ class PosterFragment : Fragment() {
     ): View? {
         posterBinding = FragmentPosterBinding.inflate(layoutInflater, container, false)
         // Inflate the layout for this fragment
+        mDbRef = FirebaseDatabase.getInstance().getReference()
+        auth = Firebase.auth
 
         initView()
         return posterBinding.root
@@ -49,9 +68,30 @@ class PosterFragment : Fragment() {
 
     private fun initView() {
 
+        //           user information
+        var query: Query =
+            mDbRef.child("user").orderByChild("email").equalTo(auth.currentUser?.email)
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (postSnapshot in snapshot.children) {
+
+
+                    packageType = postSnapshot.child("packageType").value.toString()
+                    userBlock = postSnapshot.child("userBlock").value.toString()
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
+
         insertImageInList()
 
-        var adapter = NewsAdapter(requireContext()) {
+        var selectedFragment = "posterFragment"
+        var adapter = NewsAdapter(requireContext(), selectedFragment) {
 
             Log.e("TAG", "click: $it")
             clickPage(it)
@@ -94,65 +134,265 @@ class PosterFragment : Fragment() {
     private fun clickPage(it: Int) {
 
         if (it == 0) {
-            val intent = Intent(requireContext(), Post_1_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_1_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 1) {
-            val intent = Intent(requireContext(), Post_2_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_2_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 2) {
-            val intent = Intent(requireContext(), Post_3_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_3_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 3) {
-            val intent = Intent(requireContext(), Post_4_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_4_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 4) {
-            val intent = Intent(requireContext(), Post_5_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_5_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 5) {
-            val intent = Intent(requireContext(), Post_6_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_6_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 6) {
-            val intent = Intent(requireContext(), Post_7_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_7_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 7) {
-            val intent = Intent(requireContext(), Post_8_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_8_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 8) {
-            val intent = Intent(requireContext(), Post_9_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_9_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 9) {
-            val intent = Intent(requireContext(), Post_10_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_10_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 10) {
-            val intent = Intent(requireContext(), Post_11_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_11_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 11) {
-            val intent = Intent(requireContext(), Post_12_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_12_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 12) {
-            val intent = Intent(requireContext(), Post_13_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_13_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 13) {
-            val intent = Intent(requireContext(), Post_14_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_14_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 14) {
-            val intent = Intent(requireContext(), Post_15_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_15_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 15) {
-            val intent = Intent(requireContext(), Post_16_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_16_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 16) {
-            val intent = Intent(requireContext(), Post_17_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_17_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 17) {
-            val intent = Intent(requireContext(), Post_18_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_18_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 18) {
-            val intent = Intent(requireContext(), Post_19_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_19_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         } else if (it == 19) {
-            val intent = Intent(requireContext(), Post_20_Activity::class.java)
-            startActivity(intent)
+            if (userBlock == "unblock") {
+                if (packageType == "Golden") {
+                    val intentFrame = Intent(requireContext(), Post_20_Activity::class.java)
+                    startActivity(intentFrame)
+                } else {
+                    var i = Intent(requireContext(), GoldenPackageActivity::class.java)
+                    startActivity(i)
+                }
+            } else {
+                var i = Intent(requireContext(), SubscriptionActivity::class.java)
+                startActivity(i)
+            }
         }
 
 

@@ -60,6 +60,7 @@ class UserChannelActivity : AppCompatActivity() {
     var endDate: String? = null
     var packageType: String? = null
     var loginDeviceName: String? = null
+    var userBlock: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userChannelBinding = ActivityUserChannelBinding.inflate(layoutInflater)
@@ -100,6 +101,7 @@ class UserChannelActivity : AppCompatActivity() {
                                     email = user.email!!
                                     password = user.password!!
                                     loginDeviceName = user.login_device_name!!
+                                    userBlock = user.userBlock!!
 
                                     channelLogo = user.channelLogo
                                     val channelName = user.channelName
@@ -145,6 +147,7 @@ class UserChannelActivity : AppCompatActivity() {
                                     email = user.email!!
                                     password = user.password!!
                                     loginDeviceName = user.login_device_name!!
+                                    userBlock = user.userBlock!!
 
                                     channelLogo = user.channelLogo
                                     val channelName = user.channelName
@@ -184,6 +187,7 @@ class UserChannelActivity : AppCompatActivity() {
             email = intent.getStringExtra("email")!!
             password = intent.getStringExtra("password")!!
             loginDeviceName = intent.getStringExtra("login_device_name")!!
+            userBlock = intent.getStringExtra("userBlock")!!
         }
         progressDialog()
         initView()
@@ -363,6 +367,7 @@ class UserChannelActivity : AppCompatActivity() {
                                 endDate!!,
                                 packageType!!,
                                 loginDeviceName!!,
+                                userBlock!!,
                                 uid!!,
                                 channelLogo!!,
                                 channelName,
@@ -402,6 +407,7 @@ class UserChannelActivity : AppCompatActivity() {
                                 endDate!!,
                                 packageType!!,
                                 loginDeviceName!!,
+                                userBlock!!,
                                 uid!!,
                                 channelLogo!!,
                                 channelName,
@@ -442,6 +448,7 @@ class UserChannelActivity : AppCompatActivity() {
                                         email!!,
                                         password!!,
                                         loginDeviceName!!,
+                                        userBlock!!,
                                         auth.currentUser?.uid!!,
                                         channelLogo!!,
                                         channelName,
@@ -536,6 +543,7 @@ class UserChannelActivity : AppCompatActivity() {
         email: String,
         password: String,
         loginDeviceName: String,
+        userBlock: String,
         uid: String,
         channelLogo: String,
         channelName: String,
@@ -555,6 +563,7 @@ class UserChannelActivity : AppCompatActivity() {
                 email,
                 password,
                 loginDeviceName,
+                userBlock,
                 uid,
                 channelLogo,
                 channelName,

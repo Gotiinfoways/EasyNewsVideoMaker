@@ -23,14 +23,7 @@
             android:layout_marginTop="@dimen/_40sdp"
             android:src="@drawable/imgpost" />
 
-        <VideoView
-            android:id="@+id/vidViewp1"
-            android:layout_width="@dimen/_220sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:scaleType="fitXY"
-            android:visibility="gone"/>
+
 
         <TextView
             android:id="@+id/txtbreaking"
@@ -108,26 +101,7 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linImport_video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
-                android:src="@drawable/import_video" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Import Video"
-                android:textColor="@color/white"
-                android:textStyle="bold" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linImport_image"
@@ -170,7 +144,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Explore"
+            android:text="Export"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />

@@ -1,6 +1,5 @@
 package com.easynewsvideomaker.easynewsvideomaker.news_poster.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,20 +10,33 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.easynewsvideomaker.easynewsvideomaker.R
 import com.easynewsvideomaker.easynewsvideomaker.databinding.FragmentAdvtBinding
 import com.easynewsvideomaker.easynewsvideomaker.news_poster.NewsAdapter
-import com.easynewsvideomaker.easynewsvideomaker.news_poster.poster.Post_1_Activity
-import com.easynewsvideomaker.easynewsvideomaker.news_poster.poster.Post_2_Activity
-import com.easynewsvideomaker.easynewsvideomaker.news_poster.poster.Post_3_Activity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.Query
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 
 class AdvtFragment : Fragment() {
-lateinit var advtBinding: FragmentAdvtBinding
-var advtList=ArrayList<Int>()
+    lateinit var advtBinding: FragmentAdvtBinding
+
+    lateinit var mDbRef: DatabaseReference
+    lateinit var auth: FirebaseAuth
+    var packageType: String? = null
+    var advtList = ArrayList<Int>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        advtBinding= FragmentAdvtBinding.inflate(layoutInflater,container,false)
+        advtBinding = FragmentAdvtBinding.inflate(layoutInflater, container, false)
         // Inflate the layout for this fragment
+        mDbRef = FirebaseDatabase.getInstance().getReference()
+        auth = Firebase.auth
+
         initView()
         return advtBinding.root
     }
@@ -32,9 +44,28 @@ var advtList=ArrayList<Int>()
 
     private fun initView() {
 
-        insertImageInList()
+        //           user information
+        var query: Query =
+            mDbRef.child("user").orderByChild("email").equalTo(auth.currentUser?.email)
+        query.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for (postSnapshot in snapshot.children) {
 
-        var adapter = NewsAdapter(requireContext()) {
+
+                    packageType = postSnapshot.child("packageType").value.toString()
+
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
+
+
+        insertImageInList()
+        var selectedFragment = "advtFragment"
+        var adapter = NewsAdapter(requireContext(),selectedFragment) {
 
             Log.e("TAG", "click: $it")
             clickPage(it)
@@ -59,16 +90,33 @@ var advtList=ArrayList<Int>()
 
     private fun clickPage(it: Int) {
 
-        if (it == 0) {
-            val intent = Intent(requireContext(), Post_1_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 1) {
-            val intent = Intent(requireContext(), Post_2_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 2) {
-            val intent = Intent(requireContext(), Post_3_Activity::class.java)
-            startActivity(intent)
-        }
+
+//        if (it == 0) {
+//            if (packageType == "Golden") {
+//                val intent = Intent(requireContext(), Post_1_Activity::class.java)
+//                startActivity(intent)
+//            } else {
+//                var i = Intent(context, GoldenPackageActivity::class.java)
+//                startActivity(i)
+//            }
+//
+//        } else if (it == 1) {
+//            if (packageType == "Golden") {
+//                val intent = Intent(requireContext(), Post_2_Activity::class.java)
+//                startActivity(intent)
+//            } else {
+//                var i = Intent(context, GoldenPackageActivity::class.java)
+//                startActivity(i)
+//            }
+//        } else if (it == 2) {
+//            if (packageType == "Golden") {
+//                val intent = Intent(requireContext(), Post_3_Activity::class.java)
+//                startActivity(intent)
+//            } else {
+//                var i = Intent(context, GoldenPackageActivity::class.java)
+//                startActivity(i)
+//            }
+//        }
 
     }
 }

@@ -42,7 +42,8 @@ class QuotationFragment : Fragment() {
 
         insertImageInList()
 
-        var adapter = NewsAdapter(requireContext()) {
+        var selectedFragment = "quotationFragment"
+        var adapter = NewsAdapter(requireContext(),selectedFragment) {
 
             Log.e("TAG", "click: $it")
             clickPage(it)
@@ -73,34 +74,34 @@ class QuotationFragment : Fragment() {
 
     private fun clickPage(it: Int) {
 
-        if (it == 0) {
-            val intent = Intent(requireContext(), Post_1_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 1) {
-            val intent = Intent(requireContext(), Post_2_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 2) {
-            val intent = Intent(requireContext(), Post_3_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 3) {
-            val intent = Intent(requireContext(), Post_4_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 4) {
-            val intent = Intent(requireContext(), Post_5_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 5) {
-            val intent = Intent(requireContext(), Post_6_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 6) {
-            val intent = Intent(requireContext(), Post_7_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 7) {
-            val intent = Intent(requireContext(), Post_8_Activity::class.java)
-            startActivity(intent)
-        } else if (it == 8) {
-            val intent = Intent(requireContext(), Post_9_Activity::class.java)
-            startActivity(intent)
-        }
+//        if (it == 0) {
+//            val intent = Intent(requireContext(), Post_1_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 1) {
+//            val intent = Intent(requireContext(), Post_2_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 2) {
+//            val intent = Intent(requireContext(), Post_3_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 3) {
+//            val intent = Intent(requireContext(), Post_4_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 4) {
+//            val intent = Intent(requireContext(), Post_5_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 5) {
+//            val intent = Intent(requireContext(), Post_6_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 6) {
+//            val intent = Intent(requireContext(), Post_7_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 7) {
+//            val intent = Intent(requireContext(), Post_8_Activity::class.java)
+//            startActivity(intent)
+//        } else if (it == 8) {
+//            val intent = Intent(requireContext(), Post_9_Activity::class.java)
+//            startActivity(intent)
+//        }
 
     }
 }

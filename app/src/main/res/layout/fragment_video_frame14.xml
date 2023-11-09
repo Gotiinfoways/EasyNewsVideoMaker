@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightblack"
     android:orientation="vertical"
-    tools:context=".fragment.video_frame.VideoFrame14Fragment">
+    tools:context=".news_video.video_frame.VideoFrame14Fragment">
 
     <FrameLayout
         android:id="@+id/frameView"
@@ -288,6 +288,7 @@
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_18sdp"
                     android:text="OTH"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
@@ -391,6 +392,7 @@
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_18sdp"
                     android:text="BJP"
+                    android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
@@ -479,6 +481,7 @@
                     android:id="@+id/txtOthTitle2"
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_18sdp"
+                    android:textAlignment="center"
                     android:text="OTH"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_10ssp"
